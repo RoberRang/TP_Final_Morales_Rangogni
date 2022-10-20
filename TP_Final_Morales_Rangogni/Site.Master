@@ -43,11 +43,11 @@
         </asp:ScriptManager>
         <nav>
             <div class="nav-wrapper">
-                <a class="brand-logo" runat="server" href="~/">Clinica MORA</a>
+                <a class="brand-logo" runat="server" href="~/"><i class="material-icons">local_hospital</i>Clinica MORA</a>
                 <ul class="right hide-on-med-and-dow">
-                    <li><a runat="server" href="~/"><i class="material-icons">Inicio</i></a></li>
-                    <li><a runat="server" href="~/About">Acerca de</a></li>
-                    <li><a runat="server" href="~/Contact">Contacto</a></li>
+                    <li><a runat="server" href="~/"><i class="material-icons">home</i>Inicio</a></li>
+                    <li><a runat="server" href="~/About"><i class="material-icons">info</i>Acerca de</a></li>
+                    <li><a runat="server" href="~/Contact"><i class="material-icons">contact_mail</i>Contacto</a></li>
                 </ul>
             </div>
         </nav>
