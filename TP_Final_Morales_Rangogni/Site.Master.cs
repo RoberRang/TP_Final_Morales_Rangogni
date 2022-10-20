@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace TP_Final_Morales_Rangogni
+namespace AccesoModeloBaseDatos
 {
     public partial class SiteMaster : MasterPage
     {

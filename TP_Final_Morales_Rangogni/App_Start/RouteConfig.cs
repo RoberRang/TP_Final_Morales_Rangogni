@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
 
-namespace TP_Final_Morales_Rangogni
+namespace AccesoModeloBaseDatos
 {
     public static class RouteConfig
     {

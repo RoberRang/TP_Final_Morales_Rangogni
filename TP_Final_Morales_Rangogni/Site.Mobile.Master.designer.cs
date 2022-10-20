@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TP_Final_Morales_Rangogni {
+namespace AccesoModeloBaseDatos {
     
     
     public partial class Site_Mobile {
