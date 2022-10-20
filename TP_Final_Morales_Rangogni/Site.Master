@@ -41,25 +41,26 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-        <nav>
-            <div class="nav-wrapper">
-                <a class="brand-logo" runat="server" href="~/"><i class="material-icons">local_hospital</i>Clinica MORA</a>
-                <ul class="right hide-on-med-and-dow">
-                    <li><a runat="server" href="~/"><i class="material-icons">home</i>Inicio</a></li>
-                    <li><a runat="server" href="~/About"><i class="material-icons">info</i>Acerca de</a></li>
-                    <li><a runat="server" href="~/Contact"><i class="material-icons">contact_mail</i>Contacto</a></li>
-                </ul>
+        <div class="container">
+            <nav>
+                <div class="nav-wrapper purple">
+                    <a class="brand-logo" runat="server" href="~/"><i class="material-icons">local_hospital</i>Clinica MORA</a>
+                    <ul class="right hide-on-med-and-dow">
+                        <li><a runat="server" href="~/"><i class="material-icons">home</i>Inicio</a></li>
+                        <li><a runat="server" href="~/About"><i class="material-icons">info</i>Acerca de</a></li>
+                        <li><a runat="server" href="~/Contact"><i class="material-icons">contact_mail</i>Contacto</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container body-content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+                <hr />
+                <footer>
+                    <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+                </footer>
             </div>
-        </nav>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
-            </footer>
         </div>
-
     </form>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
