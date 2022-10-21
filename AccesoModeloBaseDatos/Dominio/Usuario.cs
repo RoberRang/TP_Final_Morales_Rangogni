@@ -1,32 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace AccesoModeloBaseDatos.Dominio
 {
     public class Usuario : Empleado
     {
         public int IdUsuario { get; set; }
-        public string user { get; set; }
-        public string password { get; set; }
-        public bool estado { get; set; }
-
-        public string TipUser { get; set; }
+        public string User { get; set; }
+        public string Password { get; set; }
+        public int IdEmpleado { get; set; }
 
         public Usuario() : base()
         {
 
         }
 
-        public Usuario(int IdUsuario, string user, string password, bool estado, string TipUser)
-            : base(0, new TipoPerfil(), "", "", "", "", true, "", "", "")
+        public Usuario(int IdUsuario, string user, string password, int idEmp)
+            : base(1, 1, "", "", "", true, DateTime.Now)
         {
             this.IdUsuario = IdUsuario;
-            this.user = user;
-            this.password = password;
-            this.estado = estado;
-            this.TipUser = TipUser;
+            this.User = user;
+            this.Password = password;
+            this.IdEmpleado = idEmp;
         }
     }
 }

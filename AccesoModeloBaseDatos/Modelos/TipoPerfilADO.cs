@@ -1,14 +1,11 @@
-﻿using System;
+﻿using AccesoModeloBaseDatos.Dominio;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AccesoModeloBaseDatos.Dominio;
+using System.Data.SqlClient;
 
 namespace AccesoModeloBaseDatos.Modelos
-{    
+{
     public class TipoPerfilADO
     {
         private const string SQL_INSERT_PERFIL = "INSERT INTO perfiles (descripcion, estado) VALUES (@descripcion, @estado)";
@@ -55,7 +52,7 @@ namespace AccesoModeloBaseDatos.Modelos
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             try
             {
-                
+
                 using (SqlConnection con = accesoDatos.ConnectToDB())
                 {
                     SqlCommand cmd = new SqlCommand(SQL_SELECT_PERFIL, con);
@@ -89,6 +86,6 @@ namespace AccesoModeloBaseDatos.Modelos
 
             return objTPerfil;
         }
-        
+
     }
 }
