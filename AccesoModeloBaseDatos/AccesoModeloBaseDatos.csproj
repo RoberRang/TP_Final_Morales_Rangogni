@@ -47,11 +47,14 @@
     <Compile Include="Dominio\Paciente.cs" />
     <Compile Include="Dominio\SituacionTurno.cs" />
     <Compile Include="Dominio\TipoPerfil.cs" />
-    <Compile Include="Dominio\Turnos.cs" />
+    <Compile Include="Dominio\Turno.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="Modelos\EmpleadosADO.cs" />
     <Compile Include="Modelos\TipoPerfilADO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Script\ScripDominioDB_Clinica_MORA.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

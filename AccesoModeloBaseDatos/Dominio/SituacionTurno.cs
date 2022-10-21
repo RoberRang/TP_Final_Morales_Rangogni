@@ -8,7 +8,7 @@ namespace AccesoModeloBaseDatos.Dominio
 {
     public class SituacionTurno
     {
-        public int IidSituacion { get; set; }
+        public int IdSituacion { get; set; }
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
 
@@ -16,7 +16,7 @@ namespace AccesoModeloBaseDatos.Dominio
 
         public SituacionTurno(int idSituacion, string descripcion, bool estado)
         {
-            this.IidSituacion = idSituacion;
+            this.IdSituacion = idSituacion;
             this.Descripcion = descripcion;
             this.Estado = estado;
         }
