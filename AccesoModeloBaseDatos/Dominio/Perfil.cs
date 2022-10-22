@@ -1,16 +1,16 @@
 ﻿namespace AccesoModeloBaseDatos.Dominio
 {
-    public class TipoPerfil
+    public class Perfil
     {
         public int IdPerfil { get; set; }
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
 
-        public TipoPerfil()
+        public Perfil()
         {
         }
 
-        public TipoPerfil(int ID, string Descripcion, bool Estado)
+        public Perfil(int ID, string Descripcion, bool Estado)
         {
             IdPerfil = ID;
             this.Descripcion = Descripcion;

@@ -100,7 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="PerfilWeb.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="css\materialize.css" />
     <Content Include="css\materialize.min.css" />
@@ -244,12 +244,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="PerfilWeb.aspx.cs">
+      <DependentUpon>PerfilWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="PerfilWeb.aspx.designer.cs">
+      <DependentUpon>PerfilWeb.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contact.aspx.cs">
@@ -277,6 +277,7 @@
     <Compile Include="Acceso.aspx.designer.cs">
       <DependentUpon>Acceso.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Negocio\PerfilNegocio.cs" />
     <Compile Include="Negocio\UsuarioLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

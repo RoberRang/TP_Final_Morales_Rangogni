@@ -9,45 +9,86 @@ namespace AccesoModeloBaseDatos.Modelos
     public class TipoPerfilADO
     {
         private const string SQL_INSERT_PERFIL = "INSERT INTO perfiles (descripcion, estado) VALUES (@descripcion, @estado)";
-        private const string SQL_SELECT_PERFIL = "SELECT idPerfil, descripcion, estado FROM perfiles";
+        private const string SQL_SELECT_PERFILES = "SELECT idPerfil, descripcion, estado FROM TipoPerfil";
+        private const string SQL_UPDATE_PERFIL = "UPDATE perfiles SET descripcion = @descripcion, estado = @estado WHERE idPerfil = @idPerfil";
         private readonly string coneccionDB;
         public TipoPerfilADO(string coneccion)
         {
             coneccionDB = coneccion;
         }
         // Crear Perfil
-        public bool RegistrarEliminarPerfil(TipoPerfil objPerfil)
+        public bool GrabarPerfil(Perfil perfil)
+        {
+
+            bool response;
+            try
+            {
+                if (perfil.IdPerfil.Equals(0))
+                    InsertPerfilDB(perfil);
+                else
+                    UpdatePerfil(perfil);
+                response = true;
+            }
+            catch (Exception)
+            {
+                response = false;
+            }
+            return response;
+        }
+
+        private void InsertPerfilDB(Perfil perfil)
         {
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             using (SqlConnection con = accesoDatos.ConnectToDB())
             {
-                bool response;
                 try
                 {
                     SqlCommand cmd = new SqlCommand(SQL_INSERT_PERFIL, con);
-                    cmd.Parameters.AddWithValue("@descripcion", objPerfil.Descripcion);
-                    cmd.Parameters.AddWithValue("@estado", objPerfil.Estado);
+                    cmd.Parameters.AddWithValue("@descripcion", perfil.Descripcion);
+                    cmd.Parameters.AddWithValue("@estado", perfil.Estado);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd.CommandText);
-
-                    response = true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    response = false;
+                    throw ex;
                 }
                 finally
                 {
                     accesoDatos.CloseConnection();
                 }
-                return response;
+            }
+        }
+
+        private void UpdatePerfil(Perfil perfil)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
+            using (SqlConnection con = accesoDatos.ConnectToDB())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(SQL_UPDATE_PERFIL, con);
+                    cmd.Parameters.AddWithValue("@idPerfil", perfil.Estado);
+                    cmd.Parameters.AddWithValue("@descripcion", perfil.Descripcion);
+                    cmd.Parameters.AddWithValue("@estado", perfil.Estado);
+                    cmd.CommandType = CommandType.Text;
+                    accesoDatos.ExecuteCommand(cmd.CommandText);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    accesoDatos.CloseConnection();
+                }
             }
         }
 
         // Listado de Menus pero lo manejamos por medio de la clase PermisoDAO
-        public List<TipoPerfil> ListarPerfiles()
+        public List<Perfil> ListarPerfiles()
         {
-            List<TipoPerfil> Lista = new List<TipoPerfil>();
+            List<Perfil> Lista = new List<Perfil>();
             SqlDataReader dr = null;
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             try
@@ -55,7 +96,7 @@ namespace AccesoModeloBaseDatos.Modelos
 
                 using (SqlConnection con = accesoDatos.ConnectToDB())
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_SELECT_PERFIL, con);
+                    SqlCommand cmd = new SqlCommand(SQL_SELECT_PERFILES, con);
                     cmd.CommandType = CommandType.Text;
                     dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
 
@@ -77,15 +118,14 @@ namespace AccesoModeloBaseDatos.Modelos
             return Lista;
         }
 
-        private TipoPerfil CreateObject(SqlDataReader dr)
+        private Perfil CreateObject(SqlDataReader dr)
         {
-            TipoPerfil objTPerfil = new TipoPerfil();
+            Perfil objTPerfil = new Perfil();
             objTPerfil.IdPerfil = Convert.ToInt32(dr["idPerfil"].ToString());
             objTPerfil.Descripcion = dr["descripcion"].ToString();
-            objTPerfil.Estado = dr["isSubMenu"].ToString().Equals("1") ? true : false;
+            objTPerfil.Estado = dr["estado"].ToString().Equals("True") ? true : false;
 
             return objTPerfil;
         }
-
     }
 }

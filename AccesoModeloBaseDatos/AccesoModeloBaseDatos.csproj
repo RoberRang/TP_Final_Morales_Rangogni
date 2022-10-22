@@ -46,7 +46,7 @@
     <Compile Include="Dominio\Especialidad.cs" />
     <Compile Include="Dominio\Paciente.cs" />
     <Compile Include="Dominio\SituacionTurno.cs" />
-    <Compile Include="Dominio\TipoPerfil.cs" />
+    <Compile Include="Dominio\Perfil.cs" />
     <Compile Include="Dominio\Turno.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="Modelos\EmpleadosADO.cs" />

@@ -1,0 +1,1 @@
+﻿SELECT idPerfil, descripcion, estado FROM TipoPerfil
