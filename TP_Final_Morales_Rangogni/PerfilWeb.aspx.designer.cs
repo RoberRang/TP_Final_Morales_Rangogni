@@ -33,21 +33,30 @@ namespace AccesoModeloBaseDatos
         protected global::System.Web.UI.WebControls.TextBox txtDesc;
 
         /// <summary>
-        /// Control chkPerfilIn.
+        /// Control txtEstNew.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkPerfilIn;
+        protected global::System.Web.UI.WebControls.TextBox txtEstNew;
 
         /// <summary>
-        /// Control btnIngresar.
+        /// Control iBtnGraba.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresar;
+        protected global::System.Web.UI.WebControls.ImageButton iBtnGraba;
+
+        /// <summary>
+        /// Control iBtnCancela.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton iBtnCancela;
     }
 }

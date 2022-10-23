@@ -14,9 +14,19 @@ namespace AccesoModeloBaseDatos
         private  PerfilNegocio perfilNegocio;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)    
+            if (!IsPostBack)
+            {
                 CargarRepetidorFerfil();
+                BuscarImagenesControles();
+            }
         }
+
+        private void BuscarImagenesControles()
+        {
+            iBtnGraba.ImageUrl = @"..\Imagenes\save_as_opsz48.jpg";
+            iBtnCancela.ImageUrl = @"..\Imagenes\cancel_black_36dp.jpg";
+        }
+
         private void CargarRepetidorFerfil()
         {
             try
@@ -69,10 +79,9 @@ namespace AccesoModeloBaseDatos
             txtDesc.Text = "";
         }
 
-        protected void btnIngresar_Click(object sender, EventArgs e)
+        protected void iBtnGraba_Click(object sender, ImageClickEventArgs e)
         {
             AltaPerfilWeb();
-            
         }
     }
 }
