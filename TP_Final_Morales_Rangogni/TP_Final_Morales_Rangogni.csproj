@@ -100,7 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icons\save_as_FILL0_wght400_GRAD0_opsz48.png" />
+    <Content Include="Icons\hospital.png" />
     <Content Include="Imagenes\cancel_black_36dp.jpg" />
     <Content Include="Imagenes\save_as_opsz48.jpg" />
     <Content Include="PerfilWeb.aspx" />
