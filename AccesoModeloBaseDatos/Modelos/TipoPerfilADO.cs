@@ -68,7 +68,7 @@ namespace AccesoModeloBaseDatos.Modelos
                 try
                 {
                     SqlCommand cmd = new SqlCommand(SQL_UPDATE_PERFIL, con);
-                    cmd.Parameters.AddWithValue("@idPerfil", perfil.Estado);
+                    cmd.Parameters.AddWithValue("@idPerfil", perfil.IdPerfil);
                     cmd.Parameters.AddWithValue("@descripcion", perfil.Descripcion);
                     cmd.Parameters.AddWithValue("@estado", perfil.Estado);
                     cmd.CommandType = CommandType.Text;
