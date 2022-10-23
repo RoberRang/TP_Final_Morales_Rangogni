@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using AccesoModeloBaseDatos.Dominio;
 using AccesoModeloBaseDatos.Modelos;
 using Microsoft.Ajax.Utilities;
+using TP_Final_Morales_Rangogni.Dominio;
 
 namespace TP_Final_Morales_Rangogni.Negocio
 {
@@ -15,7 +16,7 @@ namespace TP_Final_Morales_Rangogni.Negocio
         private readonly TipoPerfilADO tipoPerfilADO;
         public PerfilNegocio()
         {
-            tipoPerfilADO = new TipoPerfilADO(ConfigurationManager.ConnectionStrings["ClinicaDB"].ToString());
+            tipoPerfilADO = new TipoPerfilADO(ConexionStringDB.ConexionBase());
         }
         public bool AltaPerfil(string descripcion, bool estado)
         {
