@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccesoModeloBaseDatos.Dominio
 {
-    internal class Especialidad
+    public class Especialidad
     {
         public int IdEspecialidad { get; set; }
         public string Descripcion { get; set; }
