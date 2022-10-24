@@ -104,7 +104,7 @@
     <Content Include="Imagenes\cancel_black_36dp.jpg" />
     <Content Include="Imagenes\save_as_opsz48.jpg" />
     <Content Include="PerfilWeb.aspx" />
-    <Content Include="Contact.aspx" />
+    <Content Include="EspecialidadWeb.aspx" />
     <Content Include="css\materialize.css" />
     <Content Include="css\materialize.min.css" />
     <Content Include="Default.aspx" />
@@ -248,6 +248,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Dominio\ConexionStringDB.cs" />
+    <Compile Include="Negocio\EspecialidadNegocio.cs" />
     <Compile Include="PerfilWeb.aspx.cs">
       <DependentUpon>PerfilWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -256,12 +257,12 @@
       <DependentUpon>PerfilWeb.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="EspecialidadWeb.aspx.cs">
+      <DependentUpon>EspecialidadWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="EspecialidadWeb.aspx.designer.cs">
+      <DependentUpon>EspecialidadWeb.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

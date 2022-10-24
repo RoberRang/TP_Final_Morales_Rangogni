@@ -50,6 +50,7 @@
     <Compile Include="Dominio\Turno.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="Modelos\EmpleadosADO.cs" />
+    <Compile Include="Modelos\TipoEspecialidadADO.cs" />
     <Compile Include="Modelos\TipoPerfilADO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
