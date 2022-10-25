@@ -66,8 +66,27 @@ namespace AccesoModeloBaseDatos
             }
             return cadena;
         }
+        public bool ExecuteCommand(SqlCommand command)
+        {
+            bool exito;
+            try
+            {
+                ConnectToDB();
+                command.ExecuteNonQuery();
+                exito = true;
+            }
+            catch
+            {
+                exito = false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return exito;
+        }
 
-        public bool ExecuteCommand(string query)
+        public bool ExecuteCommandString(string query)
         {
             bool exito;
             try

@@ -8,9 +8,9 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class TipoPerfilADO
     {
-        private const string SQL_INSERT_PERFIL = "INSERT INTO perfiles (descripcion, estado) VALUES (@descripcion, @estado)";
+        private const string SQL_INSERT_PERFIL = "INSERT INTO TipoPerfil (descripcion, estado) VALUES (@descripcion, @estado)";
         private const string SQL_SELECT_PERFILES = "SELECT idPerfil, descripcion, estado FROM TipoPerfil";
-        private const string SQL_UPDATE_PERFIL = "UPDATE perfiles SET descripcion = @descripcion, estado = @estado WHERE idPerfil = @idPerfil";
+        private const string SQL_UPDATE_PERFIL = "UPDATE TipoPerfil SET descripcion = @descripcion, estado = @estado WHERE idPerfil = @idPerfil";
         private readonly string coneccionDB;
         public TipoPerfilADO(string coneccion)
         {
@@ -47,7 +47,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@descripcion", perfil.Descripcion);
                     cmd.Parameters.AddWithValue("@estado", perfil.Estado);
                     cmd.CommandType = CommandType.Text;
-                    accesoDatos.ExecuteCommand(cmd.CommandText);
+                    accesoDatos.ExecuteCommand(cmd);
                 }
                 catch (Exception ex)
                 {
@@ -72,7 +72,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@descripcion", perfil.Descripcion);
                     cmd.Parameters.AddWithValue("@estado", perfil.Estado);
                     cmd.CommandType = CommandType.Text;
-                    accesoDatos.ExecuteCommand(cmd.CommandText);
+                    accesoDatos.ExecuteCommandString(cmd.CommandText);
                 }
                 catch (Exception ex)
                 {

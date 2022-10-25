@@ -47,7 +47,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@descripcion", especialidad.Descripcion);
                     cmd.Parameters.AddWithValue("@estado", especialidad.Estado);
                     cmd.CommandType = CommandType.Text;
-                    accesoDatos.ExecuteCommand(cmd.CommandText);
+                    accesoDatos.ExecuteCommand(cmd);
                 }
                 catch (Exception ex)
                 {
@@ -72,7 +72,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@descripcion", especialidad.Descripcion);
                     cmd.Parameters.AddWithValue("@estado", especialidad.Estado);
                     cmd.CommandType = CommandType.Text;
-                    accesoDatos.ExecuteCommand(cmd.CommandText);
+                    accesoDatos.ExecuteCommand(cmd);
                 }
                 catch (Exception ex)
                 {
