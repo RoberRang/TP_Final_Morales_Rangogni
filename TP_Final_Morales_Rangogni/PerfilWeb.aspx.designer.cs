@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AccesoModeloBaseDatos
+namespace TP_Final_Morales_Rangogni
 {
 
 

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using AccesoModeloBaseDatos.Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 
-namespace AccesoModeloBaseDatos.Dominio
+namespace TP_Final_Morales_Rangogni.Dominio
 {
     public class UserSession
     {

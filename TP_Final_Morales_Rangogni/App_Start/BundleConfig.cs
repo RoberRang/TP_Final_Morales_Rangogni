@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Optimization;
 using System.Web.UI;
 
-namespace AccesoModeloBaseDatos
+namespace TP_Final_Morales_Rangogni
 {
     public class BundleConfig
     {

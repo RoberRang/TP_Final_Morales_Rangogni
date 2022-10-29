@@ -247,7 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="Dominio\ConexionStringDB.cs" />
+    <Compile Include="DominioWeb\ConexionStringDB.cs" />
     <Compile Include="Negocio\EspecialidadNegocio.cs" />
     <Compile Include="PerfilWeb.aspx.cs">
       <DependentUpon>PerfilWeb.aspx</DependentUpon>
@@ -271,7 +271,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\UserSession.cs" />
+    <Compile Include="DominioWeb\UserSession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

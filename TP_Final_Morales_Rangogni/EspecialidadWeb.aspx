@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Especialidad" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EspecialidadWeb.aspx.cs" Inherits="AccesoModeloBaseDatos.EspecialidadWeb" Debug="true" %>
+﻿<%@ Page Title="Especialidad" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EspecialidadWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.EspecialidadWeb" Debug="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="header bg-blue">
