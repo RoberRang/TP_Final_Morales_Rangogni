@@ -32,10 +32,10 @@
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-dow">
                         <li><a runat="server" href="~/"><i class="material-icons">home</i>Inicio</a></li>
-                        <li><a runat="server" href="~/PerfilWeb"><i class="material-icons">person_add</i>Perfil</a></li>
+                        <li><a runat="server" href="~/PerfilWeb"><i class="material-icons">account_circle</i>Perfil</a></li>
                         <li><a runat="server" href="~/EspecialidadWeb"><i class="material-icons">contact_mail</i>Especialidad</a></li>
-                        <li><a runat="server" href="~/Acceso"><i class="material-icons">supervisor_account</i>Acceso</a></li>
-                        <li><a runat="server" href="~/EmpleadoWeb"><i class="material-icons">supervisor_account</i>Empleado</a></li>
+                        <li><a runat="server" href="~/Acceso"><i class="material-icons">fingerprint</i>Acceso</a></li>
+                        <li><a runat="server" href="~/EmpleadoWeb"><i class="material-icons">person_add</i>Empleado</a></li>
                     </ul>
                     <ul class="sidenav" id="mobile-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>
