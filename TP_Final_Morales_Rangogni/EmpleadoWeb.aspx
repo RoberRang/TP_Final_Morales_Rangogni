@@ -5,18 +5,18 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="nombreEmp" type="text" class="validate">
+                    <asp:TextBox ID="txtnombre" runat="server" CssClass="validate"></asp:TextBox>
                     <label for="lblNombre">Nombre</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="apellidoEmp" type="text" class="validate">
+                    <asp:TextBox ID="txtApellido" runat="server" CssClass="validate"></asp:TextBox>                    
                     <label for="lblApellido">Apellido</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="dniEmp" type="text" class="validate">
+                    <asp:TextBox ID="txtDni" runat="server" CssClass="validate"></asp:TextBox>                                        
                     <label for="lblDniEmp">Nº Documento</label>
                 </div>
             </div>
@@ -36,7 +36,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <a class="waves-effect waves-light btn-small">Agregar</a>
+                    <asp:Button CssClass="waves-effect waves-light btn-small" ID="btnAceptar" OnClick="btnAceptar_Click" runat="server" Text="Aceptar" />                    
                 </div>
             </div>
         </form>
