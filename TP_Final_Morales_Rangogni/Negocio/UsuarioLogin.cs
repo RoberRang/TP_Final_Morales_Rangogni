@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using AccesoModeloBaseDatos.Dominio;
+using TP_Final_Morales_Rangogni.Dominio;
 
-namespace AccesoModeloBaseDatos.Negocio
+namespace TP_Final_Morales_Rangogni.Negocio
 {
     public class UsuarioLogin
     {

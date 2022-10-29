@@ -7,7 +7,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace AccesoModeloBaseDatos
+namespace TP_Final_Morales_Rangogni
 {
     public class Global : HttpApplication
     {

@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using TP_Final_Morales_Rangogni.Negocio;
 
-namespace AccesoModeloBaseDatos
+namespace TP_Final_Morales_Rangogni
 {
     public partial class EspecialidadWeb : Page
     {

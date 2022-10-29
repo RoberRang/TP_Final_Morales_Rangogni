@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.FriendlyUrls.Resolvers;
 
-namespace AccesoModeloBaseDatos
+namespace TP_Final_Morales_Rangogni
 {
     public partial class ViewSwitcher : System.Web.UI.UserControl
     {

@@ -1,4 +1,4 @@
-﻿using AccesoModeloBaseDatos.Dominio;
+﻿using TP_Final_Morales_Rangogni.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AccesoModeloBaseDatos
+namespace TP_Final_Morales_Rangogni
 {
     public partial class Acceso : Page
     {

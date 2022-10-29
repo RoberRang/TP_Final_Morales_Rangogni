@@ -4,10 +4,10 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
-using AccesoModeloBaseDatos.Dominio;
+using TP_Final_Morales_Rangogni.Dominio;
 using AccesoModeloBaseDatos.Modelos;
 using Microsoft.Ajax.Utilities;
-using TP_Final_Morales_Rangogni.Dominio;
+using AccesoModeloBaseDatos.Dominio;
 
 namespace TP_Final_Morales_Rangogni.Negocio
 {
