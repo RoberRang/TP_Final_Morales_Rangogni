@@ -248,7 +248,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="Dominio\ConexionStringDB.cs" />
     <Compile Include="EmpleadoWeb.aspx.cs">
       <DependentUpon>EmpleadoWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
