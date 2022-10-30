@@ -256,6 +256,7 @@
       <DependentUpon>EmpleadoWeb.aspx</DependentUpon>
     </Compile>
     <Compile Include="DominioWeb\ConexionStringDB.cs" />
+    <Compile Include="Negocio\EmpleadoNegocio.cs" />
     <Compile Include="Negocio\EspecialidadNegocio.cs" />
     <Compile Include="PerfilWeb.aspx.cs">
       <DependentUpon>PerfilWeb.aspx</DependentUpon>

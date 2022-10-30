@@ -36,8 +36,13 @@ namespace TP_Final_Morales_Rangogni
                 nuevo.Nombres = txtnombre.Text;
                 nuevo.Apellidos = txtApellido.Text;
                 nuevo.NroDocumento = txtDni.Text;
+                nuevo.Estado = chbEstado.Checked;
+
+                //desplegable
+                
 
                 ///CREAR METODO negocio.agregar(nuevo);
+
             }
             catch (Exception ex)
             {
