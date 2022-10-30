@@ -42,22 +42,22 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.TextBox txtDni;
 
         /// <summary>
-        /// Control txtEstNew.
+        /// Control ddlPerfilEmp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEstNew;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPerfilEmp;
 
         /// <summary>
-        /// Control chbEstado.
+        /// Control chbEstado1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chbEstado;
+        protected global::System.Web.UI.WebControls.CheckBox chbEstado1;
 
         /// <summary>
         /// Control btnAceptar.

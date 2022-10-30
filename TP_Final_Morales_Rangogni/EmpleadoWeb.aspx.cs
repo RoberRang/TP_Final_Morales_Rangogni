@@ -6,17 +6,19 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TP_Final_Morales_Rangogni;
+using TP_Final_Morales_Rangogni.Negocio;
 
 namespace TP_Final_Morales_Rangogni
 {
     public partial class EmpleadoWeb : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   
             try
             {
                 if (!IsPostBack)
                 {
+                    buscarTipoPerfil();
 
                 }
             }
@@ -28,6 +30,16 @@ namespace TP_Final_Morales_Rangogni
 
         }
 
+        private void buscarTipoPerfil()
+        {
+            PerfilNegocio perfilNegocio=new PerfilNegocio();
+            ddlPerfilEmp.DataSource= perfilNegocio.Perliles();
+            ddlPerfilEmp.DataValueField = "idPerfil";
+            ddlPerfilEmp.DataTextField = "descripcion";
+            ddlPerfilEmp.DataBind();
+            
+        }
+
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             try
@@ -36,7 +48,7 @@ namespace TP_Final_Morales_Rangogni
                 nuevo.Nombres = txtnombre.Text;
                 nuevo.Apellidos = txtApellido.Text;
                 nuevo.NroDocumento = txtDni.Text;
-                nuevo.Estado = chbEstado.Checked;
+                nuevo.Estado = chbEstado1.Checked;
 
                 //desplegable
                 
