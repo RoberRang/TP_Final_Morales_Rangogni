@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication.ExtendedProtection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -49,7 +50,7 @@ namespace TP_Final_Morales_Rangogni
             especialidadNegocio = new EspecialidadNegocio();
             try
             {
-                especialidadNegocio.AltaEspecialidad(txtDesc.Text, true);
+                especialidadNegocio.AltaEspecialidad(txtDesc.Text, chbEst.Checked);
             }
             catch (Exception ex)
             {

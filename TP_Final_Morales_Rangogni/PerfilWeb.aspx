@@ -44,19 +44,23 @@
             <div id="modalAdd" class="modal">
                 <div class="modal-content">
                     <div class="row">
-                        <div class="col s7">
+                        <div class="col s8">
                             <asp:TextBox CssClass="form-control" ID="txtDesc" runat="server" placeholder="Descripción"></asp:TextBox>
                         </div>
-                        <div class="col s3">
-                            <a class="dropdown-trigger btn purple lighten-2" style="margin-top: 10px;" href="#" data-activates="drpdEstado" data-target="drpdEstado">
-                                <i class="material-icons right">arrow_drop_down</i>Estado</a>
-                            <ul id="drpdEstado" class="dropdown-content">
-                                <li id="liTrue" onclick="pasarValor('True')">True</li>
-                                <li id="liFalse" onclick="pasarValor('False')">False</li>
-                            </ul>
-                        </div>
-                        <div class="col s2">
-                            <asp:TextBox CssClass="form-control" Enabled="false" ID="txtEstNew" runat="server" placeholder="Estado"></asp:TextBox>
+                        <div class="col s4">
+                            <div class="row">
+                                <div class="input-field">
+                                    Estado
+                                    <div class="switch">
+                                        <label>
+                                            INACTIVO
+                                            <asp:CheckBox ID="chbEst" runat="server" />
+                                            <span class="lever"></span>
+                                            ACTIVO
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,20 +80,14 @@
         <div class="divider"></div>
     </div>
     <script>
-        function pasarValor(valorLi) {
-            document.getElementById('<%= txtEstNew.ClientID %>').value = valorLi;
-        }
         function limpiarModal(mensaje) {
             document.getElementById('<%= txtDesc.ClientID %>').value = "";
-            document.getElementById('<%= txtEstNew.ClientID %>').value = "";
             document.getElementById('<%= lblAccion.ClientID %>').textContent = mensaje;
         }
         function cargarModal(mensaje) {
             document.getElementById('<%= lblAccion.ClientID %>').textContent = mensaje;
             let valDesc = document.getElementById('alblDesc').textContent;
-            let valEst = document.getElementById('alblEst').textContent;
             document.getElementById('<%= txtDesc.ClientID %>').value = valDesc;
-            document.getElementById('<%= txtEstNew.ClientID %>').value = valEst;
         }
     </script>
 </asp:Content>

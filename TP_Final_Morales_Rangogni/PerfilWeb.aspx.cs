@@ -49,7 +49,7 @@ namespace TP_Final_Morales_Rangogni
             perfilNegocio = new PerfilNegocio();
             try
             {
-                perfilNegocio.AltaPerfil(txtDesc.Text, true);
+                perfilNegocio.AltaPerfil(txtDesc.Text, chbEst.Checked);
             }
             catch (Exception ex)
             {
@@ -65,7 +65,7 @@ namespace TP_Final_Morales_Rangogni
             perfilNegocio = new PerfilNegocio();
             try
             {
-                perfilNegocio.AltaPerfil(txtDesc.Text, true);
+                perfilNegocio.AltaPerfil(txtDesc.Text, chbEst.Checked);
             }
             catch (Exception ex)
             {
