@@ -16,7 +16,7 @@ namespace AccesoModeloBaseDatos.Modelos
         {
             coneccionDB = coneccion;
         }
-        // Crear Especialidad
+        
         public bool GrabarEmpleado(Empleado empleado)
         {
 
@@ -44,9 +44,12 @@ namespace AccesoModeloBaseDatos.Modelos
                 try
                 {
                     SqlCommand cmd = new SqlCommand(SQL_INSERT_EMPLEADOS, con);
-                    cmd.Parameters.AddWithValue("@@idtipoperfil", empleado.idTipoPerfil);
-                    cmd.Parameters.AddWithValue("@estado", empleado.Estado);
-                    ///@nombre,@apellido,@nrodocumento,@fechaalta, @estado
+                    cmd.Parameters.AddWithValue("@apellido", empleado.Apellidos);
+                    cmd.Parameters.AddWithValue("@idTipoPerfil", empleado.idTipoPerfil);
+                    cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
+                    cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
+                    cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
+                    cmd.Parameters.AddWithValue("@estado", empleado.Estado);                    
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
                 }
@@ -72,10 +75,11 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@apellido", empleado.Apellidos);
                     cmd.Parameters.AddWithValue("@idTipoPerfil", empleado.idTipoPerfil);
                     cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
+                    cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
+                    cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
                     cmd.Parameters.AddWithValue("@estado", empleado.Estado);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
-                    ///idtipoperfil=@idtipoperfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, estado = @estado WHERE id = @id"
                 }
                 catch (Exception ex)
                 {
@@ -88,7 +92,7 @@ namespace AccesoModeloBaseDatos.Modelos
             }
         }
 
-        // Listado de Menus pero lo manejamos por medio de la clase PermisoDAO
+        // Listado de Menus pero lo manejamos por medio de la clase PermisoADO
         public List<Empleado> ListarEmpleados()
         {
             List<Empleado> Lista = new List<Empleado>();
@@ -124,9 +128,13 @@ namespace AccesoModeloBaseDatos.Modelos
         private Empleado CreateObject(SqlDataReader dr)
         {
             Empleado objTEmpleado = new Empleado();
-            ///id, idtipoperfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados
             objTEmpleado.ID = Convert.ToInt32(dr["id"].ToString());
             objTEmpleado.idTipoPerfil = Convert.ToInt32(dr["idtipoperfil"].ToString());
+            objTEmpleado.Nombres = dr["nombre"].ToString();
+            objTEmpleado.Apellidos = dr["apellido"].ToString();
+            objTEmpleado.NroDocumento = dr["nrodocumento"].ToString();
+            ///VER EL DATETIME NO ESTOY SEGURO.
+            objTEmpleado.FechaAlta = Convert.ToDateTime(dr["fechaAlta"].ToString());
             objTEmpleado.Estado = dr["estado"].ToString().Equals("True") ? true : false;
 
             return objTEmpleado;
