@@ -16,7 +16,7 @@ namespace AccesoModeloBaseDatos.Modelos
         {
             coneccionDB = coneccion;
         }
-        
+
         public bool GrabarEmpleado(Empleado empleado)
         {
 
@@ -49,7 +49,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
                     cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
                     cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
-                    cmd.Parameters.AddWithValue("@estado", empleado.Estado);                    
+                    cmd.Parameters.AddWithValue("@estado", empleado.Estado);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
                 }
@@ -133,7 +133,6 @@ namespace AccesoModeloBaseDatos.Modelos
             objTEmpleado.Nombres = dr["nombre"].ToString();
             objTEmpleado.Apellidos = dr["apellido"].ToString();
             objTEmpleado.NroDocumento = dr["nrodocumento"].ToString();
-            ///VER EL DATETIME NO ESTOY SEGURO.
             objTEmpleado.FechaAlta = Convert.ToDateTime(dr["fechaAlta"].ToString());
             objTEmpleado.Estado = dr["estado"].ToString().Equals("True") ? true : false;
 

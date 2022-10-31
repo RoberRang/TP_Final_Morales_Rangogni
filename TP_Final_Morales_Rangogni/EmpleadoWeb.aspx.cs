@@ -24,7 +24,7 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
+                throw ex;
 
             }
 
@@ -41,7 +41,7 @@ namespace TP_Final_Morales_Rangogni
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
-        {
+        {   
             try
             {
                 Empleado nuevo = new Empleado();
@@ -58,7 +58,7 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
+                throw ex;
 
             }
 

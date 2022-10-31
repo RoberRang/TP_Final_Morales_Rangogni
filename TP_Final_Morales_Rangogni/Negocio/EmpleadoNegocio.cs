@@ -13,6 +13,8 @@ namespace TP_Final_Morales_Rangogni.Negocio
 {
     public class EmpleadoNegocio : Empleado
     {
+        private string MensajeError { get; set; }
+
         private readonly EmpleadoADO empleadoADO ;
         public EmpleadoNegocio()
         {
@@ -21,7 +23,7 @@ namespace TP_Final_Morales_Rangogni.Negocio
         public bool AltaEmpleado(Empleado empleado)
         {
             try
-            {
+            {   
                 ///crear validaciones para empleado
                 return empleadoADO.GrabarEmpleado(empleado);
             }
@@ -44,6 +46,12 @@ namespace TP_Final_Morales_Rangogni.Negocio
             {
                 throw ex;
             }
+        }
+        public bool ValidarDatosIngreso(Empleado empleado)
+        { /// recibir un objeto, voy chequear en bd que sea valido. DNI, USUARIO
+            
+          ///ACA USO MENSAJE DE ERROR SI ES FALSE
+            return true;
         }
     }
 }
