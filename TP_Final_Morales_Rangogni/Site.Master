@@ -52,7 +52,7 @@
                 </asp:ContentPlaceHolder>
                 <hr />
                 <footer>
-                    <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+                    <p>&copy; <%: DateTime.Now.Year %> -Mac Fly Corporation service company</p>
                     <!-- Modal Trigger -->
                     <a class="waves-effect waves-light btn modal-trigger purple" href="#modal1">Footer</a>
 
