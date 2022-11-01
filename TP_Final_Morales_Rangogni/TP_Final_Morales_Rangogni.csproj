@@ -255,9 +255,6 @@
     <Compile Include="EmpleadoWeb.aspx.designer.cs">
       <DependentUpon>EmpleadoWeb.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DominioWeb\ConexionStringDB.cs" />
-    <Compile Include="Negocio\EmpleadoNegocio.cs" />
-    <Compile Include="Negocio\EspecialidadNegocio.cs" />
     <Compile Include="PerfilWeb.aspx.cs">
       <DependentUpon>PerfilWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -291,8 +288,6 @@
     <Compile Include="Acceso.aspx.designer.cs">
       <DependentUpon>Acceso.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Negocio\PerfilNegocio.cs" />
-    <Compile Include="Negocio\UsuarioLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -318,6 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Negocio\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -352,6 +348,10 @@
     <ProjectReference Include="..\AccesoModeloBaseDatos\AccesoModeloBaseDatos.csproj">
       <Project>{f06813f7-ac00-4d8f-9209-3af4a1aea67b}</Project>
       <Name>AccesoModeloBaseDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModeloDeNegocio\ModeloDeNegocio.csproj">
+      <Project>{eaf4538d-fb86-445f-83e0-4b81ddc40096}</Project>
+      <Name>ModeloDeNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

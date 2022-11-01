@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
-using System.Web.UI.WebControls;
-using TP_Final_Morales_Rangogni.Dominio;
 using AccesoModeloBaseDatos.Modelos;
-using Microsoft.Ajax.Utilities;
 using AccesoModeloBaseDatos.Dominio;
 
-namespace TP_Final_Morales_Rangogni.Negocio
+namespace ModeloDeNegocio.Negocio
 {
     public class PerfilNegocio : Perfil
     {
