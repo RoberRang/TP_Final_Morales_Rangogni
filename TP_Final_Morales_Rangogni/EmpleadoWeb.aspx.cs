@@ -1,4 +1,5 @@
 ﻿using AccesoModeloBaseDatos.Dominio;
+using AccesoModeloBaseDatos.Modelos;
 using ModeloDeNegocio.Negocio;
 using System;
 using System.Collections.Generic;
@@ -43,17 +44,19 @@ namespace TP_Final_Morales_Rangogni
         {   
             try
             {
+                EmpleadoNegocio negocio=new EmpleadoNegocio();
                 Empleado nuevo = new Empleado();
+
                 nuevo.Nombres = txtnombre.Text;
                 nuevo.Apellidos = txtApellido.Text;
                 nuevo.NroDocumento = txtDni.Text;
                 nuevo.Estado = chbEstado1.Checked;
-
                 //desplegable
-                
+                nuevo.idTipoPerfil =int.Parse (ddlPerfilEmp.SelectedValue);
 
+               
                 ///CREAR METODO negocio.agregar(nuevo);
-
+                negocio.AltaEmpleado(nuevo);
             }
             catch (Exception ex)
             {
