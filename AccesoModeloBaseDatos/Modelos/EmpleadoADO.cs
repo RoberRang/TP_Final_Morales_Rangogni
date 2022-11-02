@@ -23,7 +23,7 @@ namespace AccesoModeloBaseDatos.Modelos
             bool response;
             try
             {
-                if (empleado.ID.Equals(0))
+                if (empleado.ID.Equals(1)) ///VER ACA EL EQUALS
                     InsertEmpleadoDB(empleado);
                 else
                     UpdateEmpleado(empleado);
