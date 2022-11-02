@@ -15,7 +15,7 @@ namespace AccesoModeloBaseDatos.Dominio
         }
 
         public Usuario(int IdUsuario, string user, string password, int idEmp)
-            : base(1, 1, "", "", "", true, DateTime.Now)
+            : base(0, 1, "", "", "", true, DateTime.Now)
         {
             this.IdUsuario = IdUsuario;
             this.User = user;
