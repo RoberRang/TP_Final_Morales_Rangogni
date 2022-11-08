@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace AccesoModeloBaseDatos.Dominio
 {
@@ -6,8 +7,12 @@ namespace AccesoModeloBaseDatos.Dominio
     {
         public int ID { get; set; }
         public int idTipoPerfil { get; set; }
+
+        [Required(ErrorMessage = "El nombre es un dato obligatorio")]
         public string Nombres { get; set; }
+        [Required(ErrorMessage = "El apellido es un dato obligatorio")]
         public string Apellidos { get; set; }
+        [Required(ErrorMessage = "El documento es un dato obligatorio")]
         public string NroDocumento { get; set; }
         public DateTime FechaAlta { get; set; }
         public bool Estado { get; set; }

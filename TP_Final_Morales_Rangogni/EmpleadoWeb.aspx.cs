@@ -44,20 +44,24 @@ namespace TP_Final_Morales_Rangogni
         {   
             try
             {
-                EmpleadoNegocio negocio=new EmpleadoNegocio();
-                Empleado nuevo = new Empleado();
-
-                nuevo.Nombres = txtnombre.Text;
-                nuevo.Apellidos = txtApellido.Text;
-                nuevo.NroDocumento = txtDni.Text;
-                nuevo.Estado = chbEstado1.Checked;
+                UsuarioNegocio negocio=new UsuarioNegocio();
+                Usuario nuevoUser = new Usuario();
+                
+                nuevoUser.Nombres = txtnombre.Text;
+                nuevoUser.Apellidos = txtApellido.Text;
+                nuevoUser.NroDocumento = txtDni.Text;
+                nuevoUser.Estado = chbEstado1.Checked;
                 //desplegable
-                nuevo.idTipoPerfil =int.Parse (ddlPerfilEmp.SelectedValue);
-
+                nuevoUser.idTipoPerfil =int.Parse (ddlPerfilEmp.SelectedValue);
+                nuevoUser.User = txtUser.Text;
+                nuevoUser.Password = txtPass.Text; 
                
                 ///CREAR METODO negocio.agregar(nuevo);
-                negocio.AltaEmpleado(nuevo);
-                ///cartel alta de empleado completa y limpiar controles                
+                if (negocio.AltaUsuario(nuevoUser))
+                {
+                    ///cartel alta de empleado completa y limpiar controles                
+
+                }
             }
             catch (Exception ex)
             {

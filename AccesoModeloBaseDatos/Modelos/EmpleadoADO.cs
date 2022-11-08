@@ -13,9 +13,11 @@ namespace AccesoModeloBaseDatos.Modelos
         private const string SQL_UPDATE_EMPLEADOS = "UPDATE empleados SET idtipoperfil=@idtipoperfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, estado = @estado WHERE id = @id";
         private const string SQL_SELECT_EMPLEADO = "SELECT * from Empleados where NroDocumento = '@nrodocumento'";
         private readonly string coneccionDB;
-        public EmpleadoADO(string coneccion)
+        private readonly bool enTransaccion;
+        public EmpleadoADO(string coneccion, bool enTransac = false)
         {
             coneccionDB = coneccion;
+            enTransaccion = enTransac;
         }
 
         public bool GrabarEmpleado(Empleado empleado)
@@ -42,6 +44,8 @@ namespace AccesoModeloBaseDatos.Modelos
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             using (SqlConnection con = accesoDatos.ConnectToDB())
             {
+                string transaccion = "addNew";
+                SqlTransaction sqlTransaction = con.BeginTransaction(transaccion);
                 try
                 {
                     SqlCommand cmd = new SqlCommand(SQL_INSERT_EMPLEADOS, con);
@@ -51,11 +55,16 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
                     cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
                     cmd.Parameters.AddWithValue("@estado", empleado.Estado);
-                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandType = CommandType.Text;                    
+                    cmd.Transaction = sqlTransaction;
                     accesoDatos.ExecuteCommand(cmd);
+
+                    sqlTransaction.Commit();
+                    
                 }
                 catch (Exception ex)
                 {
+                    sqlTransaction.Rollback();
                     throw ex;
                 }
                 finally

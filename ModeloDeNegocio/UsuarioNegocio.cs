@@ -5,26 +5,26 @@ using AccesoModeloBaseDatos.Dominio;
 
 namespace ModeloDeNegocio.Negocio
 {
-    public class EmpleadoNegocio : Empleado
+    public class UsuarioNegocio : Usuario
     {
         private string MensajeError { get; set; }
 
         private readonly EmpleadoADO empleadoADO;
-        public EmpleadoNegocio()
+        public UsuarioNegocio()
         {
             empleadoADO = new EmpleadoADO(ConexionStringDB.ConexionBase());
         }
-        public bool AltaEmpleado(Empleado empleado)
+        public bool AltaUsuario(Usuario usuario)
         {
             bool alta = true;
             try
             {
-                Empleado empleadoBuscado = empleadoADO.BuscarEmpleado(empleado.NroDocumento);
+                Empleado empleadoBuscado = empleadoADO.BuscarEmpleado(usuario.NroDocumento);
                 if (empleadoBuscado != null)
                     return false;
-                    ///crear validaciones para empleado                
-                    empleadoADO.GrabarEmpleado(empleado);
-                
+                ///crear validaciones para empleado                
+                empleadoADO.GrabarEmpleado(usuario);
+
                 ///grabar la tabla usuario y contraseña (traigo id empleado, crear obj usuario// llamo a usuarioADO para grabarusuario)
                 return alta;
             }
