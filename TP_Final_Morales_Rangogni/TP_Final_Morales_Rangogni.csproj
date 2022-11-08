@@ -104,6 +104,7 @@
     <Content Include="Icons\hospital.png" />
     <Content Include="Imagenes\cancel_black_36dp.jpg" />
     <Content Include="Imagenes\save_as_opsz48.jpg" />
+    <Content Include="MedicoWeb.aspx" />
     <Content Include="PerfilWeb.aspx" />
     <Content Include="EspecialidadWeb.aspx" />
     <Content Include="css\materialize.css" />
@@ -254,6 +255,13 @@
     </Compile>
     <Compile Include="EmpleadoWeb.aspx.designer.cs">
       <DependentUpon>EmpleadoWeb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MedicoWeb.aspx.cs">
+      <DependentUpon>MedicoWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MedicoWeb.aspx.designer.cs">
+      <DependentUpon>MedicoWeb.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfilWeb.aspx.cs">
       <DependentUpon>PerfilWeb.aspx</DependentUpon>

@@ -46,6 +46,7 @@
     <Compile Include="CadenaConexionDB.cs" />
     <Compile Include="UsuarioNegocio.cs" />
     <Compile Include="EspecialidadNegocio.cs" />
+    <Compile Include="MedicoNegociocs.cs" />
     <Compile Include="PerfilNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioLogin.cs" />

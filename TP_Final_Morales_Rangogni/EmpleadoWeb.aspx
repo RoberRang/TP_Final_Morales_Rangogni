@@ -29,11 +29,11 @@
             </div>
             <!--Contraseña -->
             <div class="input-field col s4">
-                <asp:TextBox ID="txtPass" runat="server" CssClass="validate"></asp:TextBox>
+                <asp:TextBox ID="txtPass" runat="server" CssClass="validate" TextMode="Password" ></asp:TextBox>
                 <label for="lblPass">Contraseña</label>
             </div>
             <div class="input-field col s4">
-                <asp:TextBox ID="txtPass2" runat="server" CssClass="validate"></asp:TextBox>
+                <asp:TextBox ID="txtPass2" runat="server" CssClass="validate" TextMode="Password"></asp:TextBox>
                 <label for="lblPass2">Repetir Contraseña</label>
             </div>
         </div>
