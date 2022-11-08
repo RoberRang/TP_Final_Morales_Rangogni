@@ -11,6 +11,7 @@ namespace AccesoModeloBaseDatos.Modelos
         private const string SQL_INSERT_EMPLEADOS = "INSERT INTO empleados (idtipoperfil, nombre, apellido, nrodocumento,fechaalta, estado) VALUES (@idtipoperfil,@nombre,@apellido,@nrodocumento,@fechaalta, @estado)";
         private const string SQL_SELECT_EMPLEADOS = "SELECT id, idtipoperfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados";
         private const string SQL_UPDATE_EMPLEADOS = "UPDATE empleados SET idtipoperfil=@idtipoperfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, estado = @estado WHERE id = @id";
+        private const string SQL_SELECT_EMPLEADO = "SELECT * from Empleados where NroDocumento = '@nrodocumento'";
         private readonly string coneccionDB;
         public EmpleadoADO(string coneccion)
         {
@@ -23,7 +24,7 @@ namespace AccesoModeloBaseDatos.Modelos
             bool response;
             try
             {
-                if (empleado.ID.Equals(1)) ///VER ACA EL EQUALS
+                if (empleado.ID.Equals(0)) ///VER ACA EL EQUALS
                     InsertEmpleadoDB(empleado);
                 else
                     UpdateEmpleado(empleado);
@@ -137,6 +138,38 @@ namespace AccesoModeloBaseDatos.Modelos
             objTEmpleado.Estado = dr["estado"].ToString().Equals("True") ? true : false;
 
             return objTEmpleado;
+        }
+        public Empleado BuscarEmpleado(string documento)
+        {
+            Empleado empleado = null;
+            SqlDataReader dr = null;
+            AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
+            try
+            {
+
+                using (SqlConnection con = accesoDatos.ConnectToDB())
+                {
+                    SqlCommand cmd = new SqlCommand(SQL_SELECT_EMPLEADO, con);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@nrodocumento", documento);
+                    dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
+
+                    while (dr.Read())
+                    {
+                        empleado = (CreateObject(dr));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                accesoDatos.CloseConnection();
+            }
+
+            return empleado;
         }
     }
 }

@@ -9,17 +9,24 @@ namespace ModeloDeNegocio.Negocio
     {
         private string MensajeError { get; set; }
 
-        private readonly EmpleadoADO empleadoADO ;
+        private readonly EmpleadoADO empleadoADO;
         public EmpleadoNegocio()
         {
-            empleadoADO= new EmpleadoADO(ConexionStringDB.ConexionBase());
+            empleadoADO = new EmpleadoADO(ConexionStringDB.ConexionBase());
         }
         public bool AltaEmpleado(Empleado empleado)
         {
+            bool alta = true;
             try
-            {   
-                ///crear validaciones para empleado
-                return empleadoADO.GrabarEmpleado(empleado);
+            {
+                Empleado empleadoBuscado = empleadoADO.BuscarEmpleado(empleado.NroDocumento);
+                if (empleadoBuscado != null)
+                    return false;
+                    ///crear validaciones para empleado                
+                    empleadoADO.GrabarEmpleado(empleado);
+                
+                ///grabar la tabla usuario y contraseña (traigo id empleado, crear obj usuario// llamo a usuarioADO para grabarusuario)
+                return alta;
             }
             catch (Exception ex)
             {
@@ -43,7 +50,7 @@ namespace ModeloDeNegocio.Negocio
         }
         public bool ValidarDatosIngreso(Empleado empleado)
         { /// recibir un objeto, voy chequear en bd que sea valido. DNI, USUARIO
-            
+
           ///ACA USO MENSAJE DE ERROR SI ES FALSE
             return true;
         }

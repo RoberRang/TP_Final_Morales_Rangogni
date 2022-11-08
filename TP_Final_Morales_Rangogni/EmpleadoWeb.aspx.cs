@@ -57,6 +57,7 @@ namespace TP_Final_Morales_Rangogni
                
                 ///CREAR METODO negocio.agregar(nuevo);
                 negocio.AltaEmpleado(nuevo);
+                ///cartel alta de empleado completa y limpiar controles                
             }
             catch (Exception ex)
             {

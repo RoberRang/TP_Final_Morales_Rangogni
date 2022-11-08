@@ -12,7 +12,7 @@ namespace AccesoModeloBaseDatos.Dominio
         public DateTime FechaAlta { get; set; }
         public bool Estado { get; set; }
 
-        public Empleado() : this(1, 1, "", "", "", false, DateTime.Now) { }
+        public Empleado() : this(0, 1, "", "", "", false, DateTime.Now) { }
 
         public Empleado(int id, int idTipoPerfil, string nombres, string apellidos, string nroDocumento, bool Estado, DateTime fechaAlta)
         {
