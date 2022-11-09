@@ -21,11 +21,11 @@ namespace AccesoModeloBaseDatos.Modelos
             coneccionDB = coneccion;
         }
 
-        public bool InsertUsuarioDB(Usuario usuario, SqlConnection conexion, SqlTransaction trans)
+        public bool InsertUsuarioDB(Usuario usuario)
         {
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             bool inserto = false;
-            using (SqlConnection con = conexion)
+            using (SqlConnection con = accesoDatos.ConnectToDB())
             {
                 try
                 {
@@ -34,7 +34,6 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@nombre", usuario.Password);
                     cmd.Parameters.AddWithValue("@idEmp", usuario.IdEmpleado);
                     cmd.CommandType = CommandType.Text;
-                    cmd.Transaction = trans;
                     accesoDatos.ExecuteCommand(cmd);
                     inserto = true;
                 }

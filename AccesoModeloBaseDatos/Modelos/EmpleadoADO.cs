@@ -11,18 +11,15 @@ namespace AccesoModeloBaseDatos.Modelos
         private const string SQL_INSERT_EMPLEADOS = "INSERT INTO empleados (idtipoperfil, nombre, apellido, nrodocumento,fechaalta, estado) VALUES (@idtipoperfil,@nombre,@apellido,@nrodocumento,@fechaalta, @estado)";
         private const string SQL_SELECT_EMPLEADOS = "SELECT id, idtipoperfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados";
         private const string SQL_UPDATE_EMPLEADOS = "UPDATE empleados SET idtipoperfil=@idtipoperfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, estado = @estado WHERE id = @id";
-        private const string SQL_SELECT_EMPLEADO = "SELECT * from Empleados where NroDocumento = '@nrodocumento'";
+        private const string SQL_SELECT_EMPLEADO = "SELECT id, idtipoperfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados WHERE NroDocumento = '@nrodocumento'";
         private readonly string coneccionDB;
-        private readonly bool enTransaccion;
-        public EmpleadoADO(string coneccion, bool enTransac = false)
+        public EmpleadoADO(string coneccion)
         {
             coneccionDB = coneccion;
-            enTransaccion = enTransac;
         }
 
         public bool GrabarEmpleado(Empleado empleado)
         {
-
             bool response;
             try
             {
@@ -44,44 +41,9 @@ namespace AccesoModeloBaseDatos.Modelos
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             using (SqlConnection con = accesoDatos.ConnectToDB())
             {
-                string transaccion = "addNew";
-                SqlTransaction sqlTransaction = con.BeginTransaction(transaccion);
                 try
                 {
                     SqlCommand cmd = new SqlCommand(SQL_INSERT_EMPLEADOS, con);
-                    cmd.Parameters.AddWithValue("@apellido", empleado.Apellidos);
-                    cmd.Parameters.AddWithValue("@idTipoPerfil", empleado.idTipoPerfil);
-                    cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
-                    cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
-                    cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
-                    cmd.Parameters.AddWithValue("@estado", empleado.Estado);
-                    cmd.CommandType = CommandType.Text;                    
-                    cmd.Transaction = sqlTransaction;
-                    accesoDatos.ExecuteCommand(cmd);
-
-                    sqlTransaction.Commit();
-                    
-                }
-                catch (Exception ex)
-                {
-                    sqlTransaction.Rollback();
-                    throw ex;
-                }
-                finally
-                {
-                    accesoDatos.CloseConnection();
-                }
-            }
-        }
-
-        private void UpdateEmpleado(Empleado empleado)
-        {
-            AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
-            using (SqlConnection con = accesoDatos.ConnectToDB())
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand(SQL_UPDATE_EMPLEADOS, con);
                     cmd.Parameters.AddWithValue("@apellido", empleado.Apellidos);
                     cmd.Parameters.AddWithValue("@idTipoPerfil", empleado.idTipoPerfil);
                     cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
@@ -102,6 +64,34 @@ namespace AccesoModeloBaseDatos.Modelos
             }
         }
 
+        private void UpdateEmpleado(Empleado empleado)
+        {
+            AccesoDatos accesoDatosUpdate = new AccesoDatos(coneccionDB);
+            using (SqlConnection con = accesoDatosUpdate.ConnectToDB())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(SQL_UPDATE_EMPLEADOS, con);
+                    cmd.Parameters.AddWithValue("@apellido", empleado.Apellidos);
+                    cmd.Parameters.AddWithValue("@idTipoPerfil", empleado.idTipoPerfil);
+                    cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
+                    cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
+                    cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
+                    cmd.Parameters.AddWithValue("@estado", empleado.Estado);
+                    cmd.CommandType = CommandType.Text;
+                    accesoDatosUpdate.ExecuteCommand(cmd);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    accesoDatosUpdate.CloseConnection();
+                }
+            }
+        }
+
         // Listado de Menus pero lo manejamos por medio de la clase PermisoADO
         public List<Empleado> ListarEmpleados()
         {
@@ -110,7 +100,6 @@ namespace AccesoModeloBaseDatos.Modelos
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             try
             {
-
                 using (SqlConnection con = accesoDatos.ConnectToDB())
                 {
                     SqlCommand cmd = new SqlCommand(SQL_SELECT_EMPLEADOS, con);
@@ -131,7 +120,6 @@ namespace AccesoModeloBaseDatos.Modelos
             {
                 accesoDatos.CloseConnection();
             }
-
             return Lista;
         }
 
@@ -152,16 +140,17 @@ namespace AccesoModeloBaseDatos.Modelos
         {
             Empleado empleado = null;
             SqlDataReader dr = null;
-            AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
+            AccesoDatos accesoDatosBusca = new AccesoDatos(coneccionDB);
             try
             {
-
-                using (SqlConnection con = accesoDatos.ConnectToDB())
+                using (SqlConnection con = accesoDatosBusca.ConnectToDB())
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_SELECT_EMPLEADO, con);
+                    string sql = SQL_SELECT_EMPLEADO;
+                    sql = sql.Replace("@nrodocumento", documento);
+                    SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@nrodocumento", documento);
-                    dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
+                    //cmd.Parameters.AddWithValue("@nrodocumento", documento);
+                    dr = accesoDatosBusca.SelectDataReaderFromSqlCommand(cmd);
 
                     while (dr.Read())
                     {
@@ -175,10 +164,15 @@ namespace AccesoModeloBaseDatos.Modelos
             }
             finally
             {
-                accesoDatos.CloseConnection();
+                accesoDatosBusca.CloseConnection();
             }
 
             return empleado;
+        }
+
+        public void BorrarEmpleado(string nroDocumento)
+        {
+            throw new NotImplementedException();
         }
     }
 }

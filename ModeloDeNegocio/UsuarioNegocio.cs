@@ -23,7 +23,17 @@ namespace ModeloDeNegocio.Negocio
                 if (empleadoBuscado != null)
                     return false;
                 ///crear validaciones para empleado                
-                empleadoADO.GrabarEmpleado(usuario);
+                if ( empleadoADO.GrabarEmpleado(usuario))
+                {
+                    //busco empleado creado
+                    empleadoBuscado = empleadoADO.BuscarEmpleado(usuario.NroDocumento);
+                    usuario.IdUsuario = empleadoBuscado.ID;
+                    UsuarioADO usuarioADO = new UsuarioADO(ConexionStringDB.ConexionBase());
+                    if (!usuarioADO.InsertUsuarioDB(usuario))
+                        empleadoADO.BorrarEmpleado(empleadoBuscado.NroDocumento);
+
+
+                }
 
                 ///grabar la tabla usuario y contraseña (traigo id empleado, crear obj usuario// llamo a usuarioADO para grabarusuario)
                 return alta;
