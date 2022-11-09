@@ -11,7 +11,7 @@ namespace ModeloDeNegocio
     static public class ConexionStringDB
     {
         //Modificar el valor con el name del atributo de conectionstring del web.config
-        private const string NOMBRE_CONFIG_DB = "ClinicaDB_RR2";
+        private const string NOMBRE_CONFIG_DB = "ClinicaDB_JM";
         static public string ConexionBase()
         {
             return ConfigurationManager.ConnectionStrings[NOMBRE_CONFIG_DB].ToString();
