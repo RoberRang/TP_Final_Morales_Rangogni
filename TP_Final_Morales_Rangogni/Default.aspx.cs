@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TP_Final_Morales_Rangogni.DominioWeb;
 
 namespace TP_Final_Morales_Rangogni
 {
@@ -26,6 +27,20 @@ namespace TP_Final_Morales_Rangogni
 
             dgEmpleados.DataSource = empleadosBuscados;
             dgEmpleados.DataBind();
+        }
+
+        protected void btnVerPac_Click(object sender, EventArgs e)
+        {
+            PacienteNegocio pacienteNegocio = new PacienteNegocio();
+            List<ModeloPacienteWeb> pacientesBuscados = new List<ModeloPacienteWeb>();
+            foreach (Paciente paciente in pacienteNegocio.Pacientes())
+            {
+                ModeloPacienteWeb modeloPaciente = new ModeloPacienteWeb(paciente);
+                pacientesBuscados.Add(modeloPaciente);
+            }
+
+            dgvPacientes.DataSource = pacientesBuscados;
+            dgvPacientes.DataBind();
         }
     }
 }

@@ -9,7 +9,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <h4>Especialidad</h4>
             <p>
                Permite agregar una nueva especialidad.
@@ -18,7 +18,7 @@
                 <a class="btn btn-default" href="/EspecialidadWeb">Especialidad &raquo;</a>
             </p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <h4>Acceso</h4>
             <p>
                 Ingreso al sistema por medio de un usuario y contraseña.
@@ -27,7 +27,7 @@
                 <a class="btn btn-default" href="/Acceso">Acceso &raquo;</a>
             </p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <h4>Empleado</h4>
             <p>
                Permite cargar los datos de los empleados.
@@ -35,6 +35,16 @@
             </p>
             <p> 
                 <asp:Button runat="server" ID="btnVerEmp" cssclass="btn btn-default" OnClick="btnVerEmp_Click" text="Empleados &raquo;" />
+            </p>
+        </div>
+        <div class="col-md-5">
+            <h4>Paciente</h4>
+            <p>
+               Permite cargar los datos de los pacientes.
+                <asp:GridView ID="dgvPacientes" runat="server"></asp:GridView>
+            </p>
+            <p> 
+                <asp:Button runat="server" ID="btnVerPac" cssclass="btn btn-default" OnClick="btnVerPac_Click" text="Pacientes &raquo;" />
             </p>
         </div>
     </div>

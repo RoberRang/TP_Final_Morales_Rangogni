@@ -105,6 +105,7 @@
     <Content Include="Imagenes\cancel_black_36dp.jpg" />
     <Content Include="Imagenes\save_as_opsz48.jpg" />
     <Content Include="MedicoWeb.aspx" />
+    <Content Include="PacienteWeb.aspx" />
     <Content Include="PerfilWeb.aspx" />
     <Content Include="EspecialidadWeb.aspx" />
     <Content Include="css\materialize.css" />
@@ -249,6 +250,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="DominioWeb\ModeloPacienteWeb.cs" />
     <Compile Include="EmpleadoWeb.aspx.cs">
       <DependentUpon>EmpleadoWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -262,6 +264,13 @@
     </Compile>
     <Compile Include="MedicoWeb.aspx.designer.cs">
       <DependentUpon>MedicoWeb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PacienteWeb.aspx.cs">
+      <DependentUpon>PacienteWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PacienteWeb.aspx.designer.cs">
+      <DependentUpon>PacienteWeb.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfilWeb.aspx.cs">
       <DependentUpon>PerfilWeb.aspx</DependentUpon>

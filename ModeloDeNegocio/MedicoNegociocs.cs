@@ -9,23 +9,23 @@ namespace ModeloDeNegocio.Negocio
     {
         private string MensajeError { get; set; }
 
-        private readonly MedicoADO empleadoADO;
+        private readonly MedicoADO medicoADO;
         public MedicoNegocio()
         {
-            empleadoADO = new MedicoADO(ConexionStringDB.ConexionBase());
+            medicoADO = new MedicoADO(ConexionStringDB.ConexionBase());
         }
-        public bool AltaMedico(Medico empleado)
+        public bool AltaMedico(Medico medico)
         {
             bool alta = true;
             try
             {
-                Medico empleadoBuscado = empleadoADO.BuscarMedico(empleado.NroDocumento);
-                if (empleadoBuscado != null)
+                Medico medicoBuscado = medicoADO.BuscarMedico(medico.NroDocumento);
+                if (medicoBuscado != null)
                     return false;
-                ///crear validaciones para empleado                
-                empleadoADO.GrabarMedico(empleado);
+                ///crear validaciones para medico                
+                medicoADO.GrabarMedico(medico);
 
-                ///grabar la tabla usuario y contraseña (traigo id empleado, crear obj usuario// llamo a usuarioADO para grabarusuario)
+                ///grabar la tabla usuario y contraseña (traigo id medico, crear obj usuario// llamo a usuarioADO para grabarusuario)
                 return alta;
             }
             catch (Exception ex)
@@ -35,20 +35,20 @@ namespace ModeloDeNegocio.Negocio
         }
         public List<Medico> Medicos()
         {
-            return empleadoADO.ListarMedicos();
+            return medicoADO.ListarMedicos();
         }
-        public bool ModificarMedico(Medico empleado)
+        public bool ModificarMedico(Medico medico)
         {
             try
             {
-                return empleadoADO.GrabarMedico(empleado);
+                return medicoADO.GrabarMedico(medico);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public bool ValidarDatosIngreso(Medico empleado)
+        public bool ValidarDatosIngreso(Medico medico)
         { /// recibir un objeto, voy chequear en bd que sea valido. DNI, USUARIO
 
           ///ACA USO MENSAJE DE ERROR SI ES FALSE

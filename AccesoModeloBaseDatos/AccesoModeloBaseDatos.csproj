@@ -53,6 +53,7 @@
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="Modelos\EmpleadoADO.cs" />
     <Compile Include="Modelos\MedicoADO.cs" />
+    <Compile Include="Modelos\PacienteADO.cs" />
     <Compile Include="Modelos\TipoEspecialidadADO.cs" />
     <Compile Include="Modelos\TipoPerfilADO.cs" />
     <Compile Include="Modelos\UsuarioADO.cs" />
