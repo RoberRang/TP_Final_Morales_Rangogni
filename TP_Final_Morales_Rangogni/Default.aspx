@@ -31,9 +31,10 @@
             <h4>Empleado</h4>
             <p>
                Permite cargar los datos de los empleados.
+                <asp:GridView ID="dgEmpleados" runat="server"></asp:GridView>
             </p>
-            <p>
-                <a class="btn btn-default" href="/EmpleadoWeb">Empleados &raquo;</a>
+            <p> 
+                <asp:Button runat="server" ID="btnVerEmp" cssclass="btn btn-default" OnClick="btnVerEmp_Click" text="Empleados &raquo;" />
             </p>
         </div>
     </div>

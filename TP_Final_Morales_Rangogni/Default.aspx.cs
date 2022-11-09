@@ -1,5 +1,10 @@
-﻿using System;
+﻿using AccesoModeloBaseDatos;
+using AccesoModeloBaseDatos.Dominio;
+using AccesoModeloBaseDatos.Modelos;
+using ModeloDeNegocio.Negocio;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +16,16 @@ namespace TP_Final_Morales_Rangogni
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        protected void btnVerEmp_Click(object sender, EventArgs e)
+        {
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            List<Empleado> empleadosBuscados = usuarioNegocio.Empleados();
+
+            dgEmpleados.DataSource = empleadosBuscados;
+            dgEmpleados.DataBind();
         }
     }
 }
