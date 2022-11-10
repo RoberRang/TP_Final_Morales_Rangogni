@@ -10,7 +10,7 @@ namespace TP_Final_Morales_Rangogni.DominioWeb
         public string Apellidos { get; set; }
         public string NroDocumento { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public char Sexo { get; set; }
+        public string Sexo { get; set; }
         public DateTime FechaAlta { get; set; }
         public string Estado { get; set; }
         public string Telefono { get; set; }

@@ -9,16 +9,16 @@ namespace AccesoModeloBaseDatos.Dominio
         public string Apellidos { get; set; }
         public string NroDocumento { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public char Sexo { get; set; }
+        public string Sexo { get; set; }
         public DateTime FechaAlta { get; set; }
         public bool Estado { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
         public string Imagen { get; set; }
 
-        public Paciente() : this(1, "", "", DateTime.MinValue, ' ', "", "", false, "", DateTime.Now, "") { }
+        public Paciente() : this(1, "", "", DateTime.MinValue, " ", "", "", false, "", DateTime.Now, "") { }
 
-        public Paciente(int id, string nombres, string apellidos, DateTime fechaNac, char sexo, string nroDocumento, string telefono,
+        public Paciente(int id, string nombres, string apellidos, DateTime fechaNac, string sexo, string nroDocumento, string telefono,
             bool Estado, string imagen, DateTime fechaAlta, string email)
         {
             this.IdPaciente = id;

@@ -141,11 +141,9 @@ namespace AccesoModeloBaseDatos.Modelos
             objTPaciente.Apellidos = dr["apellidos"].ToString();
             objTPaciente.NroDocumento = dr["nrodocumento"].ToString();
             objTPaciente.FechaNacimiento = Convert.ToDateTime(dr["fechaNacimiento"].ToString());
-            objTPaciente.Sexo = Convert.ToChar( dr["sexo"]);
+            objTPaciente.Sexo =  dr["sexo"].ToString();
             objTPaciente.FechaAlta = Convert.ToDateTime(dr["fechaAlta"].ToString());
-            objTPaciente.Estado = Convert.ToBoolean(dr["estado"].Equals("true")? true : false);
-
-            ///objTPaciente.Estado = dr["estado"].ToString().Equals("True") ? true : false;
+            objTPaciente.Estado = Convert.ToBoolean(dr["estado"].Equals("true")? true : false);            
             objTPaciente.Telefono = dr["telefono"].ToString();
             objTPaciente.Email = dr["email"].ToString();
             objTPaciente.Imagen = dr["imagen"].ToString();           

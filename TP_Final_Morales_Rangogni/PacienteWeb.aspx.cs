@@ -27,18 +27,24 @@ namespace TP_Final_Morales_Rangogni
                 nuevoPaciente.Apellidos = txtApellido.Text;
                 nuevoPaciente.NroDocumento = txtDni.Text;
                 nuevoPaciente.Telefono= txtTelefono.Text;
+                nuevoPaciente.Email= txtEmail.Text;
                 nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtFecha.Text);
                 nuevoPaciente.FechaAlta = DateTime.Today;
                 nuevoPaciente.Estado = chbEstado.Checked;
+                nuevoPaciente.Imagen= txtImagen.Text;
+                nuevoPaciente.Sexo= ddlGenero.Text;
+            
+            
                /// nuevoPaciente.Imagen = Convert.ToString(fuploadImagen);
                 ///falta sexoe imagen
 
 
-                nuevoPaciente.Estado = chbEstado.Checked;
+               
                 
                 ///CREAR METODO negocio.agregar(nuevo);
                 if (negocio.AltaPaciente(nuevoPaciente))
                 {
+                    
                     ///cartel alta de pacinete completa y limpiar controles                
 
                 }
@@ -50,9 +56,5 @@ namespace TP_Final_Morales_Rangogni
             }
         }
 
-        protected void btnIm_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

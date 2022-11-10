@@ -13,10 +13,10 @@
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>Agregar</span>
-                        <input type="file">
+                        <input type="file" runat="server">
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                        <asp:TextBox ID="txtImagen" runat="server" CssClass="file-path validate"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -64,13 +64,17 @@
     <!-- ESTADO -->
     <div class="col s12">
         <div class="row">
-            <div class="input-field col s4 left-align">
+           <div class="input-field col s4 left-align">
                 <label for="lblGenero">Genero</label>
                 <br />
                 <br />
-                <asp:RadioButton ID="rbtnMasculino" runat="server" Checked="true" />
-
+                <asp:DropDownList ID="ddlGenero" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 10px;" href="#" data-activates="drpdEstado" data-target="drpdEstado">
+                     <asp:ListItem Text="Masculino" />
+                     <asp:ListItem Text="Femenino" />
+                     <asp:ListItem Text="Otro" />
+                    </asp:DropDownList>
             </div>
+            
             <div class="input-field col s4 center-align">
                 <label for="lblEstado">Estado</label>
                 <br />
@@ -78,7 +82,7 @@
                 <div class="switch">
                     <label>
                         INACTIVO
-                                        <asp:CheckBox ID="chbEstado" runat="server" />
+                      <asp:CheckBox ID="chbEstado" runat="server" />
                         <span class="lever"></span>
                         ACTIVO
                     </label>
@@ -86,9 +90,12 @@
             </div>
             <!--imagen-->
 
-            <div class="input-field col s4">
+            <div class="input-field col s4 right-align">
+                   <label for="lblFnac">Fecha de Nacimiento</label>
+                 <br />
+                <br />
                 <asp:TextBox ID="txtFecha" runat="server" TextMode="Date"></asp:TextBox>
-                <label for="lblFnac">Fecha de Nacimiento</label>
+             
             </div>
 
         </div>
