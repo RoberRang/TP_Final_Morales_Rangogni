@@ -41,7 +41,8 @@
                     </ul>
                     <ul class="sidenav" id="mobile-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/PerfilWeb">Negocio</a></li>
+                         <li><div class="divider"></div></li>
+                        <li><a runat="server" href="~/PacienteWeb">Pacientes</a></li>
                         <li><a runat="server" href="~/EspecialidadWeb">Especialidad</a></li>
                         <li><a runat="server" href="~/Acceso">Acceso</a></li>
                         <li><a runat="server" href="~/EmpleadoWeb">Empleado</a></li>

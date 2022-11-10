@@ -1,7 +1,12 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="TP_Final_Morales_Rangogni._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
+   
+    <!--LINEA-->
+    <div class="progress">
+        <div class="indeterminate red"></div>
+    </div>
+    <!--TERMINA LINEA-->
     <div class="jumbotron">
         <h4>PERFIL</h4>
         <p class="lead">Permite agregar un nuevo tipo de perfil</p>
@@ -12,7 +17,7 @@
         <div class="col-md-5">
             <h4>Especialidad</h4>
             <p>
-               Permite agregar una nueva especialidad.
+                Permite agregar una nueva especialidad.
             </p>
             <p>
                 <a class="btn btn-default" href="/EspecialidadWeb">Especialidad &raquo;</a>
@@ -30,21 +35,21 @@
         <div class="col-md-5">
             <h4>Empleado</h4>
             <p>
-               Permite cargar los datos de los empleados.
+                Permite cargar los datos de los empleados.
                 <asp:GridView ID="dgEmpleados" runat="server"></asp:GridView>
             </p>
-            <p> 
-                <asp:Button runat="server" ID="btnVerEmp" cssclass="btn btn-default" OnClick="btnVerEmp_Click" text="Empleados &raquo;" />
+            <p>
+                <asp:Button runat="server" ID="btnVerEmp" CssClass="btn btn-default" OnClick="btnVerEmp_Click" Text="Empleados &raquo;" />
             </p>
         </div>
         <div class="col-md-5">
             <h4>Paciente</h4>
             <p>
-               Permite cargar los datos de los pacientes.
+                Permite cargar los datos de los pacientes.
                 <asp:GridView ID="dgvPacientes" runat="server"></asp:GridView>
             </p>
-            <p> 
-                <asp:Button runat="server" ID="btnVerPac" cssclass="btn btn-default" OnClick="btnVerPac_Click" text="Pacientes &raquo;" />
+            <p>
+                <asp:Button runat="server" ID="btnVerPac" CssClass="btn btn-default" OnClick="btnVerPac_Click" Text="Pacientes &raquo;" />
             </p>
         </div>
     </div>
