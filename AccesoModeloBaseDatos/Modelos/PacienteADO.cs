@@ -9,7 +9,7 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class PacienteADO
     {
-        private const string SQL_INSERT_PACIENTES = "INSERT INTO pacientes (nombres, apellidos, nrodocumento, sexo, telefono, email, fechanacimiento,fechaalta, estado,imagen) VALUES (@nombres,@apellidos,@nrodocumento, @fechanacimiento, @sexo, @fechaalta, @estado, @telefono, @email, @imagen)";
+        private const string SQL_INSERT_PACIENTES = "INSERT INTO pacientes (nombres, apellidos, nrodocumento, fechanacimiento, sexo,fechaalta,estado, telefono, email, imagen) VALUES (@nombres,@apellidos,@nrodocumento, @fechanacimiento, @sexo, @fechaalta, @estado, @telefono, @email, @imagen)";
         private const string SQL_SELECT_PACIENTES = "SELECT  idPaciente,nombres,apellidos,nrodocumento, fechanacimiento, sexo, fechaalta, estado, telefono, email, imagen FROM Pacientes";
         private const string SQL_UPDATE_PACIENTES = "UPDATE pacientes SET @nombres,@apellidos,@nrodocumento, @fechanacimiento, @sexo, @fechaalta, @estado, @telefono, @email, @imagen WHERE idPaciente = @idPaciente";
         private const string SQL_SELECT_PACIENTE = "SELECT idPaciente,nombres,apellidos,nrodocumento, fechanacimiento, sexo, fechaalta, estado, telefono, email, imagen FROM Pacientes WHERE NroDocumento = '@nrodocumento'";

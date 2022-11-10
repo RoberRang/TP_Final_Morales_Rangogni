@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -33,21 +34,15 @@ namespace TP_Final_Morales_Rangogni
                 nuevoPaciente.Estado = chbEstado.Checked;
                 nuevoPaciente.Imagen= txtImagen.Text;
                 nuevoPaciente.Sexo= ddlGenero.Text;
-            
-            
-               /// nuevoPaciente.Imagen = Convert.ToString(fuploadImagen);
-                ///falta sexoe imagen
-
-
-               
+     
                 
-                ///CREAR METODO negocio.agregar(nuevo);
                 if (negocio.AltaPaciente(nuevoPaciente))
                 {
-                    
+                  
                     ///cartel alta de pacinete completa y limpiar controles                
 
                 }
+                
             }
             catch (Exception ex)
             {

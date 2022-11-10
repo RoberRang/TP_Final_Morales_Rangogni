@@ -16,7 +16,7 @@ namespace AccesoModeloBaseDatos.Dominio
         public string Email { get; set; }
         public string Imagen { get; set; }
 
-        public Paciente() : this(1, "", "", DateTime.MinValue, " ", "", "", false, "", DateTime.Now, "") { }
+        public Paciente() : this(0, "", "", DateTime.MinValue, " ", "", "", false, "", DateTime.Now, "") { }
 
         public Paciente(int id, string nombres, string apellidos, DateTime fechaNac, string sexo, string nroDocumento, string telefono,
             bool Estado, string imagen, DateTime fechaAlta, string email)
