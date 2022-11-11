@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Xml.Linq;
 
 namespace AccesoModeloBaseDatos.Modelos
 {
@@ -12,6 +13,7 @@ namespace AccesoModeloBaseDatos.Modelos
         private const string SQL_SELECT_EMPLEADOS = "SELECT id, idtipoperfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados";
         private const string SQL_UPDATE_EMPLEADOS = "UPDATE empleados SET idtipoperfil=@idtipoperfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, estado = @estado WHERE id = @id";
         private const string SQL_SELECT_EMPLEADO = "SELECT id, idtipoperfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados WHERE NroDocumento = '@nrodocumento'";
+        private const string SQL_SELECT_EMPLEADO_LOGIN = "SELECT id, idtipoperfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados e INNER JOIN Usuarios u ON e.id = u.IdEmpleado WHERE u.UserLogin= '@UserLogin' AND u.Password = '@Password'";
         private readonly string coneccionDB;
         public EmpleadoADO(string coneccion)
         {
@@ -150,6 +152,39 @@ namespace AccesoModeloBaseDatos.Modelos
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     //cmd.Parameters.AddWithValue("@nrodocumento", documento);
+                    dr = accesoDatosBusca.SelectDataReaderFromSqlCommand(cmd);
+
+                    while (dr.Read())
+                    {
+                        empleado = (CreateObject(dr));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                accesoDatosBusca.CloseConnection();
+            }
+
+            return empleado;
+        }
+
+        public Empleado BuscarEmpleadoLogin(Usuario userLogin)
+        {
+            Empleado empleado = null;
+            SqlDataReader dr = null;
+            AccesoDatos accesoDatosBusca = new AccesoDatos(coneccionDB);
+            try
+            {
+                using (SqlConnection con = accesoDatosBusca.ConnectToDB())
+                {
+                    string sql = SQL_SELECT_EMPLEADO_LOGIN;
+                    sql = sql.Replace("@UserLogin", userLogin.User).Replace("@Password", userLogin.Password);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = CommandType.Text;
                     dr = accesoDatosBusca.SelectDataReaderFromSqlCommand(cmd);
 
                     while (dr.Read())

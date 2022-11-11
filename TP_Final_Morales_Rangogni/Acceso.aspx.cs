@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using AccesoModeloBaseDatos.Dominio;
+using ModeloDeNegocio.Negocio;
 
 namespace TP_Final_Morales_Rangogni
 {
@@ -15,33 +17,46 @@ namespace TP_Final_Morales_Rangogni
         {
             if (!Page.IsPostBack)
             {
-                Session["UserSessionId"] = null;
+                Session["EmpleadoLogin"] = null;
             }
         }
 
-        protected void LoginUser_Authenticate(object sender, AuthenticateEventArgs e)
-        {            
-            bool auth = Membership.ValidateUser(UserAccess.UserName, UserAccess.Password);
-            
-            //if (auth)
-            //{
-            //    Usuario obj = UsuarioLN.getInstance().AccesoSistema(UserAccess.UserName, UserAccess.Password);
-            //    if (obj != null)
-            //    {
-            //        UserSession _SessionManager = new UserSession(Session);
-            //        //SessionManager.UserSessionId = objEmpleado.ID.ToString();
-            //        _SessionManager.UserSessionEmpleado = obj;
-            //        FormsAuthentication.RedirectFromLoginPage(UserAccess.UserName, false);
-            //    }
-            //    else
-            //    {
-            //        Response.Write("<script>alert('USUARIO INCORRECTO.')</script>");
-            //    }
-            //}
-            //else
-            //{
-            //    Response.Write("<script>alert('DATOS INCORRECTOS')</script>");
-            
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = new Usuario();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            try
+            {
+                usuario.User = txtUser.Text;
+                usuario.Password = txtPassword.Text;
+                Empleado empleadoLogin = usuarioNegocio.ValidarDatosIngreso(usuario);
+                if (empleadoLogin != null)
+                {
+                    Session.Add("EmpleadoLogin", empleadoLogin);
+                    DireccionarEmplado();
+                }
+                Response.Redirect("Default.aspx");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
+
+        private void DireccionarEmplado()
+        {
+            Empleado empleadoLogin = (Empleado)Session["EmpleadoLogin"];
+            if (empleadoLogin.idTipoPerfil == 1)
+            {
+                Response.Redirect("EspecialidadWeb.aspx");
+            }
+            if (empleadoLogin.idTipoPerfil == 2)
+            {
+                Response.Redirect("MedicoWeb.aspx");
+            }
+            Response.Redirect("Default.aspx");
+        }
+
     }
 }

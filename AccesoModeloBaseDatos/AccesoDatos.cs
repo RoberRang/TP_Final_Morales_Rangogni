@@ -56,9 +56,10 @@ namespace AccesoModeloBaseDatos
                 command = new SqlCommand(query, connect);
                 cadena = command.ExecuteScalar().ToString();
             }
-            catch
+            catch (Exception ex)
             {
                 cadena = string.Empty;
+                throw ex;                
             }
             finally
             {
@@ -75,9 +76,10 @@ namespace AccesoModeloBaseDatos
                 command.ExecuteNonQuery();
                 exito = true;
             }
-            catch
-            {
+            catch (Exception ex)
+            {                
                 exito = false;
+                throw ex;
             }
             finally
             {
@@ -96,9 +98,10 @@ namespace AccesoModeloBaseDatos
                 command.ExecuteNonQuery();
                 exito = true;
             }
-            catch
+            catch (Exception ex)
             {
                 exito = false;
+                throw ex;
             }
             finally
             {
@@ -109,22 +112,25 @@ namespace AccesoModeloBaseDatos
 
         public bool ExecuteStoreProcedure(string namestoreprocedure)
         {
+            bool exito;
             try
             {
                 ConnectToDB();
                 command = new SqlCommand(namestoreprocedure, connect);
                 command.CommandType = CommandType.StoredProcedure;
                 command.ExecuteNonQuery();
-                return true;
+                exito = true;
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                exito = false;
+                throw ex;
             }
             finally
             {
                 CloseConnection();
             }
+            return exito;
         }
 
         public SqlDataReader SelectDataReaderFromSqlCommand(SqlCommand sqlCommand)
@@ -194,9 +200,9 @@ namespace AccesoModeloBaseDatos
                 da = new SqlDataAdapter(query, connect);
                 da.Fill(ds, table);
             }
-            catch //(Exception ex)
+            catch (Exception ex)
             {
-                // ds = null;
+                throw ex;
             }
             finally
             {

@@ -11,10 +11,11 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class UsuarioADO
     {
-        private const string SQL_INSERT_USUARIO = "INSERT INTO Usuarios (User, Password, IdEmpleado) VALUES (@user,@password,@idEmp)";
-        private const string SQL_SELECT_USUARIOS = "SELECT idUsuario, User, Password, IdEmpleado FROM Usuarios";
-        private const string SQL_UPDATE_USURIO = "UPDATE Usuarios SET User=@user, Password=@password WHERE IdEmpleado = @idEmp";
+        private const string SQL_INSERT_USUARIO = "INSERT INTO Usuarios (UserLogin, Password, IdEmpleado) VALUES ('@userLogin','@password',@idEmp)";
+        private const string SQL_SELECT_USUARIOS = "SELECT idUsuario, UserLogin, Password, IdEmpleado FROM Usuarios";
+        private const string SQL_UPDATE_USURIO = "UPDATE Usuarios SET UserLogin=@user, Password=@password WHERE IdEmpleado = @idEmp";
         private const string SQL_SELECT_USUARIO = "SELECT * FROM Usuarios WHERE IdEmpleado = @idEmp";
+        private const string SQL_SELECT_COUNT = "SELECT COUNT(*) cantUserLogin FROM Usuarios WHERE UserLogin='@userLogin'";
         private readonly string coneccionDB;
         public UsuarioADO(string coneccion)
         {
@@ -29,10 +30,9 @@ namespace AccesoModeloBaseDatos.Modelos
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_INSERT_USUARIO, con);
-                    cmd.Parameters.AddWithValue("@user", usuario.User);
-                    cmd.Parameters.AddWithValue("@nombre", usuario.Password);
-                    cmd.Parameters.AddWithValue("@idEmp", usuario.IdEmpleado);
+                    string sql = SQL_INSERT_USUARIO;
+                    sql = sql.Replace("@userLogin", usuario.User).Replace("@password", usuario.Password).Replace("@idEmp", usuario.IdEmpleado.ToString());
+                    SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
                     inserto = true;
@@ -52,9 +52,9 @@ namespace AccesoModeloBaseDatos.Modelos
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_UPDATE_USURIO, con);
-                    cmd.Parameters.AddWithValue("@user", usuario.User);
-                    cmd.Parameters.AddWithValue("@password", usuario.Password);
+                    string sql = SQL_UPDATE_USURIO;
+                    sql = sql.Replace("@userLogin", usuario.User).Replace("@password", usuario.Password);
+                    SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
                 }
@@ -118,9 +118,10 @@ namespace AccesoModeloBaseDatos.Modelos
             {
                 using (SqlConnection con = accesoDatos.ConnectToDB())
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_SELECT_USUARIO, con);
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@idEmp", idEmp);
+                    string sql = SQL_SELECT_USUARIO;
+                    sql = sql.Replace("@idEmp", idEmp);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = CommandType.Text;                    
                     dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
 
                     while (dr.Read())
@@ -139,6 +140,38 @@ namespace AccesoModeloBaseDatos.Modelos
             }
 
             return usuario;
+        }
+        public int BuscarUsuario(Usuario usuario)
+        {         
+            SqlDataReader dr = null;
+            AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
+            int cantUserLogin = 0;
+            try
+            {
+                using (SqlConnection con = accesoDatos.ConnectToDB())
+                {
+                    string sql = SQL_SELECT_COUNT;
+                    sql = sql.Replace("@userLogin", usuario.User);
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = CommandType.Text;
+                    dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
+
+                    while (dr.Read())
+                    {
+                        cantUserLogin = Convert.ToInt32(dr["cantUserLogin"]);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                accesoDatos.CloseConnection();
+            }
+
+            return cantUserLogin;
         }
     }
 }

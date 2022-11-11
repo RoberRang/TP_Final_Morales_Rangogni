@@ -19,23 +19,23 @@ namespace ModeloDeNegocio.Negocio
             bool alta = true;
             try
             {
+                UsuarioADO usuarioADO = new UsuarioADO(ConexionStringDB.ConexionBase());
                 Empleado empleadoBuscado = empleadoADO.BuscarEmpleado(usuario.NroDocumento);
-                if (empleadoBuscado != null)
+                int cantUsuarioLogin = usuarioADO.BuscarUsuario(usuario);
+                if (empleadoBuscado != null || cantUsuarioLogin > 0)
                     return false;
                 ///crear validaciones para empleado                
-                if ( empleadoADO.GrabarEmpleado(usuario))
+                if (empleadoADO.GrabarEmpleado(usuario))
                 {
                     //busco empleado creado
                     empleadoBuscado = empleadoADO.BuscarEmpleado(usuario.NroDocumento);
-                    usuario.IdUsuario = empleadoBuscado.ID;
-                    UsuarioADO usuarioADO = new UsuarioADO(ConexionStringDB.ConexionBase());
+                    usuario.IdEmpleado = empleadoBuscado.ID;
+
                     if (!usuarioADO.InsertUsuarioDB(usuario))
                         empleadoADO.BorrarEmpleado(empleadoBuscado.NroDocumento);
 
-
                 }
 
-                ///grabar la tabla usuario y contraseña (traigo id empleado, crear obj usuario// llamo a usuarioADO para grabarusuario)
                 return alta;
             }
             catch (Exception ex)
@@ -58,11 +58,12 @@ namespace ModeloDeNegocio.Negocio
                 throw ex;
             }
         }
-        public bool ValidarDatosIngreso(Empleado empleado)
-        { /// recibir un objeto, voy chequear en bd que sea valido. DNI, USUARIO
+        public Empleado ValidarDatosIngreso(Usuario user)
+        {
 
-          ///ACA USO MENSAJE DE ERROR SI ES FALSE
-            return true;
+            Empleado empleado = empleadoADO.BuscarEmpleadoLogin(user);
+
+            return empleado;
         }
     }
 }
