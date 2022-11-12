@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Empleado" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EmpleadoWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.EmpleadoWeb" %>
+﻿<%@ Page Title="Empleado" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EmpleadoWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.EmpleadoWeb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContentLogin" runat="server">
     <div class="header bg-blue">
         <h4 class="left-align">Agregar Empleado</h4>
     </div>
@@ -71,5 +71,15 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-5">
+        <h4>Empleado</h4>
+        <p>
+            Permite ver los datos de los empleados.
+                <asp:GridView ID="dgEmpleados" CssClass="highlight responsive-table" runat="server"></asp:GridView>
+        </p>
+        <p>
+            <asp:Button runat="server" ID="btnVerEmp" CssClass="btn btn-default" OnClick="btnVerEmp_Click" Text="Empleados &raquo;" />
+        </p>
     </div>
 </asp:Content>

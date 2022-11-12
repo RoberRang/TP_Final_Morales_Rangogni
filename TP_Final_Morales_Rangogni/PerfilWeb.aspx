@@ -1,6 +1,6 @@
-﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PerfilWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.PerfilWeb" Debug="true" %>
+﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="PerfilWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.PerfilWeb" Debug="true" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContentLogin" runat="server">
     <div class="header bg-blue">
         <h4 class="left-align">Perfiles</h4>
     </div>
@@ -78,6 +78,11 @@
             </div>
         </div>
         <div class="divider"></div>
+        <div class="jumbotron">
+            <h4>PERFIL</h4>
+            <p class="lead">Permite agregar un nuevo tipo de perfil</p>
+            <p><a href="/PerfilWeb" class="btn btn-primary btn-lg">Perfiles &raquo;</a></p>
+        </div>
     </div>
     <script>
         function limpiarModal(mensaje) {

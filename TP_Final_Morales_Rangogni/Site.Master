@@ -32,20 +32,12 @@
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-dow">
                         <li><a runat="server" href="~/"><i class="material-icons">home</i>Inicio</a></li>
-                        <li><a runat="server" href="~/PerfilWeb"><i class="material-icons">account_circle</i>Perfil</a></li>
-                        <li><a runat="server" href="~/EspecialidadWeb"><i class="material-icons">contact_mail</i>Especialidad</a></li>
                         <li><a runat="server" href="~/Acceso"><i class="material-icons">fingerprint</i>Acceso</a></li>
-                        <li><a runat="server" href="~/EmpleadoWeb"><i class="material-icons">person_add</i>Empleado</a></li>
-                        <li><a runat="server" href="~/PacienteWeb"><i class="material-icons">face</i>Paciente</a></li>
-                        <li><a runat="server" href="~/MedicoWeb"><i class="material-icons">local_hospital</i>Medico</a></li>
                     </ul>
                     <ul class="sidenav" id="mobile-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>
                          <li><div class="divider"></div></li>
-                        <li><a runat="server" href="~/PacienteWeb">Pacientes</a></li>
-                        <li><a runat="server" href="~/EspecialidadWeb">Especialidad</a></li>
                         <li><a runat="server" href="~/Acceso">Acceso</a></li>
-                        <li><a runat="server" href="~/EmpleadoWeb">Empleado</a></li>
                     </ul>
                 </div>
             </nav>

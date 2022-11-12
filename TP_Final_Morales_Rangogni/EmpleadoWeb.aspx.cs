@@ -70,5 +70,13 @@ namespace TP_Final_Morales_Rangogni
             }
 
         }
+        protected void btnVerEmp_Click(object sender, EventArgs e)
+        {
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            List<Empleado> empleadosBuscados = usuarioNegocio.Empleados();
+
+            dgEmpleados.DataSource = empleadosBuscados;
+            dgEmpleados.DataBind();
+        }
     }
 }

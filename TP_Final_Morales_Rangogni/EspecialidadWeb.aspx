@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Especialidad" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EspecialidadWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.EspecialidadWeb" Debug="true" %>
+﻿<%@ Page Title="Especialidad" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EspecialidadWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.EspecialidadWeb" Debug="true" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContentLogin" runat="server">
     <div class="header bg-blue">
         <h4 class="left-align">Especialidad</h4>
     </div>
@@ -78,11 +78,20 @@
             </div>
         </div>
         <div class="divider"></div>
+        <div class="col-md-5">
+            <h4>Especialidad</h4>
+            <p>
+                Permite agregar una nueva especialidad.
+            </p>
+            <p>
+                <a class="btn btn-default" href="/EspecialidadWeb">Especialidad &raquo;</a>
+            </p>
+        </div>
     </div>
     <script>
         function limpiarModal(mensaje) {
             document.getElementById('<%= txtDesc.ClientID %>').value = "";
-             document.getElementById('<%= lblAccion.ClientID %>').textContent = mensaje;
+            document.getElementById('<%= lblAccion.ClientID %>').textContent = mensaje;
         }
         function cargarModal(mensaje) {
             document.getElementById('<%= lblAccion.ClientID %>').textContent = mensaje;

@@ -11,7 +11,7 @@ namespace TP_Final_Morales_Rangogni
 {
 
 
-    public partial class MedicoWeb
+    public partial class SiteDefaultWeb
     {
     }
 }

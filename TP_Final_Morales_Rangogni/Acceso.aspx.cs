@@ -35,11 +35,15 @@ namespace TP_Final_Morales_Rangogni
                     Session.Add("EmpleadoLogin", empleadoLogin);
                     DireccionarEmplado();
                 }
-                Response.Redirect("Default.aspx");
+                else
+                {
+                    Session.Add("MensajeError", "Hubo un error con el usuario o password ingresado");
+                    Response.Redirect("ErrorWeb.aspx", false);
+                }
             }
             catch (Exception ex)
             {
-
+                Session.Add("MensajeError", "Hubo un error con el usuario o password ingresado");
                 throw ex;
             }
         }
@@ -47,15 +51,12 @@ namespace TP_Final_Morales_Rangogni
         private void DireccionarEmplado()
         {
             Empleado empleadoLogin = (Empleado)Session["EmpleadoLogin"];
-            if (empleadoLogin.idTipoPerfil == 1)
+            if (empleadoLogin != null)
             {
-                Response.Redirect("EspecialidadWeb.aspx");
+                Response.Redirect("SiteDefaultWeb.aspx", false);
+                return; 
             }
-            if (empleadoLogin.idTipoPerfil == 2)
-            {
-                Response.Redirect("MedicoWeb.aspx");
-            }
-            Response.Redirect("Default.aspx");
+            Response.Redirect("Default.aspx", false);
         }
 
     }

@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PacienteWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.PacienteWeb" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="PacienteWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.PacienteWeb" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContentLogin" runat="server">
     <div class="header bg-blue">
         <h4 class="left-align">Agregar Paciente</h4>
     </div>
@@ -64,17 +64,17 @@
     <!-- ESTADO -->
     <div class="col s12">
         <div class="row">
-           <div class="input-field col s4 left-align">
+            <div class="input-field col s4 left-align">
                 <label for="lblGenero">Genero</label>
                 <br />
                 <br />
                 <asp:DropDownList ID="ddlGenero" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 10px;" href="#" data-activates="drpdEstado" data-target="drpdEstado">
-                     <asp:ListItem Text="Masculino" />
-                     <asp:ListItem Text="Femenino" />
-                     <asp:ListItem Text="Otro" />
-                    </asp:DropDownList>
+                    <asp:ListItem Text="Masculino" />
+                    <asp:ListItem Text="Femenino" />
+                    <asp:ListItem Text="Otro" />
+                </asp:DropDownList>
             </div>
-            
+
             <div class="input-field col s4 center-align">
                 <label for="lblEstado">Estado</label>
                 <br />
@@ -91,22 +91,30 @@
             <!--imagen-->
 
             <div class="input-field col s4 right-align">
-                   <label for="lblFnac">Fecha de Nacimiento</label>
-                 <br />
+                <label for="lblFnac">Fecha de Nacimiento</label>
+                <br />
                 <br />
                 <asp:TextBox ID="txtFecha" runat="server" TextMode="Date"></asp:TextBox>
-             
+
             </div>
 
         </div>
     </div>
-
 
     <div class="row">
         <div class="input-field col s12 center-align">
             <asp:Button CssClass="waves-effect waves-light btn-small" ID="btnAcept" runat="server" OnClick="btnAcept_Click" Text="Aceptar" />
         </div>
     </div>
-
+    <div class="col-md-5">
+        <h4>Paciente</h4>
+        <p>
+            Permite ver los datos de los pacientes.
+                <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table" runat="server"></asp:GridView>
+        </p>
+        <p>
+            <asp:Button runat="server" ID="btnVerPac" CssClass="btn btn-default" OnClick="btnVerPac_Click" Text="Pacientes &raquo;" />
+        </p>
+    </div>
 
 </asp:Content>
