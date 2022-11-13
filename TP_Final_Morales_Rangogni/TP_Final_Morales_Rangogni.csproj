@@ -105,6 +105,7 @@
     <Content Include="Icons\hospital.png" />
     <Content Include="Imagenes\cancel_black_36dp.jpg" />
     <Content Include="Imagenes\save_as_opsz48.jpg" />
+    <Content Include="JornadaTurnoWeb.aspx" />
     <Content Include="MedicoWeb.aspx" />
     <Content Include="PacienteWeb.aspx" />
     <Content Include="PerfilWeb.aspx" />
@@ -266,6 +267,13 @@
     </Compile>
     <Compile Include="ErrorWeb.aspx.designer.cs">
       <DependentUpon>ErrorWeb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JornadaTurnoWeb.aspx.cs">
+      <DependentUpon>JornadaTurnoWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JornadaTurnoWeb.aspx.designer.cs">
+      <DependentUpon>JornadaTurnoWeb.aspx</DependentUpon>
     </Compile>
     <Compile Include="MedicoWeb.aspx.cs">
       <DependentUpon>MedicoWeb.aspx</DependentUpon>

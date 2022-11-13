@@ -47,11 +47,12 @@
     <Compile Include="Dominio\Especialidad.cs" />
     <Compile Include="Dominio\Medico.cs" />
     <Compile Include="Dominio\Paciente.cs" />
-    <Compile Include="Dominio\SituacionTurno.cs" />
+    <Compile Include="Dominio\JornadaTurno.cs" />
     <Compile Include="Dominio\Perfil.cs" />
     <Compile Include="Dominio\Turno.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="Modelos\EmpleadoADO.cs" />
+    <Compile Include="Modelos\JornadaADO.cs" />
     <Compile Include="Modelos\MedicoADO.cs" />
     <Compile Include="Modelos\PacienteADO.cs" />
     <Compile Include="Modelos\TipoEspecialidadADO.cs" />

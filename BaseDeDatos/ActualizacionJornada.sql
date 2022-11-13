@@ -45,5 +45,5 @@ CREATE TABLE [dbo].[JornadaTurno] (
 );
 select * from Empleados
 select * from Usuarios
-
+select * from JornadaTurno
 alter table Pacientes add FechaNacimiento datetime null
