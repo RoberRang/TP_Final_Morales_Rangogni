@@ -14,7 +14,7 @@ namespace ModeloDeNegocio.Negocio
         {
             empleadoADO = new EmpleadoADO(ConexionStringDB.ConexionBase());
         }
-        public bool AltaUsuario(Usuario usuario)
+        public bool AltaUsuario(Usuario usuario, int idEspecialidad = 0)
         {
             bool alta = true;
             try
@@ -33,7 +33,15 @@ namespace ModeloDeNegocio.Negocio
 
                     if (!usuarioADO.InsertUsuarioDB(usuario))
                         empleadoADO.BorrarEmpleado(empleadoBuscado.NroDocumento);
-
+                    if (usuario.idTipoPerfil.Equals(2))
+                    {
+                        Medico medico = new Medico();
+                        medico.ID = empleadoBuscado.ID;
+                        medico.idTipoEspecialidad = idEspecialidad;
+                        medico.Estado = usuario.Estado;
+                        MedicoADO medicoADO = new MedicoADO(ConexionStringDB.ConexionBase());
+                        medicoADO.GrabarMedico(medico, true);
+                    }
                 }
 
                 return alta;

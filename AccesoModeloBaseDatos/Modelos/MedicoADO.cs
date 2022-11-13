@@ -8,7 +8,7 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class MedicoADO
     {
-        private const string SQL_INSERT_MEDICOS = "INSERT INTO medicos (idtipoperfil,idtipoespecialidad, nombre, apellido, nrodocumento,fechaalta, estado) VALUES (@idtipoperfil,@idtipoespecialidad,@nombre,@apellido,@nrodocumento,@fechaalta, @estado)";
+        private const string SQL_INSERT_MEDICOS = "INSERT INTO medicos (IdMedico,IdEspecialidad, estado) VALUES (@idMedico,@IdEspecialidad,@estado)";
         private const string SQL_SELECT_MEDICOS = "SELECT id, idtipoperfil, idtipoespecialidad, nombre, apellido, nrodocumento,fechaAlta, estado FROM Medicos";
         private const string SQL_UPDATE_MEDICOS = "UPDATE medicos SET idtipoperfil=@idtipoperfil, idtipoespecialidad= @idtipoespecialidad nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, estado = @estado WHERE id = @id";
         private const string SQL_SELECT_MEDICO = "SELECT * from medicos where NroDocumento = '@nrodocumento'";
@@ -19,13 +19,13 @@ namespace AccesoModeloBaseDatos.Modelos
             coneccionDB = coneccion;
         }
 
-        public bool GrabarMedico(Medico medico)
+        public bool GrabarMedico(Medico medico, bool insert)
         {
 
             bool response;
             try
             {
-                if (medico.ID.Equals(0)) ///VER ACA EL EQUALS
+                if (insert) ///VER ACA EL EQUALS
                     InsertMedicoDB(medico);
                 else
                     UpdateMedico(medico);
@@ -45,14 +45,11 @@ namespace AccesoModeloBaseDatos.Modelos
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_INSERT_MEDICOS, con);
-                    cmd.Parameters.AddWithValue("@apellido", medico.Apellidos);                   
-                    cmd.Parameters.AddWithValue("@idTipoPerfil", medico.idTipoPerfil);
-                    cmd.Parameters.AddWithValue("@idtipoespecialidad", medico.idTipoEspecialidad); 
-                    cmd.Parameters.AddWithValue("@nombre", medico.Nombres);
-                    cmd.Parameters.AddWithValue("@nrodocumento", medico.NroDocumento);
-                    cmd.Parameters.AddWithValue("@fechaalta", medico.FechaAlta);
-                    cmd.Parameters.AddWithValue("@estado", medico.Estado);
+                    string sql = SQL_INSERT_MEDICOS;
+                    sql = sql.Replace("@idMedico", medico.ID.ToString());
+                    sql = sql.Replace("@IdEspecialidad", medico.idTipoEspecialidad.ToString());
+                    sql = sql.Replace("@estado", medico.Estado ? "1" : "0");
+                    SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
                 }

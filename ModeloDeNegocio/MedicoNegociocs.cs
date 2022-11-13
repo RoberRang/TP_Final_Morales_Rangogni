@@ -23,7 +23,7 @@ namespace ModeloDeNegocio.Negocio
                 if (medicoBuscado != null)
                     return false;
                 ///crear validaciones para medico                
-                medicoADO.GrabarMedico(medico);
+                medicoADO.GrabarMedico(medico, true);
 
                 ///grabar la tabla usuario y contraseña (traigo id medico, crear obj usuario// llamo a usuarioADO para grabarusuario)
                 return alta;
@@ -41,7 +41,7 @@ namespace ModeloDeNegocio.Negocio
         {
             try
             {
-                return medicoADO.GrabarMedico(medico);
+                return medicoADO.GrabarMedico(medico, false);
             }
             catch (Exception ex)
             {
