@@ -82,7 +82,7 @@
                 <div class="switch">
                     <label>
                         INACTIVO
-                      <asp:CheckBox ID="chbEstado" runat="server" />
+                      <asp:CheckBox ID="chbEstado" runat="server" Checked="true" />
                         <span class="lever"></span>
                         ACTIVO
                     </label>

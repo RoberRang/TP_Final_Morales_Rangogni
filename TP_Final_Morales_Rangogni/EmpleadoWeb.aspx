@@ -8,15 +8,15 @@
         <div class="col s12">
             <div class="row">
                 <div class="input-field col s4">
-                    <asp:TextBox ID="txtnombre" runat="server" CssClass="validate"></asp:TextBox>
+                    <asp:TextBox ID="txtnombre" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                     <label for="lblNombre">Nombre</label>
                 </div>
                 <div class="input-field col s4">
-                    <asp:TextBox ID="txtApellido" runat="server" CssClass="validate"></asp:TextBox>
+                    <asp:TextBox ID="txtApellido" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                     <label for="lblApellido">Apellido</label>
                 </div>
                 <div class="input-field col s4">
-                    <asp:TextBox ID="txtDni" runat="server" CssClass="validate"></asp:TextBox>
+                    <asp:TextBox ID="txtDni" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                     <label for="lblDniEmp">Nº Documento</label>
                 </div>
             </div>
@@ -24,16 +24,16 @@
         <!--Usuario -->
         <div class="row">
             <div class="input-field col s4">
-                <asp:TextBox ID="txtUser" runat="server" CssClass="validate"></asp:TextBox>
+                <asp:TextBox ID="txtUser" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                 <label for="lblUser">Usuario</label>
             </div>
             <!--Contraseña -->
             <div class="input-field col s4">
-                <asp:TextBox ID="txtPass" runat="server" CssClass="validate" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtPass" runat="server" CssClass="validate" TextMode="Password" placeholder=""></asp:TextBox>
                 <label for="lblPass">Contraseña</label>
             </div>
             <div class="input-field col s4">
-                <asp:TextBox ID="txtPass2" runat="server" CssClass="validate" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtPass2" runat="server" CssClass="validate" TextMode="Password" placeholder=""></asp:TextBox>
                 <label for="lblPass2">Repetir Contraseña</label>
             </div>
         </div>
@@ -57,7 +57,7 @@
                     <div class="switch">
                         <label>
                             INACTIVO
-                            <asp:CheckBox ID="chbEstado1" runat="server" />
+                            <asp:CheckBox ID="chbEstado1" runat="server" Checked="true" />
 
                             <span class="lever"></span>
                             ACTIVO
