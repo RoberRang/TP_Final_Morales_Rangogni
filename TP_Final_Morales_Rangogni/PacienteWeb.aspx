@@ -28,12 +28,12 @@
         <div class="row">
 
             <div class="input-field col s6">
-                <asp:TextBox ID="txtnombre" runat="server" CssClass="validate"></asp:TextBox>
+                <asp:TextBox ID="txtnombre" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                 <label for="lblNombre">Nombre</label>
             </div>
 
             <div class="input-field col s6">
-                <asp:TextBox ID="txtApellido" runat="server" CssClass="validate"></asp:TextBox>
+                <asp:TextBox ID="txtApellido" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                 <label for="lblApellido">Apellido</label>
             </div>
 
@@ -44,18 +44,18 @@
         <div class="row">
 
             <div class="input-field col s4">
-                <asp:TextBox ID="txtTelefono" runat="server" CssClass="validate"></asp:TextBox>
+                <asp:TextBox ID="txtTelefono" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                 <label for="lblTelefono">Telefono</label>
             </div>
 
             <div class="input-field col s4">
-                <asp:TextBox ID="txtDni" runat="server" CssClass="validate"></asp:TextBox>
+                <asp:TextBox ID="txtDni" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                 <label for="lblDniPac">Nº Documento</label>
             </div>
             <!--Email -->
 
             <div class="input-field col s4">
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="validate" TextMode="Email"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" CssClass="validate" TextMode="Email" placeholder=""></asp:TextBox>
                 <label for="lblEmail">Correo Electronico</label>
             </div>
 
@@ -94,7 +94,7 @@
                 <label for="lblFnac">Fecha de Nacimiento</label>
                 <br />
                 <br />
-                <asp:TextBox ID="txtFecha" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:TextBox ID="txtFecha" runat="server" TextMode="Date" placeholder=""></asp:TextBox>
 
             </div>
 

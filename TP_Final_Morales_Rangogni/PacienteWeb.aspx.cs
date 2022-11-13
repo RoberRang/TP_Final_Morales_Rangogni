@@ -15,42 +15,67 @@ namespace TP_Final_Morales_Rangogni
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-     
+
         }
 
         protected void btnAcept_Click(object sender, EventArgs e)
         {
+            PacienteNegocio negocio = new PacienteNegocio();
+            Paciente nuevoPaciente = new Paciente();
             try
             {
-                PacienteNegocio negocio = new PacienteNegocio();
-                Paciente nuevoPaciente = new Paciente();
-
+                if (!ValidoControlTextBox(txtnombre))
+                    return;                
+                if (!ValidoControlTextBox(txtApellido))
+                    return;
+                if (!ValidoControlTextBox(txtDni))
+                    return;
+                if (!ValidoControlTextBox(txtEmail))
+                    return; 
+                if (!ValidoControlTextBox(txtFecha))
+                    return; 
+               
+               
                 nuevoPaciente.Nombres = txtnombre.Text;
                 nuevoPaciente.Apellidos = txtApellido.Text;
                 nuevoPaciente.NroDocumento = txtDni.Text;
-                nuevoPaciente.Telefono= txtTelefono.Text;
-                nuevoPaciente.Email= txtEmail.Text;
+                nuevoPaciente.Telefono = txtTelefono.Text;
+                nuevoPaciente.Email = txtEmail.Text;
                 nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtFecha.Text);
                 nuevoPaciente.FechaAlta = DateTime.Today;
                 nuevoPaciente.Estado = chbEstado.Checked;
-                nuevoPaciente.Imagen= txtImagen.Text;
-                nuevoPaciente.Sexo= ddlGenero.Text;
-     
-                
+                nuevoPaciente.Imagen = txtImagen.Text;
+                nuevoPaciente.Sexo = ddlGenero.Text;
+
+
                 if (negocio.AltaPaciente(nuevoPaciente))
                 {
-                  
+
                     ///cartel alta de pacinete completa y limpiar controles                
 
                 }
-                
+
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
 
             }
         }
+
+        private bool ValidoControlTextBox(TextBox textBox)
+        {
+            bool valido = false;
+            valido = textBox.Text.Equals("") ? false : true;
+            if (!valido)
+            {
+                textBox.Attributes.Add("placeholder", "El campo no debe quedar incompleto");
+                textBox.Focus();
+            }
+            return valido;
+        }
+
         protected void btnVerPac_Click(object sender, EventArgs e)
         {
             PacienteNegocio pacienteNegocio = new PacienteNegocio();
