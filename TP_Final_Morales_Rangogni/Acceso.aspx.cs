@@ -27,11 +27,11 @@ namespace TP_Final_Morales_Rangogni
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
-                if (txtUser.Text.Equals(""))
-                {
-                    ValidarControlUser();
+                if (!ValidoControlTextBox(txtUser))
                     return;
-                }
+                if (!ValidoControlTextBox(txtPassword))
+                    return;
+                
                 usuario.User = txtUser.Text;
                 usuario.Password = txtPassword.Text;
                 Empleado empleadoLogin = usuarioNegocio.ValidarDatosIngreso(usuario);
@@ -53,14 +53,17 @@ namespace TP_Final_Morales_Rangogni
             }
         }
 
-        private void ValidarControlUser()
+        private bool ValidoControlTextBox(TextBox textBox)
         {
-            txtUser.Text = "";
-            txtUser.Attributes.Add("placeholder", "no debe quedar incompleto");
-            txtUser.Focus();
-            return;
+            bool valido = false;
+            valido = textBox.Text.Equals("") ? false : true;
+            if (!valido)
+            {
+                textBox.Attributes.Add("placeholder", "El campo no debe quedar incompleto");
+                textBox.Focus();
+            }
+            return valido;
         }
-
         private void DireccionarEmplado()
         {
             Empleado empleadoLogin = (Empleado)Session["EmpleadoLogin"];
