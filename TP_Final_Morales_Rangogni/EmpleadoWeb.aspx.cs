@@ -27,7 +27,6 @@ namespace TP_Final_Morales_Rangogni
                 throw ex;
 
             }
-
         }
 
         private void buscarTipoPerfil()

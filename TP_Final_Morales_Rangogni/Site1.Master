@@ -26,58 +26,92 @@
     <form runat="server">
         <asp:ScriptManager runat="server">
         </asp:ScriptManager>
-        <div class="container">
-            <nav>
-                <div class="nav-wrapper purple">
-                    <a class="brand-logo left-align" runat="server" href="~/SiteDefaultWeb"><i class="material-icons">local_hospital</i><asp:Label runat="server" ID="lblUsuario"></asp:Label> </a>
-                    <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-dow">
-                        <li><a runat="server" href="~/SiteDefaultWeb" class="black-text"><i class="material-icons white-text">home</i>Inicio</a></li>
-                        <li><a runat="server" href="~/PerfilWeb" class="black-text"><i class="material-icons white-text">account_circle</i>Perfil</a></li>
-                        <li><a runat="server" href="~/EspecialidadWeb" class="black-text"><i class="material-icons white-text">contact_mail</i>Especialidad</a></li>
-                        <li><a runat="server" href="~/EmpleadoWeb" class="black-text"><i class="material-icons white-text">person_add</i>Empleado</a></li>
-                        <li><a runat="server" href="~/PacienteWeb" class="black-text"><i class="material-icons white-text">face</i>Paciente</a></li>
-                        <li><a runat="server" href="~/MedicoWeb" class="black-text"><i class="material-icons white-text">local_hospital</i>Medico</a></li>
-                    </ul>
-                    <ul class="sidenav" id="mobile-nav">
-                        <li><a runat="server" href="~/SiteDefaultWeb">Inicio</a></li>
+        <nav>
+            <div class="nav-wrapper purple">
+                <a class="brand-logo right" runat="server" href="~/SiteDefaultWeb"><i class="material-icons">local_hospital</i>
+                    <asp:Label runat="server" ID="lblUsuario"></asp:Label>
+                </a>
+                <a href="#lateralNav" data-target="lateralNav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <div class="row">
+                    <ul>
                         <li>
-                            <div class="divider"></div>
+                            <a runat="server" href="#" class="black-text"><i class="material-icons white-text">home</i></a>
                         </li>
-                        <li><a runat="server" href="~/EmpleadoWeb">Empleado</a></li>
-                        <li><a runat="server" href="~/MedicoWeb">Empleado</a></li>
-                        <li><a runat="server" href="~/PacienteWeb">Pacientes</a></li>
-                        <li><a runat="server" href="~/PerfilWeb">Especialidad</a></li>
-                        <li><a runat="server" href="~/EspecialidadWeb">Especialidad</a></li>
+                        <li>
+                            <a runat="server" href="~/PerfilWeb" class="black-text"><i class="material-icons white-text">account_circle</i></a>
+                        </li>
+                        <li>
+                            <a runat="server" href="~/EspecialidadWeb" class="black-text"><i class="material-icons white-text">contact_mail</i></a>
+                        </li>
+                        <li>
+                            <a runat="server" href="~/EmpleadoWeb" class="black-text"><i class="material-icons white-text">person_add</i></a>
+                        </li>
+                        <li>
+                            <a runat="server" href="~/PacienteWeb" class="black-text"><i class="material-icons white-text">face</i></a>
+                        </li>
+                        <li>
+                            <a runat="server" href="~/MedicoWeb" class="black-text"><i class="material-icons white-text">local_hospital</i></a>
+                        </li>
                     </ul>
                 </div>
-            </nav>
+            </div>
+            <div class="sidenav" id="lateralNav">
+                <div class="row">
+                    <div class="col s2">
+                        <div class="row">
+                            <div class="col s1">
+                                <ul class="sidenavFijo purple black-text">
+                                    <li class="purple"><a runat="server" href="~/SiteDefaultWeb">Inicio</a></li>
+                                    <li>
+                                        <div class="divider"></div>
+                                    </li>
+                                    <li class="purple"><a runat="server" href="~/EmpleadoWeb">Empleado</a></li>
+                                    <li class="purple"><a runat="server" href="~/MedicoWeb">Medico</a></li>
+                                    <li class="purple"><a runat="server" href="~/PacienteWeb">Pacientes</a></li>
+                                    <li class="purple"><a runat="server" href="~/PerfilWeb">Perfil</a></li>
+                                    <li class="purple"><a runat="server" href="~/EspecialidadWeb">Especialidad</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+        </nav>
+        <div class="container">
             <asp:ContentPlaceHolder ID="MainContentLogin" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> -Mac Fly Corporation service company</p>
-                <!-- Modal Trigger -->
-                <a class="waves-effect waves-light btn modal-trigger purple" href="#modal1">Footer</a>
-
-                <%--<!-- Modal Structure -->--%>
-                <div id="modal1" class="modal bottom-sheet">
-                    <div class="modal-content">
-                        <h4>Modal Footer</h4>
-                        <p>A bunch of text</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                    </div>
-                </div>
-            </footer>
         </div>
+        <hr />
+        <footer>
+            <p>&copy; <%: DateTime.Now.Year %> -Mac Fly Corporation service company</p>
+            <!-- Modal Trigger -->
+            <a class="waves-effect waves-light btn modal-trigger purple" href="#modal1">Footer</a>
+
+            <%--<!-- Modal Structure -->--%>
+            <div id="modal1" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <h4>Modal Footer</h4>
+                    <p>A bunch of text</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+            </div>
+        </footer>
     </form>
     <!--JavaScript at end of body for optimized loading-->
     <script src="js/materialize.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/MaterializeFunctions.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems);
+        });
+    </script>
 </body>
 </html>

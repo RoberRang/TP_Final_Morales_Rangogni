@@ -43,8 +43,8 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-                Session.Add("MensajeError", "Hubo un error con el usuario o password ingresado");
-                throw ex;
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
             }
         }
 
@@ -59,5 +59,11 @@ namespace TP_Final_Morales_Rangogni
             Response.Redirect("Default.aspx", false);
         }
 
+        protected void btnFirst_Click(object sender, EventArgs e)
+        {
+            Empleado empleadoFirst = new Empleado();
+            Session.Add("EmpleadoLogin", empleadoFirst);
+            Response.Redirect("EmpleadoWeb.aspx", false);
+        }
     }
 }

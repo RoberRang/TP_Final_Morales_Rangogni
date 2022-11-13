@@ -15,7 +15,7 @@ namespace TP_Final_Morales_Rangogni
             if (Session["EmpleadoLogin"] != null)
             {
                 Empleado empLogin = (Empleado)Session["EmpleadoLogin"];
-                lblUsuario.Text = "Bienvenido: " + empLogin.Nombres + ", " + empLogin.Apellidos;
+                lblUsuario.Text =  empLogin.Nombres + ", " + empLogin.Apellidos;
             }
         }
     }

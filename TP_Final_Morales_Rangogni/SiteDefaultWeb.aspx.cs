@@ -11,6 +11,11 @@ namespace TP_Final_Morales_Rangogni
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["EmpleadoLogin"] ==null)
+            {
+                Session.Add("MensajeError", "Acceso no autorizado");
+                Response.Redirect("ErrorWeb.aspx", false);
+            }               
 
         }
     }

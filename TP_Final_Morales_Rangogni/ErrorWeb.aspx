@@ -2,8 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
-        <div class="input-field col s6">
-            <h1>HUBO UN ERROR</h1>
+        <div class="input-field col1">
+            <h3>HUBO UN ERROR</h3>
             <asp:Label runat="server" ID="lblMensajeError" ></asp:Label>
         </div>
     </div>

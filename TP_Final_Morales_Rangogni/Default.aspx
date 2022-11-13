@@ -32,7 +32,7 @@
                 Ingreso al sistema por medio de un usuario y contraseña.
             </p>
             <p>
-                <a class="btn btn-default" href="/Acceso">Acceso &raquo;</a>
+                <a class="btn btn-default purple" href="/Acceso">Acceso &raquo;</a>
             </p>
         </div>
 
