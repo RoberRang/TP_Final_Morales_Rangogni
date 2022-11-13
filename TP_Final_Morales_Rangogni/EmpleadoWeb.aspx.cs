@@ -58,7 +58,14 @@ namespace TP_Final_Morales_Rangogni
                     return;
                 if (!ValidoControlTextBox(txtPass2))
                     return;
-
+                if (txtPass.Text != txtPass2.Text)
+                {
+                    txtPass.Attributes.Add("placeholder", "Las contraseñas deben ser iguales");
+                    txtPass.Focus();
+                    txtPass2.Attributes.Add("placeholder", "Las contraseñas deben ser iguales");
+                    txtPass2.Focus();
+                    return;
+                }
                 nuevoUser.Nombres = txtnombre.Text;
                 nuevoUser.Apellidos = txtApellido.Text;
                 nuevoUser.NroDocumento = txtDni.Text;
