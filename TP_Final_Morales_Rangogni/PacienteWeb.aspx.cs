@@ -15,42 +15,76 @@ namespace TP_Final_Morales_Rangogni
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-     
+
         }
 
         protected void btnAcept_Click(object sender, EventArgs e)
         {
+            PacienteNegocio negocio = new PacienteNegocio();
+            Paciente nuevoPaciente = new Paciente();
             try
             {
-                PacienteNegocio negocio = new PacienteNegocio();
-                Paciente nuevoPaciente = new Paciente();
+                if (txtnombre.Text.Equals("") || txtApellido.Text.Equals("") || txtDni.Text.Equals("") || txtEmail.Text.Equals("") || txtTelefono.Text.Equals("") || txtFecha.Text.Equals(""))
+                {
+                    ValidarControlPaciente();
+                    return;
+                }
 
                 nuevoPaciente.Nombres = txtnombre.Text;
                 nuevoPaciente.Apellidos = txtApellido.Text;
                 nuevoPaciente.NroDocumento = txtDni.Text;
-                nuevoPaciente.Telefono= txtTelefono.Text;
-                nuevoPaciente.Email= txtEmail.Text;
+                nuevoPaciente.Telefono = txtTelefono.Text;
+                nuevoPaciente.Email = txtEmail.Text;
                 nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtFecha.Text);
                 nuevoPaciente.FechaAlta = DateTime.Today;
                 nuevoPaciente.Estado = chbEstado.Checked;
-                nuevoPaciente.Imagen= txtImagen.Text;
-                nuevoPaciente.Sexo= ddlGenero.Text;
-     
-                
+                nuevoPaciente.Imagen = txtImagen.Text;
+                nuevoPaciente.Sexo = ddlGenero.Text;
+
+
                 if (negocio.AltaPaciente(nuevoPaciente))
                 {
-                  
+
                     ///cartel alta de pacinete completa y limpiar controles                
 
                 }
-                
+
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
 
             }
         }
+
+        private void ValidarControlPaciente()
+        {
+            txtnombre.Text = "";
+            txtnombre.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
+            txtnombre.Focus();            
+            
+            txtApellido.Text = "";
+            txtApellido.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
+            txtApellido.Focus();
+
+            txtDni.Text = "";
+            txtDni.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
+            txtDni.Focus();
+
+            txtTelefono.Text = "";
+            txtTelefono.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
+            txtTelefono.Focus();
+
+            txtEmail.Text = "";
+            txtEmail.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
+            txtEmail.Focus();
+
+            txtFecha.Text = "";
+            txtFecha.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
+            txtFecha.Focus();
+        }
+
         protected void btnVerPac_Click(object sender, EventArgs e)
         {
             PacienteNegocio pacienteNegocio = new PacienteNegocio();
