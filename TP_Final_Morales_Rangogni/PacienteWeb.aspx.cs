@@ -24,12 +24,18 @@ namespace TP_Final_Morales_Rangogni
             Paciente nuevoPaciente = new Paciente();
             try
             {
-                if (txtnombre.Text.Equals("") || txtApellido.Text.Equals("") || txtDni.Text.Equals("") || txtEmail.Text.Equals("") || txtTelefono.Text.Equals("") || txtFecha.Text.Equals(""))
-                {
-                    ValidarControlPaciente();
+                if (!ValidoControlTextBox(txtnombre))
+                    return;                
+                if (!ValidoControlTextBox(txtApellido))
                     return;
-                }
-
+                if (!ValidoControlTextBox(txtDni))
+                    return;
+                if (!ValidoControlTextBox(txtEmail))
+                    return; 
+                if (!ValidoControlTextBox(txtFecha))
+                    return; 
+               
+               
                 nuevoPaciente.Nombres = txtnombre.Text;
                 nuevoPaciente.Apellidos = txtApellido.Text;
                 nuevoPaciente.NroDocumento = txtDni.Text;
@@ -58,31 +64,16 @@ namespace TP_Final_Morales_Rangogni
             }
         }
 
-        private void ValidarControlPaciente()
+        private bool ValidoControlTextBox(TextBox textBox)
         {
-            txtnombre.Text = "";
-            txtnombre.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
-            txtnombre.Focus();            
-            
-            txtApellido.Text = "";
-            txtApellido.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
-            txtApellido.Focus();
-
-            txtDni.Text = "";
-            txtDni.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
-            txtDni.Focus();
-
-            txtTelefono.Text = "";
-            txtTelefono.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
-            txtTelefono.Focus();
-
-            txtEmail.Text = "";
-            txtEmail.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
-            txtEmail.Focus();
-
-            txtFecha.Text = "";
-            txtFecha.Attributes.Add("placeholder", "Debe completar los campos obligatorios");
-            txtFecha.Focus();
+            bool valido = false;
+            valido = textBox.Text.Equals("") ? false : true;
+            if (!valido)
+            {
+                textBox.Attributes.Add("placeholder", "El campo no debe quedar incompleto");
+                textBox.Focus();
+            }
+            return valido;
         }
 
         protected void btnVerPac_Click(object sender, EventArgs e)
