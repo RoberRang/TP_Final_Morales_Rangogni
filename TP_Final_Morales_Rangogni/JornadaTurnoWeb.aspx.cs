@@ -40,9 +40,12 @@ namespace TP_Final_Morales_Rangogni
         }
         private void AltaJornadaTurno()
         {
-            if (txtDesc.Text.Trim().Equals(""))
+            if (ValidoControlTextBox(txtDesc))
                 return;
-            
+            if (ValidoControlTextBox(txtIni))
+                return;
+            if (ValidoControlTextBox(txtFin))
+                return;
             try
             {
                 JornadaNegocio jornadaNegocio = new JornadaNegocio();
@@ -53,7 +56,17 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
             }
+        }
 
+        private bool ValidoControlTextBox(TextBox textBox)
+        {
+            bool valido = textBox.Text.Equals("") ? false : true;
+            if (!valido)
+            {
+                textBox.Attributes.Add("placeholder", "El campo no debe quedar incompleto");
+                textBox.Focus();
+            }
+            return valido;
         }
     }
 }
