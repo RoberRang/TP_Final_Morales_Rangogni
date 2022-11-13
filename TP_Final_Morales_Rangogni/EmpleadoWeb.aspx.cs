@@ -24,7 +24,8 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
 
             }
         }
@@ -64,7 +65,8 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
 
             }
 

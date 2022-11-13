@@ -42,8 +42,9 @@
                             </li>
                         </div>
                         <li class="collection-item">
-                            <asp:CheckBox runat="server" ID="chkSel" Text="Estado: "></asp:CheckBox>
-                            <a href="#!" class="hide" id="alblChk"><%#Eval("Fin")%></a>
+                            <div class="input-field">
+                            <asp:CheckBox runat="server" ID="chkSel" Text="Sel: "></asp:CheckBox>
+                                </div>
                         </li>
                     </div>
                     </div>

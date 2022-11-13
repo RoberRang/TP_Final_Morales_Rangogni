@@ -27,6 +27,11 @@ namespace TP_Final_Morales_Rangogni
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
+                if (txtUser.Text.Equals(""))
+                {
+                    ValidarControlUser();
+                    return;
+                }
                 usuario.User = txtUser.Text;
                 usuario.Password = txtPassword.Text;
                 Empleado empleadoLogin = usuarioNegocio.ValidarDatosIngreso(usuario);
@@ -46,6 +51,14 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
             }
+        }
+
+        private void ValidarControlUser()
+        {
+            txtUser.Text = "";
+            txtUser.Attributes.Add("placeholder", "no debe quedar incompleto");
+            txtUser.Focus();
+            return;
         }
 
         private void DireccionarEmplado()
