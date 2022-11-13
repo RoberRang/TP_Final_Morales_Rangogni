@@ -57,26 +57,21 @@
             </div>
             <div class="sidenav" id="lateralNav">
                 <div class="row">
-                    <div class="col s2">
-                        <div class="row">
-                            <div class="col s1">
-                                <ul class="sidenavFijo purple black-text">
-                                    <li class="purple"><a runat="server" href="~/SiteDefaultWeb">Inicio</a></li>
-                                    <li>
-                                        <div class="divider"></div>
-                                    </li>
-                                    <li class="purple"><a runat="server" href="~/EmpleadoWeb">Empleado</a></li>
-                                    <li class="purple"><a runat="server" href="~/MedicoWeb">Medico</a></li>
-                                    <li class="purple"><a runat="server" href="~/PacienteWeb">Pacientes</a></li>
-                                    <li class="purple"><a runat="server" href="~/PerfilWeb">Perfil</a></li>
-                                    <li class="purple"><a runat="server" href="~/EspecialidadWeb">Especialidad</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="col s12 m4 l3">
+                        <ul class="sidenavFijo black-text">
+                            <li><a runat="server" href="~/SiteDefaultWeb">Inicio</a></li>
+                            <li>
+                                <div class="divider"></div>
+                            </li>
+                            <li><a runat="server" href="~/EmpleadoWeb">Empleado</a></li>
+                            <li><a runat="server" href="~/MedicoWeb">Medico</a></li>
+                            <li><a runat="server" href="~/PacienteWeb">Pacientes</a></li>
+                            <li><a runat="server" href="~/PerfilWeb">Perfil</a></li>
+                            <li><a runat="server" href="~/EspecialidadWeb">Especialidad</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-
         </nav>
         <div class="container">
             <asp:ContentPlaceHolder ID="MainContentLogin" runat="server">
