@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\medicoweb.css" />
     <Content Include="EmpleadoWeb.aspx" />
     <Content Include="ErrorWeb.aspx" />
     <Content Include="Icons\hospital.png" />
