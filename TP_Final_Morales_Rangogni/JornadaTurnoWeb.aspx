@@ -104,9 +104,9 @@
     </div>
     <div class="divider"></div>
     <div class="jumbotron">
-        <h4>PERFIL</h4>
-        <p class="lead">Permite agregar un nuevo tipo de perfil</p>
-        <p><a href="/PerfilWeb" class="btn btn-primary btn-lg">Perfiles &raquo;</a></p>
+        <h4>JORNADAS</h4>
+        <p class="lead">Listar las jornadas</p>
+        <p><a href="/PerfilWeb" class="btn btn-primary btn-lg">Jornadas &raquo;</a></p>
     </div>
     <script>
         function limpiarModal(mensaje) {
