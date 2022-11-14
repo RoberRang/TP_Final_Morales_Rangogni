@@ -26,13 +26,13 @@
     <form runat="server">
         <asp:ScriptManager runat="server">
         </asp:ScriptManager>
-        <nav>
-            <div class="nav-wrapper purple">
-                <a class="brand-logo right" runat="server" href="~/SiteDefaultWeb"><i class="material-icons">local_hospital</i>
-                    <asp:Label runat="server" ID="lblUsuario"></asp:Label>
-                </a>
-                <a href="#sidenav" data-target="lateralNav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <div class="row">
+        <header>
+            <nav class="nav-title">
+                <div class="nav-wrapper purple">
+                    <a class="brand-logo right" runat="server" href="~/SiteDefaultWeb"><i class="material-icons">local_hospital</i>
+                        <asp:Label runat="server" ID="lblUsuario"></asp:Label>
+                    </a>
+                    <a href="#sidenav" data-target="lateralNav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul>
                         <li>
                             <a runat="server" href="~/SiteDefaultWeb" class="black-text"><i class="material-icons white-text">home</i></a>
@@ -57,27 +57,28 @@
                         </li>
                     </ul>
                 </div>
+            </nav>
+            <ul class="black-text sidenav sidenav-fixed" id="lateralNav" style="transform: translateX(0px);margin-top: 0px;top: 65px;">
+                <li><a runat="server" href="~/SiteDefaultWeb">Inicio</a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a runat="server" href="~/EmpleadoWeb">Empleado</a></li>
+                <li><a runat="server" href="~/MedicoWeb">Medico</a></li>
+                <li><a runat="server" href="~/PacienteWeb">Pacientes</a></li>
+                <li><a runat="server" href="~/PerfilWeb">Perfil</a></li>
+                <li><a runat="server" href="~/EspecialidadWeb">Especialidad</a></li>
+                <li><a runat="server" href="~/JornadaTurnoWeb">Jornada</a></li>
+            </ul>
+        </header>
+        <main style="margin-left: 150px;">
+            <div class="container">
+                <asp:ContentPlaceHolder ID="MainContentLogin" runat="server">
+                </asp:ContentPlaceHolder>
             </div>
-        </nav>
-        <ul class="black-text sidenav sidenav-fixed" id="lateralNav">
-            <li><a runat="server" href="~/SiteDefaultWeb">Inicio</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a runat="server" href="~/EmpleadoWeb">Empleado</a></li>
-            <li><a runat="server" href="~/MedicoWeb">Medico</a></li>
-            <li><a runat="server" href="~/PacienteWeb">Pacientes</a></li>
-            <li><a runat="server" href="~/PerfilWeb">Perfil</a></li>
-            <li><a runat="server" href="~/EspecialidadWeb">Especialidad</a></li>
-            <li><a runat="server" href="~/JornadaTurnodWeb">Jornada</a></li>
-        </ul>
-
-        <div class="container">
-            <asp:ContentPlaceHolder ID="MainContentLogin" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+        </main>
         <hr />
-        <footer>
+        <footer style="margin-left: 250px;">
             <p>&copy; <%: DateTime.Now.Year %> -Mac Fly Corporation service company</p>
             <!-- Modal Trigger -->
             <a class="waves-effect waves-light btn modal-trigger purple" href="#modal1">Footer</a>
