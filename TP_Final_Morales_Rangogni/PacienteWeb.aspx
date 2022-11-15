@@ -4,17 +4,37 @@
     <!---ACA-->
     <section>
         <div class="tab-bar">
-            <a href="#fruit">NUEVO PACIENTE</a>
             <a href="#fruit">PACIENTES</a>
+            <a href="#fruit">NUEVO PACIENTE</a>
             <a href="#fruit">TURNOS</a>
-            <a href="#fruit">SOLAPA 4</a>
+            <a href="#fruit">NUEVO TURNO</a>
 
         </div>
 
 
-        <!--ACA SOLAPA AGREGAR PACIENTE-->
+        <!---solapa pacientes-->
         <div class="content">
 
+
+            <div class="col-md-5">
+                <br />
+                <asp:Button runat="server" ID="btnVerPac" CssClass="btn btn-default" OnClick="btnVerPac_Click" Text="Ver todos &raquo;" />
+                <br />
+                <br />
+
+                <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table" runat="server"></asp:GridView>
+
+
+
+
+            </div>
+
+        </div>
+        <!---hasta aca-->
+        <!--ACA SOLAPA NUEVO PACIENTE-->
+        <div class="content">
+            <br />
+            <br />
             <!--imagen-->
 
             <div class="center-align responsive-img">
@@ -23,11 +43,10 @@
 
             <div class="col s12">
                 <div class="row">
-                   
-                    <div class="col s5">
 
+                    <div class="col s5">
                     </div>
-                    
+
                     <div class="file-field input-field col s4 center-align">
                         <div class="waves-effect waves-light btn-small">
                             <i class="material-icons">camera_enhance</i>
@@ -120,38 +139,34 @@
 
                 </div>
             </div>
+            <!---MODAL--->
 
             <div class="row">
-                <div class="input-field col s12 center-align ">
-                    <asp:Button CssClass="waves-effect waves-light btn-small" ID="btnAcept" runat="server" OnClick="btnAcept_Click" Text="Guardar" />
+                <!-- Modal Trigger -->
+                <div class="center-align">
+                    <a class=" btn modal-trigger" href="#modal1">Guardar</a>
+                </div>
+                <!-- Modal Structure -->
+
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>Atencion</h4>
+                        <p>¿Desea guardar el paciente?</p>
+                    </div>
+                    <div class="modal-footer">
+
+                        <asp:Button CssClass="modal-close btn-flat" ID="btnAcept" runat="server" OnClick="btnAcept_Click" Text="Aceptar" />
+
+                        <a href="#!" class="modal-close btn-flat">Cancelar</a>
+                    </div>
                 </div>
             </div>
+            <!---hasta aca MODAL-->
 
-
-        </div>
-        <!---hasta aca-->
-
-        <!---solapa pacientes-->
-        <div class="content">
-
-
-            <div class="col-md-5">
-
-
-                <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table" runat="server"></asp:GridView>
-
-
-                <asp:Button runat="server" ID="btnVerPac" CssClass="btn btn-default" OnClick="btnVerPac_Click" Text="Pacientes &raquo;" />
-
+            <div class="content">
+                <h2>LISTA TURNOS Y EDITA <span><i class="fas fa-carrot"></i></span></h2>
+                <p>Listar turnos(pacientes)/ botons de editar/ .</p>
             </div>
-
-        </div>
-        <!---hasta aca-->
-
-        <div class="content">
-            <h2>Vegetables <span><i class="fas fa-carrot"></i></span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste omnis aliquid ad, ex quisquam, odio vero ipsam quo totam soluta eos repellendus, rerum vel nihil nisi cum numquam, consectetur. Sequi nemo, a. Ad perferendis nostrum explicabo quas tempora esse quae quam atque officia neque, mollitia earum blanditiis alias aperiam molestiae. Sequi nemo, a. Ad perferendis nostrum explicabo quas tempora esse quae quam atque officia neque, mollitia earum blanditiis alias aperiam molestiae.</p>
-        </div>
     </section>
 
     <script type="text/javascript" src="js/tabfunciones.js"></script>

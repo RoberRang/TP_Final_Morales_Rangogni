@@ -33,8 +33,7 @@ namespace TP_Final_Morales_Rangogni
                 if (!ValidoControlTextBox(txtEmail))
                     return; 
                 if (!ValidoControlTextBox(txtFecha))
-                    return; 
-               
+                    return;                
                
                 nuevoPaciente.Nombres = txtnombre.Text;
                 nuevoPaciente.Apellidos = txtApellido.Text;
