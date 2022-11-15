@@ -25,16 +25,16 @@ namespace TP_Final_Morales_Rangogni
             try
             {
                 if (!ValidoControlTextBox(txtnombre))
-                    return;                
+                    return;
                 if (!ValidoControlTextBox(txtApellido))
                     return;
                 if (!ValidoControlTextBox(txtDni))
                     return;
                 if (!ValidoControlTextBox(txtEmail))
-                    return; 
+                    return;
                 if (!ValidoControlTextBox(txtFecha))
-                    return;                
-               
+                    return;
+
                 nuevoPaciente.Nombres = txtnombre.Text;
                 nuevoPaciente.Apellidos = txtApellido.Text;
                 nuevoPaciente.NroDocumento = txtDni.Text;

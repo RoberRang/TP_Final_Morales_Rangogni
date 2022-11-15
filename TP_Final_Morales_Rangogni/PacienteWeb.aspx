@@ -22,7 +22,20 @@
                 <br />
                 <br />
 
-                <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table" runat="server"></asp:GridView>
+                <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table"
+                    runat="server" AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField HeaderText="Nombre" DataField="Nombres" />
+                        <asp:BoundField HeaderText="Apellido" DataField="Apellidos" />
+                        <asp:BoundField HeaderText="Dni" DataField="NroDocumento" />
+                        <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
+                        <asp:BoundField HeaderText="Email" DataField="Email" />
+                    </Columns>
+
+
+
+                </asp:GridView>
+                
 
 
 
@@ -166,6 +179,7 @@
             <div class="content">
                 <h2>LISTA TURNOS Y EDITA <span><i class="fas fa-carrot"></i></span></h2>
                 <p>Listar turnos(pacientes)/ botons de editar/ .</p>
+
             </div>
     </section>
 
