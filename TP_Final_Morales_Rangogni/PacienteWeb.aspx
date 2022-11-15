@@ -14,9 +14,14 @@
 
         <!---solapa pacientes-->
         <div class="content">
+            <div class="row">
+             
+                        <asp:Label Text="Filtrar" runat="server" CssClass="active"/>
+                        <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="filtro_TextChanged"></asp:TextBox>
+                    </div>
 
-
-            <div class="col-md-5">
+            
+            <div class="col-md-5 right-align">
                 <br />
                 <asp:Button runat="server" ID="btnVerPac" CssClass="btn btn-default" OnClick="btnVerPac_Click" Text="Ver todos &raquo;" />
                 <br />
@@ -179,7 +184,7 @@
                 </div>
             </div>
             <!---hasta aca MODAL-->
-
+           </div>
             <div class="content">
                 <h2>LISTA TURNOS Y EDITA <span><i class="fas fa-carrot"></i></span></h2>
                 <p>Listar turnos(pacientes)/ botons de editar/ .</p>

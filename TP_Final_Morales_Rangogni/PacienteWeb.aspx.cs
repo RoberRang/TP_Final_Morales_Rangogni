@@ -15,7 +15,10 @@ namespace TP_Final_Morales_Rangogni
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                buscarPacientesWeb();
+            }
         }
 
         protected void btnAcept_Click(object sender, EventArgs e)
@@ -49,9 +52,9 @@ namespace TP_Final_Morales_Rangogni
 
                 if (negocio.AltaPaciente(nuevoPaciente))
                 {
-
+                    buscarPacientesWeb();
                     ///cartel alta de pacinete completa y limpiar controles                
-
+                    limpiarControles();
                 }
 
             }
@@ -61,6 +64,19 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
 
             }
+        }
+
+        private void limpiarControles()
+        {
+            txtnombre.Text = string.Empty;
+            txtApellido.Text = string.Empty;
+            txtDni.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtFecha.Text = string.Empty;
+            chbEstado.Checked = true;
+            txtImagen.Text = string.Empty;
+            ddlGenero.Text = string.Empty;
         }
 
         private bool ValidoControlTextBox(TextBox textBox)
@@ -77,6 +93,24 @@ namespace TP_Final_Morales_Rangogni
 
         protected void btnVerPac_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvPacientes.SelectedDataKey.Value.ToString();
+            Response.Redirect("PacienteWeb#NuevoPaciente?id=" + id);// SI MANDO ID VOY A MODIFICAR SI NO VIENE ES POR QUE DOY DE ALTA
+        }
+
+        protected void filtro_TextChanged(object sender, EventArgs e)
+        {
+            List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
+            List<ModeloPacienteWeb> filtroRapido = filtro.FindAll(x => x.Nombres.ToUpper().Contains(txtfiltro.Text.ToUpper()));
+            dgvPacientes.DataSource = filtroRapido;
+            dgvPacientes.DataBind();
+        }
+        protected void buscarPacientesWeb()
+        {
             PacienteNegocio pacienteNegocio = new PacienteNegocio();
             List<ModeloPacienteWeb> pacientesBuscados = new List<ModeloPacienteWeb>();
             foreach (Paciente paciente in pacienteNegocio.Pacientes())
@@ -84,15 +118,11 @@ namespace TP_Final_Morales_Rangogni
                 ModeloPacienteWeb modeloPaciente = new ModeloPacienteWeb(paciente);
                 pacientesBuscados.Add(modeloPaciente);
             }
-
+            Session.Add("pacientesWeb", pacientesBuscados);
             dgvPacientes.DataSource = pacientesBuscados;
             dgvPacientes.DataBind();
-        }
 
-        protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string id= dgvPacientes.SelectedDataKey.Value.ToString();
-            Response.Redirect("PacienteWeb.aspx?id=" + id);// SI MANDO ID VOY A MODIFICAR SI NO VIENE ES POR QUE DOY DE ALTA
         }
     }
 }
+
