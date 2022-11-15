@@ -57,6 +57,7 @@
     <Compile Include="Modelos\PacienteADO.cs" />
     <Compile Include="Modelos\TipoEspecialidadADO.cs" />
     <Compile Include="Modelos\TipoPerfilADO.cs" />
+    <Compile Include="Modelos\TurnoADO.cs" />
     <Compile Include="Modelos\UsuarioADO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
