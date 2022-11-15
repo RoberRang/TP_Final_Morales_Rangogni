@@ -89,5 +89,10 @@ namespace TP_Final_Morales_Rangogni
             dgvPacientes.DataBind();
         }
 
+        protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id= dgvPacientes.SelectedDataKey.Value.ToString();
+            Response.Redirect("PacienteWeb.aspx?id=" + id);// SI MANDO ID VOY A MODIFICAR SI NO VIENE ES POR QUE DOY DE ALTA
+        }
     }
 }

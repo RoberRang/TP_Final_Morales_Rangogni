@@ -4,10 +4,10 @@
     <!---ACA-->
     <section>
         <div class="tab-bar">
-            <a href="#fruit">PACIENTES</a>
-            <a href="#fruit">NUEVO PACIENTE</a>
-            <a href="#fruit">TURNOS</a>
-            <a href="#fruit">NUEVO TURNO</a>
+            <a href="#Pacientes">PACIENTES</a>
+            <a href="#NuevoPaciente">NUEVO PACIENTE</a>
+            <a href="#Turnos">TURNOS</a>
+            <a href="#NuevoTurno">NUEVO TURNO</a>
 
         </div>
 
@@ -23,13 +23,17 @@
                 <br />
 
                 <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table"
-                    runat="server" AutoGenerateColumns="false">
+                    runat="server" AutoGenerateColumns="false" DataKeyNames="IdPaciente"
+                    OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged"
+                    >
                     <Columns>
                         <asp:BoundField HeaderText="Nombre" DataField="Nombres" />
                         <asp:BoundField HeaderText="Apellido" DataField="Apellidos" />
                         <asp:BoundField HeaderText="Dni" DataField="NroDocumento" />
                         <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
                         <asp:BoundField HeaderText="Email" DataField="Email" />
+                        <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="🔥" />
+                            
                     </Columns>
 
 
