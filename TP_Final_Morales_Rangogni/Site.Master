@@ -36,7 +36,9 @@
                     </ul>
                     <ul class="sidenav" id="mobile-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>
-                         <li><div class="divider"></div></li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
                         <li><a runat="server" href="~/Acceso">Acceso</a></li>
                     </ul>
                 </div>
@@ -46,22 +48,7 @@
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 <hr />
-                <footer>
-                    <p>&copy; <%: DateTime.Now.Year %> -Mac Fly Corporation service company</p>
-                    <!-- Modal Trigger -->
-                    <a class="waves-effect waves-light btn modal-trigger purple" href="#modal1">Footer</a>
 
-                    <%--<!-- Modal Structure -->--%>
-                    <div id="modal1" class="modal bottom-sheet">
-                        <div class="modal-content">
-                            <h4>Modal Footer</h4>
-                            <p>A bunch of text</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                        </div>
-                    </div>
-                </footer>
             </div>
         </div>
     </form>

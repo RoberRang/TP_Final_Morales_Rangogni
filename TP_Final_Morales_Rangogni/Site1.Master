@@ -78,22 +78,7 @@
             </div>
         </main>
         <hr />
-        <footer style="margin-left: 250px;">
-            <p>&copy; <%: DateTime.Now.Year %> -Mac Fly Corporation service company</p>
-            <!-- Modal Trigger -->
-            <a class="waves-effect waves-light btn modal-trigger purple" href="#modal1">Footer</a>
-
-            <%--<!-- Modal Structure -->--%>
-            <div id="modal1" class="modal bottom-sheet">
-                <div class="modal-content">
-                    <h4>Modal Footer</h4>
-                    <p>A bunch of text</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                </div>
-            </div>
-        </footer>
+        
     </form>
     <!--JavaScript at end of body for optimized loading-->
     <script src="js/materialize.min.js"></script>

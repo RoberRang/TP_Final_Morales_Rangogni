@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContentLogin" runat="server">
          <section>
 			<div class="tab-bar">
-				<a href="#fruit">AGENDA</i></span></a>
+				<a href="#fruit">AGENDA</a>
 				<a href="#fruit">PACIENTES</a>
 				<a href="#fruit">TURNOS</a>
 			</div>

@@ -4,7 +4,7 @@
     <!---ACA-->
     <section>
         <div class="tab-bar">
-            <a href="#fruit">NUEVO PACIENTE</i></span></a>
+            <a href="#fruit">NUEVO PACIENTE</a>
             <a href="#fruit">PACIENTES</a>
             <a href="#fruit">TURNOS</a>
             <a href="#fruit">SOLAPA 4</a>
@@ -17,21 +17,30 @@
 
             <!--imagen-->
 
-            <div>
-                <asp:Image ID="imgPaciente" runat="server" CssClass="circle responsive-img" src="https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-580x580.jpg" />
-           </div>
-            <div class="file-field input-field">
-                <div class="waves-effect waves-light btn-small">
-                    <span>Agregar</span>
-                    <input type="file" runat="server">
-                </div>
-                <div class="file-path-wrapper">
-                    <asp:TextBox ID="txtImagen" runat="server" CssClass="file-path validate"></asp:TextBox>
-                </div>
+            <div class="center-align responsive-img">
+                <asp:Image ID="imgPaciente" runat="server" CssClass="circle responsive-img" Width="100" src="https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-580x580.jpg" />
             </div>
 
+            <div class="col s12">
+                <div class="row">
+                   
+                    <div class="col s5">
 
+                    </div>
+                    
+                    <div class="file-field input-field col s4 center-align">
+                        <div class="waves-effect waves-light btn-small">
+                            <i class="material-icons">camera_enhance</i>
+                            <input type="file">
+                        </div>
 
+                        <div class="file-path-wrapper col s4">
+                            <asp:TextBox ID="txtImagen" runat="server" CssClass="file-path validate"></asp:TextBox>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
             <!--Telefono -->
 
@@ -79,7 +88,7 @@
                         <label for="lblGenero">Genero</label>
                         <br />
                         <br />
-                        <asp:DropDownList ID="ddlGenero" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 10px;" href="#" data-activates="drpdEstado" data-target="drpdEstado">
+                        <asp:DropDownList ID="ddlGenero" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 10px" href="#" data-activates="drpdEstado" data-target="drpdEstado">
                             <asp:ListItem Text="Masculino" />
                             <asp:ListItem Text="Femenino" />
                             <asp:ListItem Text="Otro" />
@@ -113,8 +122,8 @@
             </div>
 
             <div class="row">
-                <div class="input-field col s12 center-align">
-                    <asp:Button CssClass="waves-effect waves-light btn-small" ID="btnAcept" runat="server" OnClick="btnAcept_Click" Text="Aceptar" />
+                <div class="input-field col s12 center-align ">
+                    <asp:Button CssClass="waves-effect waves-light btn-small" ID="btnAcept" runat="server" OnClick="btnAcept_Click" Text="Guardar" />
                 </div>
             </div>
 
@@ -124,7 +133,7 @@
 
         <!---solapa pacientes-->
         <div class="content">
-            
+
 
             <div class="col-md-5">
 
@@ -148,5 +157,5 @@
     <script type="text/javascript" src="js/tabfunciones.js"></script>
 
 
-   
+
 </asp:Content>

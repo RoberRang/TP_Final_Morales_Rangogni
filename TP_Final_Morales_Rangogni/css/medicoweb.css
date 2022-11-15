@@ -83,7 +83,7 @@ section {
         font-weight: bold;
         color: var(--tab-text-color-light);
         -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
+        /*-ms-flex-positive: 1;*/
         flex-grow: 1;
         border-right: 1px solid lightgrey;
         border-top: 1px solid lightgrey;
