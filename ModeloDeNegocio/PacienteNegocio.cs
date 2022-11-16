@@ -48,6 +48,11 @@ namespace ModeloDeNegocio.Negocio
                 throw ex;
             }
         }
+
+        public Paciente BuscarPaciente(string documento)
+        {
+            return pacienteADO.BuscarPaciente(documento);
+        }
         public bool ValidarDatosIngreso(Paciente paciente)
         { /// recibir un objeto, voy chequear en bd que sea valido. DNI, USUARIO
 

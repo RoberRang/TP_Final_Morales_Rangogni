@@ -248,6 +248,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="SiteDefaultWeb.aspx" />
+    <Content Include="TurnoWeb.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -352,6 +353,13 @@
     </Compile>
     <Compile Include="SiteDefaultWeb.aspx.designer.cs">
       <DependentUpon>SiteDefaultWeb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TurnoWeb.aspx.cs">
+      <DependentUpon>TurnoWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TurnoWeb.aspx.designer.cs">
+      <DependentUpon>TurnoWeb.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
