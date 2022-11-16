@@ -1,82 +1,84 @@
-﻿use master
-go
-create database Clinica_MORA
+﻿CREATE DATABASE Clinica_MORA
 
-go
-CREATE TABLE [dbo].[TipoPerfil]
-(
-	[IdPerfil] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Descripcion] VARCHAR(50) NOT NULL, 
-    [Estado] BIT NOT NULL
-)
+USE Clinica_MORA
 
-go
-CREATE TABLE [dbo].[Empleados]
-(
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [IdTipoPerfil] INT NULL, 
-    [Nombre] VARCHAR(50) NOT NULL, 
-    [Apellido] VARCHAR(50) NOT NULL, 
-    [NroDocumento] VARCHAR(10) NOT NULL, 
-    [FechaAlta] DATETIME NOT NULL, 
-    [Estado] BIT NOT NULL
-)
-alter table Empleados add constraint FK_TipoPerfil foreign key (IdTipoPerfil) references TipoPerfil(IdPerfil)
+CREATE TABLE [dbo].[Especialidad] (
+    [IdEspecialidad] INT          IDENTITY (1, 1) NOT NULL,
+    [Descripcion]    VARCHAR (50) NOT NULL,
+    [Estado]         BIT          NOT NULL
+);
 
-go
-CREATE TABLE [dbo].[Especialidad]
-(
-	[IdEspecialidad] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Descripcion] VARCHAR(50) NOT NULL, 
-    [Estado] BIT NOT NULL
-)
+CREATE TABLE [dbo].[TipoPerfil] (
+    [IdPerfil]    INT          IDENTITY (1, 1) NOT NULL,
+    [Descripcion] VARCHAR (50) NOT NULL,
+    [Estado]      BIT          NOT NULL
+);
 
-go
-CREATE TABLE [dbo].[Pacientes]
-(
-	[IdPaciente] INT NOT NULL PRIMARY KEY IDENTITY,     
-    [Nombres] VARCHAR(50) NOT NULL, 
-    [Apellidos] VARCHAR(50) NOT NULL, 
-    [NroDocumento] VARCHAR(10) NOT NULL, 
-    [FechaNacimeitno] DATETIME NOT NULL, 
-    [Sexo] char NOT NULL,
-    [FechaAlta] DATETIME NOT NULL, 
-    [Estado] BIT NOT NULL,
-    [Telefono] VARCHAR(15) NOT NULL, 
-    [Email] VARCHAR(50) NOT NULL, 
-    [Imagen] VARCHAR(150) NOT NULL 
-)
+CREATE TABLE [dbo].[JornadaTurno] (
+    [IdJornada]   INT          IDENTITY (1, 1) NOT NULL,
+    [Descripcion] VARCHAR (50) NOT NULL,
+    [Estado]      BIT          NOT NULL,
+    [Inicio]      INT          NOT NULL,
+    [Fin]         INT          NOT NULL
+);
 
-go
-CREATE TABLE [dbo].[SituacionTurno]
-(
-	[IdSituacion] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Descripcion] VARCHAR(50) NOT NULL, 
-    [Estado] BIT NOT NULL
-)
+CREATE TABLE [dbo].[Empleados] (
+    [Id]           INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
+    [IdTipoPerfil] INT          NULL,
+    [Nombre]       VARCHAR (50) NOT NULL,
+    [Apellido]     VARCHAR (50) NOT NULL,
+    [NroDocumento] VARCHAR (10) NOT NULL,
+    [FechaAlta]    DATETIME     NOT NULL,
+    [Estado]       BIT          NOT NULL
+);
+ALTER TABLE [dbo].[Empleados]
+    ADD CONSTRAINT [FK_TipoPerfil] FOREIGN KEY ([IdTipoPerfil]) REFERENCES [dbo].[TipoPerfil] ([IdPerfil]);
 
-go
-CREATE TABLE [dbo].[Turnos]
-(
-	[IdTurnos] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [IdEmpleado] INT NULL, 
-    [IdPaciente] INT NULL, 
-    [FechaReserva] DATETIME NOT NULL, 
-    [Observacion] VARCHAR(max) NOT NULL, 
-    [IdSituacionTurno] INT NULL,     
-    [Estado] BIT NOT NULL,
-    [Hora] INT NULL 
-)
-alter table Turnos add constraint FK_IdEmpleado foreign key (IdEmpleado) references Empleados(Id)
-alter table Turnos add constraint FK_IdPaciente foreign key (IdPaciente) references Pacientes(IdPaciente)
-alter table Turnos add constraint FK_IdSituacionTurno foreign key (IdSituacionTurno) references SituacionTurno(IdSituacion)
 
-go
-CREATE TABLE [dbo].[Usuarios]
-(
-	[IdUsuario] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [User] VARCHAR(50) NOT NULL, 
-    [Password] VARCHAR(50) NOT NULL, 
-    [IdEmpleado] INT NOT NULL
-)
-alter table Usuarios add constraint FK_UserIdEmp foreign key (IdEmpleado) references Empleados(Id)
+CREATE TABLE [dbo].[Usuarios] (
+    [IdUsuario]  INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
+    [UserLogin]  VARCHAR (50) NOT NULL,
+    [Password]   VARCHAR (50) NOT NULL,
+    [IdEmpleado] INT          NOT NULL
+);
+ALTER TABLE [dbo].[Usuarios]
+    ADD CONSTRAINT [FK_IdEmpleado] FOREIGN KEY ([IdEmpleado]) REFERENCES [dbo].[Empleados] ([Id]);
+
+CREATE TABLE [dbo].[Pacientes] (
+    [IdPaciente]      INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
+    [Nombres]         VARCHAR (50)  NOT NULL,
+    [Apellidos]       VARCHAR (50)  NOT NULL,
+    [NroDocumento]    VARCHAR (10)  NOT NULL,
+    [FechaNacimiento] DATETIME      NOT NULL,
+    [Sexo]            VARCHAR (20)  NULL,
+    [FechaAlta]       DATETIME      NOT NULL,
+    [Estado]          BIT           NOT NULL,
+    [Telefono]        VARCHAR (15)  NULL,
+    [Email]           VARCHAR (50)  NULL,
+    [Imagen]          VARCHAR (150) NULL
+);
+
+CREATE TABLE [dbo].[Medicos] (
+    [IdMedico]       INT NOT NULL,
+    [IdEspecialidad] INT NOT NULL,
+    [Estado]         BIT NULL,
+    [IdJornada]      INT NULL
+);
+
+CREATE TABLE [dbo].[Turnos] (
+    [IdTurnos]     INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
+    [IdEmpleado]   INT           NULL,
+    [IdPaciente]   INT           NULL,
+    [FechaReserva] DATETIME      NOT NULL,
+    [Observacion]  VARCHAR (MAX) NOT NULL,
+    [IdJornada]    INT           NULL,
+    [Estado]       BIT           NOT NULL,
+    [Hora]         INT           NULL
+);
+ALTER TABLE [dbo].[Turnos]
+    ADD CONSTRAINT [FK_TurnoIdEmpleado] FOREIGN KEY ([IdEmpleado]) REFERENCES [dbo].[Empleados] ([Id]);
+ALTER TABLE [dbo].[Turnos]
+    ADD CONSTRAINT [FK_TurnoIdPaciente] FOREIGN KEY ([IdPaciente]) REFERENCES [dbo].[Pacientes] ([IdPaciente]);
+ALTER TABLE [dbo].[Turnos]
+    ADD CONSTRAINT [FK_TurnoIdJornada] FOREIGN KEY ([IdJornada]) REFERENCES [dbo].[JornadaTurno] (IdJornada);
+
