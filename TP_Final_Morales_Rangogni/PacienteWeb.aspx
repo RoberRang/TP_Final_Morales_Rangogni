@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="PacienteWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.PacienteWeb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContentLogin" runat="server">
-    <!---ACA-->
+
+    <!---Solapas-->
     <section>
         <div class="tab-bar">
             <a href="#Pacientes">PACIENTES</a>
@@ -12,25 +13,22 @@
         </div>
 
 
-        <!---solapa pacientes-->
+        <!---Solapa Pacientes-->
+
         <div class="content">
             <div class="row">
-             
-                        <asp:Label Text="Filtrar" runat="server" CssClass="active"/>
-                        <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="filtro_TextChanged"></asp:TextBox>
-                    </div>
 
-            
+                <asp:Label Text="Filtrar" runat="server" CssClass="active" />
+                <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="filtro_TextChanged"></asp:TextBox>
+            </div>
             <div class="col-md-5 right-align">
                 <br />
                 <asp:Button runat="server" ID="btnVerPac" CssClass="btn btn-default" OnClick="btnVerPac_Click" Text="Ver todos &raquo;" />
                 <br />
                 <br />
-
                 <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table"
                     runat="server" AutoGenerateColumns="false" DataKeyNames="IdPaciente"
-                    OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged"
-                    >
+                    OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField HeaderText="Nombre" DataField="Nombres" />
                         <asp:BoundField HeaderText="Apellido" DataField="Apellidos" />
@@ -38,22 +36,15 @@
                         <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
                         <asp:BoundField HeaderText="Email" DataField="Email" />
                         <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="🔥" />
-                            
+
                     </Columns>
-
-
-
                 </asp:GridView>
-                
-
-
-
-
             </div>
-
         </div>
-        <!---hasta aca-->
-        <!--ACA SOLAPA NUEVO PACIENTE-->
+
+       
+        <!--Solapa NUEVO PACIENTE-->
+
         <div class="content">
             <br />
             <br />
@@ -83,7 +74,7 @@
                 </div>
             </div>
 
-            <!--Telefono -->
+            <!--Nombre y Apellido -->
 
             <div class="col s12">
                 <div class="row">
@@ -149,7 +140,7 @@
                             </label>
                         </div>
                     </div>
-                    <!--imagen-->
+                    <!--Fecha Nacimiento-->
 
                     <div class="input-field col s4 right-align">
                         <label for="lblFnac">Fecha de Nacimiento</label>
@@ -161,15 +152,13 @@
 
                 </div>
             </div>
-            <!---MODAL--->
+            <!---MODAL GUARDAR--->
 
             <div class="row">
                 <!-- Modal Trigger -->
                 <div class="center-align">
                     <a class=" btn modal-trigger" href="#modal1">Guardar</a>
-                </div>
-                <!-- Modal Structure -->
-
+                </div>               
                 <div id="modal1" class="modal">
                     <div class="modal-content">
                         <h4>Atencion</h4>
@@ -183,13 +172,17 @@
                     </div>
                 </div>
             </div>
-            <!---hasta aca MODAL-->
-           </div>
-            <div class="content">
-                <h2>LISTA TURNOS Y EDITA <span><i class="fas fa-carrot"></i></span></h2>
-                <p>Listar turnos(pacientes)/ botons de editar/ .</p>
 
-            </div>
+            <!---Fin MODAL Guardar-->
+
+        </div>
+        <!--SOLAPA GENERICA-->
+        <div class="content">
+            <h2>LISTA TURNOS Y EDITA <span><i class="fas fa-carrot"></i></span></h2>
+            <p>Listar turnos(pacientes)/ botons de editar/ .</p>
+
+        </div>
+        <!--Fin Solapas-->
     </section>
 
     <script type="text/javascript" src="js/tabfunciones.js"></script>
