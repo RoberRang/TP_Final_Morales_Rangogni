@@ -10,57 +10,20 @@ using System.Web.UI.WebControls;
 
 namespace TP_Final_Morales_Rangogni
 {
-    public partial class EmpleadoWeb : System.Web.UI.Page
+    public partial class AltaSinUsuarioWeb : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                if (Session["EmpleadoLogin"] == null)
-                    throw new Exception("Acceso erroneo!");
-                else
-                {
-                    Empleado empleado = (Empleado)Session["EmpleadoLogin"];
-                    ValidarEmpleadoLogin(empleado);
-                }
-                if (!IsPostBack)
-                {
-                    buscarTipoPerfil();
-
-                }
+                if (Session["EmpleadoSinLogin"] == null)
+                    throw new Exception("Acceso erroneo!");                
             }
             catch (Exception ex)
             {
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
-
             }
-        }
-
-        private void ValidarEmpleadoLogin(Empleado empleado)
-        {
-            try
-            {
-                if (empleado.idTipoPerfil != 1)
-                    throw new Exception("El Usuario: " + empleado.Nombres + ", " + empleado.Apellidos + " sin acceso!");
-            }
-            catch (Exception ex)
-            {
-
-                Session.Add("MensajeError", ex.ToString());
-                Response.Redirect("ErrorWeb.aspx", false);
-            }
-            
-        }
-
-        private void buscarTipoPerfil()
-        {
-            PerfilNegocio perfilNegocio = new PerfilNegocio();
-            ddlPerfilEmp.DataSource = perfilNegocio.Perliles();
-            ddlPerfilEmp.DataValueField = "idPerfil";
-            ddlPerfilEmp.DataTextField = "descripcion";
-            ddlPerfilEmp.DataBind();
-
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -69,7 +32,7 @@ namespace TP_Final_Morales_Rangogni
             Usuario nuevoUser = new Usuario();
             try
             {
-                if (!ValidoControlTextBox(txtnombre))
+                if (!ValidoControlTextBox(txtNombre))
                     return;
                 if (!ValidoControlTextBox(txtApellido))
                     return;
@@ -89,12 +52,12 @@ namespace TP_Final_Morales_Rangogni
                     txtPass2.Focus();
                     return;
                 }
-                nuevoUser.Nombres = txtnombre.Text;
+                nuevoUser.Nombres = txtNombre.Text;
                 nuevoUser.Apellidos = txtApellido.Text;
                 nuevoUser.NroDocumento = txtDni.Text;
-                nuevoUser.Estado = chbEstado1.Checked;
+                nuevoUser.Estado = false;
                 //desplegable
-                nuevoUser.idTipoPerfil = int.Parse(ddlPerfilEmp.SelectedValue);
+                nuevoUser.idTipoPerfil = 3;
                 nuevoUser.User = txtUser.Text;
                 nuevoUser.Password = txtPass.Text;
 

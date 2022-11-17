@@ -69,7 +69,7 @@
         <div class="row">
             <div class="col s4 left-align">
                 <label id="lblEspecialidad" for="ddlEspecialidad">Especialidad</label>
-                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 5px" href="#" OnTextChanged="ddlEspecialidad_TextChanged" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" data-activates="ddlEpecialidad" data-target="ddlEspcialidad" />
+                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 5px" href="#" AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" data-activates="ddlEpecialidad" data-target="ddlEspcialidad" />
             </div>
             <div class="col s4 left-align">
                 <label id="lblMedico" for="ddlMedico">Especialista</label>

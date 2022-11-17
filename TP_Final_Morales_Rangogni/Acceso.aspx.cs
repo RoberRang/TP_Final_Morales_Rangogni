@@ -78,8 +78,8 @@ namespace TP_Final_Morales_Rangogni
         protected void btnFirst_Click(object sender, EventArgs e)
         {
             Empleado empleadoFirst = new Empleado();
-            Session.Add("EmpleadoLogin", empleadoFirst);
-            Response.Redirect("EmpleadoWeb.aspx", false);
+            Session.Add("EmpleadoSinLogin", empleadoFirst);
+            Response.Redirect("AltaSinUsuarioWeb.aspx", false);
         }
     }
 }

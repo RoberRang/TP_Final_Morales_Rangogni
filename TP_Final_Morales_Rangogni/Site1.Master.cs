@@ -17,6 +17,8 @@ namespace TP_Final_Morales_Rangogni
                 Empleado empLogin = (Empleado)Session["EmpleadoLogin"];
                 lblUsuario.Text =  empLogin.Nombres + ", " + empLogin.Apellidos;
             }
+            else
+                Response.Redirect("Default.aspx", false);
         }
     }
 }

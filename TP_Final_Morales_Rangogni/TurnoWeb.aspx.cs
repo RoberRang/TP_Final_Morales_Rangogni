@@ -87,7 +87,9 @@ namespace TP_Final_Morales_Rangogni
                 MedicoNegocio medicoNegocio = new MedicoNegocio();
                 List<Medico> medicos = medicoNegocio.Medicos();
                 int idEpecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
-                List<Medico> medicosCombo =  medicos.FindAll(x => x.idTipoEspecialidad.Equals(idEpecialidad));
+                List<Medico> medicosCombo =  medicos.FindAll(x => x.idEspecialidad.Equals(idEpecialidad));
+                if (medicosCombo.Count == 0)
+                    return;
                 ddlMedico.DataSource = medicosCombo;
                 ddlMedico.DataValueField = "ID";
                 ddlMedico.DataTextField = "Apellidos";
@@ -100,9 +102,5 @@ namespace TP_Final_Morales_Rangogni
             }
         }
 
-        protected void ddlEspecialidad_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

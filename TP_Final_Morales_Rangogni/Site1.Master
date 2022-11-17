@@ -55,6 +55,9 @@
                         <li>
                             <a runat="server" href="~/JornadaTurnoWeb" class="black-text"><i class="material-icons white-text">today</i></a>
                         </li>
+                         <li>
+                            <a runat="server" href="~/TurnoWeb" class="black-text"><i class="material-icons white-text">date_range</i></a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -69,6 +72,7 @@
                 <li><a runat="server" href="~/PerfilWeb">Perfil</a></li>
                 <li><a runat="server" href="~/EspecialidadWeb">Especialidad</a></li>
                 <li><a runat="server" href="~/JornadaTurnoWeb">Jornada</a></li>
+                <li><a runat="server" href="~/TurnoWeb">Turnos</a></li>
             </ul>
         </header>
         <main style="margin-left: 150px;">

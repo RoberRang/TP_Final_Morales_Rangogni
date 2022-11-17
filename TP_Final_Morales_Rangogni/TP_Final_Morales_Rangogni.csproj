@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\estilosMora.css" />
+    <Content Include="AltaSinUsuarioWeb.aspx" />
     <Content Include="EmpleadoWeb.aspx" />
     <Content Include="ErrorWeb.aspx" />
     <Content Include="Icons\hospital.png" />
@@ -257,6 +258,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="DominioWeb\ModeloPacienteWeb.cs" />
+    <Compile Include="AltaSinUsuarioWeb.aspx.cs">
+      <DependentUpon>AltaSinUsuarioWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaSinUsuarioWeb.aspx.designer.cs">
+      <DependentUpon>AltaSinUsuarioWeb.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EmpleadoWeb.aspx.cs">
       <DependentUpon>EmpleadoWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

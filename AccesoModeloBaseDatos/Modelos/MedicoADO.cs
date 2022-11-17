@@ -8,10 +8,10 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class MedicoADO
     {
-        private const string SQL_INSERT_MEDICOS = "INSERT INTO medicos (IdMedico,IdEspecialidad, estado) VALUES (@idMedico,@IdEspecialidad,@estado)";
-        private const string SQL_SELECT_MEDICOS = "SELECT id, idtipoperfil, idtipoespecialidad, nombre, apellido, nrodocumento,fechaAlta, estado FROM Medicos";
-        private const string SQL_UPDATE_MEDICOS = "UPDATE medicos SET idtipoperfil=@idtipoperfil, idtipoespecialidad= @idtipoespecialidad nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, estado = @estado WHERE id = @id";
-        private const string SQL_SELECT_MEDICO = "SELECT * from medicos where NroDocumento = '@nrodocumento'";
+        private const string SQL_INSERT_MEDICOS = "INSERT INTO medicos (IdMedico,IdEspecialidad,estado) VALUES (@idMedico,@IdEspecialidad,@estado)";
+        private const string SQL_SELECT_MEDICOS = "SELECT m.IdMedico, m.IdEspecialidad, e.Nombre, e.Apellido, e.NroDocumento, e.estado FROM Medicos m INNER JOIN Empleados e ON m.IdMedico = e.Id";
+        private const string SQL_UPDATE_MEDICOS = "UPDATE Medicos SET IdEspecialidad = @IdEspecialidad WHERE IdMedico = @IdMedico";
+        private const string SQL_SELECT_MEDICO = "SELECT m.IdMedico, m.IdEspecialidad, e.Nombre, e.Apellido, e.NroDocumento, e.estado FROM Medicos m INNER JOIN Empleados e ON m.IdMedico = e.Id WHERE e.NroDocumento = '@nrodocumento'";
     
         private readonly string coneccionDB;
         public MedicoADO(string coneccion)
@@ -47,7 +47,7 @@ namespace AccesoModeloBaseDatos.Modelos
                 {
                     string sql = SQL_INSERT_MEDICOS;
                     sql = sql.Replace("@idMedico", medico.ID.ToString());
-                    sql = sql.Replace("@IdEspecialidad", medico.idTipoEspecialidad.ToString());
+                    sql = sql.Replace("@IdEspecialidad", medico.idEspecialidad.ToString());
                     sql = sql.Replace("@estado", medico.Estado ? "1" : "0");
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
@@ -73,11 +73,9 @@ namespace AccesoModeloBaseDatos.Modelos
                 {
                     SqlCommand cmd = new SqlCommand(SQL_UPDATE_MEDICOS, con);
                     cmd.Parameters.AddWithValue("@apellido", medico.Apellidos);
-                    cmd.Parameters.AddWithValue("@idTipoPerfil", medico.idTipoPerfil);
-                    cmd.Parameters.AddWithValue("@idtipoespecialidad", medico.idTipoEspecialidad); 
+                    cmd.Parameters.AddWithValue("@IdEspecialidad", medico.idEspecialidad); 
                     cmd.Parameters.AddWithValue("@nombre", medico.Nombres);
                     cmd.Parameters.AddWithValue("@nrodocumento", medico.NroDocumento);
-                    cmd.Parameters.AddWithValue("@fechaalta", medico.FechaAlta);
                     cmd.Parameters.AddWithValue("@estado", medico.Estado);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
@@ -129,13 +127,11 @@ namespace AccesoModeloBaseDatos.Modelos
         private Medico CreateObject(SqlDataReader dr)
         {
             Medico objTMedico = new Medico();
-            objTMedico.ID = Convert.ToInt32(dr["id"].ToString());
-            objTMedico.idTipoPerfil = Convert.ToInt32(dr["idtipoperfil"].ToString());
-            objTMedico.idTipoEspecialidad = Convert.ToInt32(dr["idtipoespecialidad"].ToString());       
+            objTMedico.ID = Convert.ToInt32(dr["IdMedico"].ToString());
+            objTMedico.idEspecialidad = Convert.ToInt32(dr["IdEspecialidad"].ToString());       
             objTMedico.Nombres = dr["nombre"].ToString();
             objTMedico.Apellidos = dr["apellido"].ToString();
             objTMedico.NroDocumento = dr["nrodocumento"].ToString();
-            objTMedico.FechaAlta = Convert.ToDateTime(dr["fechaAlta"].ToString());
             objTMedico.Estado = dr["estado"].ToString().Equals("True") ? true : false;
 
             return objTMedico;
