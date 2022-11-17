@@ -3,34 +3,13 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContentLogin" runat="server">
     <div class="header bg-blue">
         <h4 class="left-align">Perfiles</h4>
+        <p>
+            Ver los perfiles            
+                <asp:GridView ID="dgvPerfiles" CssClass="highlight responsive-table" runat="server"></asp:GridView>
+        </p>
+            <asp:Button runat="server" ID="btnVerPerfiles" CssClass="btn btn-default" OnClick="btnVerPerfiles_Click" Text="Perfiles &raquo;" />
     </div>
-    <div class="body bg-gray">
-        <asp:Repeater runat="server" ID="rprPerfiles">
-            <ItemTemplate>
-                <ul class="collection">
-                    <div class="row">
-                        <div class="col s2">
-                            <li class="collection-item">
-                                <asp:Label ID="lblId" runat="server" Text="Id: "><%#Eval("IdPerfil")%></asp:Label>
-                                <a href="#!" class="hide" id="alblId"><%#Eval("IdPerfil")%></a>
-                            </li>
-                        </div>
-                        <div class="col s7">
-                            <li class="collection-item">
-                                <asp:Label ID="lblDesc" runat="server" Text="Descripcion: "><%#Eval("Descripcion")%></asp:Label>
-                                <a href="#!" class="hide" id="alblDesc"><%#Eval("Descripcion")%></a>
-                            </li>
-                        </div>
-                        <div class="col s3">
-                            <li class="collection-item">
-                                <asp:Label runat="server" ID="lblEst" Text="Estado: "><%#Eval("Estado")%></asp:Label>
-                                <a href="#!" class="hide" id="alblEst"><%#Eval("Estado")%></a>
-                            </li>
-                        </div>
-                    </div>
-                </ul>
-            </ItemTemplate>
-        </asp:Repeater>
+    
         <div class="row">
             <div class="col s12 right-align">
                 <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="limpiarModal('NUEVO')" href="#modalAdd"><i class="material-icons">add</i></a>
