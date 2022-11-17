@@ -32,7 +32,7 @@ namespace TP_Final_Morales_Rangogni
             Usuario nuevoUser = new Usuario();
             try
             {
-                if (!ValidoControlTextBox(txtNombre))
+                if (!ValidoControlTextBox(txtNom))
                     return;
                 if (!ValidoControlTextBox(txtApellido))
                     return;
@@ -52,7 +52,7 @@ namespace TP_Final_Morales_Rangogni
                     txtPass2.Focus();
                     return;
                 }
-                nuevoUser.Nombres = txtNombre.Text;
+                nuevoUser.Nombres = txtNom.Text;
                 nuevoUser.Apellidos = txtApellido.Text;
                 nuevoUser.NroDocumento = txtDni.Text;
                 nuevoUser.Estado = false;
@@ -88,14 +88,6 @@ namespace TP_Final_Morales_Rangogni
             }
             return valido;
         }
-
-        protected void btnVerEmp_Click(object sender, EventArgs e)
-        {
-            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-            List<Empleado> empleadosBuscados = usuarioNegocio.Empleados();
-
-            dgEmpleados.DataSource = empleadosBuscados;
-            dgEmpleados.DataBind();
-        }
+       
     }
 }
