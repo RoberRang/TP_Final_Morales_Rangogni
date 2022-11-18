@@ -17,11 +17,11 @@ namespace TP_Final_Morales_Rangogni
             try
             {
                 if (Session["EmpleadoSinLogin"] == null)
-                    throw new Exception("Acceso erroneo!");                
+                    throw new Exception("Acceso erroneo!");
             }
             catch (Exception ex)
             {
-                Session.Add("MensajeError", ex.ToString());
+                Session.Add("MensajeError", ex.Message);
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
@@ -32,6 +32,7 @@ namespace TP_Final_Morales_Rangogni
             Usuario nuevoUser = new Usuario();
             try
             {
+
                 if (!ValidoControlTextBox(txtNom))
                     return;
                 if (!ValidoControlTextBox(txtApellido))
@@ -64,9 +65,19 @@ namespace TP_Final_Morales_Rangogni
                 ///CREAR METODO negocio.agregar(nuevo);
                 if (negocio.AltaUsuario(nuevoUser))
                 {
-                    ///cartel alta de empleado completa y limpiar controles                
+                    Empleado empNuevo = new Empleado();
+                    empNuevo.idTipoPerfil = nuevoUser.idTipoPerfil;
+                    empNuevo.Estado = nuevoUser.Estado;
+                    empNuevo.NroDocumento = nuevoUser.NroDocumento;
+                    empNuevo.Nombres = nuevoUser.Nombres;
+                    empNuevo.Apellidos = nuevoUser.Apellidos;
 
+                    Session.Add("EmpleadoLogin", empNuevo);
+                    Response.Redirect("SiteDefaultWeb.aspx", false);
                 }
+                else
+                    Response.Redirect("Default.aspx", false);
+
             }
             catch (Exception ex)
             {
@@ -88,6 +99,6 @@ namespace TP_Final_Morales_Rangogni
             }
             return valido;
         }
-       
+
     }
 }

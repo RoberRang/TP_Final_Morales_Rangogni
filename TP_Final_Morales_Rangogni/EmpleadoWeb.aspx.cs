@@ -18,7 +18,10 @@ namespace TP_Final_Morales_Rangogni
             try
             {
                 if (Session["EmpleadoLogin"] == null)
-                    throw new Exception("Acceso erroneo!");
+                {
+                    Session.Add("MensajeError", "Acceso sin autorización!");
+                    Response.Redirect("ErrorWeb.aspx", false);
+                }
                 else
                 {
                     Empleado empleado = (Empleado)Session["EmpleadoLogin"];
@@ -48,7 +51,7 @@ namespace TP_Final_Morales_Rangogni
             catch (Exception ex)
             {
 
-                Session.Add("MensajeError", ex.ToString());
+                Session.Add("MensajeError", ex.Message);
                 Response.Redirect("ErrorWeb.aspx", false);
             }
             
