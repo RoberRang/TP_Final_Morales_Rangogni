@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TP_Final_Morales_Rangogni.DominioWeb;
 
 namespace TP_Final_Morales_Rangogni
 {
@@ -26,7 +27,7 @@ namespace TP_Final_Morales_Rangogni
                 if (!IsPostBack)
                 {
                     buscarTipoPerfil();
-
+                    buscarEmpleados();
                 }
             }
             catch (Exception ex)
@@ -128,10 +129,30 @@ namespace TP_Final_Morales_Rangogni
 
         protected void btnVerEmp_Click(object sender, EventArgs e)
         {
+            
+        }
+        protected void buscarEmpleados()
+        {
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             List<Empleado> empleadosBuscados = usuarioNegocio.Empleados();
-
+            Session.Add("empleados", empleadosBuscados);
             dgEmpleados.DataSource = empleadosBuscados;
+            dgEmpleados.DataBind();
+
+        }
+
+        protected void dgEmpleados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgEmpleados.SelectedDataKey.Value.ToString();
+            Response.Redirect("EmpleadoWeb#NuevoEmpleado?id=" + id);// SI MANDO ID VOY A MODIFICAR SI NO VIENE ES POR QUE DOY DE ALTA
+
+        }
+
+        protected void txtfiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Empleado> filtro = (List< Empleado>)Session["empleados"];
+            List<Empleado> filtroRapido = filtro.FindAll(x => x.Nombres.ToUpper().Contains(txtfiltro.Text.ToUpper()));
+            dgEmpleados.DataSource = filtroRapido;
             dgEmpleados.DataBind();
         }
     }
