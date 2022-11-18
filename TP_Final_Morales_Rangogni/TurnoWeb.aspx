@@ -3,8 +3,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentLogin" runat="server">
+     <section>
+        <div class="tab-bar">
+            <a href="#Turnos">TURNOS</a>
+            <a href="#NuevoTurno">NUEVO TURNO</a>
+            <a href="#SOLAPA 3">SOLAPA 3</a>
+            <a href="#SOLAPA 4">SOLAPA 4</a>
 
-    <div class="col s12">
+        </div>
+         <!--SOLAPA LISTADO DE TURNOS-->
+     <div class="content">
+            <h2>TURNOS <span><i class="fas fa-carrot"></i></span></h2>
+            <p>FALTA CARGAR EL LISTADO</p>
+
+        </div>
+         
+        <!--SOLAPA NUEVO TURNO-->
+              <div class="content">
+            <div class="col s12">
         <div class="row">
             <div class="col s2">
             </div>
@@ -113,4 +129,23 @@
             </div>
         </div>
     </div>
+        </div>
+         <!--SOLAPA LIBRE-->
+    <div class="content">
+            <h2>SOLAPA 3 <span><i class="fas fa-carrot"></i></span></h2>
+            <p>COSAS DE LA VIDA</p>
+
+        </div>
+         <!--SOLAPA LIBRE-->
+    <div class="content">
+            <h2>SOLAPA 4 <span><i class="fas fa-carrot"></i></span></h2>
+            <p>AGREGAR .</p>
+
+        </div>
+       
+  
+        <!--Fin Solapas-->
+    </section>
+    
+     <script type="text/javascript" src="js/tabfunciones.js"></script>
 </asp:Content>
