@@ -58,7 +58,7 @@ namespace TP_Final_Morales_Rangogni
                 nuevoUser.NroDocumento = txtDni.Text;
                 nuevoUser.Estado = false;
                 //desplegable
-                nuevoUser.idTipoPerfil = 3;
+                nuevoUser.idPerfil = 3;
                 nuevoUser.User = txtUser.Text;
                 nuevoUser.Password = txtPass.Text;
 
@@ -66,7 +66,7 @@ namespace TP_Final_Morales_Rangogni
                 if (negocio.AltaUsuario(nuevoUser))
                 {
                     Empleado empNuevo = new Empleado();
-                    empNuevo.idTipoPerfil = nuevoUser.idTipoPerfil;
+                    empNuevo.idPerfil = nuevoUser.idPerfil;
                     empNuevo.Estado = nuevoUser.Estado;
                     empNuevo.NroDocumento = nuevoUser.NroDocumento;
                     empNuevo.Nombres = nuevoUser.Nombres;

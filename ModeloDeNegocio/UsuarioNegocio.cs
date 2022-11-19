@@ -33,7 +33,7 @@ namespace ModeloDeNegocio.Negocio
 
                     if (!usuarioADO.InsertUsuarioDB(usuario))
                         empleadoADO.BorrarEmpleado(empleadoBuscado.NroDocumento);
-                    if (usuario.idTipoPerfil.Equals(2))
+                    if (usuario.idPerfil.Equals(2))
                     {
                         Medico medico = new Medico();
                         medico.ID = empleadoBuscado.ID;

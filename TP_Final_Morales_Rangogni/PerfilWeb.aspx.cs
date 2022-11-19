@@ -42,7 +42,7 @@ namespace TP_Final_Morales_Rangogni
         {
             try
             {
-                if (empleado.idTipoPerfil != 1)
+                if (empleado.idPerfil != 1)
                     throw new Exception("El Usuario: " + empleado.Nombres + ", " + empleado.Apellidos + " sin acceso!");
             }
             catch (Exception ex)

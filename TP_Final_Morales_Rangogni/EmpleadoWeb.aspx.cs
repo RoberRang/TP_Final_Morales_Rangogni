@@ -1,5 +1,6 @@
 ﻿using AccesoModeloBaseDatos.Dominio;
 using AccesoModeloBaseDatos.Modelos;
+using ModeloDeNegocio;
 using ModeloDeNegocio.Negocio;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace TP_Final_Morales_Rangogni
                 if (!IsPostBack)
                 {
                     buscarTipoPerfil();
+                    buscarJornadas();
                     buscarEmpleados();
                 }
             }
@@ -41,11 +43,28 @@ namespace TP_Final_Morales_Rangogni
             }
         }
 
+        private void buscarJornadas()
+        {
+            try
+            {
+                JornadaNegocio jornadaNegocio = new JornadaNegocio();
+                ddlJornada.DataSource = jornadaNegocio.ListarJornadas();
+                ddlJornada.DataValueField = "IdJornada";
+                ddlJornada.DataTextField = "descripcion";
+                ddlJornada.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }            
+        }
+
         private void ValidarEmpleadoLogin(Empleado empleado)
         {
             try
             {
-                if (empleado.idTipoPerfil != 1)
+                if (empleado.idPerfil != 1)
                     throw new Exception("El Usuario: " + empleado.Nombres + ", " + empleado.Apellidos + " sin acceso!");
             }
             catch (Exception ex)
@@ -98,24 +117,34 @@ namespace TP_Final_Morales_Rangogni
                 nuevoUser.NroDocumento = txtDni.Text;
                 nuevoUser.Estado = chbEstado1.Checked;
                 //desplegable
-                nuevoUser.idTipoPerfil = int.Parse(ddlPerfilEmp.SelectedValue);
+                nuevoUser.idPerfil = int.Parse(ddlPerfilEmp.SelectedValue);
+                nuevoUser.idJornada = int.Parse(ddlJornada.SelectedValue);
                 nuevoUser.User = txtUser.Text;
                 nuevoUser.Password = txtPass.Text;
 
                 ///CREAR METODO negocio.agregar(nuevo);
                 if (negocio.AltaUsuario(nuevoUser))
                 {
-                    ///cartel alta de empleado completa y limpiar controles                
-
+                    LimpiarControlesAltaEmpleado();
+                    ///cartel alta de empleado completa
                 }
             }
             catch (Exception ex)
             {
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
-
             }
-
+        }
+        private void LimpiarControlesAltaEmpleado()
+        {
+            txtnombre.Text = "";
+            txtApellido.Text = "";
+            txtDni.Text="";
+            //desplegable
+            ddlPerfilEmp.SelectedIndex = 0;
+            ddlJornada.SelectedIndex= 0;
+            txtUser.Text="";
+            txtPass.Text="";
         }
 
         private bool ValidoControlTextBox(TextBox textBox)

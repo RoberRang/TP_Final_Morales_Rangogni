@@ -9,11 +9,11 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class EmpleadoADO
     {
-        private const string SQL_INSERT_EMPLEADOS = "INSERT INTO Empleados (IdPerfil, nombre, apellido, nrodocumento,fechaalta, estado) VALUES (@IdPerfil,@nombre,@apellido,@nrodocumento,@fechaalta, @estado)";
-        private const string SQL_SELECT_EMPLEADOS = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados";
-        private const string SQL_UPDATE_EMPLEADOS = "UPDATE Empleados SET IdPerfil=@IdPerfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, estado = @estado WHERE id = @id";
-        private const string SQL_SELECT_EMPLEADO = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados WHERE NroDocumento = '@nrodocumento'";
-        private const string SQL_SELECT_EMPLEADO_LOGIN = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados e INNER JOIN Usuarios u ON e.id = u.IdEmpleado WHERE u.UserLogin= '@UserLogin' AND u.Password = '@Password'";
+        private const string SQL_INSERT_EMPLEADOS = "INSERT INTO Empleados (IdPerfil, nombre, apellido, nrodocumento,fechaalta,IdJornada, estado) VALUES (@IdPerfil,@nombre,@apellido,@nrodocumento,@fechaalta,@IdJornada, @estado)";
+        private const string SQL_SELECT_EMPLEADOS = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta, IdJornada, estado FROM Empleados";
+        private const string SQL_UPDATE_EMPLEADOS = "UPDATE Empleados SET IdPerfil=@IdPerfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, IdJornada=@IdJornada, estado=@estado WHERE id=@id";
+        private const string SQL_SELECT_EMPLEADO = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta,IdJornada, estado FROM Empleados WHERE NroDocumento = '@nrodocumento'";
+        private const string SQL_SELECT_EMPLEADO_LOGIN = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta,IdJornada, estado FROM Empleados e INNER JOIN Usuarios u ON e.id = u.IdEmpleado WHERE u.UserLogin= '@UserLogin' AND u.Password = '@Password'";
         private readonly string coneccionDB;
         public EmpleadoADO(string coneccion)
         {
@@ -47,10 +47,11 @@ namespace AccesoModeloBaseDatos.Modelos
                 {
                     SqlCommand cmd = new SqlCommand(SQL_INSERT_EMPLEADOS, con);
                     cmd.Parameters.AddWithValue("@apellido", empleado.Apellidos);
-                    cmd.Parameters.AddWithValue("@IdPerfil", empleado.idTipoPerfil);
+                    cmd.Parameters.AddWithValue("@IdPerfil", empleado.idPerfil);
                     cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
                     cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
                     cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
+                    cmd.Parameters.AddWithValue("@IdJornada", empleado.idJornada);
                     cmd.Parameters.AddWithValue("@estado", empleado.Estado);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
@@ -75,10 +76,11 @@ namespace AccesoModeloBaseDatos.Modelos
                 {
                     SqlCommand cmd = new SqlCommand(SQL_UPDATE_EMPLEADOS, con);
                     cmd.Parameters.AddWithValue("@apellido", empleado.Apellidos);
-                    cmd.Parameters.AddWithValue("@IdPerfil", empleado.idTipoPerfil);
+                    cmd.Parameters.AddWithValue("@IdPerfil", empleado.idPerfil);
                     cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
                     cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
                     cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
+                    cmd.Parameters.AddWithValue("@IdJornada", empleado.idJornada);
                     cmd.Parameters.AddWithValue("@estado", empleado.Estado);
                     cmd.CommandType = CommandType.Text;
                     accesoDatosUpdate.ExecuteCommand(cmd);
@@ -129,11 +131,12 @@ namespace AccesoModeloBaseDatos.Modelos
         {
             Empleado objTEmpleado = new Empleado();
             objTEmpleado.ID = Convert.ToInt32(dr["id"].ToString());
-            objTEmpleado.idTipoPerfil = Convert.ToInt32(dr["IdPerfil"].ToString());
+            objTEmpleado.idPerfil = Convert.ToInt32(dr["IdPerfil"].ToString());
             objTEmpleado.Nombres = dr["nombre"].ToString();
             objTEmpleado.Apellidos = dr["apellido"].ToString();
             objTEmpleado.NroDocumento = dr["nrodocumento"].ToString();
             objTEmpleado.FechaAlta = Convert.ToDateTime(dr["fechaAlta"].ToString());
+            objTEmpleado.idJornada = Convert.ToInt32(dr["IdJornada"].ToString());
             objTEmpleado.Estado = dr["estado"].ToString().Equals("True") ? true : false;
 
             return objTEmpleado;
