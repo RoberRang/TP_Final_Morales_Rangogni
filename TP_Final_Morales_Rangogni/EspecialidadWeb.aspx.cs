@@ -17,7 +17,7 @@ namespace TP_Final_Morales_Rangogni
         {
             if (!IsPostBack)
             {
-                CargarRepetidorEspecialidad();
+                CargarGrillaEspecialidad();
                 BuscarImagenesControles();
             }
         }
@@ -28,14 +28,14 @@ namespace TP_Final_Morales_Rangogni
             iBtnCancela.ImageUrl = @"..\Imagenes\cancel_black_36dp.jpg";
         }
 
-        private void CargarRepetidorEspecialidad()
+        private void CargarGrillaEspecialidad()
         {
             try
             {
                 especialidadNegocio = new EspecialidadNegocio();
                 List<Especialidad> especialidad = especialidadNegocio.Especialidades();
-                rprEspecialidad.DataSource = especialidad;                
-                rprEspecialidad.DataBind();
+                dgvEspecialidad.DataSource = especialidad;                
+                dgvEspecialidad.DataBind();
                 Session.Add("ListaEspecialidad", especialidad);
             }
             catch (Exception ex)
@@ -57,7 +57,7 @@ namespace TP_Final_Morales_Rangogni
                 throw ex;
             }
 
-            CargarRepetidorEspecialidad();
+            CargarGrillaEspecialidad();
         }
         private void ModificarEspeciaalidadWeb()
         {
@@ -73,7 +73,7 @@ namespace TP_Final_Morales_Rangogni
                 throw ex;
             }
 
-            CargarRepetidorEspecialidad();
+            CargarGrillaEspecialidad();
         }
         private void LimpiarControles()
         {
@@ -83,6 +83,11 @@ namespace TP_Final_Morales_Rangogni
         protected void iBtnGraba_Click(object sender, ImageClickEventArgs e)
         {
             AltaEspecialidadWeb();
+        }
+
+        protected void btnCargar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

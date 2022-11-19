@@ -13,7 +13,10 @@
         <div class="content">
             <div class="header bg-blue">
                 <asp:GridView ID="dgvPerfiles" CssClass="highlight responsive-table" runat="server"></asp:GridView>
-                <asp:Button runat="server" ID="btnVerPerfiles" CssClass="btn btn-default" OnClick="btnVerPerfiles_Click" Text="Perfiles &raquo;" />
+                <div class="waves-effect purple waves-light btn-floating btn-small">
+                    <i class="material-icons">cached</i>
+                    <asp:Button runat="server" ID="btnVerPerfiles" CssClass="btn-floating purple" OnClick="btnVerPerfiles_Click" Text="" />
+                </div>
             </div>
 
             <div class="row">

@@ -14,10 +14,43 @@ namespace TP_Final_Morales_Rangogni
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-                CargarRepetidorJornada();
+            try
+            {
+                if (Session["EmpleadoLogin"] == null)
+                    throw new Exception("Acceso erroneo!");
+                else
+                {
+                    Empleado empleado = (Empleado)Session["EmpleadoLogin"];
+                    ValidarEmpleadoLogin(empleado);
+                }
+                if (!IsPostBack)
+                {
+                    CargarGrillaJornada();
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
         }
-        private void CargarRepetidorJornada()
+
+        private void ValidarEmpleadoLogin(Empleado empleado)
+        {
+            try
+            {
+                if (empleado.idPerfil != 1)
+                    throw new Exception("El Usuario: " + empleado.Nombres + ", " + empleado.Apellidos + " sin acceso!");
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
+
+        }
+        private void CargarGrillaJornada()
         {
             try
             {
@@ -25,8 +58,8 @@ namespace TP_Final_Morales_Rangogni
                 JornadaNegocio jornadaNegocio = new JornadaNegocio();
                 jornadaTurnos = jornadaNegocio.ListarJornadas();
                 Session.Add("Jornadas", jornadaTurnos);
-                rprJornadas.DataSource = jornadaTurnos;
-                rprJornadas.DataBind();
+                dgvJornadas.DataSource = jornadaTurnos;
+                dgvJornadas.DataBind();
             }
             catch (Exception ex)
             {
@@ -71,7 +104,7 @@ namespace TP_Final_Morales_Rangogni
 
         protected void btnVerJornadas_Click(object sender, EventArgs e)
         {
-
+            CargarGrillaJornada();
         }
     }
 }

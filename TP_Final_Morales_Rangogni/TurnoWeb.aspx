@@ -23,21 +23,14 @@
                             <asp:TextBox ID="txtDni" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                             <label for="lblDniPac">Nº Documento</label>
                         </div>
-
                         <div class="file-field input-field col s6 center-align">
-                            <div class="waves-effect purple waves-light btn-small">
+                            <div class="waves-effect purple waves-light btn-floating btn-small">
                                 <i class="material-icons">cached</i>
-                                <asp:Button runat="server" ID="btnBuscarPaciente" OnClick="btnBuscarPaciente_Click" />
+                                <asp:Button runat="server" ID="btnBuscarPaciente" CssClass="btn-small" OnClick="btnBuscarPaciente_Click" />
                             </div>
-
                         </div>
-
-
-
-
                     </div>
                 </div>
-
             </div>
 
             <!--Telefono -->

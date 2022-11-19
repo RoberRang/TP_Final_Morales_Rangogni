@@ -15,13 +15,22 @@ namespace TP_Final_Morales_Rangogni
     {
 
         /// <summary>
-        /// Control rprEspecialidad.
+        /// Control dgvEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rprEspecialidad;
+        protected global::System.Web.UI.WebControls.GridView dgvEspecialidad;
+
+        /// <summary>
+        /// Control btnCargar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCargar;
 
         /// <summary>
         /// Control txtDesc.

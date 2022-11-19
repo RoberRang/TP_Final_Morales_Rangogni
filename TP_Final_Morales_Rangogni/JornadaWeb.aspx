@@ -6,55 +6,12 @@
     <div class="header bg-blue">
         <h4 class="left-align">Jornadas</h4>
     </div>
-    <div class="header bg-blue">
-        <asp:GridView ID="dgvJornadas" CssClass="highlight responsive-table" runat="server"></asp:GridView>
-        <asp:Button runat="server" ID="btnVerJornadas" CssClass="btn btn-default" OnClick="btnVerJornadas_Click" Text="Perfiles &raquo;" />
-    </div>
-    <div class="body bg-gray">
-        <asp:Repeater runat="server" ID="rprJornadas">
-            <ItemTemplate>
-                <ul class="collection">
-                    <div class="row">
-                        <div class="col s1">
-                            <li class="collection-item">
-                                <asp:Label ID="lblId" runat="server" Text="Id: "><%#Eval("IdJornada")%></asp:Label>
-                                <a href="#!" class="hide" id="alblId"><%#Eval("IdJornada")%></a>
-                            </li>
-                        </div>
-                        <div class="col s5">
-                            <li class="collection-item">
-                                <asp:Label ID="lblDesc" runat="server" Text="Descripcion: "><%#Eval("Descripcion")%></asp:Label>
-                                <a href="#!" class="hide" id="alblDesc"><%#Eval("Descripcion")%></a>
-                            </li>
-                        </div>
-                        <div class="col s1">
-                            <li class="collection-item">
-                                <asp:Label runat="server" ID="lblEst" Text="Estado: "><%#Eval("Estado")%></asp:Label>
-                                <a href="#!" class="hide" id="alblEst"><%#Eval("Estado")%></a>
-                            </li>
-                        </div>
-                        <div class="col s2">
-                            <li class="collection-item">
-                                <asp:Label runat="server" ID="lblInicio" Text="Inicio: "><%#Eval("Inicio")%></asp:Label>
-                                <a href="#!" class="hide" id="alblIni"><%#Eval("Inicio")%></a>
-                            </li>
-                        </div>
-                        <div class="col s2">
-                            <li class="collection-item">
-                                <asp:Label runat="server" ID="lblFin" Text="Fin: "><%#Eval("Fin")%></asp:Label>
-                                <a href="#!" class="hide" id="alblFin"><%#Eval("Fin")%></a>
-                            </li>
-                        </div>
-                        <li class="collection-item">
-                            <div class="input-field">
-                                <asp:CheckBox runat="server" ID="chkSel" Text="Sel: "></asp:CheckBox>
-                            </div>
-                        </li>
-                    </div>
-                    </div>
-                </ul>
-            </ItemTemplate>
-        </asp:Repeater>
+    <div class="body bg-gray">  
+         <asp:GridView ID="dgvJornadas" CssClass="highlight responsive-table" runat="server"></asp:GridView>
+        <div class="waves-effect purple waves-light btn-floating btn-small">
+            <i class="material-icons">cached</i>
+            <asp:Button runat="server" ID="btnVerJornadas" CssClass="btn-floating" OnClick="btnVerJornadas_Click" Text="Perfiles &raquo;" />
+        </div>
         <div class="row">
             <div class="col s12 right-align">
                 <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="limpiarModal('NUEVO')" href="#modalAdd"><i class="material-icons">add</i></a>
@@ -107,11 +64,6 @@
         </div>
     </div>
     <div class="divider"></div>
-    <div class="jumbotron">
-        <h4>JORNADAS</h4>
-        <p class="lead">Listar las jornadas</p>
-        <p><a href="/PerfilWeb" class="btn btn-primary btn-lg">Jornadas &raquo;</a></p>
-    </div>
     <script>
         function limpiarModal(mensaje) {
             document.getElementById('<%= txtDesc.ClientID %>').value = "";
