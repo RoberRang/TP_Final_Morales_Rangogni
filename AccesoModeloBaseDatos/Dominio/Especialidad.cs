@@ -12,7 +12,7 @@ namespace AccesoModeloBaseDatos.Dominio
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
 
-        public Especialidad() : this(0, "", false) { }
+        public Especialidad() : this(1, "Clinica", false) { }
 
         public Especialidad(int IdEspecialidad, string Descripcion, bool Estado)
         {

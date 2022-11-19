@@ -8,6 +8,12 @@ using AccesoModeloBaseDatos.Dominio;
 
 namespace ModeloDeNegocio.Negocio
 {
+    public enum TiposPerfilesWeb
+    {
+        Administrador = 1,
+        Empleado = 2,
+        Medico = 3
+    }
     public class PerfilNegocio : Perfil
     {
         private readonly PerfilADO tipoPerfilADO;

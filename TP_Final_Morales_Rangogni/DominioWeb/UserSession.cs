@@ -7,13 +7,6 @@ using System.Web.SessionState;
 
 namespace TP_Final_Morales_Rangogni.Dominio
 {
-    public enum TiposPerfilesWeb
-    {
-        Administrador=1,
-        Empleado=2,
-        Medico=3
-    }
-
     public class UserSession
     {
         #region variables

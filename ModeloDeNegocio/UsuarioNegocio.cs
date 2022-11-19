@@ -32,16 +32,15 @@ namespace ModeloDeNegocio.Negocio
                     usuario.IdEmpleado = empleadoBuscado.ID;
 
                     if (!usuarioADO.InsertUsuarioDB(usuario))
-                        empleadoADO.BorrarEmpleado(empleadoBuscado.NroDocumento);
-                    if (usuario.idPerfil.Equals(2))
-                    {
-                        Medico medico = new Medico();
-                        medico.ID = empleadoBuscado.ID;
-                        medico.idEspecialidad = idEspecialidad;
-                        medico.Estado = usuario.Estado;
-                        MedicoADO medicoADO = new MedicoADO(ConexionStringDB.ConexionBase());
-                        medicoADO.GrabarMedico(medico, true);
-                    }
+                        empleadoADO.BorrarEmpleado(empleadoBuscado.NroDocumento);                   
+                }
+                if (usuario.idPerfil.Equals((int)TiposPerfilesWeb.Medico))
+                {
+                    MedicoNegocio medicoNegocio = new MedicoNegocio();
+                    Medico medico = new Medico();
+                    medico.ID = usuario.IdEmpleado;
+                    medico.Especialidades = new List<Especialidad>() { new Especialidad() };
+                    medicoNegocio.ModificarMedicoEspecialidad(medico, true);
                 }
 
                 return alta;

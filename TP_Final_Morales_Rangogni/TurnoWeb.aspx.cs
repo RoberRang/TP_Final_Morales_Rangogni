@@ -80,9 +80,9 @@ namespace TP_Final_Morales_Rangogni
             try
             {
                 MedicoNegocio medicoNegocio = new MedicoNegocio();
-                List<Medico> medicos = medicoNegocio.Medicos();
                 int idEpecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
-                List<Medico> medicosCombo =  medicos.FindAll(x => x.idEspecialidad.Equals(idEpecialidad));
+                List<Medico> medicos = medicoNegocio.MedicosEspecialidad(idEpecialidad);
+                List<Medico> medicosCombo = medicos;
                 if (medicosCombo.Count == 0)
                     return;
                 ddlMedico.DataSource = medicosCombo;

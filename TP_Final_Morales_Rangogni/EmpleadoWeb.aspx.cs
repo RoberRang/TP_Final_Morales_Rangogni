@@ -160,7 +160,7 @@ namespace TP_Final_Morales_Rangogni
 
         protected void btnVerEmp_Click(object sender, EventArgs e)
         {
-            
+            buscarEmpleados();
         }
         protected void buscarEmpleados()
         {

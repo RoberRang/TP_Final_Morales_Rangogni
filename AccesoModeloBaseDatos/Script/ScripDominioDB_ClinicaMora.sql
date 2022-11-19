@@ -80,12 +80,12 @@ CREATE TABLE [dbo].[Pacientes] (
 GO
 
 CREATE TABLE [dbo].[MedicosEspecialidad] (
-    [IdMedico]       INT PRIMARY KEY NOT NULL,
+    [IdMedico]       INT NOT NULL,
     [IdEspecialidad] INT NOT NULL,
-    [Estado]         BIT NULL
+    [Estado]         BIT NULL,
+    PRIMARY KEY CLUSTERED ([IdMedico],[IdEspecialidad]),
+    CONSTRAINT [FK_MedicoIdEspecialidad] FOREIGN KEY ([IdEspecialidad]) REFERENCES [dbo].[Especialidad] ([IdEspecialidad])
 );
-ALTER TABLE [dbo].[MedicosEspecialidad]
-    ADD CONSTRAINT [FK_MedicoIdEspecialidad] FOREIGN KEY ([IdEspecialidad]) REFERENCES [dbo].[Especialidad] ([IdEspecialidad]);
 GO
 
 CREATE TABLE [dbo].[Turnos] (
@@ -112,7 +112,6 @@ INSERT INTO [dbo].[Perfiles] ([IdPerfil], [Descripcion], [Estado]) VALUES (2, N'
 INSERT INTO [dbo].[Perfiles] ([IdPerfil], [Descripcion], [Estado]) VALUES (3, N'Medico', 1)
 SET IDENTITY_INSERT [dbo].[Perfiles] OFF
 
-
 SET IDENTITY_INSERT [dbo].[Jornadas] ON
 INSERT INTO [dbo].[Jornadas] ([IdJornada], [Descripcion], [Estado], [Inicio], [Fin]) VALUES (1, N'Mañana 1', 1, 8, 12)
 INSERT INTO [dbo].[Jornadas] ([IdJornada], [Descripcion], [Estado], [Inicio], [Fin]) VALUES (2, N'Tarde 1', 1, 14, 18)
@@ -130,10 +129,10 @@ SET IDENTITY_INSERT [dbo].[Empleados] OFF
 SET IDENTITY_INSERT [dbo].[Usuarios] ON
 INSERT INTO [dbo].[Usuarios] ([IdUsuario], [UserLogin], [Password], [IdEmpleado]) 
 VALUES (1, N'Admin', N'Admin', 1)
-SET IDENTITY_INSERT [dbo].[Empleados] OFF
+SET IDENTITY_INSERT [dbo].[Usuarios] OFF
 
 SET IDENTITY_INSERT [dbo].[Especialidad] ON
 INSERT INTO [dbo].[Especialidad] ([IdEspecialidad], [Descripcion], [Estado]) VALUES (1, N'Clínica', 1)
 SET IDENTITY_INSERT [dbo].[Especialidad] OFF
 
-select * from Empleados
+SELECT * FROM Empleados

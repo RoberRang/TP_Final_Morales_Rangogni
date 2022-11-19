@@ -8,10 +8,12 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class MedicoADO
     {
-        private const string SQL_INSERT_MEDICOS = "INSERT INTO Medicos (IdMedico,IdEspecialidad,estado) VALUES (@idMedico,@IdEspecialidad,@estado)";
-        private const string SQL_SELECT_MEDICOS = "SELECT m.IdMedico, m.IdEspecialidad, e.Nombre, e.Apellido, e.NroDocumento, e.estado FROM Medicos m INNER JOIN Empleados e ON m.IdMedico = e.Id";
-        private const string SQL_UPDATE_MEDICOS = "UPDATE Medicos SET IdEspecialidad = @IdEspecialidad WHERE IdMedico = @IdMedico";
-        private const string SQL_SELECT_MEDICO = "SELECT m.IdMedico, m.IdEspecialidad, e.Nombre, e.Apellido, e.NroDocumento, e.estado FROM Medicos m INNER JOIN Empleados e ON m.IdMedico = e.Id WHERE e.NroDocumento = '@nrodocumento'";
+        private const string SQL_INSERT_MEDICOSESPECIALIDAD = "INSERT INTO MedicosEspecialidad (IdMedico,IdEspecialidad,estado) VALUES (@idMedico,@IdEspecialidad,@estado)";
+        private const string SQL_SELECT_MEDICOS = "SELECT DISTINCT ms.IdMedico, e.Nombre, e.Apellido, e.NroDocumento, e.Estado FROM Empleados e" +
+            " INNER JOIN MedicosEspecialidad ms ON e.Id = ms.IdMedico WHERE e.estado = 1 ";
+        private const string SQL_SELECT_ESPECIALIDADMEDICO = "SELECT DISTINCT e.IdEspecialidad, e.Descripcion FROM Especialidad e" +
+            " INNER JOIN MedicosEspecialidad ms ON e.IdEspecialidad = ms.IdEspecialidad WHERE sp.estado = 1 ";
+        private const string SQL_UPDATE_MEDICOSESPECIALIDAD = "UPDATE MedicosEspecialidad SET IdEspecialidad = @IdEspecialidad, estado=@estado WHERE IdMedico = @IdMedico";
     
         private readonly string coneccionDB;
         public MedicoADO(string coneccion)
@@ -19,14 +21,13 @@ namespace AccesoModeloBaseDatos.Modelos
             coneccionDB = coneccion;
         }
 
-        public bool GrabarMedico(Medico medico, bool insert)
+        public bool GrabarMedicoEspecialidad(Medico medico, bool insert)
         {
-
             bool response;
             try
             {
                 if (insert) ///VER ACA EL EQUALS
-                    InsertMedicoDB(medico);
+                    InsertMedicoEspecialidadDB(medico);
                 else
                     UpdateMedico(medico);
                 response = true;
@@ -38,20 +39,23 @@ namespace AccesoModeloBaseDatos.Modelos
             return response;
         }
 
-        private void InsertMedicoDB(Medico medico)
+        private void InsertMedicoEspecialidadDB(Medico medico)
         {
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             using (SqlConnection con = accesoDatos.ConnectToDB())
             {
                 try
                 {
-                    string sql = SQL_INSERT_MEDICOS;
-                    sql = sql.Replace("@idMedico", medico.ID.ToString());
-                    sql = sql.Replace("@IdEspecialidad", medico.idEspecialidad.ToString());
-                    sql = sql.Replace("@estado", medico.Estado ? "1" : "0");
-                    SqlCommand cmd = new SqlCommand(sql, con);
-                    cmd.CommandType = CommandType.Text;
-                    accesoDatos.ExecuteCommand(cmd);
+                    foreach (var especilidad in medico.Especialidades)
+                    {
+                        string sql = SQL_INSERT_MEDICOSESPECIALIDAD;
+                        sql = sql.Replace("@idMedico", medico.ID.ToString());                        
+                        sql = sql.Replace("@IdEspecialidad", especilidad.IdEspecialidad.ToString());
+                        sql = sql.Replace("@estado", especilidad.Estado ? "1" : "0");
+                        SqlCommand cmd = new SqlCommand(sql, con);
+                        cmd.CommandType = CommandType.Text;
+                        accesoDatos.ExecuteCommand(cmd);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -71,14 +75,15 @@ namespace AccesoModeloBaseDatos.Modelos
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_UPDATE_MEDICOS, con);
-                    cmd.Parameters.AddWithValue("@apellido", medico.Apellidos);
-                    cmd.Parameters.AddWithValue("@IdEspecialidad", medico.idEspecialidad); 
-                    cmd.Parameters.AddWithValue("@nombre", medico.Nombres);
-                    cmd.Parameters.AddWithValue("@nrodocumento", medico.NroDocumento);
-                    cmd.Parameters.AddWithValue("@estado", medico.Estado);
-                    cmd.CommandType = CommandType.Text;
-                    accesoDatos.ExecuteCommand(cmd);
+                    foreach (var espcialidad in medico.Especialidades)
+                    {
+                        SqlCommand cmd = new SqlCommand(SQL_UPDATE_MEDICOSESPECIALIDAD, con);
+                        cmd.Parameters.AddWithValue("@IdEspecialidad", espcialidad.IdEspecialidad);
+                        cmd.Parameters.AddWithValue("@estado", espcialidad.Estado);
+                        cmd.Parameters.AddWithValue("@IdMedico", medico.ID);
+                        cmd.CommandType = CommandType.Text;
+                        accesoDatos.ExecuteCommand(cmd);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -92,23 +97,23 @@ namespace AccesoModeloBaseDatos.Modelos
         }
 
         // Listado de Menus pero lo manejamos por medio de la clase PermisoADO
-        public List<Medico> ListarMedicos()
+        public List<Medico> ListarMedicoEspecialidad(int idEspecialidad)
         {
-            List<Medico> Lista = new List<Medico>();
+            List<Medico> ListaMedico = new List<Medico>();
             SqlDataReader dr = null;
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             try
             {
-
                 using (SqlConnection con = accesoDatos.ConnectToDB())
-                {
-                    SqlCommand cmd = new SqlCommand(SQL_SELECT_MEDICOS, con);
+                {                    
+                    string sql = SQL_SELECT_MEDICOS;
+                    SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
 
                     while (dr.Read())
                     {
-                        Lista.Add(CreateObject(dr));
+                        ListaMedico.Add(CreateObjectMedico(dr, accesoDatos, con, idEspecialidad));
                     }
                 }
             }
@@ -120,19 +125,42 @@ namespace AccesoModeloBaseDatos.Modelos
             {
                 accesoDatos.CloseConnection();
             }
+            return ListaMedico;
+        }
+        private Especialidad CreateObjectEsp(SqlDataReader dr)
+        {
+            Especialidad especialidad = new Especialidad();
+            especialidad.IdEspecialidad = Convert.ToInt32(dr["IdEspecialidad"].ToString());
+            especialidad.Descripcion = dr["Description"].ToString();
+            especialidad.Estado = dr["estado"].ToString().Equals("True") ? true : false;
 
-            return Lista;
+            return especialidad;
         }
 
-        private Medico CreateObject(SqlDataReader dr)
+        private Medico CreateObjectMedico(SqlDataReader dr, AccesoDatos accesoDatos, SqlConnection con, int idEspecialidad = 0)
         {
             Medico objTMedico = new Medico();
             objTMedico.ID = Convert.ToInt32(dr["IdMedico"].ToString());
-            objTMedico.idEspecialidad = Convert.ToInt32(dr["IdEspecialidad"].ToString());       
-            objTMedico.Nombres = dr["nombre"].ToString();
-            objTMedico.Apellidos = dr["apellido"].ToString();
-            objTMedico.NroDocumento = dr["nrodocumento"].ToString();
-            objTMedico.Estado = dr["estado"].ToString().Equals("True") ? true : false;
+            objTMedico.Nombres = dr["Nombre"].ToString();
+            objTMedico.Apellidos = dr["Apellido"].ToString();
+            objTMedico.NroDocumento = dr["NroDocumento"].ToString();
+            objTMedico.Estado = dr["Estado"].ToString().Equals("True") ? true : false;
+
+            List<Especialidad> especialidades = new List<Especialidad>();
+            string sql = SQL_SELECT_ESPECIALIDADMEDICO;
+
+            if (idEspecialidad != 0)
+                sql = sql + " e.IdEspecialidad = " + idEspecialidad.ToString() + " AND ms.IdMedico = " + objTMedico.ID;
+
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.CommandType = CommandType.Text;
+            dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
+            while (dr.Read())
+            {
+                especialidades.Add(CreateObjectEsp(dr));
+            }
+
+            objTMedico.Especialidades = especialidades;
 
             return objTMedico;
         }
@@ -143,17 +171,17 @@ namespace AccesoModeloBaseDatos.Modelos
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             try
             {
-
                 using (SqlConnection con = accesoDatos.ConnectToDB())
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_SELECT_MEDICO, con);
+                    string sql = SQL_SELECT_MEDICOS;
+                    sql = sql + " e.nrodocumento = '" + documento + "'";
+                    SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@nrodocumento", documento);
                     dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
 
                     while (dr.Read())
                     {
-                        medico = (CreateObject(dr));
+                        medico = (CreateObjectMedico(dr, accesoDatos, con));
                     }
                 }
             }

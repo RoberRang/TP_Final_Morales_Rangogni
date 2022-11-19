@@ -14,34 +14,17 @@ namespace ModeloDeNegocio.Negocio
         {
             medicoADO = new MedicoADO(ConexionStringDB.ConexionBase());
         }
-        public bool AltaMedico(Medico medico)
-        {
-            bool alta = true;
-            try
-            {
-                Medico medicoBuscado = medicoADO.BuscarMedico(medico.NroDocumento);
-                if (medicoBuscado != null)
-                    return false;
-                ///crear validaciones para medico                
-                medicoADO.GrabarMedico(medico, true);
 
-                ///grabar la tabla usuario y contraseña (traigo id medico, crear obj usuario// llamo a usuarioADO para grabarusuario)
-                return alta;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public List<Medico> Medicos()
+        public List<Medico> MedicosEspecialidad(int idEspecialidad)
         {
-            return medicoADO.ListarMedicos();
+            return medicoADO.ListarMedicoEspecialidad(idEspecialidad);
         }
-        public bool ModificarMedico(Medico medico)
+
+        public bool ModificarMedicoEspecialidad(Medico medico, bool esInsert = false)
         {
             try
             {
-                return medicoADO.GrabarMedico(medico, false);
+                return medicoADO.GrabarMedicoEspecialidad(medico, esInsert);
             }
             catch (Exception ex)
             {
