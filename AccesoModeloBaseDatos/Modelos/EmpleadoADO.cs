@@ -9,11 +9,11 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class EmpleadoADO
     {
-        private const string SQL_INSERT_EMPLEADOS = "INSERT INTO empleados (idtipoperfil, nombre, apellido, nrodocumento,fechaalta, estado) VALUES (@idtipoperfil,@nombre,@apellido,@nrodocumento,@fechaalta, @estado)";
-        private const string SQL_SELECT_EMPLEADOS = "SELECT id, idtipoperfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados";
-        private const string SQL_UPDATE_EMPLEADOS = "UPDATE empleados SET idtipoperfil=@idtipoperfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, estado = @estado WHERE id = @id";
-        private const string SQL_SELECT_EMPLEADO = "SELECT id, idtipoperfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados WHERE NroDocumento = '@nrodocumento'";
-        private const string SQL_SELECT_EMPLEADO_LOGIN = "SELECT id, idtipoperfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados e INNER JOIN Usuarios u ON e.id = u.IdEmpleado WHERE u.UserLogin= '@UserLogin' AND u.Password = '@Password'";
+        private const string SQL_INSERT_EMPLEADOS = "INSERT INTO Empleados (IdPerfil, nombre, apellido, nrodocumento,fechaalta, estado) VALUES (@IdPerfil,@nombre,@apellido,@nrodocumento,@fechaalta, @estado)";
+        private const string SQL_SELECT_EMPLEADOS = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados";
+        private const string SQL_UPDATE_EMPLEADOS = "UPDATE Empleados SET IdPerfil=@IdPerfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, estado = @estado WHERE id = @id";
+        private const string SQL_SELECT_EMPLEADO = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados WHERE NroDocumento = '@nrodocumento'";
+        private const string SQL_SELECT_EMPLEADO_LOGIN = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta, estado FROM Empleados e INNER JOIN Usuarios u ON e.id = u.IdEmpleado WHERE u.UserLogin= '@UserLogin' AND u.Password = '@Password'";
         private readonly string coneccionDB;
         public EmpleadoADO(string coneccion)
         {
@@ -47,7 +47,7 @@ namespace AccesoModeloBaseDatos.Modelos
                 {
                     SqlCommand cmd = new SqlCommand(SQL_INSERT_EMPLEADOS, con);
                     cmd.Parameters.AddWithValue("@apellido", empleado.Apellidos);
-                    cmd.Parameters.AddWithValue("@idTipoPerfil", empleado.idTipoPerfil);
+                    cmd.Parameters.AddWithValue("@IdPerfil", empleado.idTipoPerfil);
                     cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
                     cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
                     cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
@@ -75,7 +75,7 @@ namespace AccesoModeloBaseDatos.Modelos
                 {
                     SqlCommand cmd = new SqlCommand(SQL_UPDATE_EMPLEADOS, con);
                     cmd.Parameters.AddWithValue("@apellido", empleado.Apellidos);
-                    cmd.Parameters.AddWithValue("@idTipoPerfil", empleado.idTipoPerfil);
+                    cmd.Parameters.AddWithValue("@IdPerfil", empleado.idTipoPerfil);
                     cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
                     cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
                     cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
@@ -129,7 +129,7 @@ namespace AccesoModeloBaseDatos.Modelos
         {
             Empleado objTEmpleado = new Empleado();
             objTEmpleado.ID = Convert.ToInt32(dr["id"].ToString());
-            objTEmpleado.idTipoPerfil = Convert.ToInt32(dr["idtipoperfil"].ToString());
+            objTEmpleado.idTipoPerfil = Convert.ToInt32(dr["IdPerfil"].ToString());
             objTEmpleado.Nombres = dr["nombre"].ToString();
             objTEmpleado.Apellidos = dr["apellido"].ToString();
             objTEmpleado.NroDocumento = dr["nrodocumento"].ToString();

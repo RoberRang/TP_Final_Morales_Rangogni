@@ -6,13 +6,13 @@ using System.Data.SqlClient;
 
 namespace AccesoModeloBaseDatos.Modelos
 {
-    public class TipoEspecialidadADO
+    public class EspecialidadADO
     {
-        private const string SQL_INSERT_ESPECIALIDAD = "INSERT INTO especialidad (descripcion, estado) VALUES (@descripcion, @estado)";
+        private const string SQL_INSERT_ESPECIALIDAD = "INSERT INTO Especialidad (descripcion, estado) VALUES (@descripcion, @estado)";
         private const string SQL_SELECT_ESPECIALIDADES = "SELECT idEspecialidad, descripcion, estado FROM Especialidad";
-        private const string SQL_UPDATE_ESPECIALIDAD = "UPDATE especialidad SET descripcion = @descripcion, estado = @estado WHERE idEspecialidad = @idEspecialidad";
+        private const string SQL_UPDATE_ESPECIALIDAD = "UPDATE Especialidad SET descripcion = @descripcion, estado = @estado WHERE idEspecialidad = @idEspecialidad";
         private readonly string coneccionDB;
-        public TipoEspecialidadADO(string coneccion)
+        public EspecialidadADO(string coneccion)
         {
             coneccionDB = coneccion;
         }

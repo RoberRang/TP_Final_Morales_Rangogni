@@ -10,10 +10,10 @@ namespace ModeloDeNegocio.Negocio
 {
     public class PerfilNegocio : Perfil
     {
-        private readonly TipoPerfilADO tipoPerfilADO;
+        private readonly PerfilADO tipoPerfilADO;
         public PerfilNegocio()
         {
-            tipoPerfilADO = new TipoPerfilADO(ConexionStringDB.ConexionBase());
+            tipoPerfilADO = new PerfilADO(ConexionStringDB.ConexionBase());
         }
         public bool AltaPerfil(string descripcion, bool estado)
         {

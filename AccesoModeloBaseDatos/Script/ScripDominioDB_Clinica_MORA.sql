@@ -29,10 +29,13 @@ CREATE TABLE [dbo].[Empleados] (
     [Apellido]     VARCHAR (50) NOT NULL,
     [NroDocumento] VARCHAR (10) NOT NULL,
     [FechaAlta]    DATETIME     NOT NULL,
+    [IdJornada]    INT          NOT NULL,
     [Estado]       BIT          NOT NULL
 );
 ALTER TABLE [dbo].[Empleados]
     ADD CONSTRAINT [FK_TipoPerfil] FOREIGN KEY ([IdTipoPerfil]) REFERENCES [dbo].[TipoPerfil] ([IdPerfil]);
+ALTER TABLE [dbo].[Turnos]
+    ADD CONSTRAINT [FK_EmpleadoIdJornada] FOREIGN KEY ([IdJornada]) REFERENCES [dbo].[JornadaTurno] (IdJornada);
 
 
 CREATE TABLE [dbo].[Usuarios] (
@@ -59,11 +62,12 @@ CREATE TABLE [dbo].[Pacientes] (
 );
 
 CREATE TABLE [dbo].[Medicos] (
-    [IdMedico]       INT NOT NULL,
+    [IdMedico]       INT PRIMARY KEY NOT NULL,
     [IdEspecialidad] INT NOT NULL,
-    [Estado]         BIT NULL,
-    [IdJornada]      INT NULL
+    [Estado]         BIT NULL
 );
+ALTER TABLE [dbo].[Turnos]
+    ADD CONSTRAINT [FK_MedicoIdEspecialidad] FOREIGN KEY ([IdEspecialidad]) REFERENCES [dbo].[Especialidades] ([IdEspecialidad]);
 
 CREATE TABLE [dbo].[Turnos] (
     [IdTurnos]     INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,

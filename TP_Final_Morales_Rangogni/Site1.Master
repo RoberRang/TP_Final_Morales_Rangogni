@@ -53,7 +53,7 @@
                             <a runat="server" href="~/MedicoWeb" class="black-text"><i class="material-icons white-text">local_hospital</i></a>
                         </li>
                         <li>
-                            <a runat="server" href="~/JornadaTurnoWeb" class="black-text"><i class="material-icons white-text">today</i></a>
+                            <a runat="server" href="~/JornadaWeb" class="black-text"><i class="material-icons white-text">today</i></a>
                         </li>
                          <li>
                             <a runat="server" href="~/TurnoWeb" class="black-text"><i class="material-icons white-text">date_range</i></a>
@@ -71,7 +71,7 @@
                 <li><a runat="server" href="~/PacienteWeb">Pacientes</a></li>
                 <li><a runat="server" href="~/PerfilWeb">Perfil</a></li>
                 <li><a runat="server" href="~/EspecialidadWeb">Especialidad</a></li>
-                <li><a runat="server" href="~/JornadaTurnoWeb">Jornada</a></li>
+                <li><a runat="server" href="~/JornadaWeb">Jornada</a></li>
                 <li><a runat="server" href="~/TurnoWeb">Turnos</a></li>
             </ul>
         </header>

@@ -1,10 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="JornadaTurnoWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.JornadaTurnoWeb" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="JornadaWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.JornadaTurnoWeb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentLogin" runat="server">
     <div class="header bg-blue">
-        <h4 class="left-align">Jornada Turnos</h4>
+        <h4 class="left-align">Jornadas</h4>
+    </div>
+    <div class="header bg-blue">
+        <asp:GridView ID="dgvJornadas" CssClass="highlight responsive-table" runat="server"></asp:GridView>
+        <asp:Button runat="server" ID="btnVerJornadas" CssClass="btn btn-default" OnClick="btnVerJornadas_Click" Text="Perfiles &raquo;" />
     </div>
     <div class="body bg-gray">
         <asp:Repeater runat="server" ID="rprJornadas">
@@ -43,8 +47,8 @@
                         </div>
                         <li class="collection-item">
                             <div class="input-field">
-                            <asp:CheckBox runat="server" ID="chkSel" Text="Sel: "></asp:CheckBox>
-                                </div>
+                                <asp:CheckBox runat="server" ID="chkSel" Text="Sel: "></asp:CheckBox>
+                            </div>
                         </li>
                     </div>
                     </div>

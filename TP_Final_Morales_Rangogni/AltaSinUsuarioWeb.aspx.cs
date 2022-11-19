@@ -83,9 +83,7 @@ namespace TP_Final_Morales_Rangogni
             {
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
-
             }
-
         }
 
         private bool ValidoControlTextBox(TextBox textBox)

@@ -21,7 +21,7 @@ namespace TP_Final_Morales_Rangogni
         {
             try
             {
-                List<JornadaTurno> jornadaTurnos = new List<JornadaTurno>();
+                List<Jornada> jornadaTurnos = new List<Jornada>();
                 JornadaNegocio jornadaNegocio = new JornadaNegocio();
                 jornadaTurnos = jornadaNegocio.ListarJornadas();
                 Session.Add("Jornadas", jornadaTurnos);
@@ -67,6 +67,11 @@ namespace TP_Final_Morales_Rangogni
                 textBox.Focus();
             }
             return valido;
+        }
+
+        protected void btnVerJornadas_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

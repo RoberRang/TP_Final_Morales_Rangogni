@@ -6,13 +6,13 @@ using System.Data.SqlClient;
 
 namespace AccesoModeloBaseDatos.Modelos
 {
-    public class TipoPerfilADO
+    public class PerfilADO
     {
-        private const string SQL_INSERT_PERFIL = "INSERT INTO TipoPerfil (descripcion, estado) VALUES (@descripcion, @estado)";
-        private const string SQL_SELECT_PERFILES = "SELECT idPerfil, descripcion, estado FROM TipoPerfil";
-        private const string SQL_UPDATE_PERFIL = "UPDATE TipoPerfil SET descripcion = @descripcion, estado = @estado WHERE idPerfil = @idPerfil";
+        private const string SQL_INSERT_PERFIL = "INSERT INTO Perfiles (descripcion, estado) VALUES (@descripcion, @estado)";
+        private const string SQL_SELECT_PERFILES = "SELECT idPerfil, descripcion, estado FROM Perfiles";
+        private const string SQL_UPDATE_PERFIL = "UPDATE Perfiles SET descripcion = @descripcion, estado = @estado WHERE idPerfil = @idPerfil";
         private readonly string coneccionDB;
-        public TipoPerfilADO(string coneccion)
+        public PerfilADO(string coneccion)
         {
             coneccionDB = coneccion;
         }

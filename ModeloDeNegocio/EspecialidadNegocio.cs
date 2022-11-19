@@ -10,10 +10,10 @@ namespace ModeloDeNegocio.Negocio
 { 
     public class EspecialidadNegocio : Especialidad
     {
-        private readonly TipoEspecialidadADO tipoEspecialidadADO;
+        private readonly EspecialidadADO tipoEspecialidadADO;
         public EspecialidadNegocio()
         {
-            tipoEspecialidadADO = new TipoEspecialidadADO(ConexionStringDB.ConexionBase());
+            tipoEspecialidadADO = new EspecialidadADO(ConexionStringDB.ConexionBase());
         }
         public bool AltaEspecialidad(string descripcion, bool estado)
         {

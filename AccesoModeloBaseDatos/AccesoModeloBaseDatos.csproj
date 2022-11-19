@@ -47,7 +47,7 @@
     <Compile Include="Dominio\Especialidad.cs" />
     <Compile Include="Dominio\Medico.cs" />
     <Compile Include="Dominio\Paciente.cs" />
-    <Compile Include="Dominio\JornadaTurno.cs" />
+    <Compile Include="Dominio\Jornada.cs" />
     <Compile Include="Dominio\Perfil.cs" />
     <Compile Include="Dominio\Turno.cs" />
     <Compile Include="Dominio\Usuario.cs" />
@@ -55,13 +55,14 @@
     <Compile Include="Modelos\JornadaADO.cs" />
     <Compile Include="Modelos\MedicoADO.cs" />
     <Compile Include="Modelos\PacienteADO.cs" />
-    <Compile Include="Modelos\TipoEspecialidadADO.cs" />
-    <Compile Include="Modelos\TipoPerfilADO.cs" />
+    <Compile Include="Modelos\EspecialidadADO.cs" />
+    <Compile Include="Modelos\PerfilADO.cs" />
     <Compile Include="Modelos\TurnoADO.cs" />
     <Compile Include="Modelos\UsuarioADO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Script\ScripDominioDB_ClinicaMora.sql" />
     <Content Include="Script\ScripDominioDB_Clinica_MORA.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

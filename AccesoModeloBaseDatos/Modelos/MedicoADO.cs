@@ -8,7 +8,7 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class MedicoADO
     {
-        private const string SQL_INSERT_MEDICOS = "INSERT INTO medicos (IdMedico,IdEspecialidad,estado) VALUES (@idMedico,@IdEspecialidad,@estado)";
+        private const string SQL_INSERT_MEDICOS = "INSERT INTO Medicos (IdMedico,IdEspecialidad,estado) VALUES (@idMedico,@IdEspecialidad,@estado)";
         private const string SQL_SELECT_MEDICOS = "SELECT m.IdMedico, m.IdEspecialidad, e.Nombre, e.Apellido, e.NroDocumento, e.estado FROM Medicos m INNER JOIN Empleados e ON m.IdMedico = e.Id";
         private const string SQL_UPDATE_MEDICOS = "UPDATE Medicos SET IdEspecialidad = @IdEspecialidad WHERE IdMedico = @IdMedico";
         private const string SQL_SELECT_MEDICO = "SELECT m.IdMedico, m.IdEspecialidad, e.Nombre, e.Apellido, e.NroDocumento, e.estado FROM Medicos m INNER JOIN Empleados e ON m.IdMedico = e.Id WHERE e.NroDocumento = '@nrodocumento'";

@@ -11,16 +11,16 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class JornadaADO
     {
-        private const string SQL_INSERT_JORNADA = "INSERT INTO JornadaTurno (descripcion, estado, Inicio, Fin) VALUES (@descripcion, @estado, @inicio, @fin)";
-        private const string SQL_SELECT_JORNADAS = "SELECT idJornada, Descripcion, Estado, Inicio, Fin FROM JornadaTurno";
-        private const string SQL_UPDATE_JORNADA = "UPDATE JornadaTurno SET Descripcion = @descripcion, Estado = @estado, Inicio=@inicio, Fin=@fin WHERE IdJornada = @idJornada";
+        private const string SQL_INSERT_JORNADA = "INSERT INTO Jornadas (descripcion, estado, Inicio, Fin) VALUES (@descripcion, @estado, @inicio, @fin)";
+        private const string SQL_SELECT_JORNADAS = "SELECT idJornada, Descripcion, Estado, Inicio, Fin FROM Jornadas";
+        private const string SQL_UPDATE_JORNADA = "UPDATE Jornadas SET Descripcion = @descripcion, Estado = @estado, Inicio=@inicio, Fin=@fin WHERE IdJornada = @idJornada";
         private readonly string coneccionDB;
         public JornadaADO(string coneccion)
         {
             coneccionDB = coneccion;
         }
         // Crear Perfil
-        public bool GrabarJornada(JornadaTurno jornada)
+        public bool GrabarJornada(Jornada jornada)
         {
 
             bool response;
@@ -39,7 +39,7 @@ namespace AccesoModeloBaseDatos.Modelos
             return response;
         }
 
-        private void InsertJornadaDB(JornadaTurno jornada)
+        private void InsertJornadaDB(Jornada jornada)
         {
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             using (SqlConnection con = accesoDatos.ConnectToDB())
@@ -66,7 +66,7 @@ namespace AccesoModeloBaseDatos.Modelos
             }
         }
 
-        private void UpdateJornadaDB(JornadaTurno jornada)
+        private void UpdateJornadaDB(Jornada jornada)
         {
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             using (SqlConnection con = accesoDatos.ConnectToDB())
@@ -95,9 +95,9 @@ namespace AccesoModeloBaseDatos.Modelos
         }
 
         // Listado de Menus pero lo manejamos por medio de la clase PermisoDAO
-        public List<JornadaTurno> ListarJornadas()
+        public List<Jornada> ListarJornadas()
         {
-            List<JornadaTurno> Lista = new List<JornadaTurno>();
+            List<Jornada> Lista = new List<Jornada>();
             SqlDataReader dr = null;
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             try
@@ -127,9 +127,9 @@ namespace AccesoModeloBaseDatos.Modelos
             return Lista;
         }
 
-        private JornadaTurno CreateObject(SqlDataReader dr)
+        private Jornada CreateObject(SqlDataReader dr)
         {
-            JornadaTurno jornada = new JornadaTurno();
+            Jornada jornada = new Jornada();
             jornada.IdJornada = Convert.ToInt32(dr["IdJornada"].ToString());
             jornada.Descripcion = dr["Descripcion"].ToString();
             jornada.Estado = dr["Estado"].ToString().Equals("True") ? true : false;

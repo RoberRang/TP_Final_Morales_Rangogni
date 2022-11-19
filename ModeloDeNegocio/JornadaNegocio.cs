@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ModeloDeNegocio
 {
-    public class JornadaNegocio:JornadaTurno
+    public class JornadaNegocio:Jornada
     {
         private readonly JornadaADO jornadaADO;
         public JornadaNegocio()
@@ -32,7 +32,7 @@ namespace ModeloDeNegocio
                 throw ex;
             }
         }
-        public List<JornadaTurno> ListarJornadas()
+        public List<Jornada> ListarJornadas()
         {
             return jornadaADO.ListarJornadas();
         }
