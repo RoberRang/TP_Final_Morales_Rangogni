@@ -12,36 +12,38 @@
         </div>
 
         <!---Solapa Empleados-->
-
-        <div class="content">
-            <div class="row">
-                <asp:Label Text="Filtrar" runat="server" CssClass="active" />
-                <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="txtfiltro_TextChanged"></asp:TextBox>
-            </div>
-            <div class="col-md-5 right-align">
-                <br />
-                <asp:Button runat="server" ID="btnVerEmp" CssClass="btn btn-default" OnClick="btnVerEmp_Click" Text="Empleados &raquo;" />
-                <br />
-                <br />
-                <asp:GridView ID="dgEmpleados" CssClass="highlight responsive-table" runat="server"
-                    AutoGenerateColumns="false" DataKeyNames="Id"
-                    OnSelectedIndexChanged="dgEmpleados_SelectedIndexChanged">
-                    <Columns>
-                        <asp:BoundField HeaderText="Nombre" DataField="Nombres" />
-                        <asp:BoundField HeaderText="Apellido" DataField="Apellidos" />
-                        <asp:BoundField HeaderText="Dni" DataField="NroDocumento" />
-                        <asp:BoundField HeaderText="Estado" DataField="Estado" />
-                        <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="🔥" />
-                    </Columns>
-                </asp:GridView>
-            </div>
-        </div>
-
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <div class="content">
+                    <div class="row">
+                        <asp:Label Text="Filtrar" runat="server" CssClass="active" />
+                        <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="txtfiltro_TextChanged"></asp:TextBox>
+                    </div>
+                    <div class="col-md-5 right-align">
+                        <br />
+                        <asp:Button runat="server" ID="btnVerEmp" CssClass="btn btn-default" OnClick="btnVerEmp_Click" Text="Empleados &raquo;" />
+                        <br />
+                        <br />
+                        <asp:GridView ID="dgEmpleados" CssClass="highlight responsive-table" runat="server"
+                            AutoGenerateColumns="false" DataKeyNames="Id"
+                            OnSelectedIndexChanged="dgEmpleados_SelectedIndexChanged">
+                            <Columns>
+                                <asp:BoundField HeaderText="Nombre" DataField="Nombres" />
+                                <asp:BoundField HeaderText="Apellido" DataField="Apellidos" />
+                                <asp:BoundField HeaderText="Dni" DataField="NroDocumento" />
+                                <asp:BoundField HeaderText="Estado" DataField="Estado" />
+                                <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="🔥" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
 
         <!--Solapa NUEVO EMPLEADO-->
         <div class="content">
-             <br />
-             <br />
+            <br />
+            <br />
             <div class="row">
                 <div class="col s12">
                     <div class="row">
@@ -85,7 +87,7 @@
                         <asp:DropDownList ID="ddlPerfilEmp" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 10px;" href="#" data-activates="drpdEstado" data-target="drpdEstado">
                         </asp:DropDownList>
                     </div>
-                     <div class="input-field col s4 left-align">
+                    <div class="input-field col s4 left-align">
                         <label for="lblJornada">Jornada</label>
                         <br />
                         <br />
@@ -114,26 +116,28 @@
                 </div>
             </div>
             <!---MODAL GUARDAR--->
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <div class="row">
+                        <!-- Modal Trigger -->
+                        <div class="center-align">
+                            <a class=" purple white-text btn modal-trigger" href="#modal1">Guardar</a>
+                        </div>
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h4>Atencion</h4>
+                                <p>¿Desea guardar el paciente?</p>
+                            </div>
+                            <div class="modal-footer">
 
-            <div class="row">
-                <!-- Modal Trigger -->
-                <div class="center-align">
-                    <a class=" purple white-text btn modal-trigger" href="#modal1">Guardar</a>
-                </div>
-                <div id="modal1" class="modal">
-                    <div class="modal-content">
-                        <h4>Atencion</h4>
-                        <p>¿Desea guardar el paciente?</p>
+                                <asp:Button CssClass="purple white-text btn-small" ID="btnAceptar" OnClick="btnAceptar_Click" runat="server" Text="Aceptar" />
+
+                                <a href="#!" class="purple white-text modal-close btn-flat">Cancelar</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-
-                        <asp:Button CssClass="purple white-text btn-small" ID="btnAceptar" OnClick="btnAceptar_Click" runat="server" Text="Aceptar" />
-
-                        <a href="#!" class="purple white-text modal-close btn-flat">Cancelar</a>
-                    </div>
-                </div>
-            </div>
-
+                </ContentTemplate>
+            </asp:UpdatePanel>
             <!---Fin MODAL Guardar-->
 
         </div>
