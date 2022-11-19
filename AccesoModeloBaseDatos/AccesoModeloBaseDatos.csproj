@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Script\ScripDominioDB_ClinicaMora.sql" />
-    <Content Include="Script\ScripDominioDB_Clinica_MORA.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
