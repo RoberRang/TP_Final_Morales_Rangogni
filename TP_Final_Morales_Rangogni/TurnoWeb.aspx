@@ -7,42 +7,28 @@
         <div class="tab-bar">
             <a href="#NuevoTurno">NUEVO TURNO</a>
             <a href="#Turnos">TURNOS</a>
-            <a href="#SOLAPA 3">SOLAPA 3</a>
-            <a href="#SOLAPA 4">SOLAPA 4</a>
-
         </div>
 
         <!--SOLAPA NUEVO TURNO-->
         <div class="content">
-            <br />
-            <br />
-            <div class="col s12">
-                <div class="row">
-                    <div class="file-field input-field col s12">
-                        <div class="input-field col s6">
-                            <asp:TextBox ID="txtDni" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
-                            <label for="lblDniPac">Nº Documento</label>
-                        </div>
-                        <div class="file-field input-field col s6 center-align">
-                            <div class="waves-effect purple waves-light btn-floating btn-small">
-                                <i class="material-icons">cached</i>
-                                <asp:Button runat="server" ID="btnBuscarPaciente" CssClass="btn-small" OnClick="btnBuscarPaciente_Click" />
-                            </div>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="input-field left-align col s6">
+                    <asp:TextBox ID="txtDni" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
+                    <label for="lblDniPac">Nº Documento</label>
+                </div>
+                <div class="waves-effect purple waves-light btn-floating btn-small">
+                    <asp:Button runat="server" ID="btnBuscar" CssClass="btn-floating amber" OnClick="btnBuscar_Click" />
+                    <i class="material-icons">cached</i>
                 </div>
             </div>
-
-            <!--Telefono -->
-
+            <!--Nombre -->
             <div class="col s12">
                 <div class="row">
-
                     <div class="input-field col s6">
                         <asp:TextBox ID="txtnombre" runat="server" CssClass="validate" Enabled="false" placeholder=""></asp:TextBox>
                         <label for="lblNombre">Nombre</label>
                     </div>
-
+                    <!--Apellido -->
                     <div class="input-field col s6">
                         <asp:TextBox ID="txtApellido" runat="server" CssClass="validate" Enabled="false" placeholder=""></asp:TextBox>
                         <label for="lblApellido">Apellido</label>
@@ -53,21 +39,18 @@
             <!--Telefono -->
             <div class="col s12">
                 <div class="row">
-
                     <div class="input-field col s6">
                         <asp:TextBox ID="txtTelefono" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                         <label for="lblTelefono">Telefono</label>
                     </div>
-
                     <!--Email -->
                     <div class="input-field col s6">
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="validate" TextMode="Email" placeholder=""></asp:TextBox>
                         <label for="lblEmail">Correo Electronico</label>
                     </div>
-
                 </div>
             </div>
-            <!-- ESTADO -->
+
             <div class="col s12">
                 <div class="row">
                     <div class="col s4 left-align">
@@ -82,12 +65,10 @@
                         <label id="lblFecTurno" for="txtFechaTurno">Fecha del Turno</label>
                         <asp:TextBox ID="txtFechaTurno" runat="server" TextMode="Date" placeholder=""></asp:TextBox>
                     </div>
-
                 </div>
             </div>
             <div class="col s12">
                 <div class="row">
-
                     <div class="input-field col s12">
                         <asp:TextBox ID="txtObservaciones" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                         <label for="lblObservaciones">Observaciones</label>
@@ -123,19 +104,6 @@
             <p>FALTA CARGAR EL LISTADO</p>
 
         </div>
-        <!--SOLAPA LIBRE-->
-        <div class="content">
-            <h2>SOLAPA 3 <span><i class="fas fa-carrot"></i></span></h2>
-            <p>COSAS DE LA VIDA</p>
-
-        </div>
-        <!--SOLAPA LIBRE-->
-        <div class="content">
-            <h2>SOLAPA 4 <span><i class="fas fa-carrot"></i></span></h2>
-            <p>AGREGAR .</p>
-
-        </div>
-
 
         <!--Fin Solapas-->
     </section>

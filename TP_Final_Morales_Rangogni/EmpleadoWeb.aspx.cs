@@ -72,8 +72,7 @@ namespace TP_Final_Morales_Rangogni
 
                 Session.Add("MensajeError", ex.Message);
                 Response.Redirect("ErrorWeb.aspx", false);
-            }
-            
+            }            
         }
 
         private void buscarTipoPerfil()
@@ -170,7 +169,6 @@ namespace TP_Final_Morales_Rangogni
             Session.Add("empleados", empleadosBuscados);
             dgEmpleados.DataSource = empleadosBuscados;
             dgEmpleados.DataBind();
-
         }
 
         protected void dgEmpleados_SelectedIndexChanged(object sender, EventArgs e)

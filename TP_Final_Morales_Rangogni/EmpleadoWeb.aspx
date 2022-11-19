@@ -32,12 +32,10 @@
                         <asp:BoundField HeaderText="Dni" DataField="NroDocumento" />
                         <asp:BoundField HeaderText="Estado" DataField="Estado" />
                         <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="🔥" />
-
                     </Columns>
                 </asp:GridView>
             </div>
         </div>
-
 
 
         <!--Solapa NUEVO EMPLEADO-->

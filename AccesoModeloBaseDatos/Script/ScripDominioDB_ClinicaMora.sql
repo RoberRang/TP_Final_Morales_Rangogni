@@ -132,4 +132,8 @@ INSERT INTO [dbo].[Usuarios] ([IdUsuario], [UserLogin], [Password], [IdEmpleado]
 VALUES (1, N'Admin', N'Admin', 1)
 SET IDENTITY_INSERT [dbo].[Empleados] OFF
 
+SET IDENTITY_INSERT [dbo].[Especialidad] ON
+INSERT INTO [dbo].[Especialidad] ([IdEspecialidad], [Descripcion], [Estado]) VALUES (1, N'Clínica', 1)
+SET IDENTITY_INSERT [dbo].[Especialidad] OFF
+
 select * from Empleados

@@ -42,15 +42,10 @@ namespace TP_Final_Morales_Rangogni
             }
         }
 
-        protected void btnBuscarPaciente_Click(object sender, EventArgs e)
+        private void BuscarPaciente()
         {
             try
             {
-                if (txtDni.Text.Equals(""))
-                {
-                    txtDni.Attributes.Add("placeholder", "El campo no debe quedar incompleto");
-                    txtDni.Focus();
-                }
                     
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
                 Paciente paciente = pacienteNegocio.BuscarPaciente(txtDni.Text.Trim());
@@ -102,5 +97,15 @@ namespace TP_Final_Morales_Rangogni
             }
         }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtDni.Text.Equals(""))
+            {
+                txtDni.Attributes.Add("placeholder", "El campo no debe quedar incompleto");
+                txtDni.Focus();
+                return;
+            }
+            BuscarPaciente();
+        }
     }
 }

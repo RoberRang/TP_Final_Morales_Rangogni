@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TP_Final_Morales_Rangogni.Dominio;
 
 namespace TP_Final_Morales_Rangogni
 {
@@ -58,7 +59,7 @@ namespace TP_Final_Morales_Rangogni
                 nuevoUser.NroDocumento = txtDni.Text;
                 nuevoUser.Estado = false;
                 //desplegable
-                nuevoUser.idPerfil = 3;
+                nuevoUser.idPerfil = (int)TiposPerfilesWeb.Empleado ;
                 nuevoUser.User = txtUser.Text;
                 nuevoUser.Password = txtPass.Text;
 
