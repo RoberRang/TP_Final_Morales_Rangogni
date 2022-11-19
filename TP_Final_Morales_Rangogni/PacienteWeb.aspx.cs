@@ -51,12 +51,16 @@ namespace TP_Final_Morales_Rangogni
 
 
                 if (negocio.AltaPaciente(nuevoPaciente))
-                {
+                {   
                     buscarPacientesWeb();
                     ///cartel alta de pacinete completa y limpiar controles                
                     limpiarControles();
                 }
-
+                else
+                {
+                    ///cartel de el paciente ya existe, desea editarlo?,  mostrar el paciente y dar opcion de editarlo
+                    Response.Redirect("ErrorWeb.aspx", false);
+                }
             }
             catch (Exception ex)
             {
