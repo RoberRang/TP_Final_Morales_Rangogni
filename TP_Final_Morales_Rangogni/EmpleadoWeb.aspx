@@ -116,7 +116,7 @@
             <div class="row">
                 <!-- Modal Trigger -->
                 <div class="center-align">
-                    <a class=" btn modal-trigger" href="#modal1">Guardar</a>
+                    <a class=" purple white-text btn modal-trigger" href="#modal1">Guardar</a>
                 </div>
                 <div id="modal1" class="modal">
                     <div class="modal-content">
@@ -125,9 +125,9 @@
                     </div>
                     <div class="modal-footer">
 
-                        <asp:Button CssClass="waves-effect waves-light btn-small" ID="btnAceptar" OnClick="btnAceptar_Click" runat="server" Text="Aceptar" />
+                        <asp:Button CssClass="purple white-text btn-small" ID="btnAceptar" OnClick="btnAceptar_Click" runat="server" Text="Aceptar" />
 
-                        <a href="#!" class="modal-close btn-flat">Cancelar</a>
+                        <a href="#!" class="purple white-text modal-close btn-flat">Cancelar</a>
                     </div>
                 </div>
             </div>

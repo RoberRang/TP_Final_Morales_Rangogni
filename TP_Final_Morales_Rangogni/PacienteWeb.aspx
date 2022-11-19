@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="file-field input-field col s4 center-align">
-                        <div class="waves-effect waves-light btn-small">
+                       <div class="waves-effect purple waves-light btn-small">
                             <i class="material-icons">camera_enhance</i>
                             <input type="file">
                         </div>
@@ -120,7 +120,7 @@
                         <label for="lblGenero">Genero</label>
                         <br />
                         <br />
-                        <asp:DropDownList ID="ddlGenero" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 10px" href="#" data-activates="drpdEstado" data-target="drpdEstado">
+                        <asp:DropDownList ID="ddlGenero" runat="server" CssClass="dropdown-trigger btn purple waves-light" Style="margin-top: 10px" href="#" data-activates="drpdEstado" data-target="drpdEstado">
                             <asp:ListItem Text="Masculino" />
                             <asp:ListItem Text="Femenino" />
                             <asp:ListItem Text="Otro" />
@@ -146,7 +146,7 @@
                         <label for="lblFnac">Fecha de Nacimiento</label>
                         <br />
                         <br />
-                        <asp:TextBox ID="txtFecha" runat="server" TextMode="Date" placeholder=""></asp:TextBox>
+                        <asp:TextBox ID="txtFecha" runat="server" CssClass="purple white-text center-align" TextMode="Date" placeholder=""></asp:TextBox>
 
                     </div>
 
@@ -157,7 +157,7 @@
             <div class="row">
                 <!-- Modal Trigger -->
                 <div class="center-align">
-                    <a class=" btn modal-trigger" href="#modal1">Guardar</a>
+                    <a class=" btn modal-trigger purple" href="#modal1">Guardar</a>
                 </div>               
                 <div id="modal1" class="modal">
                     <div class="modal-content">
@@ -166,9 +166,9 @@
                     </div>
                     <div class="modal-footer">
 
-                        <asp:Button CssClass="modal-close btn-flat" ID="btnAcept" runat="server" OnClick="btnAcept_Click" Text="Aceptar" />
+                        <asp:Button CssClass="modal-close btn-flat purple white-text" ID="btnAcept" runat="server" OnClick="btnAcept_Click" Text="Aceptar" />
 
-                        <a href="#!" class="modal-close btn-flat">Cancelar</a>
+                        <a href="#!" class="modal-close purple white-text btn-flat">Cancelar</a>
                     </div>
                 </div>
             </div>

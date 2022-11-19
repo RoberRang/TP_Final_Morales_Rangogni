@@ -1,12 +1,21 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="PerfilWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.PerfilWeb" Debug="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContentLogin" runat="server">
+    <section>
+        <div class="tab-bar">
+            <a href="#Perfil">Perfil</a>
+            <a href="#SOLAPA2">Solapa2</a>
+            <a href="#SOLAPA3">Solapa3</a>
+            <a href="#SOLAPA4">Solapa4</a>
+
+        </div>
+        
+        <div class="content">
     <div class="header bg-blue">
-        <h4 class="left-align">Perfiles</h4>
-        <p>
-            Ver los perfiles            
+       
+                
                 <asp:GridView ID="dgvPerfiles" CssClass="highlight responsive-table" runat="server"></asp:GridView>
-        </p>
+    
             <asp:Button runat="server" ID="btnVerPerfiles" CssClass="btn btn-default" OnClick="btnVerPerfiles_Click" Text="Perfiles &raquo;" />
     </div>
     
@@ -63,6 +72,13 @@
             <p><a href="/PerfilWeb" class="btn btn-primary btn-lg">Perfiles &raquo;</a></p>
         </div>
     </div>
+             <!--SOLAPA GENERICA-->
+        <div class="content">
+            <h2>LISTA TURNOS Y EDITA <span><i class="fas fa-carrot"></i></span></h2>
+            <p>Listar turnos(pacientes)/ botons de editar/ .</p>
+
+        </div>
+    </section>
     <script>
         function limpiarModal(mensaje) {
             document.getElementById('<%= txtDesc.ClientID %>').value = "";
@@ -74,4 +90,5 @@
             document.getElementById('<%= txtDesc.ClientID %>').value = valDesc;
         }
     </script>
+        <script type="text/javascript" src="js/tabfunciones.js"></script>
 </asp:Content>
