@@ -46,6 +46,7 @@
     <Compile Include="CadenaConexionDB.cs" />
     <Compile Include="JornadaNegocio.cs" />
     <Compile Include="PacienteNegocio.cs" />
+    <Compile Include="TurnoNegocio.cs" />
     <Compile Include="UsuarioNegocio.cs" />
     <Compile Include="EspecialidadNegocio.cs" />
     <Compile Include="MedicoNegociocs.cs" />

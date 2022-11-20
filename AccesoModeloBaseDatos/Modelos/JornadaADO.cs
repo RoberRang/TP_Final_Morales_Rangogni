@@ -127,6 +127,38 @@ namespace AccesoModeloBaseDatos.Modelos
             return Lista;
         }
 
+        public Jornada BuscarJornada(int idJornada)
+        {
+            Jornada jornada = new Jornada();
+            SqlDataReader dr = null;
+            AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
+            try
+            {
+                using (SqlConnection con = accesoDatos.ConnectToDB())
+                {
+                    string sql = SQL_SELECT_JORNADAS;
+                    sql += " WHERE idJornada = " + idJornada;
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = CommandType.Text;
+                    dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
+
+                    while (dr.Read())
+                    {
+                        jornada = CreateObject(dr);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                accesoDatos.CloseConnection();
+            }
+            return jornada;
+        }
+
         private Jornada CreateObject(SqlDataReader dr)
         {
             Jornada jornada = new Jornada();

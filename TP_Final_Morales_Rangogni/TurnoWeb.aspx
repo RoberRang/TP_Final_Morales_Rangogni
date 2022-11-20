@@ -16,9 +16,9 @@
                     <asp:TextBox ID="txtDni" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                     <label for="lblDniPac">Nº Documento</label>
                 </div>
-                <div class="waves-effect purple waves-light btn-floating btn-small">
-                    <asp:Button runat="server" ID="btnBuscar" CssClass="btn-floating amber" OnClick="btnBuscar_Click" />
+                <div class="col s1 waves-effect purple waves-light btn-small">                    
                     <i class="material-icons">cached</i>
+                    <asp:Button runat="server" ID="btnBuscar" CssClass="col s1 center-block btn-large purple" OnClick="btnBuscar_Click" /> 
                 </div>
             </div>
             <!--Nombre -->
@@ -55,21 +55,33 @@
                 <div class="row">
                     <div class="col s4 left-align">
                         <label id="lblEspecialidad" for="ddlEspecialidad">Especialidad</label>
-                        <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="dropdown-trigger btn purple white-text" Style="margin-top: 5px" href="#" AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" data-activates="ddlEpecialidad" data-target="ddlEspcialidad" />
+                        <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="dropdown-trigger btn purple white-text" Style="margin-top: 5px" AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" data-activates="ddlEpecialidad" data-target="ddlMedico" />
                     </div>
                     <div class="col s4 left-align">
                         <label id="lblMedico" for="ddlMedico">Especialista</label>
-                        <asp:DropDownList ID="ddlMedico" runat="server" CssClass="dropdown-trigger btn purple white-text" Style="margin-top: 5px" href="#" data-activates="ddlEpecialidad" data-target="ddlEspcialidad" />
+                        <asp:DropDownList ID="ddlMedico" runat="server" CssClass="dropdown-trigger btn purple white-text" AutoPostBack="true" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" Style="margin-top: 5px" data-activates="ddlMedico" data-target="ddlTurnos" />
                     </div>
-                    <div class="input-field col s4 right-align">
+                    <div class="input-field col s3 left-align">
                         <label id="lblFecTurno" for="txtFechaTurno">Fecha del Turno</label>
-                        <asp:TextBox ID="txtFechaTurno" runat="server" TextMode="Date" placeholder=""></asp:TextBox>
+                        <asp:TextBox ID="txtFechaTurno" runat="server" AutoPostBack="true" CssClass="date-text" ></asp:TextBox>
+                    </div>
+                    <div class="col s1 waves-effect small waves-light btn-small purple"> 
+                        <i class="material-icons left-align">search</i>
+                        <asp:Button runat="server" ID="btnVerTurnos" OnClick="btnVerTurnos_Click" CssClass="col s1 right-align btn-large purple" />
                     </div>
                 </div>
             </div>
             <div class="col s12">
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s1">
+                        <asp:TextBox ID="txtCantTurnos" Enabled="false" runat="server" CssClass="validate" ></asp:TextBox>
+                        <label for="txtCantTurnos">Total</label>
+                    </div>
+                    <div class="col s2 left-align">
+                        <label id="lblTurno" for="ddlHorasTurnos">Hora</label>
+                        <asp:DropDownList ID="ddlHorasTurnos" runat="server" CssClass="dropdown-trigger btn purple white-text" data-activates="ddlHorasTurnos" />
+                    </div>
+                    <div class="input-field col s9">
                         <asp:TextBox ID="txtObservaciones" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                         <label for="lblObservaciones">Observaciones</label>
                     </div>
@@ -86,13 +98,11 @@
 
                 <div id="modal1" class="modal">
                     <div class="modal-content">
-                        <h4>Atencion</h4>
+                        <h4>Detalle Turno</h4>
                         <p>¿Desea guardar el turno?</p>
                     </div>
                     <div class="modal-footer">
-
                         <asp:Button CssClass="modal-close btn-flat purple white-text" ID="btnAcept" runat="server" OnClick="btnAcept_Click" Text="Aceptar" />
-
                         <a href="#!" class="modal-close btn-flat purple white-text">Cancelar</a>
                     </div>
                 </div>

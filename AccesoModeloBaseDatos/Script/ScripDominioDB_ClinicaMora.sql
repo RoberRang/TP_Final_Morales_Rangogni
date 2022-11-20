@@ -88,13 +88,23 @@ CREATE TABLE [dbo].[MedicosEspecialidad] (
 );
 GO
 
+CREATE TABLE [dbo].[SituacionTurno] (
+    [IdSituacion] INT  NOT NULL,
+    [Situacion]  VARCHAR (20)NOT NULL,
+    [Estado]         BIT NULL,
+    PRIMARY KEY CLUSTERED ([IdSituacion] ASC)
+);
+GO
+
+DROP TABLE turnos
+
 CREATE TABLE [dbo].[Turnos] (
     [IdTurnos]     INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
     [IdEmpleado]   INT           NULL,
     [IdPaciente]   INT           NULL,
     [FechaReserva] DATETIME      NOT NULL,
     [Observacion]  VARCHAR (MAX) NOT NULL,
-    [IdJornada]    INT           NULL,
+    [IdSituacion]  INT           NULL,
     [Estado]       BIT           NOT NULL,
     [Hora]         INT           NULL
 );
@@ -103,7 +113,7 @@ ALTER TABLE [dbo].[Turnos]
 ALTER TABLE [dbo].[Turnos]
     ADD CONSTRAINT [FK_TurnoIdPaciente] FOREIGN KEY ([IdPaciente]) REFERENCES [dbo].[Pacientes] ([IdPaciente]);
 ALTER TABLE [dbo].[Turnos]
-    ADD CONSTRAINT [FK_TurnoIdJornada] FOREIGN KEY ([IdJornada]) REFERENCES [dbo].[Jornadas] (IdJornada);
+    ADD CONSTRAINT [FK_TurnoIdSituacion] FOREIGN KEY ([IdSituacion]) REFERENCES [dbo].[SituacionTurno] (IdSituacion);
 GO
 
 SET IDENTITY_INSERT [dbo].[Perfiles] ON
@@ -120,6 +130,14 @@ INSERT INTO [dbo].[Jornadas] ([IdJornada], [Descripcion], [Estado], [Inicio], [F
 INSERT INTO [dbo].[Jornadas] ([IdJornada], [Descripcion], [Estado], [Inicio], [Fin]) VALUES (5, N'Completa 1', 1, 8, 15)
 INSERT INTO [dbo].[Jornadas] ([IdJornada], [Descripcion], [Estado], [Inicio], [Fin]) VALUES (6, N'Completa 2', 1, 13, 20)
 SET IDENTITY_INSERT [dbo].[Jornadas] OFF
+
+SET IDENTITY_INSERT [dbo].[SituacionTurno] ON
+INSERT INTO [dbo].[SituacionTurno] ([IdSituacion], [Situacion], [Estado]) VALUES (1, 'Nuevo', 1)
+INSERT INTO [dbo].[SituacionTurno] ([IdSituacion], [Situacion], [Estado]) VALUES (2, 'Reprogramado', 1)
+INSERT INTO [dbo].[SituacionTurno] ([IdSituacion], [Situacion], [Estado]) VALUES (3, 'Cancelado', 1)
+INSERT INTO [dbo].[SituacionTurno] ([IdSituacion], [Situacion], [Estado]) VALUES (4, 'No Asistió', 1)
+INSERT INTO [dbo].[SituacionTurno] ([IdSituacion], [Situacion], [Estado]) VALUES (5, 'Cerrado', 1)
+SET IDENTITY_INSERT [dbo].[SituacionTurno] OFF
 
 SET IDENTITY_INSERT [dbo].[Empleados] ON
 INSERT INTO [dbo].[Empleados] ([Id], [IdPerfil], [Nombre], [Apellido], [NroDocumento], [FechaAlta],[IdJornada], [Estado]) 

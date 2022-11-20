@@ -3,12 +3,13 @@ using AccesoModeloBaseDatos.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ModeloDeNegocio
 {
-    public class JornadaNegocio:Jornada
+    public class JornadaNegocio : Jornada
     {
         private readonly JornadaADO jornadaADO;
         public JornadaNegocio()
@@ -36,6 +37,11 @@ namespace ModeloDeNegocio
         {
             return jornadaADO.ListarJornadas();
         }
+
+        public Jornada BuscarJornada(int idJornada)
+        {
+            return jornadaADO.BuscarJornada(idJornada);
+        }
         public bool ModificarJornada(int id, string descripcion, bool estado, int inicio, int fin)
         {
             try
@@ -52,6 +58,13 @@ namespace ModeloDeNegocio
             {
                 throw ex;
             }
+        }
+
+        public int TotalHorasJornada(int idJornada)
+        {
+            Jornada jornada = jornadaADO.ListarJornadas().Find(x => x.IdJornada.Equals(idJornada));
+            int totalHoras = jornada.Fin - jornada.Inicio;
+            return totalHoras;
         }
     }
 }

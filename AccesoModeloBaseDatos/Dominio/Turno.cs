@@ -13,7 +13,7 @@ namespace AccesoModeloBaseDatos.Dominio
         public int IdPaciente { get; set; }
         public DateTime FechaReserva { get; set; }
         public string Observacion { get; set; }
-        public int IdJornada { get; set; }
+        public int IdSituacion { get; set; }
         public bool Estado { get; set; }
         public int Hora { get; set; }
 
@@ -21,14 +21,14 @@ namespace AccesoModeloBaseDatos.Dominio
         {
         }
 
-        public Turno(int idTurno, int idEmp, int idPaciente, DateTime fechaReserva, string observacion, int idJornada, bool estado, int hora)
+        public Turno(int idTurno, int idEmp, int idPaciente, DateTime fechaReserva, string observacion, int idSituacion, bool estado, int hora)
         {
             this.IdTurno = idTurno;            
             this.IdEmpleado = idEmp;
             this.IdPaciente = idPaciente;
             this.FechaReserva = fechaReserva;
             this.Observacion = observacion;
-            this.IdJornada= idJornada;
+            this.IdSituacion= idSituacion;
             this.Estado = estado;
             this.Hora = hora;
         }

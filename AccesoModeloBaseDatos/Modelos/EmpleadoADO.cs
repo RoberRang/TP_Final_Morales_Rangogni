@@ -12,7 +12,7 @@ namespace AccesoModeloBaseDatos.Modelos
         private const string SQL_INSERT_EMPLEADOS = "INSERT INTO Empleados (IdPerfil, nombre, apellido, nrodocumento,fechaalta,IdJornada, estado) VALUES (@IdPerfil,@nombre,@apellido,@nrodocumento,@fechaalta,@IdJornada, @estado)";
         private const string SQL_SELECT_EMPLEADOS = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta, IdJornada, estado FROM Empleados";
         private const string SQL_UPDATE_EMPLEADOS = "UPDATE Empleados SET IdPerfil=@IdPerfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, IdJornada=@IdJornada, estado=@estado WHERE id=@id";
-        private const string SQL_SELECT_EMPLEADO = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta,IdJornada, estado FROM Empleados WHERE NroDocumento = '@nrodocumento'";
+        private const string SQL_SELECT_EMPLEADO = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta,IdJornada, estado FROM Empleados ";// WHERE NroDocumento = '@nrodocumento'";
         private const string SQL_SELECT_EMPLEADO_LOGIN = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta,IdJornada, estado FROM Empleados e INNER JOIN Usuarios u ON e.id = u.IdEmpleado WHERE u.UserLogin= '@UserLogin' AND u.Password = '@Password'";
         private readonly string coneccionDB;
         public EmpleadoADO(string coneccion)
@@ -151,10 +151,43 @@ namespace AccesoModeloBaseDatos.Modelos
                 using (SqlConnection con = accesoDatosBusca.ConnectToDB())
                 {
                     string sql = SQL_SELECT_EMPLEADO;
-                    sql = sql.Replace("@nrodocumento", documento);
+                    sql += " WHERE nrodocumento = '" + documento + "'";
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     //cmd.Parameters.AddWithValue("@nrodocumento", documento);
+                    dr = accesoDatosBusca.SelectDataReaderFromSqlCommand(cmd);
+
+                    while (dr.Read())
+                    {
+                        empleado = (CreateObject(dr));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                accesoDatosBusca.CloseConnection();
+            }
+
+            return empleado;
+        }
+
+        public Empleado BuscarEmpleado(int id )
+        {
+            Empleado empleado = null;
+            SqlDataReader dr = null;
+            AccesoDatos accesoDatosBusca = new AccesoDatos(coneccionDB);
+            try
+            {
+                using (SqlConnection con = accesoDatosBusca.ConnectToDB())
+                {
+                    string sql = SQL_SELECT_EMPLEADO;
+                    sql +=  " WHERE Id = " + id;
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = CommandType.Text;
                     dr = accesoDatosBusca.SelectDataReaderFromSqlCommand(cmd);
 
                     while (dr.Read())

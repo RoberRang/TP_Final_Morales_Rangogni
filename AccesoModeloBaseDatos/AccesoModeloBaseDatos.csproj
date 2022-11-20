@@ -49,6 +49,7 @@
     <Compile Include="Dominio\Paciente.cs" />
     <Compile Include="Dominio\Jornada.cs" />
     <Compile Include="Dominio\Perfil.cs" />
+    <Compile Include="Dominio\SituacionTurno.cs" />
     <Compile Include="Dominio\Turno.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="Modelos\EmpleadoADO.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Modelos\MedicoADO.cs" />
     <Compile Include="Modelos\PacienteADO.cs" />
     <Compile Include="Modelos\EspecialidadADO.cs" />
+    <Compile Include="Modelos\SituacionTurnoADO.cs" />
     <Compile Include="Modelos\PerfilADO.cs" />
     <Compile Include="Modelos\TurnoADO.cs" />
     <Compile Include="Modelos\UsuarioADO.cs" />

@@ -107,6 +107,8 @@ namespace AccesoModeloBaseDatos.Modelos
                 using (SqlConnection con = accesoDatos.ConnectToDB())
                 {                    
                     string sql = SQL_SELECT_MEDICOS;
+                    if (idEspecialidad>0)
+                        sql = sql + " AND ms.IdEspecialidad = " + idEspecialidad.ToString();
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
@@ -146,20 +148,8 @@ namespace AccesoModeloBaseDatos.Modelos
             objTMedico.NroDocumento = dr["NroDocumento"].ToString();
             objTMedico.Estado = dr["Estado"].ToString().Equals("True") ? true : false;
 
-            List<Especialidad> especialidades = new List<Especialidad>();
-            string sql = SQL_SELECT_ESPECIALIDADMEDICO;
-
-            if (idEspecialidad != 0)
-                sql = sql + " e.IdEspecialidad = " + idEspecialidad.ToString() + " AND ms.IdMedico = " + objTMedico.ID;
-
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.CommandType = CommandType.Text;
-            dr = accesoDatos.SelectDataReaderFromSqlCommand(cmd);
-            while (dr.Read())
-            {
-                especialidades.Add(CreateObjectEsp(dr));
-            }
-
+            List<Especialidad> especialidades = new List<Especialidad>() { new Especialidad(idEspecialidad, "", true) };
+           
             objTMedico.Especialidades = especialidades;
 
             return objTMedico;
