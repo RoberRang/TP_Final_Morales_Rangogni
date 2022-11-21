@@ -31,6 +31,7 @@
                                 <asp:BoundField HeaderText="Nombre" DataField="Nombres" />
                                 <asp:BoundField HeaderText="Apellido" DataField="Apellidos" />
                                 <asp:BoundField HeaderText="Dni" DataField="NroDocumento" />
+                                <asp:BoundField HeaderText="Perfil" DataField="idPerfil" />
                                 <asp:BoundField HeaderText="Estado" DataField="Estado" />
                                 <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="🔥" />
                             </Columns>
@@ -126,7 +127,7 @@
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                                 <h4>Atencion</h4>
-                                <p>¿Desea guardar el paciente?</p>
+                                <p>¿Desea guardar el empleado?</p>
                             </div>
                             <div class="modal-footer">
 

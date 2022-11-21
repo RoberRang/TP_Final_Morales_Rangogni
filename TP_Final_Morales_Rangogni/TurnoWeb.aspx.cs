@@ -1,4 +1,5 @@
 ﻿using AccesoModeloBaseDatos.Dominio;
+using AccesoModeloBaseDatos.Modelos;
 using ModeloDeNegocio;
 using ModeloDeNegocio.Negocio;
 using System;
@@ -37,6 +38,8 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("MensajeError", "El Turno no se pudo ingresar");
                 Response.Redirect("ErrorWeb.aspx", false);
             }
+            EnviarTurnoCorreo(turno);
+
             LimpiarControles();
         }
 
@@ -74,7 +77,7 @@ namespace TP_Final_Morales_Rangogni
         {
             Turno nuevoTurno = null;
             try
-            {                
+            {
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
                 Paciente paciente = pacienteNegocio.BuscarPaciente(txtDni.Text);
                 if (paciente == null)
@@ -100,7 +103,7 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
             }
-           return nuevoTurno;
+            return nuevoTurno;
         }
 
         private void CargarDropDawnListEspecialidad()
@@ -220,6 +223,30 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
 
+        }
+        private void EnviarTurnoCorreo(Turno turno)
+        {
+            ///Para probar que el envio fue correcto ingresar a gmail user: progamationiiigmail.com y pass: programacion3
+            string fechaturno = turno.FechaReserva.ToString();
+            string horaTurno = turno.Hora.ToString();
+            string nombrePaciente = txtnombre.Text;
+            string emailDestino = txtEmail.Text;
+            EmpleadoADO empleadoADO = new EmpleadoADO(ConexionStringDB.ConexionBase());
+            Empleado empleado = empleadoADO.BuscarEmpleado(Convert.ToInt32(ddlMedico.SelectedValue));
+            string nombreMedico = empleado.Nombres;
+            string apellidoMedico = empleado.Apellidos;
+            EmailService envio = new EmailService();
+            envio.armarcorreo(emailDestino, nombrePaciente, fechaturno, nombreMedico, apellidoMedico, horaTurno);
+            try
+            {
+                envio.enviarEmail();
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
         }
     }
 }
