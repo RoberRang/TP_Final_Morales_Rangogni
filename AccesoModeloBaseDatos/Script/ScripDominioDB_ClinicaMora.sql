@@ -89,31 +89,28 @@ CREATE TABLE [dbo].[MedicosEspecialidad] (
 GO
 
 CREATE TABLE [dbo].[SituacionTurno] (
-    [IdSituacion] INT  NOT NULL,
-    [Situacion]  VARCHAR (20)NOT NULL,
-    [Estado]         BIT NULL,
+    [IdSituacion]   INT IDENTITY (1, 1) NOT NULL,
+    [Situacion]     VARCHAR (20)NOT NULL,
+    [Estado]        BIT NULL,
     PRIMARY KEY CLUSTERED ([IdSituacion] ASC)
 );
 GO
 
-DROP TABLE turnos
-
 CREATE TABLE [dbo].[Turnos] (
-    [IdTurnos]     INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
-    [IdEmpleado]   INT           NULL,
-    [IdPaciente]   INT           NULL,
-    [FechaReserva] DATETIME      NOT NULL,
-    [Observacion]  VARCHAR (MAX) NOT NULL,
-    [IdSituacion]  INT           NULL,
-    [Estado]       BIT           NOT NULL,
-    [Hora]         INT           NULL
+    [IdTurnos]			INT           IDENTITY (1, 1) NOT NULL,
+    [IdMedico]			INT           NULL,
+    [IdPaciente]		INT           NULL,
+	[IdEspecialidad]	INT           NULL,
+    [FechaReserva]		DATETIME      NOT NULL,
+    [Observacion]		VARCHAR (MAX) NOT NULL,
+    [IdSituacion]		INT           NULL,
+    [Hora]				INT           NULL,
+    PRIMARY KEY CLUSTERED ([IdTurnos] ASC),
+    CONSTRAINT [FK_TurnoIdEmpleado] FOREIGN KEY ([IdMedico]) REFERENCES [dbo].[Empleados] ([Id]),
+    CONSTRAINT [FK_TurnoIdPaciente] FOREIGN KEY ([IdPaciente]) REFERENCES [dbo].[Pacientes] ([IdPaciente]),
+    CONSTRAINT [FK_TurnoIdEspecialidad] FOREIGN KEY ([IdEspecialidad]) REFERENCES [dbo].[Especialidad] ([IdEspecialidad]),
+    CONSTRAINT [FK_TurnoIdSituacion] FOREIGN KEY ([IdSituacion]) REFERENCES [dbo].[SituacionTurno] ([IdSituacion])
 );
-ALTER TABLE [dbo].[Turnos]
-    ADD CONSTRAINT [FK_TurnoIdEmpleado] FOREIGN KEY ([IdEmpleado]) REFERENCES [dbo].[Empleados] ([Id]);
-ALTER TABLE [dbo].[Turnos]
-    ADD CONSTRAINT [FK_TurnoIdPaciente] FOREIGN KEY ([IdPaciente]) REFERENCES [dbo].[Pacientes] ([IdPaciente]);
-ALTER TABLE [dbo].[Turnos]
-    ADD CONSTRAINT [FK_TurnoIdSituacion] FOREIGN KEY ([IdSituacion]) REFERENCES [dbo].[SituacionTurno] (IdSituacion);
 GO
 
 SET IDENTITY_INSERT [dbo].[Perfiles] ON
@@ -153,4 +150,5 @@ SET IDENTITY_INSERT [dbo].[Especialidad] ON
 INSERT INTO [dbo].[Especialidad] ([IdEspecialidad], [Descripcion], [Estado]) VALUES (1, N'Clínica', 1)
 SET IDENTITY_INSERT [dbo].[Especialidad] OFF
 
-SELECT * FROM Empleados
+SELECT * FROM Empleados;
+SELECT * FROM Usuarios;

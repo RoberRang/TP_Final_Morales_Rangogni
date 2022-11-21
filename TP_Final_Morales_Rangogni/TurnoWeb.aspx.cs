@@ -5,6 +5,7 @@ using ModeloDeNegocio.Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -21,12 +22,40 @@ namespace TP_Final_Morales_Rangogni
             {
                 CargarDropDawnListEspecialidad();
                 CargarFecha();
+                CargarGrillaTurnos();
             }
         }
 
         private void CargarFecha()
         {
             txtFechaTurno.Text = DateTime.Now.ToString("d");
+            txtFechaGrd.Text = DateTime.Today.ToString("d");
+        }
+
+        private void CargarGrillaTurnos()
+        {
+            try
+            {
+                TurnoNegocio turnoNegocio = new TurnoNegocio();
+                ModeloGrillaTurnosWeb modeloGrillaTurnosWeb = new ModeloGrillaTurnosWeb();
+                DateTime dFechaTurno = DateTime.Today;
+                if (!IsPostBack)
+                    dFechaTurno = Convert.ToDateTime(txtFechaGrd.Text);
+                DataTable dtTurnos = turnoNegocio.DataTableTurnosFecha(dFechaTurno);
+                List<ModeloTurnoWeb> gvTurnos = modeloGrillaTurnosWeb.ObtenerListaTurnosWebDataTable(dtTurnos);
+
+                if (Session["TurnosWeb"] != null)
+                    Session.Remove("TurnosWeb");
+
+                Session.Add("TurnosGrdWeb", gvTurnos);
+                dgvTurnos.DataSource = gvTurnos;
+                dgvTurnos.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
         }
 
         protected void btnAcept_Click(object sender, EventArgs e)
@@ -38,7 +67,7 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("MensajeError", "El Turno no se pudo ingresar");
                 Response.Redirect("ErrorWeb.aspx", false);
             }
-            EnviarTurnoCorreo(turno);
+            //EnviarTurnoCorreo(turno); <--Revisar
 
             LimpiarControles();
         }
@@ -92,9 +121,9 @@ namespace TP_Final_Morales_Rangogni
                 nuevoTurno.IdPaciente = paciente.IdPaciente;
                 nuevoTurno.FechaReserva = Convert.ToDateTime(fechaTurno);
                 nuevoTurno.Hora = Convert.ToInt32(ddlHorasTurnos.SelectedValue);
-                nuevoTurno.IdEmpleado = Convert.ToInt32(ddlMedico.SelectedValue);
+                nuevoTurno.IdMedico = Convert.ToInt32(ddlMedico.SelectedValue);
+                nuevoTurno.IdEspecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
                 nuevoTurno.IdSituacion = 1;
-                nuevoTurno.Estado = true;
                 nuevoTurno.Observacion = txtObservaciones.Text.Trim();
 
             }
@@ -118,6 +147,12 @@ namespace TP_Final_Morales_Rangogni
                 ddlEspecialidad.DataBind();
                 ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
                 ddlEspecialidad.SelectedIndex = 0;
+                ddlEspGrd.DataSource = especialidades;
+                ddlEspGrd.DataValueField = "IdEspecialidad";
+                ddlEspGrd.DataTextField = "Descripcion";
+                ddlEspGrd.DataBind();
+                ddlEspGrd.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+                ddlEspGrd.SelectedIndex = 0;
                 Session.Add("Especialiadades", especialidades);
             }
             catch (Exception ex)

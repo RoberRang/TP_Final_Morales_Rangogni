@@ -9,27 +9,27 @@ namespace AccesoModeloBaseDatos.Dominio
     public class Turno
     {
         public int IdTurno { get; set; }
-        public int IdEmpleado { get; set; }
+        public int IdMedico { get; set; }
         public int IdPaciente { get; set; }
+        public int IdEspecialidad { get; set; }
         public DateTime FechaReserva { get; set; }
         public string Observacion { get; set; }
         public int IdSituacion { get; set; }
-        public bool Estado { get; set; }
         public int Hora { get; set; }
 
-        public Turno() : this(0, 0, 0, DateTime.Now, "", 0, false, 0)
+        public Turno() : this(0, 0, 0, 0, DateTime.Now, "", 0, 0)
         {
         }
 
-        public Turno(int idTurno, int idEmp, int idPaciente, DateTime fechaReserva, string observacion, int idSituacion, bool estado, int hora)
+        public Turno(int idTurno, int idMedico, int idPaciente, int idEspecialidad, DateTime fechaReserva, string observacion, int idSituacion, int hora)
         {
             this.IdTurno = idTurno;            
-            this.IdEmpleado = idEmp;
+            this.IdMedico = idMedico;
             this.IdPaciente = idPaciente;
+            this.IdEspecialidad = idEspecialidad;
             this.FechaReserva = fechaReserva;
             this.Observacion = observacion;
             this.IdSituacion= idSituacion;
-            this.Estado = estado;
             this.Hora = hora;
         }
     }

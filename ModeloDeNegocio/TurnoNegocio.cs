@@ -3,6 +3,7 @@ using AccesoModeloBaseDatos.Modelos;
 using ModeloDeNegocio.Negocio;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -21,6 +22,11 @@ namespace ModeloDeNegocio
         public List<Turno> ListaTurnos(int IdMedico, DateTime fechaTurno)
         {
             return turnoADO.ListarTurnosMedicoFecha(IdMedico, fechaTurno);
+        }
+
+        public DataTable DataTableTurnosFecha(DateTime fechaTurno)
+        {
+            return turnoADO.DataTableTurnosFecha(fechaTurno);
         }
 
         public bool GrabarTurno(Turno turno)

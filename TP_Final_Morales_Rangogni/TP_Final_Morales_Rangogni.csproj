@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="DominioWeb\ModeloGrillaTurnosWeb.cs" />
     <Compile Include="DominioWeb\ModeloPacienteWeb.cs" />
     <Compile Include="AltaSinUsuarioWeb.aspx.cs">
       <DependentUpon>AltaSinUsuarioWeb.aspx</DependentUpon>
@@ -265,6 +266,7 @@
     <Compile Include="AltaSinUsuarioWeb.aspx.designer.cs">
       <DependentUpon>AltaSinUsuarioWeb.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DominioWeb\ModeloTurnoWeb.cs" />
     <Compile Include="EmpleadoWeb.aspx.cs">
       <DependentUpon>EmpleadoWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
