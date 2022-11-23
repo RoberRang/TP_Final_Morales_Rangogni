@@ -54,7 +54,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     sql = sql.Replace("@IdEmpleado", turno.IdMedico.ToString());
                     sql = sql.Replace("@IdPaciente", turno.IdPaciente.ToString());
                     sql = sql.Replace("@IdEspecialidad", turno.IdEspecialidad.ToString());
-                    sql = sql.Replace("@FechaReserva", "'" + turno.FechaReserva.ToString("yyyy-MM-dd hh:mm:ss") + "'");
+                    sql = sql.Replace("@FechaReserva", "'" + turno.FechaReserva.ToString("yyyy-MM-ddThh:mm:ss") + "'");
                     sql = sql.Replace("@Observacion", "'" + turno.Observacion.Trim() + "'");
                     sql = sql.Replace("@IdSituacion", turno.IdSituacion.ToString());
                     sql = sql.Replace("@Hora", turno.Hora.ToString());
@@ -85,7 +85,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     sql = sql.Replace("@IdTurnos", turno.IdTurno.ToString());
                     sql = sql.Replace("@IdEspecialidad", turno.IdEspecialidad.ToString());
                     sql = sql.Replace("@IdPaciente", turno.IdPaciente.ToString());
-                    sql = sql.Replace("@FechaReserva", "'" + turno.FechaReserva.ToString("yyyy-MM-dd hh:mm:ss") + "'");
+                    sql = sql.Replace("@FechaReserva", "'" + turno.FechaReserva.ToString("yyyy-MM-ddThh:mm:ss") + "'");
                     sql = sql.Replace("@Observacion", turno.Observacion.Trim());
                     sql = sql.Replace("@IdSituacion", turno.IdSituacion.ToString());
                     sql = sql.Replace("@Hora", turno.Hora.ToString());

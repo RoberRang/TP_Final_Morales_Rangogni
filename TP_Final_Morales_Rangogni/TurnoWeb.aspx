@@ -36,7 +36,6 @@
                                 <div class="input-field col s6">
                                     <asp:TextBox ID="txtApellido" runat="server" Enabled="false" placeholder="Apellido"></asp:TextBox>
                                 </div>
-
                             </div>
                         </div>
                         <!--Telefono -->
@@ -62,7 +61,7 @@
                                     <asp:DropDownList ID="ddlMedico" runat="server" CssClass="dropdown-trigger btn purple white-text" AutoPostBack="true" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" Style="margin-top: 5px" data-activates="ddlMedico" data-target="ddlTurnos" />
                                 </div>
                                 <div class="input-field col s3 left-align">
-                                    <asp:TextBox ID="txtFechaTurno" runat="server" AutoPostBack="true" CssClass="date-text" placeholder="Fecha para el turno"></asp:TextBox>
+                                    <asp:TextBox ID="txtFechaTurno" runat="server" AutoPostBack="true" CssClass="purple white-text center-align" TextMode="Date" Style="margin-top: 5px" placeholder="Fecha para el turno"></asp:TextBox>
                                 </div>
                                 <div class="col s1 waves-effect small waves-light btn-small purple">
                                     <i class="material-icons left-align">search</i>
@@ -104,7 +103,7 @@
                             <div class="col s12">
                                 <div class="row">
                                     <div class="input-field col s3 left-align">
-                                        <asp:TextBox ID="txtFechaGrd" runat="server" AutoPostBack="true" CssClass="date-text" placeholder="Fecha de Turno"></asp:TextBox>
+                                        <asp:TextBox ID="txtFechaGrd" runat="server" AutoPostBack="true" CssClass="dropdown-trigger purple white-text center-align" TextMode="Date" Style="margin-top: 5px" placeholder="Fecha de Turno"></asp:TextBox>
                                     </div>
                                     <div class="col s4 left-align">
                                         <asp:Label runat="server" AssociatedControlID="ddlEspGrd" ID="lblEsp" for="ddlEspGrd">Especialidad</asp:Label>
