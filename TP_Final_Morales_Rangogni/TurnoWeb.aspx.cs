@@ -298,5 +298,11 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
+
+        protected void mnTurnos_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            int index = Convert.ToInt32(e.Item.Value);
+            mvwTurnos.ActiveViewIndex = index;
+        }
     }
 }
