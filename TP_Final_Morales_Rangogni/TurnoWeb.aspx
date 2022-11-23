@@ -69,7 +69,7 @@
                     <div class="col s12">
                         <div class="row">
                             <div class="input-field col s1">
-                                <asp:TextBox ID="txtCantTurnos" Enabled="false" runat="server" CssClass="validate" placeholder="Total"></asp:TextBox>
+                                <asp:TextBox ID="txtCantTurnos" Enabled="false" runat="server" CssClass="validate" placeholder="Disp."></asp:TextBox>
                             </div>
                             <div class="col s2 left-align">
                                 <label id="lblTurno" for="ddlHorasTurnos">Hora</label>
