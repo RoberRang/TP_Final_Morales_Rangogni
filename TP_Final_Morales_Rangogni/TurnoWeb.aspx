@@ -9,14 +9,13 @@
             <a href="#Turnos">TURNOS</a>
         </div>
 
-        <asp:UpdatePanel runat="server">
+        <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upNuevoTurno">
             <ContentTemplate>
                 <!--SOLAPA NUEVO TURNO-->
                 <div class="content">
                     <div class="row">
                         <div class="input-field left-align col s6">
-                            <asp:TextBox ID="txtDni" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
-                            <label for="lblDniPac">Nº Documento</label>
+                            <asp:TextBox ID="txtDni" runat="server" placeholder="Documento"></asp:TextBox>                            
                         </div>
                         <div class="col s1 waves-effect purple waves-light btn-small">
                             <i class="material-icons">cached</i>
@@ -27,13 +26,11 @@
                     <div class="col s12">
                         <div class="row">
                             <div class="input-field col s6">
-                                <asp:TextBox ID="txtnombre" runat="server" CssClass="validate" Enabled="false" placeholder=""></asp:TextBox>
-                                <label for="lblNombre">Nombre</label>
+                                <asp:TextBox ID="txtnombre" runat="server" Enabled="false" placeholder="Nombre"></asp:TextBox>
                             </div>
                             <!--Apellido -->
                             <div class="input-field col s6">
-                                <asp:TextBox ID="txtApellido" runat="server" CssClass="validate" Enabled="false" placeholder=""></asp:TextBox>
-                                <label for="lblApellido">Apellido</label>
+                                <asp:TextBox ID="txtApellido" runat="server" Enabled="false" placeholder="Apellido"></asp:TextBox>
                             </div>
 
                         </div>
@@ -42,13 +39,11 @@
                     <div class="col s12">
                         <div class="row">
                             <div class="input-field col s6">
-                                <asp:TextBox ID="txtTelefono" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
-                                <label for="lblTelefono">Telefono</label>
+                                <asp:TextBox ID="txtTelefono" runat="server" CssClass="validate" placeholder="Telefono"></asp:TextBox>
                             </div>
                             <!--Email -->
                             <div class="input-field col s6">
-                                <asp:TextBox ID="txtEmail" runat="server" CssClass="validate" TextMode="Email" placeholder=""></asp:TextBox>
-                                <label for="lblEmail">Correo Electronico</label>
+                                <asp:TextBox ID="txtEmail" runat="server" CssClass="validate" TextMode="Email" placeholder="Correo Electronico"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -63,8 +58,7 @@
                                 <asp:DropDownList ID="ddlMedico" runat="server" CssClass="dropdown-trigger btn purple white-text" AutoPostBack="true" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" Style="margin-top: 5px" data-activates="ddlMedico" data-target="ddlTurnos" />
                             </div>
                             <div class="input-field col s3 left-align">
-                                <label id="lblFecTurno" for="txtFechaTurno">Fecha del Turno</label>
-                                <asp:TextBox ID="txtFechaTurno" runat="server" AutoPostBack="true" CssClass="date-text"></asp:TextBox>
+                                <asp:TextBox ID="txtFechaTurno" runat="server" AutoPostBack="true" CssClass="date-text" placeholder="Fecha para el turno" ></asp:TextBox>
                             </div>
                             <div class="col s1 waves-effect small waves-light btn-small purple">
                                 <i class="material-icons left-align">search</i>
@@ -75,16 +69,14 @@
                     <div class="col s12">
                         <div class="row">
                             <div class="input-field col s1">
-                                <asp:TextBox ID="txtCantTurnos" Enabled="false" runat="server" CssClass="validate"></asp:TextBox>
-                                <label for="txtCantTurnos">Total</label>
+                                <asp:TextBox ID="txtCantTurnos" Enabled="false" runat="server" CssClass="validate" placeholder="Total"></asp:TextBox>
                             </div>
                             <div class="col s2 left-align">
                                 <label id="lblTurno" for="ddlHorasTurnos">Hora</label>
                                 <asp:DropDownList ID="ddlHorasTurnos" runat="server" CssClass="dropdown-trigger btn purple white-text" data-activates="ddlHorasTurnos" />
                             </div>
                             <div class="input-field col s9">
-                                <asp:TextBox ID="txtObservaciones" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
-                                <label for="lblObservaciones">Observaciones</label>
+                                <asp:TextBox ID="txtObservaciones" runat="server" CssClass="validate" placeholder="Observaciones"></asp:TextBox>
                             </div>
                         </div>
                     </div>

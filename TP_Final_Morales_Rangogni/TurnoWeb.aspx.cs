@@ -244,6 +244,12 @@ namespace TP_Final_Morales_Rangogni
             TurnoNegocio turnoNegocio = new TurnoNegocio();
             try
             {
+                if (!ControlMedicoFecha())
+                {
+                    ddlMedico.Focus();
+                    return;
+                }
+
                 List<int> horasTurnos = turnoNegocio.TurnosMedicoFecha(Convert.ToInt32(ddlMedico.SelectedValue), Convert.ToDateTime(txtFechaTurno.Text.Trim()));
                 txtCantTurnos.Text = horasTurnos.Count.ToString();
                 txtCantTurnos.DataBind();
@@ -259,6 +265,15 @@ namespace TP_Final_Morales_Rangogni
             }
 
         }
+
+        private bool ControlMedicoFecha()
+        {
+            bool ok;
+            ok = Convert.ToInt32(ddlMedico.SelectedValue) > 0 ? true : false;
+            ok = ok && !txtFechaTurno.Text.Equals("");
+            return ok;
+        }
+
         private void EnviarTurnoCorreo(Turno turno)
         {
             ///Para probar que el envio fue correcto ingresar a gmail user: progamationiiigmail.com y pass: programacion3
