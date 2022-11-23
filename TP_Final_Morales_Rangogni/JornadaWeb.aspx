@@ -3,23 +3,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentLogin" runat="server">
-    <div class="header bg-blue">
-        <h4 class="left-align">Jornadas</h4>
-    </div>
-    <div class="body bg-gray">  
-         <asp:GridView ID="dgvJornadas" CssClass="highlight responsive-table" runat="server"></asp:GridView>
-        <div class="waves-effect purple waves-light btn-floating btn-small">
-            <i class="material-icons">cached</i>
-            <asp:Button runat="server" ID="btnVerJornadas" CssClass="btn-floating" OnClick="btnVerJornadas_Click" Text="Perfiles &raquo;" />
+    <div class="content">
+        <div class="header bg-blue">
+            <h4 class="left-align">Jornadas</h4>
         </div>
-        <div class="row">
-            <div class="col s12 right-align">
-                <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="limpiarModal('NUEVO')" href="#modalAdd"><i class="material-icons">add</i></a>
-                <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="cargarModal('ACTUALIZA')" href="#modalAdd"><i class="material-icons">border_color</i></a>
-                <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="cargarModal('ELIMINA')" href="#modalAdd"><i class="material-icons">delete_forever</i></a>
+        <div class="body bg-gray">
+            <asp:GridView ID="dgvJornadas" CssClass="highlight responsive-table" runat="server"></asp:GridView>
+            <div class="waves-effect purple waves-light btn-floating btn-small">
+                <i class="material-icons">cached</i>
+                <asp:Button runat="server" ID="btnVerJornadas" CssClass="btn-floating" OnClick="btnVerJornadas_Click" Text="Perfiles &raquo;" />
+            </div>
+            <div class="row">
+                <div class="col s12 right-align">
+                    <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="limpiarModal('NUEVO')" href="#modalAdd"><i class="material-icons">add</i></a>
+                    <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="cargarModal('ACTUALIZA')" href="#modalAdd"><i class="material-icons">border_color</i></a>
+                    <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="cargarModal('ELIMINA')" href="#modalAdd"><i class="material-icons">delete_forever</i></a>
+                </div>
             </div>
         </div>
-
         <!-- Modal Structure -->
         <div id="modalAdd" class="modal">
             <div class="modal-content">
