@@ -42,13 +42,13 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.View vwTurno;
 
         /// <summary>
-        /// Control upNuevoTurno.
+        /// Control upVerPacientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upNuevoTurno;
+        protected global::System.Web.UI.UpdatePanel upVerPacientes;
 
         /// <summary>
         /// Control txtfiltro.
@@ -58,15 +58,6 @@ namespace TP_Final_Morales_Rangogni
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtfiltro;
-
-        /// <summary>
-        /// Control btnVerPac.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVerPac;
 
         /// <summary>
         /// Control dgvPacientes.
@@ -87,13 +78,13 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.View View1;
 
         /// <summary>
-        /// Control udpGrillaTurnos.
+        /// Control udpNuevoPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel udpGrillaTurnos;
+        protected global::System.Web.UI.UpdatePanel udpNuevoPaciente;
 
         /// <summary>
         /// Control imgPaciente.
@@ -285,13 +276,13 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.DropDownList ddlEdGenero;
 
         /// <summary>
-        /// Control chbEdEstado.
+        /// Control ddlEdEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chbEdEstado;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEdEstado;
 
         /// <summary>
         /// Control txtEdFnac.

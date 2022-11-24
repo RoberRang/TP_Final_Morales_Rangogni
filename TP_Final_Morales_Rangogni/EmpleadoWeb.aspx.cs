@@ -185,5 +185,10 @@ namespace TP_Final_Morales_Rangogni
             dgEmpleados.DataSource = filtroRapido;
             dgEmpleados.DataBind();
         }
+
+        protected void mnEmpleados_MenuItemClick(object sender, MenuEventArgs e)
+        {
+
+        }
     }
 }

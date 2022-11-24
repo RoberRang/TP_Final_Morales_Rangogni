@@ -17,32 +17,28 @@
     <div class="content ">
         <asp:MultiView runat="server" ID="mvwPacientes" ActiveViewIndex="0">
             <asp:View ID="vwTurno" runat="server">
-                <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upNuevoTurno">
+                <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upVerPacientes">
                     <ContentTemplate>
 
                         <div class="row">
 
                             <asp:Label Text="Filtrar" runat="server" CssClass="active" />
-                            <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="filtro_TextChanged"></asp:TextBox>
+                            <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="filtro_TextChanged" placeholder="Filtre por nombre de paciente "></asp:TextBox>
                         </div>
-                        <div class="col-md-5 right-align">
-                            <br />
-                            <asp:Button runat="server" ID="btnVerPac" CssClass="btn btn-default" OnClick="btnVerPac_Click" Text="Ver todos &raquo;" />
-                            <br />
-                            <br />
-                            <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table"
-                                runat="server" AutoGenerateColumns="false" DataKeyNames="IdPaciente"
-                                OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged">
-                                <Columns>
-                                    <asp:BoundField HeaderText="Nombre" DataField="Nombres" />
-                                    <asp:BoundField HeaderText="Apellido" DataField="Apellidos" />
-                                    <asp:BoundField HeaderText="Dni" DataField="NroDocumento" />
-                                    <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-                                    <asp:BoundField HeaderText="Email" DataField="Email" />
-                                    <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="🔥" />
 
-                                </Columns>
-                            </asp:GridView>
+                        <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table"
+                            runat="server" AutoGenerateColumns="false" DataKeyNames="IdPaciente"
+                            OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged">
+                            <Columns>
+                                <asp:BoundField HeaderText="Nombre" DataField="Nombres" />
+                                <asp:BoundField HeaderText="Apellido" DataField="Apellidos" />
+                                <asp:BoundField HeaderText="Dni" DataField="NroDocumento" />
+                                <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
+                                <asp:BoundField HeaderText="Email" DataField="Email" />
+                                <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="🔥" />
+
+                            </Columns>
+                        </asp:GridView>
                         </div>
 
                     </ContentTemplate>
@@ -52,7 +48,7 @@
 
             <!--Solapa NUEVO PACIENTE-->
             <asp:View ID="View1" runat="server">
-                <asp:UpdatePanel runat="server" ID="udpGrillaTurnos" UpdateMode="Conditional">
+                <asp:UpdatePanel runat="server" ID="udpNuevoPaciente" UpdateMode="Conditional">
 
                     <ContentTemplate>
 
@@ -183,14 +179,14 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                         <!---Fin MODAL Guardar-->
 
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </asp:View>
-          <!---EDITAR PACIENTE-->
+            <!---EDITAR PACIENTE-->
             <asp:View ID="View3" runat="server">
                 <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Conditional">
 
@@ -269,28 +265,25 @@
                                     <label for="lblEdGenero">Genero</label>
                                     <br />
                                     <br />
-                                    <asp:DropDownList ID="ddlEdGenero" runat="server" CssClass="dropdown-trigger btn purple waves-light" Style="margin-top: 10px" href="#" data-activates="drpdEstado" data-target="drpdEstado">
+                                    <asp:DropDownList ID="ddlEdGenero" runat="server" CssClass="dropdown-trigger btn purple waves-light" Style="margin-top: 10px" href="#" data-activates="drpdGenero" data-target="drpdGenero">
                                         <asp:ListItem Text="Masculino" />
                                         <asp:ListItem Text="Femenino" />
                                         <asp:ListItem Text="Otro" />
                                     </asp:DropDownList>
                                 </div>
-
-                                <div class="input-field col s4 center-align">
+                                <!--NUEVO CONTROL--->
+                                <div class="input-field col s4 left-align">
                                     <label for="lblEdEstado">Estado</label>
                                     <br />
                                     <br />
-                                    <div class="switch">
-                                        <label>
-                                            INACTIVO
-                                            <asp:CheckBox ID="chbEdEstado" runat="server"/>
-                                            <span class="lever"></span>
-                                            ACTIVO
-                                        </label>
-                                    </div>
+                                    <asp:DropDownList ID="ddlEdEstado" runat="server" CssClass="dropdown-trigger btn purple waves-light" Style="margin-top: 10px" href="#" data-activates="drpdEstado" data-target="drpdEstado">
+                                        <asp:ListItem Text="Activo" />
+                                        <asp:ListItem Text="Inactivo" />
+                                    </asp:DropDownList>
                                 </div>
+                                <!--FIN-->
                                 <!--Fecha Nacimiento-->
-                                 <div class="input-field col s4 right-align">
+                                <div class="input-field col s4 right-align">
                                     <label for="lblEdFnac">Fecha de Nacimiento</label>
                                     <br />
                                     <br />
@@ -301,13 +294,13 @@
                             </div>
                         </div>
                         <!---MODAL GUARDAR--->
-                            <!---MODAL GUARDAR--->
+                        <!---MODAL GUARDAR--->
 
                         <div class="row">
                             <!-- Modal Trigger -->
                             <div class="center-align">
                                 <a class=" btn modal-trigger purple" href="#modal2">Guardar</a>
-                                 <a class=" btn modal-trigger purple" runat="server" href="~/PacienteWeb">Cancelar</a>
+                                <a class=" btn modal-trigger purple" runat="server" href="~/PacienteWeb">Cancelar</a>
                             </div>
                             <div id="modal2" class="modal">
                                 <div class="modal-content">

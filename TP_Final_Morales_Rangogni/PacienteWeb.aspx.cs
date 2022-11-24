@@ -95,12 +95,7 @@ namespace TP_Final_Morales_Rangogni
                 textBox.Focus();
             }
             return valido;
-        }
-
-        protected void btnVerPac_Click(object sender, EventArgs e)
-        {
-
-        }
+        }    
 
         protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -116,15 +111,8 @@ namespace TP_Final_Morales_Rangogni
             txtEdImagen.Text = filtroRapido.Imagen;
             txtEdFnac.Text = filtroRapido.FechaNacimiento;
             ddlEdGenero.Text = filtroRapido.Sexo;
-            if (filtroRapido.Estado == "Activo")
-            {
-                chbEdEstado.Checked = true;
-            }
-            else
-            {
-                chbEdEstado.Checked = false;
-            }
-
+            ddlEdEstado.Text = filtroRapido.Estado;
+            
             ///Response.Redirect("PacienteWeb#NuevoPaciente?id=" + id);// SI MANDO ID VOY A MODIFICAR SI NO VIENE ES POR QUE DOY DE ALTA
         }
 
