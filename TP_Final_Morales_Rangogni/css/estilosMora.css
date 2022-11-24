@@ -52,7 +52,7 @@ section {
 }
 
 .tab-bar {
-    height: 50px;
+    height: 60px;
     width: 100%;
     max-width: 1000px;
     display: -webkit-box;
@@ -81,8 +81,8 @@ section {
         flex-grow: 1;
         border-right: 1px solid lightgrey;
         border-top: 1px solid lightgrey;
-        border-top-left-radius: 14px;
-        border-top-right-radius: 14px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
         -webkit-tap-highlight-color: transparent;
     }
 
@@ -107,6 +107,8 @@ CONTENT
 /////////////////////////////////*/
 .content {
     background-color: var(--tab-body-color);
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
     border-left: 1px solid lightgrey;
     border-right: 1px solid lightgrey;
     max-width: 1000px;
@@ -153,6 +155,7 @@ span {
     color: var(--icon-color);
     font-size: 30px;
     padding-left: 10px;
+    
 }
 
 article {
