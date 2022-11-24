@@ -26,7 +26,7 @@ namespace TP_Final_Morales_Rangogni.DominioWeb
             FechaNacimiento = paciente.FechaNacimiento.ToString("dd-MM-yyyy");
             Sexo= paciente.Sexo;
             FechaAlta= paciente.FechaAlta.ToString("dd-MM-yyyy");
-            Estado = Convert.ToString(paciente.Estado?"Activo":"Inactivo");
+            Estado = Convert.ToString(paciente.Estado?"Inactivo":"Activo");
             Telefono = paciente.Telefono; 
             Email= paciente.Email;
             Imagen= paciente.Imagen;

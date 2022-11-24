@@ -20,12 +20,3 @@ function resetTabs() {
     }
 }
 
-function checkTab(e) {
-    if (e.keyCode === 9) {
-        for (let i = 0; i < tabBars.length; i++) {
-            tabBars[i].classList.add('show-outline')
-        }
-        window.removeEventListener('keydown', checkTab);
-    }
-}
-window.addEventListener('keydown', checkTab);

@@ -108,7 +108,7 @@
     <Content Include="Imagenes\cancel_black_36dp.jpg" />
     <Content Include="Imagenes\save_as_opsz48.jpg" />
     <Content Include="JornadaWeb.aspx" />
-    <Content Include="js\tabfunciones.js" />
+    <Content Include="js\tabfunciones1.js" />
     <Content Include="MedicoWeb.aspx" />
     <Content Include="PacienteWeb.aspx" />
     <Content Include="PerfilWeb.aspx" />

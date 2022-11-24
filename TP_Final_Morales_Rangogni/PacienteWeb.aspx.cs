@@ -3,6 +3,7 @@ using ModeloDeNegocio.Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Services.Description;
 using System.Web.UI;
@@ -18,7 +19,8 @@ namespace TP_Final_Morales_Rangogni
             if (!IsPostBack)
             {
                 buscarPacientesWeb();
-            }
+            }           
+          
         }
 
         protected void btnAcept_Click(object sender, EventArgs e)
@@ -102,8 +104,28 @@ namespace TP_Final_Morales_Rangogni
 
         protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id = dgvPacientes.SelectedDataKey.Value.ToString();
-            Response.Redirect("PacienteWeb#NuevoPaciente?id=" + id);// SI MANDO ID VOY A MODIFICAR SI NO VIENE ES POR QUE DOY DE ALTA
+            int id = (int)dgvPacientes.SelectedDataKey.Value;
+            mvwPacientes.ActiveViewIndex = 2;
+            List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
+            ModeloPacienteWeb filtroRapido = filtro.Find(x => x.IdPaciente.Equals(id));
+            txtEdNombre.Text = filtroRapido.Nombres;
+            txtEdApellido.Text = filtroRapido.Apellidos;
+            txtEdDni.Text = filtroRapido.NroDocumento;
+            txtEdEmail.Text= filtroRapido.Email;           
+            txtEdtelefono.Text=filtroRapido.Telefono;
+            txtEdImagen.Text = filtroRapido.Imagen;
+            txtEdFnac.Text = filtroRapido.FechaNacimiento;
+            ddlEdGenero.Text = filtroRapido.Sexo;
+            if (filtroRapido.Estado == "Activo")
+            {
+                chbEdEstado.Checked = true;
+            }
+            else
+            {
+                chbEdEstado.Checked = false;
+            }
+
+            ///Response.Redirect("PacienteWeb#NuevoPaciente?id=" + id);// SI MANDO ID VOY A MODIFICAR SI NO VIENE ES POR QUE DOY DE ALTA
         }
 
         protected void filtro_TextChanged(object sender, EventArgs e)
@@ -127,6 +149,13 @@ namespace TP_Final_Morales_Rangogni
             dgvPacientes.DataBind();
 
         }
+
+        protected void mnPaciente_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            int index = Convert.ToInt32(e.Item.Value);
+            mvwPacientes.ActiveViewIndex = index;
+        }
+
     }
 }
 

@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentLogin" runat="server">
     <div>
-        <asp:Menu runat="server" ID="mnTurnos" Orientation="Horizontal" OnMenuItemClick="mnTurnos_MenuItemClick" CssClass="tab-bar">
+        <asp:Menu runat="server" ID="mnTurnos" Orientation="Horizontal" OnMenuItemClick="mnTurnos_MenuItemClick" CssClass="tab-bar a">
             <Items>
                 <asp:MenuItem Text="Nuevo Turno" Value="0" Selected="true"></asp:MenuItem>
                 <asp:MenuItem Text="Ver Turnos" Value="1"></asp:MenuItem>
