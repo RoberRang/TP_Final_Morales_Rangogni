@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="TurnoWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.TurnoWeb" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="TurnoWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.TurnoWeb" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -8,12 +8,13 @@
             <Items>
                 <asp:MenuItem Text="Nuevo Turno" Value="0" Selected="true"></asp:MenuItem>
                 <asp:MenuItem Text="Ver Turnos" Value="1"></asp:MenuItem>
+                <asp:MenuItem Text="Editar Turnos" Value="2"></asp:MenuItem>
             </Items>
         </asp:Menu>
     </div>
     <div class="content ">
         <asp:MultiView runat="server" ID="mvwTurnos" ActiveViewIndex="0">
-            <asp:View ID="vwTurno" runat="server">
+            <asp:View ID="View0" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upNuevoTurno">
                     <ContentTemplate>
                         <!--SOLAPA NUEVO TURNO-->
@@ -106,22 +107,22 @@
                                         <asp:TextBox ID="txtFechaGrd" runat="server" AutoPostBack="true" CssClass="dropdown-trigger purple white-text center-align" TextMode="Date" Style="margin-top: 5px" placeholder="Fecha de Turno"></asp:TextBox>
                                     </div>
                                     <div class="col s4 left-align">
-                                        <asp:Label runat="server" AssociatedControlID="ddlEspGrd" ID="lblEsp" for="ddlEspGrd">Especialidad</asp:Label>
-                                        <asp:DropDownList ID="ddlEspGrd" runat="server" CssClass="dropdown-trigger btn purple white-text" Style="margin-top: 5px" AutoPostBack="true" data-activates="ddlEspGrd" data-target="ddlMedGrd" />
+                                        <asp:Label runat="server" ID="lblPacienteGrd" AssociatedControlID="txtfiltroPaciente">Paciente</asp:Label>
+                                        <asp:TextBox ID="txtfiltroPaciente" runat="server" CssClass="input-field" AutoPostBack="true"></asp:TextBox>
                                     </div>
                                     <div class="col s4 left-align">
-                                        <asp:Label runat="server" ID="lblMedGrd" AssociatedControlID="ddlMedGrd" for="ddlMedGrd">Especialista</asp:Label>
-                                        <asp:DropDownList ID="ddlMedGrd" runat="server" CssClass="dropdown-trigger btn purple white-text" AutoPostBack="true" Style="margin-top: 5px" data-activates="ddlMedico" />
+                                        <asp:Label runat="server" ID="lblMedGrd" AssociatedControlID="txtFiltroMedico">Medico</asp:Label>
+                                        <asp:TextBox ID="txtFiltroMedico" runat="server" CssClass="input-field" AutoPostBack="true"></asp:TextBox>
                                     </div>
                                     <div class="col s1 waves-effect small waves-light btn-small purple">
                                         <i class="material-icons left-align">search</i>
-                                        <asp:Button runat="server" ID="btnCargaGrd" CssClass="col s1 right-align btn-large purple" />
+                                        <asp:Button runat="server" ID="btnCargaGrd" OnClick="btnCargaGrd_Click" CssClass="col s1 right-align btn-large purple" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="body bg-gray">
-                            <asp:GridView ID="dgvTurnos" CssClass="highlight responsive-table" AutoGenerateColumns="false" runat="server">
+                            <asp:GridView ID="dgvTurnos" CssClass="highlight responsive-table" DataKeyNames="IdTurno" AutoGenerateColumns="false" runat="server" OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged">
                                 <Columns>
                                     <asp:BoundField HeaderText="Paciente" DataField="NombrePaciente" />
                                     <asp:BoundField HeaderText="Medico" DataField="NombreMedico" />
@@ -136,6 +137,15 @@
                                     <asp:Button runat="server" ID="btnCargarTurnos" CssClass="col s1 right-align btn-large purple" Text="Perfiles &raquo;" />
                                 </div>
                             </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </asp:View>
+            <asp:View ID="View2" runat="server">
+                <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="UpdatePanel1">
+                    <ContentTemplate>
+                        <div class="input-field col s9">
+                            <asp:TextBox ID="txtDetalleTurno" runat="server" CssClass="validate" placeholder="Detalle"></asp:TextBox>
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
