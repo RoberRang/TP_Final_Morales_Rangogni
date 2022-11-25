@@ -288,7 +288,7 @@
                                     <br />
                                     <br />
                                     <asp:TextBox ID="txtEdFnac" runat="server" CssClass="purple white-text center-align" TextMode="Date" placeholder=""></asp:TextBox>
-
+                                   
                                 </div>
 
                             </div>

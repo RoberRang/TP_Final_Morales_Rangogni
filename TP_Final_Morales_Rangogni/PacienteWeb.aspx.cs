@@ -129,6 +129,7 @@ namespace TP_Final_Morales_Rangogni
             mvwPacientes.ActiveViewIndex = 2;
             List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
             ModeloPacienteWeb filtroRapido = filtro.Find(x => x.IdPaciente.Equals(id));
+            IdPaciente.Text = id.ToString();
             txtEdNombre.Text = filtroRapido.Nombres;
             txtEdApellido.Text = filtroRapido.Apellidos;
             txtEdDni.Text = filtroRapido.NroDocumento;

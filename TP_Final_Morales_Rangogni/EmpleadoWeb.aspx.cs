@@ -181,9 +181,21 @@ namespace TP_Final_Morales_Rangogni
             txtEdNombre.Text = filtroEmpleado.Nombres;
             txtEdApellido.Text = filtroEmpleado.Apellidos;
             txtEdDni.Text = filtroEmpleado.NroDocumento;
-           
+          
 
+            JornadaNegocio jornadaNegocio = new JornadaNegocio();
+            ddlEdJornada.DataSource = jornadaNegocio.ListarJornadas();
+            ddlEdJornada.DataValueField = "IdJornada";
+            ddlEdJornada.DataTextField = "descripcion";
+            ddlEdJornada.DataBind();
+            ddlEdJornada.SelectedValue = filtroEmpleado.idJornada.ToString();
 
+            PerfilNegocio perfilNegocio = new PerfilNegocio();
+            ddlEdPerfil.DataSource = perfilNegocio.Perliles();
+            ddlEdPerfil.DataValueField = "idPerfil";
+            ddlEdPerfil.DataTextField = "descripcion";
+            ddlEdPerfil.DataBind();
+            ddlEdPerfil.SelectedValue= filtroEmpleado.idPerfil.ToString();
 
         }
 
