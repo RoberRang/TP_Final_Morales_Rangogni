@@ -64,6 +64,8 @@ namespace TP_Final_Morales_Rangogni
         {
             TurnoNegocio turnoNegocio = new TurnoNegocio();
             Turno turno = ControlCamposCompletosTurno();
+            if (turno == null)
+                return;
             if (!turnoNegocio.GrabarTurno(turno))
             {
                 Session.Add("MensajeError", "El Turno no se pudo ingresar");
@@ -112,7 +114,7 @@ namespace TP_Final_Morales_Rangogni
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
                 Paciente paciente = pacienteNegocio.BuscarPaciente(txtDni.Text);
                 if (paciente == null)
-                    return null;
+                    throw new Exception("No se cargo el paciente, compruebe los datos");
 
                 string fechaTurno = txtFechaTurno.Text.Trim();
                 fechaTurno = Convert.ToDateTime(fechaTurno).ToString("yyyy-MM-dd ");
@@ -235,7 +237,7 @@ namespace TP_Final_Morales_Rangogni
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtFechaTurno.Text = DateTime.UtcNow.ToString("d");
+            txtFechaTurno.Text = DateTime.UtcNow.ToString("yyyy-MM-dd");
             txtFechaTurno.DataBind();
             txtFechaTurno.Focus();
         }

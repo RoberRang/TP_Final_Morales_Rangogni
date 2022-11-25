@@ -67,22 +67,38 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-        protected void iBtnGraba_Click(object sender, ImageClickEventArgs e)
-        {
-            AltaJornadaTurno();
-        }
         private void AltaJornadaTurno()
         {
-            if (ValidoControlTextBox(txtDesc))
+            if (!ValidoControlTextBox(txtDesc))
                 return;
-            if (ValidoControlTextBox(txtIni))
+            if (!ValidoControlTextBox(txtIni))
                 return;
-            if (ValidoControlTextBox(txtFin))
+            if (!ValidoControlTextBox(txtFin))
                 return;
             try
             {
                 JornadaNegocio jornadaNegocio = new JornadaNegocio();
                 jornadaNegocio.AltaJornada(txtDesc.Text, chbEst.Checked, Convert.ToInt32(txtIni.Text), Convert.ToInt32(txtFin.Text));
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
+        }
+        private void ActualizaJornadaTurno()
+        {
+            
+            if (!ValidoControlTextBox(txtDesc))
+                return;
+            if (!ValidoControlTextBox(txtIni))
+                return;
+            if (!ValidoControlTextBox(txtFin))
+                return;
+            try
+            {
+                JornadaNegocio jornadaNegocio = new JornadaNegocio();
+                jornadaNegocio.ModificarJornada(Convert.ToInt32(txtId.Text), txtDesc.Text,chbEst.Checked,Convert.ToInt32(txtIni.Text), Convert.ToInt32(txtFin.Text));                
             }
             catch (Exception ex)
             {
@@ -109,14 +125,60 @@ namespace TP_Final_Morales_Rangogni
 
         protected void lkbGraba_Click(object sender, EventArgs e)
         {
+            if (lblAccion.Text.Equals("NUEVO"))
+                AltaJornadaTurno();
+            if (lblAccion.Text.Equals("EDITAR") || lblAccion.Text.Equals("ELIMINAR"))
+                ActualizaJornadaTurno();
 
+            CargarGrillaJornada();
         }
 
         protected void dgvJornadas_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            txtDesc.Text = e.CommandArgument.ToString();
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "CargarModal();", true);
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalAdd", "cargarModal();", true);
+            List<Jornada> jornadaTurnos = (List<Jornada>)Session["Jornadas"];
+            int numRow = Convert.ToInt32(e.CommandArgument);
+            GridView gridView = (GridView)sender;            
+            int idJorn = int.Parse(gridView.Rows[numRow].Cells[0].Text.ToString());
+            Jornada jornada = jornadaTurnos.Find(x => x.IdJornada.Equals(idJorn));
+            txtId.Text = jornada.IdJornada.ToString();
+            txtId.Enabled = false;
+            lblAccion.Text = e.CommandName.ToUpper();
+            if (e.CommandName.Equals("Editar"))
+            {
+                ActivaDesactivaControlesModal(true);
+                txtDesc.Text = jornada.Descripcion;
+                txtFin.Text = jornada.Fin.ToString();
+                txtIni.Text = jornada.Inicio.ToString();
+                chbEst.Checked = jornada.Estado;
+            }
+            if (e.CommandName.Equals("Eliminar"))
+            {
+                ActivaDesactivaControlesModal(false);
+                txtDesc.Text = jornada.Descripcion;
+                txtFin.Text = jornada.Fin.ToString();
+                txtIni.Text = jornada.Inicio.ToString();
+                chbEst.Checked = false;
+            }
+            mpe.Show();            
+        }
+
+        protected void lbtnModal_Click(object sender, EventArgs e)
+        {
+            ActivaDesactivaControlesModal(true);
+            lblAccion.Text = "NUEVO";
+            txtId.Text = "";
+            txtDesc.Text = "";
+            txtFin.Text = "";
+            txtIni.Text = "";
+            chbEst.Checked = true;
+            mpe.Show();
+        }
+
+        private void ActivaDesactivaControlesModal(bool est)
+        {
+            txtDesc.Enabled = est;
+            txtFin.Enabled = est;
+            txtIni.Enabled = est;
         }
     }
 }

@@ -22,9 +22,8 @@
                             <div class="input-field left-align col s6">
                                 <asp:TextBox ID="txtDni" runat="server" placeholder="Documento"></asp:TextBox>
                             </div>
-                            <div class="col s1 waves-effect purple waves-light btn-small">
-                                <i class="material-icons">cached</i>
-                                <asp:Button runat="server" ID="btnBuscar" CssClass="col s1 center-block btn-large purple" OnClick="btnBuscar_Click" />
+                            <div class="col s1 right-align">                                
+                                <asp:LinkButton runat="server" ID="lbtnBuscar" CssClass="btn-floating purple small" OnClick="btnBuscar_Click" ><i class="material-icons">cached</i></asp:LinkButton>
                             </div>
                         </div>
                         <!--Nombre -->

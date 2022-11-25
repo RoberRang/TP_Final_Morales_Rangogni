@@ -13,7 +13,7 @@ namespace AccesoModeloBaseDatos.Modelos
     {
         private const string SQL_INSERT_JORNADA = "INSERT INTO Jornadas (descripcion, estado, Inicio, Fin) VALUES (@descripcion, @estado, @inicio, @fin)";
         private const string SQL_SELECT_JORNADAS = "SELECT idJornada, Descripcion, Estado, Inicio, Fin FROM Jornadas";
-        private const string SQL_UPDATE_JORNADA = "UPDATE Jornadas SET Descripcion = @descripcion, Estado = @estado, Inicio=@inicio, Fin=@fin WHERE IdJornada = @idJornada";
+        private const string SQL_UPDATE_JORNADA = "UPDATE Jornadas SET Descripcion = '@descripcion', Estado = @estado, Inicio=@inicio, Fin=@fin WHERE IdJornada = @idJornada";
         private readonly string coneccionDB;
         public JornadaADO(string coneccion)
         {
