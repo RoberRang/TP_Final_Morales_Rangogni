@@ -172,9 +172,30 @@ namespace TP_Final_Morales_Rangogni
         }
 
         protected void dgEmpleados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string id = dgEmpleados.SelectedDataKey.Value.ToString();
-            Response.Redirect("EmpleadoWeb#NuevoEmpleado?id=" + id);// SI MANDO ID VOY A MODIFICAR SI NO VIENE ES POR QUE DOY DE ALTA
+        {                     
+            int id = (int)dgEmpleados.SelectedDataKey.Value;
+            mvwEmpleados.ActiveViewIndex = 2;            
+            List<Empleado> filtros = (List<Empleado>)Session["empleados"];
+            Empleado filtroEmpleado = filtros.Find(x => x.ID.Equals(id));
+            
+            txtEdNombre.Text = filtroEmpleado.Nombres;
+            txtEdApellido.Text = filtroEmpleado.Apellidos;
+            txtEdDni.Text = filtroEmpleado.NroDocumento;
+          
+
+            JornadaNegocio jornadaNegocio = new JornadaNegocio();
+            ddlEdJornada.DataSource = jornadaNegocio.ListarJornadas();
+            ddlEdJornada.DataValueField = "IdJornada";
+            ddlEdJornada.DataTextField = "descripcion";
+            ddlEdJornada.DataBind();
+            ddlEdJornada.SelectedValue = filtroEmpleado.idJornada.ToString();
+
+            PerfilNegocio perfilNegocio = new PerfilNegocio();
+            ddlEdPerfil.DataSource = perfilNegocio.Perliles();
+            ddlEdPerfil.DataValueField = "idPerfil";
+            ddlEdPerfil.DataTextField = "descripcion";
+            ddlEdPerfil.DataBind();
+            ddlEdPerfil.SelectedValue= filtroEmpleado.idPerfil.ToString();
 
         }
 
@@ -184,6 +205,12 @@ namespace TP_Final_Morales_Rangogni
             List<Empleado> filtroRapido = filtro.FindAll(x => x.Nombres.ToUpper().Contains(txtfiltro.Text.ToUpper()));
             dgEmpleados.DataSource = filtroRapido;
             dgEmpleados.DataBind();
+        }
+
+        protected void mnEmpleados_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            int index = Convert.ToInt32(e.Item.Value);
+            mvwEmpleados.ActiveViewIndex = index;
         }
     }
 }
