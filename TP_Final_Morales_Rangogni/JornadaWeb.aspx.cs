@@ -106,5 +106,17 @@ namespace TP_Final_Morales_Rangogni
         {
             CargarGrillaJornada();
         }
+
+        protected void lkbGraba_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dgvJornadas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            txtDesc.Text = e.CommandArgument.ToString();
+            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "CargarModal();", true);
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalAdd", "cargarModal();", true);
+        }
     }
 }

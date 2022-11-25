@@ -28,8 +28,8 @@ namespace TP_Final_Morales_Rangogni
 
         private void CargarFecha()
         {
-            txtFechaTurno.Text = DateTime.Now.ToString("d");
-            txtFechaGrd.Text = DateTime.Today.ToString("d");
+            txtFechaTurno.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            txtFechaGrd.Text = DateTime.Today.ToString("yyyy-MM-dd");
         }
 
         private void CargarGrillaTurnos()
