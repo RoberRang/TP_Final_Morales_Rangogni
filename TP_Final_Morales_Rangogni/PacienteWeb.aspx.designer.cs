@@ -33,13 +33,13 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.MultiView mvwPacientes;
 
         /// <summary>
-        /// Control vwTurno.
+        /// Control vwPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vwTurno;
+        protected global::System.Web.UI.WebControls.View vwPaciente;
 
         /// <summary>
         /// Control upVerPacientes.
@@ -186,22 +186,31 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.Button btnAcept;
 
         /// <summary>
-        /// Control View3.
+        /// Control View2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View3;
+        protected global::System.Web.UI.WebControls.View View2;
 
         /// <summary>
-        /// Control UpdatePanel1.
+        /// Control UpdEditarPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel UpdEditarPaciente;
+
+        /// <summary>
+        /// Control IdPaciente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox IdPaciente;
 
         /// <summary>
         /// Control imgEdPaciente.

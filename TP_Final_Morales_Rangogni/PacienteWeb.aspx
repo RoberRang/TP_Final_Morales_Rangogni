@@ -16,7 +16,7 @@
     <!---Solapa Pacientes-->
     <div class="content ">
         <asp:MultiView runat="server" ID="mvwPacientes" ActiveViewIndex="0">
-            <asp:View ID="vwTurno" runat="server">
+            <asp:View ID="vwPaciente" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upVerPacientes">
                     <ContentTemplate>
 
@@ -187,8 +187,8 @@
                 </asp:UpdatePanel>
             </asp:View>
             <!---EDITAR PACIENTE-->
-            <asp:View ID="View3" runat="server">
-                <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Conditional">
+            <asp:View ID="View2" runat="server">
+                <asp:UpdatePanel runat="server" ID="UpdEditarPaciente" UpdateMode="Conditional">
 
                     <ContentTemplate>
 
@@ -196,7 +196,7 @@
                         <br />
                         <br />
                         <!--imagen-->
-
+                        <asp:TextBox ID="IdPaciente" runat="server" Visible="false"></asp:TextBox>
                         <div class="center-align responsive-img">
                             <asp:Image ID="imgEdPaciente" runat="server" CssClass="circle responsive-img" Width="100" src="https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-580x580.jpg" />
                         </div>
@@ -294,7 +294,7 @@
                             </div>
                         </div>
                         <!---MODAL GUARDAR--->
-                        <!---MODAL GUARDAR--->
+
 
                         <div class="row">
                             <!-- Modal Trigger -->

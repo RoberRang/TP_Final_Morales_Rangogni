@@ -19,41 +19,67 @@ namespace TP_Final_Morales_Rangogni
             if (!IsPostBack)
             {
                 buscarPacientesWeb();
-            }           
-          
+            }
+
         }
 
         protected void btnAcept_Click(object sender, EventArgs e)
         {
+            Button btnFuncion = (Button)sender;
             PacienteNegocio negocio = new PacienteNegocio();
             Paciente nuevoPaciente = new Paciente();
             try
             {
-                if (!ValidoControlTextBox(txtnombre))
-                    return;
-                if (!ValidoControlTextBox(txtApellido))
-                    return;
-                if (!ValidoControlTextBox(txtDni))
-                    return;
-                if (!ValidoControlTextBox(txtEmail))
-                    return;
-                if (!ValidoControlTextBox(txtFecha))
-                    return;
+                if (btnFuncion.ID == "btnAcept")
+                {
+                    if (!ValidoControlTextBox(txtnombre))
+                        return;
+                    if (!ValidoControlTextBox(txtApellido))
+                        return;
+                    if (!ValidoControlTextBox(txtDni))
+                        return;
+                    if (!ValidoControlTextBox(txtEmail))
+                        return;
+                    if (!ValidoControlTextBox(txtFecha))
+                        return;
 
-                nuevoPaciente.Nombres = txtnombre.Text;
-                nuevoPaciente.Apellidos = txtApellido.Text;
-                nuevoPaciente.NroDocumento = txtDni.Text;
-                nuevoPaciente.Telefono = txtTelefono.Text;
-                nuevoPaciente.Email = txtEmail.Text;
-                nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtFecha.Text);
-                nuevoPaciente.FechaAlta = DateTime.Today;
-                nuevoPaciente.Estado = chbEstado.Checked;
-                nuevoPaciente.Imagen = txtImagen.Text;
-                nuevoPaciente.Sexo = ddlGenero.Text;
-
-
+                    nuevoPaciente.Nombres = txtnombre.Text;
+                    nuevoPaciente.Apellidos = txtApellido.Text;
+                    nuevoPaciente.NroDocumento = txtDni.Text;
+                    nuevoPaciente.Telefono = txtTelefono.Text;
+                    nuevoPaciente.Email = txtEmail.Text;
+                    nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtFecha.Text);
+                    nuevoPaciente.FechaAlta = DateTime.Today;
+                    nuevoPaciente.Estado = chbEstado.Checked;
+                    nuevoPaciente.Imagen = txtImagen.Text;
+                    nuevoPaciente.Sexo = ddlGenero.Text;
+                }
+                else
+                {
+                    if (!ValidoControlTextBox(txtEdNombre))
+                        return;
+                    if (!ValidoControlTextBox(txtEdApellido))
+                        return;
+                    if (!ValidoControlTextBox(txtEdDni))
+                        return;
+                    if (!ValidoControlTextBox(txtEdEmail))
+                        return;
+                    if (!ValidoControlTextBox(txtEdFnac))
+                        return;
+                    nuevoPaciente.IdPaciente= Convert.ToInt32(IdPaciente.Text);
+                    nuevoPaciente.Nombres = txtnombre.Text;
+                    nuevoPaciente.Apellidos = txtApellido.Text;
+                    nuevoPaciente.NroDocumento = txtDni.Text;
+                    nuevoPaciente.Telefono = txtTelefono.Text;
+                    nuevoPaciente.Email = txtEmail.Text;
+                    nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtFecha.Text);
+                    nuevoPaciente.FechaAlta = DateTime.Today;
+                    nuevoPaciente.Estado = chbEstado.Checked;
+                    nuevoPaciente.Imagen = txtImagen.Text;
+                    nuevoPaciente.Sexo = ddlGenero.Text;
+                }
                 if (negocio.AltaPaciente(nuevoPaciente))
-                {   
+                {
                     buscarPacientesWeb();
                     ///cartel alta de pacinete completa y limpiar controles                
                     limpiarControles();
@@ -95,7 +121,7 @@ namespace TP_Final_Morales_Rangogni
                 textBox.Focus();
             }
             return valido;
-        }    
+        }
 
         protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -106,14 +132,13 @@ namespace TP_Final_Morales_Rangogni
             txtEdNombre.Text = filtroRapido.Nombres;
             txtEdApellido.Text = filtroRapido.Apellidos;
             txtEdDni.Text = filtroRapido.NroDocumento;
-            txtEdEmail.Text= filtroRapido.Email;           
-            txtEdtelefono.Text=filtroRapido.Telefono;
+            txtEdEmail.Text = filtroRapido.Email;
+            txtEdtelefono.Text = filtroRapido.Telefono;
             txtEdImagen.Text = filtroRapido.Imagen;
             txtEdFnac.Text = filtroRapido.FechaNacimiento;
             ddlEdGenero.Text = filtroRapido.Sexo;
             ddlEdEstado.Text = filtroRapido.Estado;
-            
-            ///Response.Redirect("PacienteWeb#NuevoPaciente?id=" + id);// SI MANDO ID VOY A MODIFICAR SI NO VIENE ES POR QUE DOY DE ALTA
+
         }
 
         protected void filtro_TextChanged(object sender, EventArgs e)

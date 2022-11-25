@@ -172,9 +172,18 @@ namespace TP_Final_Morales_Rangogni
         }
 
         protected void dgEmpleados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string id = dgEmpleados.SelectedDataKey.Value.ToString();
-            Response.Redirect("EmpleadoWeb#NuevoEmpleado?id=" + id);// SI MANDO ID VOY A MODIFICAR SI NO VIENE ES POR QUE DOY DE ALTA
+        {                     
+            int id = (int)dgEmpleados.SelectedDataKey.Value;
+            mvwEmpleados.ActiveViewIndex = 2;            
+            List<Empleado> filtros = (List<Empleado>)Session["empleados"];
+            Empleado filtroEmpleado = filtros.Find(x => x.ID.Equals(id));
+            
+            txtEdNombre.Text = filtroEmpleado.Nombres;
+            txtEdApellido.Text = filtroEmpleado.Apellidos;
+            txtEdDni.Text = filtroEmpleado.NroDocumento;
+           
+
+
 
         }
 
@@ -188,7 +197,8 @@ namespace TP_Final_Morales_Rangogni
 
         protected void mnEmpleados_MenuItemClick(object sender, MenuEventArgs e)
         {
-
+            int index = Convert.ToInt32(e.Item.Value);
+            mvwEmpleados.ActiveViewIndex = index;
         }
     }
 }
