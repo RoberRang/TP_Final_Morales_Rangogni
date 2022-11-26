@@ -4,17 +4,106 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentLogin" runat="server">
     <div>
-        <asp:Menu runat="server" ID="mnTurnos" Orientation="Horizontal" OnMenuItemClick="mnTurnos_MenuItemClick" CssClass="tab-bar a">
+        <asp:Menu runat="server" ID="mnTurnos" Orientation="Horizontal" OnMenuItemClick="mnTurnos_MenuItemClick" CssClass="tab-bar">
             <Items>
-                <asp:MenuItem Text="Nuevo Turno" Value="0" Selected="true"></asp:MenuItem>
-                <asp:MenuItem Text="Ver Turnos" Value="1"></asp:MenuItem>
-                <asp:MenuItem Text="Editar Turnos" Value="2"></asp:MenuItem>
+                <asp:MenuItem Text="Ver Turnos" Value="0" Selected="true"></asp:MenuItem>
+                <asp:MenuItem Text="Nuevo Turno" Value="1"></asp:MenuItem>
             </Items>
         </asp:Menu>
     </div>
     <div class="content ">
         <asp:MultiView runat="server" ID="mvwTurnos" ActiveViewIndex="0">
+            <!--SOLAPA LISTADO DE TURNOS-->
             <asp:View ID="View0" runat="server">
+                <asp:UpdatePanel runat="server" ID="udpGrillaTurnos" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <h6>FILTROS <span><i class="fas fa-carrot"></i></span></h6>
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s3 left-align">
+                                        <asp:TextBox ID="txtFechaGrd" runat="server" AutoPostBack="true" CssClass="dropdown-trigger purple white-text center-align" TextMode="Date" Style="margin-top: 5px" placeholder="Fecha de Turno"></asp:TextBox>
+                                    </div>
+                                    <div class="col s4 left-align">
+                                        <asp:Label runat="server" ID="lblPacienteGrd" AssociatedControlID="txtfiltroPaciente">Paciente</asp:Label>
+                                        <asp:TextBox ID="txtfiltroPaciente" runat="server" CssClass="input-field" AutoPostBack="true"></asp:TextBox>
+                                    </div>
+                                    <div class="col s4 left-align">
+                                        <asp:Label runat="server" ID="lblMedGrd" AssociatedControlID="txtFiltroMedico">Medico</asp:Label>
+                                        <asp:TextBox ID="txtFiltroMedico" runat="server" CssClass="input-field" AutoPostBack="true"></asp:TextBox>
+                                    </div>
+                                    <div class="col s1 right-align">
+                                        <asp:LinkButton runat="server" ID="lbtnCargaGrd" OnClick="btnCargaGrd_Click" CssClass="btn-floating purple small"><i class="material-icons left-align">search</i></asp:LinkButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body bg-gray">
+                            <asp:GridView ID="dgvTurnos" CssClass="highlight responsive-table" DataKeyNames="IdTurno" AutoGenerateColumns="false" runat="server" OnRowCommand="dgvTurnos_RowCommand">
+                                <Columns>
+                                    <asp:BoundField HeaderText="ID" DataField="IdTurno" />
+                                    <asp:BoundField HeaderText="Paciente" DataField="NombrePaciente" />
+                                    <asp:BoundField HeaderText="Medico" DataField="NombreMedico" />
+                                    <asp:BoundField HeaderText="Situacion" DataField="Situacion" />
+                                    <asp:BoundField HeaderText="Hora" DataField="Hora" />
+                                    <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
+                                </Columns>
+                            </asp:GridView>
+                            <div class="row">
+                                <div class="col s1 right-align">
+                                    <asp:LinkButton runat="server" ID="lbtnCargarTurnos" OnClick="btnCargaGrd_Click" CssClass="btn-floating purple small"><i class="material-icons">cached</i></asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal para edicion -->
+                        <asp:Button ID="btnModal" runat="server" CssClass="modal" Text="Modal" />
+                        <asp:Panel ID="ModalPanel" runat="server" Width="700px" CssClass="content">
+                            <div class="row">
+                                <div class="col s2">
+                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtId" runat="server" placeholder="Id"></asp:TextBox>
+                                </div>
+                                <div class="col s4">
+                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtPaciente" runat="server" placeholder="Paciente"></asp:TextBox>
+                                </div>
+                                <div class="col s4">
+                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtMedico" runat="server" placeholder="Medico"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtDia" runat="server" placeholder="Dia"></asp:TextBox>
+                                </div>
+                                <div class="col s4">
+                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtHora" runat="server" placeholder="Hora"></asp:TextBox>
+                                </div>
+                                <div class="col s4 left-align">
+                                    <label id="lblSituacion" for="ddlHorasTurnos">Situacion</label>
+                                    <asp:DropDownList ID="ddlSituacion" runat="server" CssClass="dropdown-trigger btn purple white-text" data-activates="ddlHorasTurnos" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <asp:TextBox ID="txtObservacion" runat="server" CssClass="form-control" ></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="row">
+                                    <div class="col s8 left-align">
+                                        <asp:Label runat="server" ForeColor="" Font-Bold="true" ID="lblAccion" Text="EDICION SITUACION TURNO"></asp:Label>
+                                    </div>
+                                    <div class="col s4 right-align">
+                                        <asp:LinkButton ID="lkbGraba" runat="server" OnClick="lkbGraba_Click" CssClass="btn-floating purple small"><i class="material-icons">save</i></asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnCancela" CssClass="btn-floating purple" runat="server"><i class="material-icons">cancel</i></asp:LinkButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </asp:Panel>
+                        <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" TargetControlID="btnModal" PopupControlID="ModalPanel" OkControlID="lbtnCancela" />
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </asp:View>
+
+            <asp:View ID="View1" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upNuevoTurno">
                     <ContentTemplate>
                         <!--SOLAPA NUEVO TURNO-->
@@ -22,8 +111,8 @@
                             <div class="input-field left-align col s6">
                                 <asp:TextBox ID="txtDni" runat="server" placeholder="Documento"></asp:TextBox>
                             </div>
-                            <div class="col s1 right-align">                                
-                                <asp:LinkButton runat="server" ID="lbtnBuscar" CssClass="btn-floating purple small" OnClick="btnBuscar_Click" ><i class="material-icons">cached</i></asp:LinkButton>
+                            <div class="col s1 right-align">
+                                <asp:LinkButton runat="server" ID="lbtnBuscar" CssClass="btn-floating purple small" OnClick="btnBuscar_Click"><i class="material-icons">search</i></asp:LinkButton>
                             </div>
                         </div>
                         <!--Nombre -->
@@ -63,9 +152,8 @@
                                 <div class="input-field col s3 left-align">
                                     <asp:TextBox ID="txtFechaTurno" runat="server" AutoPostBack="true" CssClass="purple white-text center-align" TextMode="Date" Style="margin-top: 5px" placeholder="Fecha para el turno"></asp:TextBox>
                                 </div>
-                                <div class="col s1 waves-effect small waves-light btn-small purple">
-                                    <i class="material-icons left-align">search</i>
-                                    <asp:Button runat="server" ID="btnVerTurnos" OnClick="btnVerTurnos_Click" CssClass="col s1 right-align btn-large purple" />
+                                <div class="col s1 right-align">
+                                    <asp:LinkButton runat="server" ID="lbtnVerTurnos" OnClick="btnVerTurnos_Click" CssClass="btn-floating purple small"><i class="material-icons left-align">search</i></asp:LinkButton>
                                 </div>
                             </div>
                         </div>
@@ -93,65 +181,10 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </asp:View>
-
-            <!--SOLAPA LISTADO DE TURNOS-->
-            <asp:View ID="View1" runat="server">
-                <asp:UpdatePanel runat="server" ID="udpGrillaTurnos" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <h6>FILTROS <span><i class="fas fa-carrot"></i></span></h6>
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s3 left-align">
-                                        <asp:TextBox ID="txtFechaGrd" runat="server" AutoPostBack="true" CssClass="dropdown-trigger purple white-text center-align" TextMode="Date" Style="margin-top: 5px" placeholder="Fecha de Turno"></asp:TextBox>
-                                    </div>
-                                    <div class="col s4 left-align">
-                                        <asp:Label runat="server" ID="lblPacienteGrd" AssociatedControlID="txtfiltroPaciente">Paciente</asp:Label>
-                                        <asp:TextBox ID="txtfiltroPaciente" runat="server" CssClass="input-field" AutoPostBack="true"></asp:TextBox>
-                                    </div>
-                                    <div class="col s4 left-align">
-                                        <asp:Label runat="server" ID="lblMedGrd" AssociatedControlID="txtFiltroMedico">Medico</asp:Label>
-                                        <asp:TextBox ID="txtFiltroMedico" runat="server" CssClass="input-field" AutoPostBack="true"></asp:TextBox>
-                                    </div>
-                                    <div class="col s1 waves-effect small waves-light btn-small purple">
-                                        <i class="material-icons left-align">search</i>
-                                        <asp:Button runat="server" ID="btnCargaGrd" OnClick="btnCargaGrd_Click" CssClass="col s1 right-align btn-large purple" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="body bg-gray">
-                            <asp:GridView ID="dgvTurnos" CssClass="highlight responsive-table" DataKeyNames="IdTurno" AutoGenerateColumns="false" runat="server" OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged">
-                                <Columns>
-                                    <asp:BoundField HeaderText="Paciente" DataField="NombrePaciente" />
-                                    <asp:BoundField HeaderText="Medico" DataField="NombreMedico" />
-                                    <asp:BoundField HeaderText="Situacion" DataField="Situacion" />
-                                    <asp:BoundField HeaderText="Hora" DataField="Hora" />
-                                    <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="#" />
-                                </Columns>
-                            </asp:GridView>
-                            <div class="row">
-                                <div class="waves-effect purple waves-light btn-floating btn-small">
-                                    <i class="material-icons">cached</i>
-                                    <asp:Button runat="server" ID="btnCargarTurnos" CssClass="col s1 right-align btn-large purple" Text="Perfiles &raquo;" />
-                                </div>
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </asp:View>
-            <asp:View ID="View2" runat="server">
-                <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="UpdatePanel1">
-                    <ContentTemplate>
-                        <div class="input-field col s9">
-                            <asp:TextBox ID="txtDetalleTurno" runat="server" CssClass="validate" placeholder="Detalle"></asp:TextBox>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </asp:View>
         </asp:MultiView>
 
         <!--Fin Solapas-->
+
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
             <div class="modal-content">

@@ -4,33 +4,34 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentLogin" runat="server">
 
-
-    <div class="content">
-        <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upJornadas">
-            <ContentTemplate>
+    <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upJornadas">
+        <ContentTemplate>
+            <div class="tab-bar">
+                <a href="#Jornadas">JORNADAS</a>
+            </div>
+            <div class="content">
                 <div class="header bg-blue">
-                    <h4 class="left-align">Jornadas</h4>
-                </div>
-                <div class="body bg-gray">
-                    <asp:GridView ID="dgvJornadas" CssClass="highlight responsive-table" runat="server" DataKeyNames="IdJornada" OnRowCommand="dgvJornadas_RowCommand" AutoGenerateColumns="false">
-                        <Columns>
-                            <asp:BoundField HeaderText="Id" DataField="IdJornada" />
-                            <asp:BoundField HeaderText="Jornada" DataField="Descripcion" />
-                            <asp:BoundField HeaderText="Inicio" DataField="Inicio" />
-                            <asp:BoundField HeaderText="Fin" DataField="Fin" />
-                            <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
-                            <asp:ButtonField HeaderText="Eliminar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Eliminar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>delete_forever</i>" />
-                        </Columns>
-                    </asp:GridView>
-                    <div class="divider"></div>
-                    <div class="row">
-                        <div class="col s12 right-align">
-                            <asp:LinkButton runat="server" ID="btnVerJornadas" CssClass="btn-floating purple"><i class="material-icons">cached</i></asp:LinkButton>
-                            <asp:LinkButton ID="lbtnModal" runat="server" CssClass="btn-floating purple small" OnClick="lbtnModal_Click"><i class="material-icons">add</i></asp:LinkButton>
+                    <div class="body bg-gray">
+                        <asp:GridView ID="dgvJornadas" CssClass="highlight responsive-table" runat="server" DataKeyNames="IdJornada" OnRowCommand="dgvJornadas_RowCommand" AutoGenerateColumns="false">
+                            <Columns>
+                                <asp:BoundField HeaderText="Id" DataField="IdJornada" />
+                                <asp:BoundField HeaderText="Jornada" DataField="Descripcion" />
+                                <asp:BoundField HeaderText="Inicio" DataField="Inicio" />
+                                <asp:BoundField HeaderText="Fin" DataField="Fin" />
+                                <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
+                                <asp:ButtonField HeaderText="Eliminar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Eliminar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>delete_forever</i>" />
+                            </Columns>
+                        </asp:GridView>
+                        <div class="divider"></div>
+                        <div class="row">
+                            <div class="col s12 right-align">
+                                <asp:LinkButton runat="server" ID="btnVerJornadas" CssClass="btn-floating purple"><i class="material-icons">cached</i></asp:LinkButton>
+                                <asp:LinkButton ID="lbtnModal" runat="server" CssClass="btn-floating purple small" OnClick="lbtnModal_Click"><i class="material-icons">add</i></asp:LinkButton>
+                            </div>
                         </div>
                     </div>
                 </div>
-<%--            </ContentTemplate>
+                <%--            </ContentTemplate>
         </asp:UpdatePanel>
         <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="udpModal">
             <ContentTemplate>--%>
@@ -79,9 +80,9 @@
                     </div>
                 </asp:Panel>
                 <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" TargetControlID="ClientButton" PopupControlID="ModalPanel" OkControlID="lbtnCancela" />
-            </ContentTemplate>
-        </asp:UpdatePanel>
-    </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <script type="text/javascript" src="Scripts/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript">
