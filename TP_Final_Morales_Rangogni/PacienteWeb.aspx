@@ -35,7 +35,7 @@
                                 <asp:BoundField HeaderText="Dni" DataField="NroDocumento" />
                                 <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
                                 <asp:BoundField HeaderText="Email" DataField="Email" />
-                                <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="🔥" />
+                                <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="📝" />
 
                             </Columns>
                         </asp:GridView>
