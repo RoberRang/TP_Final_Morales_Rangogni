@@ -23,6 +23,28 @@ namespace TP_Final_Morales_Rangogni
                 CargarDropDawnListEspecialidad();
                 CargarFecha();
                 CargarGrillaTurnos();
+                CargarSituacionTurno();
+            }
+        }
+
+        private void CargarSituacionTurno()
+        {
+            try
+            {
+                SituacionTurnoNegocio situacionTurnoNegocio = new SituacionTurnoNegocio();
+                List<SituacionTurno> situacionTurnos = situacionTurnoNegocio.GetSituacionTurnos();
+                ddlSituacion.DataSource = situacionTurnos;
+                ddlSituacion.DataValueField = "IdSituacion";
+                ddlSituacion.DataTextField = "Situacion";
+                ddlSituacion.DataBind();
+                ddlSituacion.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+                ddlSituacion.SelectedIndex = 0;
+                Session.Add("SituacionTurnos", situacionTurnos);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
             }
         }
 
@@ -41,7 +63,7 @@ namespace TP_Final_Morales_Rangogni
                 DateTime dFechaTurno;
                 if (!IsPostBack || txtFechaGrd.Text.Equals(""))
                     dFechaTurno = DateTime.Today;
-                else 
+                else
                     dFechaTurno = Convert.ToDateTime(txtFechaGrd.Text);
                 DataTable dtTurnos = turnoNegocio.DataTableTurnosFecha(dFechaTurno);
                 List<ModeloTurnoWeb> gvTurnos = modeloGrillaTurnosWeb.ObtenerListaTurnosWebDataTable(dtTurnos);
@@ -269,9 +291,12 @@ namespace TP_Final_Morales_Rangogni
 
         private bool ControlMedicoFecha()
         {
-            bool ok;
-            ok = Convert.ToInt32(ddlMedico.SelectedValue) > 0 ? true : false;
-            ok = ok && !txtFechaTurno.Text.Equals("");
+            bool ok = false;
+            if (ddlMedico.Items.Count > 0)
+            {
+                ok = Convert.ToInt32(ddlMedico.SelectedValue) > 0 ? true : false;
+                ok = ok && !txtFechaTurno.Text.Equals("");
+            }
             return ok;
         }
 
@@ -306,20 +331,13 @@ namespace TP_Final_Morales_Rangogni
             mvwTurnos.ActiveViewIndex = index;
         }
 
-        protected void dgvTurnos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string id = dgvTurnos.SelectedDataKey.Value.ToString();
-            //int index = Convert.ToInt32(e.Item.Value);
-            //mnTurnos_MenuItemClick(sender, mvwTurnos.)
-            mvwTurnos.ActiveViewIndex = 2;
-            txtDetalleTurno.Text = "El id del turno es: " + id;
-            txtDetalleTurno.Focus();
-        }
 
         protected void btnCargaGrd_Click(object sender, EventArgs e)
         {
+            LinkButton button = (LinkButton)sender;
             CargarGrillaTurnos();
-            FiltrarGrillaTurnos();
+            if (button.ID.Equals("lbtnCargaGrd"))
+                FiltrarGrillaTurnos();
         }
 
         private void FiltrarGrillaTurnos()
@@ -338,6 +356,60 @@ namespace TP_Final_Morales_Rangogni
                 modeloTurnosFiltro = modeloTurnosFiltro.FindAll(x => x.NombrePaciente.ToUpper().Contains(paciente.ToUpper()));
             dgvTurnos.DataSource = modeloTurnosFiltro;
             dgvTurnos.DataBind();
+        }
+
+        protected void dgvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                int numRow = Convert.ToInt32(e.CommandArgument);
+                List<Jornada> jornadaTurnos = (List<Jornada>)Session["Jornadas"];
+                GridView gridView = (GridView)sender;
+                int idJorn = int.Parse(gridView.Rows[numRow].Cells[0].Text.ToString());
+                List<ModeloTurnoWeb> modeloTurnos = (List<ModeloTurnoWeb>)Session["TurnosGrdWeb"];
+                ModeloTurnoWeb modeloTurnoWeb = modeloTurnos.Find(x => x.IdTurno.Equals(idJorn));
+                if (modeloTurnoWeb == null)
+                    throw new Exception("Fallo al seleccionar el truno para editar");
+                txtId.Text = modeloTurnoWeb.IdTurno.ToString();
+                txtPaciente.Text = modeloTurnoWeb.NombrePaciente.ToString();
+                txtMedico.Text = modeloTurnoWeb.NombreMedico.ToString();
+                txtDia.Text = modeloTurnoWeb.FechaReserva.ToString();
+                txtHora.Text = modeloTurnoWeb.Hora.ToString();
+                txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
+                ddlSituacion.SelectedValue = modeloTurnoWeb.IdSituacion.ToString();
+                mpe.Show();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
+        }
+
+        protected void lkbGraba_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                TurnoNegocio turnoNegocio = new TurnoNegocio();
+                Turno turno = new Turno();
+                turno.IdTurno = Convert.ToInt32(txtId.Text);
+                turno.Observacion = txtObservacion.Text;
+                turno.IdSituacion = Convert.ToInt32(ddlSituacion.SelectedValue);
+                if (turno.IdTurno == 0)
+                    return;
+                if (!turnoNegocio.GrabarTurno(turno))
+                {
+                    Session.Add("MensajeError", "El Turno no se pudo ingresar");
+                    Response.Redirect("ErrorWeb.aspx", false);
+                }
+                CargarGrillaTurnos();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
         }
     }
 }

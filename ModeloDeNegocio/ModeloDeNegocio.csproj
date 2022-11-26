@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="CadenaConexionDB.cs" />
     <Compile Include="EmailService.cs" />
+    <Compile Include="SituacionTurnoNegocio.cs" />
     <Compile Include="JornadaNegocio.cs" />
     <Compile Include="PacienteNegocio.cs" />
     <Compile Include="TurnoNegocio.cs" />
