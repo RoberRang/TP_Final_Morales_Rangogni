@@ -44,12 +44,11 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
             }
-
         }
+
         private void CargarGrillaJornada()
         {
             try
@@ -67,6 +66,7 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
+
         private void AltaJornadaTurno()
         {
             if (!ValidoControlTextBox(txtDesc))
@@ -86,6 +86,7 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
+
         private void ActualizaJornadaTurno()
         {
             

@@ -15,6 +15,15 @@ namespace TP_Final_Morales_Rangogni
     {
 
         /// <summary>
+        /// Control upEspecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upEspecialidad;
+
+        /// <summary>
         /// Control dgvEspecialidad.
         /// </summary>
         /// <remarks>
@@ -24,13 +33,49 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.GridView dgvEspecialidad;
 
         /// <summary>
-        /// Control btnCargar.
+        /// Control lbtnCargar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCargar;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnCargar;
+
+        /// <summary>
+        /// Control lbtnNuevo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnNuevo;
+
+        /// <summary>
+        /// Control ClientButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ClientButton;
+
+        /// <summary>
+        /// Control ModalPanel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ModalPanel;
+
+        /// <summary>
+        /// Control txtId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtId;
 
         /// <summary>
         /// Control txtDesc.
@@ -60,21 +105,30 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.Label lblAccion;
 
         /// <summary>
-        /// Control iBtnGraba.
+        /// Control lbtnGraba.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton iBtnGraba;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnGraba;
 
         /// <summary>
-        /// Control iBtnCancela.
+        /// Control lbtnCancela.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton iBtnCancela;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnCancela;
+
+        /// <summary>
+        /// Control mpe.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender mpe;
     }
 }

@@ -8,9 +8,9 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class EspecialidadADO
     {
-        private const string SQL_INSERT_ESPECIALIDAD = "INSERT INTO Especialidad (descripcion, estado) VALUES (@descripcion, @estado)";
-        private const string SQL_SELECT_ESPECIALIDADES = "SELECT idEspecialidad, descripcion, estado FROM Especialidad";
-        private const string SQL_UPDATE_ESPECIALIDAD = "UPDATE Especialidad SET descripcion = @descripcion, estado = @estado WHERE idEspecialidad = @idEspecialidad";
+        private const string SQL_INSERT_ESPECIALIDAD = "INSERT INTO Especialidad (Descripcion, Estado) VALUES (@descripcion, @estado)";
+        private const string SQL_SELECT_ESPECIALIDADES = "SELECT IdEspecialidad, Descripcion, Estado FROM Especialidad";
+        private const string SQL_UPDATE_ESPECIALIDAD = "UPDATE Especialidad SET Descripcion = @descripcion, Estado = @estado WHERE IdEspecialidad = @idEspecialidad";
         private readonly string coneccionDB;
         public EspecialidadADO(string coneccion)
         {

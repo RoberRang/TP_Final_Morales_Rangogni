@@ -18,14 +18,7 @@ namespace TP_Final_Morales_Rangogni
             if (!IsPostBack)
             {
                 CargarGrillaEspecialidad();
-                BuscarImagenesControles();
             }
-        }
-
-        private void BuscarImagenesControles()
-        {   
-            iBtnGraba.ImageUrl = @"..\Imagenes\save_as_opsz48.jpg";
-            iBtnCancela.ImageUrl = @"..\Imagenes\cancel_black_36dp.jpg";
         }
 
         private void CargarGrillaEspecialidad()
@@ -34,15 +27,17 @@ namespace TP_Final_Morales_Rangogni
             {
                 especialidadNegocio = new EspecialidadNegocio();
                 List<Especialidad> especialidad = especialidadNegocio.Especialidades();
-                dgvEspecialidad.DataSource = especialidad;                
+                dgvEspecialidad.DataSource = especialidad;
                 dgvEspecialidad.DataBind();
                 Session.Add("ListaEspecialidad", especialidad);
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
             }
         }
+
         private void AltaEspecialidadWeb()
         {
             if (txtDesc.Text.Trim().Equals(""))
@@ -54,11 +49,13 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
             }
 
             CargarGrillaEspecialidad();
         }
+
         private void ModificarEspeciaalidadWeb()
         {
             if (txtDesc.Text.Trim().Equals(""))
@@ -66,18 +63,21 @@ namespace TP_Final_Morales_Rangogni
             especialidadNegocio = new EspecialidadNegocio();
             try
             {
-                especialidadNegocio.AltaEspecialidad(txtDesc.Text, true);
+                especialidadNegocio.ModificarEspecialidad(Convert.ToInt32(txtId.Text), txtDesc.Text, chbEst.Checked);
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
             }
-
             CargarGrillaEspecialidad();
         }
+
         private void LimpiarControles()
         {
             txtDesc.Text = "";
+            txtId.Text = "";
+            lblAccion.Text = "";
         }
 
         protected void iBtnGraba_Click(object sender, ImageClickEventArgs e)
@@ -88,6 +88,62 @@ namespace TP_Final_Morales_Rangogni
         protected void btnCargar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void dgvEspecialidad_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                List<Especialidad> especialidades = (List<Especialidad>)Session["ListaEspecialidad"];
+                int numRow = Convert.ToInt32(e.CommandArgument);
+                GridView gridView = (GridView)sender;
+                int id = int.Parse(gridView.Rows[numRow].Cells[0].Text.ToString());
+                Especialidad especialidad = especialidades.Find(x => x.IdEspecialidad.Equals(id));
+                txtId.Text = especialidad.IdEspecialidad.ToString();
+                txtId.Enabled = false;
+                lblAccion.Text = e.CommandName.ToUpper();
+                if (e.CommandName.Equals("Editar"))
+                {
+                    ActivaDesactivaControlesModal(true);
+                    txtDesc.Text = especialidad.Descripcion;
+                    chbEst.Checked = especialidad.Estado;
+                }
+                if (e.CommandName.Equals("Eliminar"))
+                {
+                    ActivaDesactivaControlesModal(false);
+                    txtDesc.Text = especialidad.Descripcion;
+                    chbEst.Checked = false;
+                }
+                mpe.Show();
+            }
+            catch (Exception ex) 
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
+        }
+
+        private void ActivaDesactivaControlesModal(bool est)
+        {
+            txtId.Enabled = est;
+            txtDesc.Enabled = est;
+        }
+
+        protected void lbtnNuevo_Click(object sender, EventArgs e)
+        {
+            LimpiarControles();
+            txtId.Text = "0";
+            txtId.Enabled = false;
+            lblAccion.Text = "NUEVO";
+            mpe.Show();
+        }
+
+        protected void lbtnGraba_Click(object sender, EventArgs e)
+        {
+            if (lblAccion.Text.Equals("NUEVO"))
+                AltaEspecialidadWeb();
+            if (lblAccion.Text.Equals("EDITAR") || lblAccion.Text.Equals("ELIMINAR"))
+                ModificarEspeciaalidadWeb();
         }
     }
 }
