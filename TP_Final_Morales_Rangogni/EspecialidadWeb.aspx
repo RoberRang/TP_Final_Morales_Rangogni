@@ -20,15 +20,15 @@
                     <div class="divider"></div>
                     <div class="row">
                         <div class="col s12 right-align">
-                            <asp:LinkButton runat="server" ID="lbtnCargar" CssClass="btn-floating purple" OnClick="btnCargar_Click" Text="" ><i class="material-icons">cached</i></asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="lbtnNuevo" class="btn-floating purple small"  OnClick="lbtnNuevo_Click" ><i class="material-icons">add</i></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="lbtnCargar" CssClass="btn-floating purple" OnClick="btnCargar_Click" Text=""><i class="material-icons">cached</i></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="lbtnNuevo" class="btn-floating purple small" OnClick="lbtnNuevo_Click"><i class="material-icons">add</i></asp:LinkButton>
                         </div>
                     </div>
 
                     <!-- Modal Structure -->
                     <asp:Button ID="ClientButton" runat="server" CssClass="modal" Text="Modal" />
                     <asp:Panel ID="ModalPanel" runat="server" Width="500px" CssClass="content">
-                        <div class="row">                            
+                        <div class="row">
                             <div class="col s1">
                                 <asp:TextBox CssClass="form-control" ID="txtId" runat="server" placeholder="Id"></asp:TextBox>
                             </div>
@@ -65,6 +65,7 @@
                     </asp:Panel>
                     <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" TargetControlID="ClientButton" PopupControlID="ModalPanel" OkControlID="lbtnCancela" />
                 </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
     <script type="text/javascript" src="js/tabfunciones.js"></script>

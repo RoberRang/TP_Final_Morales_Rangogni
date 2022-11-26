@@ -87,7 +87,7 @@ namespace TP_Final_Morales_Rangogni
 
         protected void btnCargar_Click(object sender, EventArgs e)
         {
-
+            CargarGrillaEspecialidad();
         }
 
         protected void dgvEspecialidad_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -133,7 +133,7 @@ namespace TP_Final_Morales_Rangogni
         {
             LimpiarControles();
             txtId.Text = "0";
-            txtId.Enabled = false;
+            txtId.Enabled = true;
             lblAccion.Text = "NUEVO";
             mpe.Show();
         }

@@ -1,38 +1,37 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="PerfilWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.PerfilWeb" Debug="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContentLogin" runat="server">
-    <section>
-        <div class="tab-bar">
-            <a href="#Perfil">Perfil</a>
-            <a href="#SOLAPA2">Solapa2</a>
-            <a href="#SOLAPA3">Solapa3</a>
-            <a href="#SOLAPA4">Solapa4</a>
-
-        </div>
-
-        <div class="content">
-            <div class="header bg-blue">
-                <asp:GridView ID="dgvPerfiles" CssClass="highlight responsive-table" runat="server"></asp:GridView>
-                <div class="waves-effect purple waves-light btn-floating btn-small">
-                    <i class="material-icons">cached</i>
-                    <asp:Button runat="server" ID="btnVerPerfiles" CssClass="btn-floating purple" OnClick="btnVerPerfiles_Click" Text="" />
-                </div>
+    <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upEspecialidad">
+        <ContentTemplate>
+            <div class="tab-bar">
+                <a href="#PERFIL">PERFILES</a>
             </div>
+            <div class="content">
+                <div class="header bg-blue">
+                    <asp:GridView ID="dgvPerfiles" DataKeyNames="IdPerfil" AutoGenerateColumns="false" OnRowCommand="dgvPerfiles_RowCommand" CssClass="highlight responsive-table" runat="server">
+                        <Columns>
+                            <asp:BoundField HeaderText="Id" DataField="IdPerfil" />
+                            <asp:BoundField HeaderText="Jornada" DataField="Descripcion" />
+                            <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
+                            <asp:ButtonField HeaderText="Eliminar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Eliminar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>delete_forever</i>" />
+                        </Columns>
+                    </asp:GridView>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col s12 right-align">
+                            <asp:LinkButton runat="server" ID="lbtnCargar" CssClass="btn-floating purple" OnClick="lbtnCargar_Click" Text=""><i class="material-icons">cached</i></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="lbtnNuevo" class="btn-floating purple small" OnClick="lbtnNuevo_Click"><i class="material-icons">add</i></asp:LinkButton>
+                        </div>
+                    </div>
 
-            <div class="row">
-                <div class="col s12 right-align">
-                    <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="limpiarModal('NUEVO')" href="#modalAdd"><i class="material-icons">add</i></a>
-                    <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="cargarModal('ACTUALIZA')" href="#modalAdd"><i class="material-icons">border_color</i></a>
-                    <a class="btn-floating btn waves-effect modal-trigger waves-light purple right-align" onclick="cargarModal('ELIMINA')" href="#modalAdd"><i class="material-icons">delete_forever</i></a>
-                </div>
-            </div>
-            <div>
-
-                <!-- Modal Structure -->
-                <div id="modalAdd" class="modal">
-                    <div class="modal-content">
+                    <!-- Modal Structure -->
+                    <asp:Button ID="ClientButton" runat="server" CssClass="modal" Text="Modal" />
+                    <asp:Panel ID="ModalPanel" runat="server" Width="500px" CssClass="content">
                         <div class="row">
-                            <div class="col s8">
+                            <div class="col s1">
+                                <asp:TextBox CssClass="form-control" ID="txtId" runat="server" placeholder="Id"></asp:TextBox>
+                            </div>
+                            <div class="col s6">
                                 <asp:TextBox CssClass="form-control" ID="txtDesc" runat="server" placeholder="Descripción"></asp:TextBox>
                             </div>
                             <div class="col s4">
@@ -51,44 +50,22 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="row">
-                            <div class="col s4 left-align">
-                                <asp:Label runat="server" ForeColor="" Font-Bold="true" ID="lblAccion" Text=""></asp:Label>
-                            </div>
-                            <div class="col s8 right-align">
-                                <asp:ImageButton ID="iBtnGraba" CssClass="btn-floating purple" runat="server" OnClick="iBtnGraba_Click" />
-                                <asp:ImageButton ID="iBtnCancela" CssClass="btn-floating purple" runat="server" />
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col s4 left-align">
+                                    <asp:Label runat="server" ForeColor="" Font-Bold="true" ID="lblAccion" Text=""></asp:Label>
+                                </div>
+                                <div class="col s8 right-align">
+                                    <asp:LinkButton ID="lbtnGraba" CssClass="btn-floating purple" runat="server" OnClick="lbtnGraba_Click"><i class="material-icons">save</i></asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnCancela" CssClass="btn-floating purple" runat="server"><i class="material-icons">cancel</i></asp:LinkButton>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:Panel>
+                    <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" TargetControlID="ClientButton" PopupControlID="ModalPanel" OkControlID="lbtnCancela" />
                 </div>
             </div>
-            <div class="divider"></div>
-            <div class="jumbotron">
-                <h4>PERFIL</h4>
-                <p class="lead">Permite agregar un nuevo tipo de perfil</p>
-                <p><a href="/PerfilWeb" class="btn btn-primary btn-lg">Perfiles &raquo;</a></p>
-            </div>
-        </div>
-        <!--SOLAPA GENERICA-->
-        <div class="content">
-            <h2>LISTA TURNOS Y EDITA <span><i class="fas fa-carrot"></i></span></h2>
-            <p>Listar turnos(pacientes)/ botons de editar/ .</p>
-
-        </div>
-    </section>
-    <script>
-        function limpiarModal(mensaje) {
-            document.getElementById('<%= txtDesc.ClientID %>').value = "";
-            document.getElementById('<%= lblAccion.ClientID %>').textContent = mensaje;
-        }
-        function cargarModal(mensaje) {
-            document.getElementById('<%= lblAccion.ClientID %>').textContent = mensaje;
-            let valDesc = document.getElementById('alblDesc').textContent;
-            document.getElementById('<%= txtDesc.ClientID %>').value = valDesc;
-        }
-    </script>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <script type="text/javascript" src="js/tabfunciones.js"></script>
 </asp:Content>

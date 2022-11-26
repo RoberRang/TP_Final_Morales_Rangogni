@@ -27,8 +27,7 @@ namespace TP_Final_Morales_Rangogni
                 }
                 if (!IsPostBack)
                 {
-                    buscarPerfilesWeb();
-                    BuscarImagenesControles();
+                    CargarGrillaPerfilesWeb();
                 }
             }
             catch (Exception ex)
@@ -47,16 +46,9 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
             }
-
-        }
-        private void BuscarImagenesControles()
-        {
-            iBtnGraba.ImageUrl = @"..\Imagenes\save_as_opsz48.jpg";
-            iBtnCancela.ImageUrl = @"..\Imagenes\cancel_black_36dp.jpg";
         }
         
         private void AltaPerfilWeb()
@@ -72,9 +64,8 @@ namespace TP_Final_Morales_Rangogni
             {
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
-            }
-            
-            buscarPerfilesWeb();
+            }            
+            CargarGrillaPerfilesWeb();
         }
         private void ModificarPerfilWeb()
         {
@@ -90,12 +81,13 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
             }
-
-            buscarPerfilesWeb();
+            CargarGrillaPerfilesWeb();
         }
         private void LimpiarControles()
         {
+            txtId.Text = string.Empty;
             txtDesc.Text = "";
+            lblAccion.Text = string.Empty;
         }
 
         protected void iBtnGraba_Click(object sender, ImageClickEventArgs e)
@@ -105,16 +97,77 @@ namespace TP_Final_Morales_Rangogni
 
         protected void btnVerPerfiles_Click(object sender, EventArgs e)
         {
-            buscarPerfilesWeb();
+            CargarGrillaPerfilesWeb();
         }
 
-        protected void buscarPerfilesWeb()
+        protected void CargarGrillaPerfilesWeb()
         {
             PerfilNegocio perfilNegocio = new PerfilNegocio();
-            List<Perfil> perfils = perfilNegocio.Perliles();
-            Session.Add("perfils", perfils);
-            dgvPerfiles.DataSource = perfils;
+            List<Perfil> perfiles = perfilNegocio.Perliles();
+            Session.Add("Perfiles", perfiles);
+            dgvPerfiles.DataSource = perfiles;
             dgvPerfiles.DataBind();
+        }
+
+        protected void dgvPerfiles_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                List<Perfil> perfiles = (List<Perfil>)Session["Perfiles"];
+                int numRow = Convert.ToInt32(e.CommandArgument);
+                GridView gridView = (GridView)sender;
+                int id = int.Parse(gridView.Rows[numRow].Cells[0].Text.ToString());
+                Perfil perfil = perfiles.Find(x => x.IdPerfil.Equals(id));
+                txtId.Text = perfil.IdPerfil.ToString();
+                txtId.Enabled = false;
+                lblAccion.Text = e.CommandName.ToUpper();
+                if (e.CommandName.Equals("Editar"))
+                {
+                    ActivaDesactivaControlesModal(true);
+                    txtDesc.Text = perfil.Descripcion;
+                    chbEst.Checked = perfil.Estado;
+                }
+                if (e.CommandName.Equals("Eliminar"))
+                {
+                    ActivaDesactivaControlesModal(false);
+                    txtDesc.Text = perfil.Descripcion;
+                    chbEst.Checked = false;
+                }
+                mpe.Show();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
+            mpe.Show();
+        }
+
+        private void ActivaDesactivaControlesModal(bool est)
+        {
+            txtDesc.Enabled = est;
+        }
+
+        protected void lbtnCargar_Click(object sender, EventArgs e)
+        {
+            CargarGrillaPerfilesWeb();
+        }
+
+        protected void lbtnNuevo_Click(object sender, EventArgs e)
+        {
+            LimpiarControles();
+            txtId.Text = "0";
+            txtId.Enabled = true;
+            lblAccion.Text = "NUEVO";
+            mpe.Show();
+        }
+
+        protected void lbtnGraba_Click(object sender, EventArgs e)
+        {
+            if (lblAccion.Text.Equals("NUEVO"))
+                AltaPerfilWeb();
+            if (lblAccion.Text.Equals("EDITAR") || lblAccion.Text.Equals("ELIMINAR"))
+                ModificarPerfilWeb();
         }
     }
 }
