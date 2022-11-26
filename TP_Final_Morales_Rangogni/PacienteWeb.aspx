@@ -152,7 +152,7 @@
                                     <label for="lblFnac">Fecha de Nacimiento</label>
                                     <br />
                                     <br />
-                                    <asp:TextBox ID="txtFecha" runat="server" CssClass="purple white-text center-align" TextMode="Date" placeholder=""></asp:TextBox>
+                                    <asp:TextBox ID="txtFecha" runat="server" CssClass="purple white-text center-align" TextMode="Datetime" placeholder=""></asp:TextBox>
 
                                 </div>
 
@@ -188,9 +188,7 @@
             </asp:View>
             <!---EDITAR PACIENTE-->
             <asp:View ID="View2" runat="server">
-                <asp:UpdatePanel runat="server" ID="UpdEditarPaciente" UpdateMode="Conditional">
-
-                    <ContentTemplate>
+                
 
 
                         <br />
@@ -287,7 +285,7 @@
                                     <label for="lblEdFnac">Fecha de Nacimiento</label>
                                     <br />
                                     <br />
-                                    <asp:TextBox ID="txtEdFnac" runat="server" CssClass="purple white-text center-align" TextMode="Date" placeholder=""></asp:TextBox>
+                                    <asp:TextBox ID="txtEdFnac" runat="server" CssClass="purple white-text center-align" TextMode="Datetime" placeholder=""></asp:TextBox>
                                    
                                 </div>
 
@@ -319,8 +317,7 @@
                         <!---Fin MODAL Guardar-->
 
                         </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                   
             </asp:View>
         </asp:MultiView>
     </div>

@@ -285,12 +285,12 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.CheckBox chbEdEstado;
 
         /// <summary>
-        /// Control btn.
+        /// Control btnEditar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn;
+        protected global::System.Web.UI.WebControls.Button btnEditar;
     }
 }

@@ -230,7 +230,7 @@
                         <div class="row">
                             <!-- Modal Trigger -->
                             <div class="center-align">
-                                <a class=" purple white-text btn modal-trigger" href="#modal1">Guardar</a>
+                                <a class=" purple white-text btn modal-trigger" href="#modal2">Guardar</a>
                                 <a class=" btn modal-trigger purple" runat="server" href="~/EmpleadoWeb">Cancelar</a>
                             </div>
                             <div id="modal2" class="modal">
@@ -240,7 +240,7 @@
                                 </div>
                                 <div class="modal-footer">
 
-                                    <asp:Button CssClass="purple white-text btn-small" ID="btn" OnClick="btnAceptar_Click" runat="server" Text="Aceptar" />
+                                    <asp:Button CssClass="purple white-text btn-small" ID="btnEditar" OnClick="btnEditar_Click" runat="server" Text="Aceptar" />
 
                                     <a href="#!" class="purple white-text modal-close btn-flat">Cancelar</a>
                                 </div>

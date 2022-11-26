@@ -90,6 +90,25 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@imagen", paciente.Imagen);
                     cmd.CommandType = CommandType.Text;
                     accesoDatosUpdate.ExecuteCommand(cmd);
+
+                    ////////////
+                    /*string sql = SQL_UPDATE_PACIENTES;                   
+                    sql = sql.Replace("@IdPaciente", paciente.IdPaciente.ToString());
+                    sql = sql.Replace("@apellidos", paciente.Apellidos.ToString());
+                    sql = sql.Replace("@nombres", paciente.Nombres.ToString());
+                    sql = sql.Replace("@nrodocumento", paciente.NroDocumento.ToString());
+                    sql = sql.Replace("@fechanacimiento", paciente.FechaNacimiento.ToString());
+                    sql = sql.Replace("@sexo", paciente.Sexo.ToString());
+                    sql = sql.Replace("@fechaalta", paciente.FechaAlta.ToString());
+                    sql = sql.Replace("@estado", paciente.Estado.ToString());
+                    sql = sql.Replace("@telefono", paciente.Telefono.ToString());
+                    sql = sql.Replace("@email", paciente.Email.ToString());
+                    sql = sql.Replace("@imagen", paciente.Imagen.ToString());
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = CommandType.Text;
+                    accesoDatosUpdate.ExecuteCommandString(cmd.CommandText);
+                    */
+                    ///////////
                 }
                 catch (Exception ex)
                 {

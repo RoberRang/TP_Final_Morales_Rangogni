@@ -114,7 +114,8 @@ namespace TP_Final_Morales_Rangogni
                 nuevoUser.Nombres = txtnombre.Text;
                 nuevoUser.Apellidos = txtApellido.Text;
                 nuevoUser.NroDocumento = txtDni.Text;
-                nuevoUser.Estado = chbEstado1.Checked;
+                nuevoUser.Estado = chbEdEstado.Checked; 
+                
                 //desplegable
                 nuevoUser.idPerfil = int.Parse(ddlPerfilEmp.SelectedValue);
                 nuevoUser.idJornada = int.Parse(ddlJornada.SelectedValue);
@@ -181,7 +182,7 @@ namespace TP_Final_Morales_Rangogni
             txtEdNombre.Text = filtroEmpleado.Nombres;
             txtEdApellido.Text = filtroEmpleado.Apellidos;
             txtEdDni.Text = filtroEmpleado.NroDocumento;
-          
+            chbEdEstado.Checked = filtroEmpleado.Estado;
 
             JornadaNegocio jornadaNegocio = new JornadaNegocio();
             ddlEdJornada.DataSource = jornadaNegocio.ListarJornadas();
@@ -211,6 +212,11 @@ namespace TP_Final_Morales_Rangogni
         {
             int index = Convert.ToInt32(e.Item.Value);
             mvwEmpleados.ActiveViewIndex = index;
+        }
+
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+             btnAceptar_Click(sender, e);
         }
     }
 }

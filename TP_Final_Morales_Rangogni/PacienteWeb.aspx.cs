@@ -30,7 +30,7 @@ namespace TP_Final_Morales_Rangogni
             Paciente nuevoPaciente = new Paciente();
             try
             {
-                if (btnFuncion.ID == "btnAcept")
+                if (btnFuncion.ID != "btnEditar")
                 {
                     if (!ValidoControlTextBox(txtnombre))
                         return;
@@ -66,20 +66,40 @@ namespace TP_Final_Morales_Rangogni
                         return;
                     if (!ValidoControlTextBox(txtEdFnac))
                         return;
-                    nuevoPaciente.IdPaciente= Convert.ToInt32(IdPaciente.Text);
-                    nuevoPaciente.Nombres = txtnombre.Text;
-                    nuevoPaciente.Apellidos = txtApellido.Text;
-                    nuevoPaciente.NroDocumento = txtDni.Text;
-                    nuevoPaciente.Telefono = txtTelefono.Text;
-                    nuevoPaciente.Email = txtEmail.Text;
-                    nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtFecha.Text);
-                    nuevoPaciente.FechaAlta = DateTime.Today;
-                    nuevoPaciente.Estado = chbEstado.Checked;
-                    nuevoPaciente.Imagen = txtImagen.Text;
-                    nuevoPaciente.Sexo = ddlGenero.Text;
+                    nuevoPaciente.IdPaciente = Convert.ToInt32(IdPaciente.Text);
+                    nuevoPaciente.Nombres = txtEdNombre.Text;
+                    nuevoPaciente.Apellidos = txtEdApellido.Text;
+                    nuevoPaciente.NroDocumento = txtEdDni.Text;
+                    nuevoPaciente.Telefono = txtEdtelefono.Text;
+                    nuevoPaciente.Email = txtEdEmail.Text;
+                    nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtEdFnac.Text);
+                    //nuevoPaciente.FechaAlta = DateTime.Today;
+                    if (ddlEdEstado.Text == "Activo")
+                    {
+                        nuevoPaciente.Estado = true;
+                    }
+                    else
+                    {
+                        nuevoPaciente.Estado = false;
+                    }
+                    nuevoPaciente.Imagen = txtEdImagen.Text;
+                    nuevoPaciente.Sexo = ddlEdGenero.Text;
                 }
-                if (negocio.AltaPaciente(nuevoPaciente))
+                if (btnFuncion.ID == "btnEditar")
                 {
+                    negocio.ModificarPaciente(nuevoPaciente);
+                    buscarPacientesWeb();
+                    ///cartel alta de pacinete completa y limpiar controles                
+                   // limpiarControles();
+                }
+                else
+                {
+                    ///cartel de el paciente ya existe, desea editarlo?,  mostrar el paciente y dar opcion de editarlo
+                    Response.Redirect("ErrorWeb.aspx", false);
+                }
+                if (btnFuncion.ID != "btnEditar")
+                {
+                    negocio.AltaPaciente(nuevoPaciente);
                     buscarPacientesWeb();
                     ///cartel alta de pacinete completa y limpiar controles                
                     limpiarControles();
@@ -129,7 +149,7 @@ namespace TP_Final_Morales_Rangogni
             mvwPacientes.ActiveViewIndex = 2;
             List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
             ModeloPacienteWeb filtroRapido = filtro.Find(x => x.IdPaciente.Equals(id));
-            
+
             IdPaciente.Text = id.ToString();
             txtEdNombre.Text = filtroRapido.Nombres;
             txtEdApellido.Text = filtroRapido.Apellidos;
