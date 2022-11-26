@@ -15,9 +15,38 @@ namespace TP_Final_Morales_Rangogni
         private EspecialidadNegocio especialidadNegocio;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                CargarGrillaEspecialidad();
+                if (Session["EmpleadoLogin"] == null)
+                    throw new Exception("Acceso erroneo!");
+                else
+                {
+                    Empleado empleado = (Empleado)Session["EmpleadoLogin"];
+                    ValidarEmpleadoLogin(empleado);
+                }
+                if (!IsPostBack)
+                {
+                    CargarGrillaEspecialidad();
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }            
+        }
+
+        private void ValidarEmpleadoLogin(Empleado empleado)
+        {
+            try
+            {
+                if (empleado.idPerfil != 1)
+                    throw new Exception("El Usuario: " + empleado.Nombres + ", " + empleado.Apellidos + " sin acceso!");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
             }
         }
 
@@ -125,7 +154,6 @@ namespace TP_Final_Morales_Rangogni
 
         private void ActivaDesactivaControlesModal(bool est)
         {
-            txtId.Enabled = est;
             txtDesc.Enabled = est;
         }
 
@@ -133,7 +161,8 @@ namespace TP_Final_Morales_Rangogni
         {
             LimpiarControles();
             txtId.Text = "0";
-            txtId.Enabled = true;
+            txtId.Enabled = false;
+            chbEst.Checked = true;
             lblAccion.Text = "NUEVO";
             mpe.Show();
         }

@@ -34,7 +34,7 @@ namespace ModeloDeNegocio.Negocio
         {
             return situacionTurnoAdo.ListarSituacionTurno();
         }
-        public bool ModificarSituacionTurano(int id, string situacion, bool estado)
+        public bool ModificarSituacionTurno(int id, string situacion, bool estado)
         {
             try
             {

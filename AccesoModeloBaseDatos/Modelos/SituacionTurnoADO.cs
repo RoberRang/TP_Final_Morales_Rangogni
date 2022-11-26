@@ -67,10 +67,11 @@ namespace AccesoModeloBaseDatos.Modelos
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_UPDATE_SITUACIONTURNO, con);
-                    cmd.Parameters.AddWithValue("@IdSituacion", situacionTurno.IdSituacion);
-                    cmd.Parameters.AddWithValue("@Situacion", situacionTurno.Situacion);
-                    cmd.Parameters.AddWithValue("@Estado", situacionTurno.Estado);
+                    string sql = SQL_UPDATE_SITUACIONTURNO;
+                    sql = sql.Replace("@IdSituacion", situacionTurno.IdSituacion.ToString());
+                    sql = sql.Replace("@Situacion", "'" + situacionTurno.Situacion + "'");
+                    sql = sql.Replace("@Estado", situacionTurno.Estado ? "1" : "0");
+                    SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommandString(cmd.CommandText);
                 }

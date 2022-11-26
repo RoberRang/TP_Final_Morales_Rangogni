@@ -107,6 +107,7 @@
     <Content Include="AltaSinUsuarioWeb.aspx" />
     <Content Include="EmpleadoWeb.aspx" />
     <Content Include="ErrorWeb.aspx" />
+    <Content Include="SituacionTurnoWeb.aspx" />
     <Content Include="Icons\hospital.png" />
     <Content Include="Imagenes\cancel_black_36dp.jpg" />
     <Content Include="Imagenes\save_as_opsz48.jpg" />
@@ -283,6 +284,13 @@
     </Compile>
     <Compile Include="ErrorWeb.aspx.designer.cs">
       <DependentUpon>ErrorWeb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SituacionTurnoWeb.aspx.cs">
+      <DependentUpon>SituacionTurnoWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SituacionTurnoWeb.aspx.designer.cs">
+      <DependentUpon>SituacionTurnoWeb.aspx</DependentUpon>
     </Compile>
     <Compile Include="JornadaWeb.aspx.cs">
       <DependentUpon>JornadaWeb.aspx</DependentUpon>
