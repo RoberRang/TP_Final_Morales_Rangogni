@@ -21,7 +21,7 @@ namespace ModeloDeNegocio.Negocio
             {
                 this.IdEspecialidad = 0;
                 this.Descripcion = descripcion;
-                this.Estado = estado;
+                this.Estado = estado ? "Activo" : "Inactivo";
 
                 return tipoEspecialidadADO.GrabarEspecialidad(this);
             }
@@ -40,7 +40,7 @@ namespace ModeloDeNegocio.Negocio
                 medicoEspecialidad.IdEspecialidad = idEsp;
                 medicoEspecialidad.Estado = estado;
 
-                return tipoEspecialidadADO.GrabarMedicoEspecialidad(medicoEspecialidad,true);
+                return tipoEspecialidadADO.GrabarMedicoEspecialidad(medicoEspecialidad, true);
             }
             catch (Exception ex)
             {
@@ -53,9 +53,9 @@ namespace ModeloDeNegocio.Negocio
             return tipoEspecialidadADO.ListarEspecialidades();
         }
 
-        public List<Especialidad> EspecialidadesMedico(int idMedico)
+        public List<Especialidad> MedicoEspecialidades(int idMedico)
         {
-            return tipoEspecialidadADO.ListarEspecialidades();
+            return tipoEspecialidadADO.ListarMedicoEspecialidades(idMedico);
         }
         public bool ModificarEspecialidad(int id, string descripcion, bool estado)
         {
@@ -63,7 +63,7 @@ namespace ModeloDeNegocio.Negocio
             {
                 this.IdEspecialidad = id;
                 this.Descripcion = descripcion;
-                this.Estado = estado;
+                this.Estado = estado ? "Activo" : "Inactivo";
 
                 return tipoEspecialidadADO.GrabarEspecialidad(this);
             }
@@ -72,10 +72,13 @@ namespace ModeloDeNegocio.Negocio
                 throw ex;
             }
         }
-        public bool ModificarEspecialidadMedico(int idMedico, int idEsp, bool estado)
+        public bool ModificarMedicoEspecialidad(int idMedico, int idEsp, bool estado)
         {
             try
             {
+                if (tipoEspecialidadADO.ListarMedicoEspecialidades(idMedico, true).Count < 2)
+                    throw new Exception("Debe tener al menos 2 especialidades activas");
+
                 MedicoEspecialidad medicoEspecialidad = new MedicoEspecialidad();
                 medicoEspecialidad.IdMedico = idMedico;
                 medicoEspecialidad.IdEspecialidad = idEsp;

@@ -96,8 +96,8 @@
                             <Columns>
                                 <asp:BoundField HeaderText="Id" DataField="IdEspecialidad" />
                                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
+                                <asp:BoundField HeaderText="Estado" DataField="Estado" />
                                 <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
-                                <asp:ButtonField HeaderText="Eliminar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Eliminar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>delete_forever</i>" />
                             </Columns>
                         </asp:GridView>
                         <div class="divider"></div>
@@ -109,16 +109,21 @@
                         </div>
                         <!-- Modal Especialidad -->
                         <asp:Button ID="btnEspMed" runat="server" CssClass="modal" Text="Modal" />
-                        <asp:Panel ID="ModalPanelEsp" runat="server" Width="600px" CssClass="content">
+                        <asp:Panel ID="ModalPanelEsp" runat="server" Width="700px" CssClass="content">
                             <div class="row">
                                 <div class="col s2">
-                                    <asp:TextBox CssClass="form-control" ID="txtIdEspMed" runat="server" placeholder="Id"></asp:TextBox>
+                                    <asp:TextBox CssClass="form-control" ID="txtIdMed" Visible="false" runat="server" placeholder="IdMed"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s2">
+                                    <asp:TextBox CssClass="form-control" ID="txtIdEspMed" runat="server" placeholder="IdEsp"></asp:TextBox>
                                 </div>
                                 <div class="col s6 left-align">
-                                    <label id="lblEspecialidad" for="ddlEspecialidad">Especialidad</label>
-                                    <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="dropdown-trigger btn purple white-text" Style="margin-top: 5px" AutoPostBack="true" data-activates="ddlEpecialidad"  />
+                                    <asp:Label runat="server" ID="lblEspecialidad" Visible="false"></asp:Label>
+                                    <asp:DropDownList ID="ddlEspecialidad" runat="server" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" CssClass="dropdown-trigger btn purple white-text" Style="margin-top: 5px" AutoPostBack="true" data-activates="ddlEpecialidad" />
                                 </div>
-                                <div class="col s4">
+                                <div class="col ss4">
                                     <div class="row">
                                         <div class="input-field">
                                             Estado
