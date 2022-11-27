@@ -240,6 +240,15 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.Panel ModalPanelEsp;
 
         /// <summary>
+        /// Control txtIdMed.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIdMed;
+
+        /// <summary>
         /// Control txtIdEspMed.
         /// </summary>
         /// <remarks>
@@ -247,6 +256,15 @@ namespace TP_Final_Morales_Rangogni
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIdEspMed;
+
+        /// <summary>
+        /// Control lblEspecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEspecialidad;
 
         /// <summary>
         /// Control ddlEspecialidad.

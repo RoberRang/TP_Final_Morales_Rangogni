@@ -135,7 +135,7 @@ namespace TP_Final_Morales_Rangogni
                 {
                     ActivaDesactivaControlesModal(true);
                     txtDesc.Text = especialidad.Descripcion;
-                    chbEst.Checked = especialidad.Estado;
+                    chbEst.Checked = especialidad.Estado.Equals("Activo") ? true : false;
                 }
                 if (e.CommandName.Equals("Eliminar"))
                 {

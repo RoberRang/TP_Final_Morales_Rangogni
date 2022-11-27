@@ -51,7 +51,7 @@ namespace AccesoModeloBaseDatos.Modelos
                         string sql = SQL_INSERT_MEDICOSESPECIALIDAD;
                         sql = sql.Replace("@idMedico", medico.ID.ToString());                        
                         sql = sql.Replace("@IdEspecialidad", especilidad.IdEspecialidad.ToString());
-                        sql = sql.Replace("@estado", especilidad.Estado ? "1" : "0");
+                        sql = sql.Replace("@estado", especilidad.Estado.Equals("Activo") ? "1" : "0");
                         SqlCommand cmd = new SqlCommand(sql, con);
                         cmd.CommandType = CommandType.Text;
                         accesoDatos.ExecuteCommand(cmd);
@@ -134,7 +134,7 @@ namespace AccesoModeloBaseDatos.Modelos
             Especialidad especialidad = new Especialidad();
             especialidad.IdEspecialidad = Convert.ToInt32(dr["IdEspecialidad"].ToString());
             especialidad.Descripcion = dr["Description"].ToString();
-            especialidad.Estado = dr["estado"].ToString().Equals("True") ? true : false;
+            especialidad.Estado = Convert.ToBoolean(dr["estado"]) ? "Activo" : "Inactivo";
 
             return especialidad;
         }
@@ -146,9 +146,9 @@ namespace AccesoModeloBaseDatos.Modelos
             objTMedico.Nombres = dr["Nombre"].ToString();
             objTMedico.Apellidos = dr["Apellido"].ToString();
             objTMedico.NroDocumento = dr["NroDocumento"].ToString();
-            objTMedico.Estado = dr["Estado"].ToString().Equals("True") ? true : false;
+            objTMedico.Estado =  dr["Estado"].ToString().Equals("True") ? true : false;
 
-            List<Especialidad> especialidades = new List<Especialidad>() { new Especialidad(idEspecialidad, "", true) };
+            List<Especialidad> especialidades = new List<Especialidad>() { new Especialidad(idEspecialidad, "", "Activo") };
            
             objTMedico.Especialidades = especialidades;
 

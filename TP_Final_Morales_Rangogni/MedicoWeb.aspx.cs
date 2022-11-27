@@ -3,6 +3,7 @@ using ModeloDeNegocio.Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -60,7 +61,7 @@ namespace TP_Final_Morales_Rangogni
                 if (empleado.idPerfil== 1)
                     especialidades = especialidadNegocio.Especialidades();
                 if (empleado.idPerfil == 3)
-                    especialidades = especialidadNegocio.EspecialidadesMedico(empleado.ID);
+                    especialidades = especialidadNegocio.MedicoEspecialidades(empleado.ID);
                 dgvEspecialidad.DataSource = especialidades;
                 dgvEspecialidad.DataBind();
                 Session.Add("ListaEspecialidad", especialidades);
@@ -107,32 +108,37 @@ namespace TP_Final_Morales_Rangogni
 
         protected void dgvEspecialidad_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            List<Especialidad> especialidades = (List<Especialidad>)Session["ListaEspecialidad"];
-            int numRow = Convert.ToInt32(e.CommandArgument);
-            GridView gridView = (GridView)sender;
-            int id = int.Parse(gridView.Rows[numRow].Cells[0].Text.ToString());
-            Especialidad especialidad = especialidades.Find(x => x.IdEspecialidad.Equals(id));
-            txtId.Text = especialidad.IdEspecialidad.ToString();
-            txtId.Enabled = false;
-            lblAccion.Text = e.CommandName.ToUpper();
-            if (e.CommandName.Equals("Editar"))
+            try
             {
-                ActivaDesactivaControlesModal(true);
-                txtDesc.Text = especialidad.Descripcion;
-                chbEst.Checked = especialidad.Estado;
+                List<Especialidad> especialidades = (List<Especialidad>)Session["ListaEspecialidad"];
+                int numRow = Convert.ToInt32(e.CommandArgument);
+                GridView gridView = (GridView)sender;
+                int id = int.Parse(gridView.Rows[numRow].Cells[0].Text.ToString());
+                Especialidad especialidad = especialidades.Find(x => x.IdEspecialidad.Equals(id));
+                txtIdEspMed.Text = especialidad.IdEspecialidad.ToString();
+                txtIdEspMed.Enabled = false;
+                Empleado empleado = (Empleado)Session["EmpleadoLogin"];
+                txtIdMed.Text = empleado.ID.ToString();
+                lblAccionEsp.Text = e.CommandName.ToUpper();
+                if (e.CommandName.Equals("Editar"))
+                {
+                    ActivaDesactivaControlesModal(true);
+                    ddlEspecialidad.Items.Clear();
+                    ddlEspecialidad.Items.Add(especialidad.Descripcion);
+                    chkEstMedEsp.Checked = especialidad.Estado.Equals("Activo") ? true : false;
+                }
+                mpeEsp.Show();
             }
-            if (e.CommandName.Equals("Eliminar"))
+            catch (Exception ex)
             {
-                ActivaDesactivaControlesModal(false);
-                txtDesc.Text = especialidad.Descripcion;
-                chbEst.Checked = false;
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
             }
-            mpeEsp.Show();
         }
 
         private void ActivaDesactivaControlesModal(bool est)
         {
-            txtDesc.Enabled = est;
+            ddlEspecialidad.Enabled= est;
         }
 
         protected void lbtnModal_Click(object sender, EventArgs e)
@@ -156,11 +162,11 @@ namespace TP_Final_Morales_Rangogni
         {
             LimpiarControles();
             Empleado empleado = (Empleado)Session["EmpleadoLogin"];
-            txtIdEspMed.Text = empleado.ID.ToString();
-            txtIdEspMed.Enabled = false;
+            txtIdMed.Text = empleado.ID.ToString();
+            txtIdMed.Enabled = false;
             CargarDropDawnListEspecialidad(true);
             chkEstMedEsp.Checked = true;
-            lblAccion.Text = "NUEVO";
+            lblAccionEsp.Text = "NUEVO";
             mpeEsp.Show();
         }
 
@@ -181,6 +187,8 @@ namespace TP_Final_Morales_Rangogni
                 ddlEspecialidad.DataBind();
                 ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
                 ddlEspecialidad.SelectedIndex = 0;
+                txtIdEspMed.Text = ddlEspecialidad.SelectedValue;
+                txtIdEspMed.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -196,15 +204,15 @@ namespace TP_Final_Morales_Rangogni
 
         protected void lbtnGrabaEsp_Click(object sender, EventArgs e)
         {
-            if (lblAccion.Text.Equals("NUEVO"))
-                AltaEspecialidadWeb();
-            if (lblAccion.Text.Equals("EDITAR") || lblAccion.Text.Equals("ELIMINAR"))
-                ModificarEspeciaalidadWeb();
+            if (lblAccionEsp.Text.Equals("NUEVO"))
+                AltaMedicoEspecialidadWeb();
+            if (lblAccionEsp.Text.Equals("EDITAR"))
+                ModificarMedicoEspeciaalidadWeb();
         }
 
-        private void AltaEspecialidadWeb()
+        private void AltaMedicoEspecialidadWeb()
         {
-            if (txtDesc.Text.Trim().Equals(""))
+            if (txtIdEspMed.Text.Trim().Equals(""))
                 return;
             EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
             try
@@ -222,9 +230,9 @@ namespace TP_Final_Morales_Rangogni
             CargarGrillaEspecialidad();
         }
 
-        private void ModificarEspeciaalidadWeb()
+        private void ModificarMedicoEspeciaalidadWeb()
         {
-            if (txtDesc.Text.Trim().Equals(""))
+            if (txtIdMed.Text.Trim().Equals(""))
                 return;
             EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
             try
@@ -232,7 +240,7 @@ namespace TP_Final_Morales_Rangogni
                 Empleado empleado = (Empleado)Session["EmpleadoLogin"];
                 if (empleado.idPerfil != 3)
                     return;
-                especialidadNegocio.ModificarEspecialidadMedico(Convert.ToInt32(txtId.Text),Convert.ToInt32(txtIdEspMed.Text), chbEst.Checked);
+                especialidadNegocio.ModificarMedicoEspecialidad(Convert.ToInt32(txtIdMed.Text),Convert.ToInt32(txtIdEspMed.Text), chbEst.Checked);
             }
             catch (Exception ex)
             {
@@ -242,5 +250,10 @@ namespace TP_Final_Morales_Rangogni
             CargarGrillaEspecialidad();
         }
 
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtIdEspMed.Text = ddlEspecialidad.SelectedValue;
+            mpeEsp.Show();
+        }
     }
 }
