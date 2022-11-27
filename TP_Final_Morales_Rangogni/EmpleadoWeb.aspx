@@ -87,7 +87,7 @@
                             </div>
                             <!--DDL Y ESTADO -->
                             <div class="row">
-
+                                <!--NUEVO PERFIL -->
                                 <div class="input-field col s4 left-align">
                                     <label for="lblPerfil">Pefil</label>
                                     <br />
@@ -95,6 +95,7 @@
                                     <asp:DropDownList ID="ddlPerfilEmp" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 10px;" href="#" data-activates="drpdEstado" data-target="drpdEstado">
                                     </asp:DropDownList>
                                 </div>
+                                <!--NUEVA JORNADA -->
                                 <div class="input-field col s4 left-align">
                                     <label for="lblJornada">Jornada</label>
                                     <br />
@@ -102,27 +103,22 @@
                                     <asp:DropDownList ID="ddlJornada" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 10px;">
                                     </asp:DropDownList>
                                 </div>
-                                <div>
-                                    <div class="input-field col s4 center-align">
-                                    </div>
-                                    <div class="input-field col s4 right-align">
-                                        <label for="lblEstado">Estado</label>
-                                        <br />
-                                        <br />
-                                        <div class="switch">
-                                            <label>
-                                                INACTIVO
-                            <asp:CheckBox ID="chbEstado1" runat="server" Checked="true" />
 
-                                                <span class="lever"></span>
-                                                ACTIVO
-                                            </label>
-                                        </div>
-                                    </div>
+                                <!--NUEVO ESTADO -->
+
+                                <div class="input-field col s4 right-align">
+                                    <label for="lblEstado">Estado</label>
+                                    <br />
+                                    <br />
+                                    <asp:DropDownList ID="ddlEstado" runat="server" CssClass="dropdown-trigger btn purple waves-light" Style="margin-top: 10px" href="#" data-activates="ddlEstado" data-target="ddlEstado">
+                                        <asp:ListItem Text="Activo" />
+                                        <asp:ListItem Text="Inactivo" />
+                                    </asp:DropDownList>
                                 </div>
-
                             </div>
+
                         </div>
+
                         <!---MODAL GUARDAR--->
 
                         <div class="row">
@@ -187,7 +183,7 @@
                                     <label for="lblEdPass2">Repetir Contraseña</label>
                                 </div>
                             </div>
-                            <!--DDL Y ESTADO -->
+                            <!--EDITAR PERFIL -->
                             <div class="row">
 
                                 <div class="input-field col s4 left-align">
@@ -197,6 +193,8 @@
                                     <asp:DropDownList ID="ddlEdPerfil" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 10px;" href="#" data-activates="drpdEstado" data-target="drpdEstado">
                                     </asp:DropDownList>
                                 </div>
+                                <!--EDITAR JORNADA -->
+
                                 <div class="input-field col s4 left-align">
                                     <label for="lblEdJornada">Jornada</label>
                                     <br />
@@ -204,23 +202,15 @@
                                     <asp:DropDownList ID="ddlEdJornada" runat="server" CssClass="dropdown-trigger btn purple lighten-2" Style="margin-top: 10px;">
                                     </asp:DropDownList>
                                 </div>
-                                <div>
-                                    <div class="input-field col s4 center-align">
-                                    </div>
-                                    <div class="input-field col s4 right-align">
-                                        <label for="lblEdEstado">Estado</label>
-                                        <br />
-                                        <br />
-                                        <div class="switch">
-                                            <label>
-                                                INACTIVO
-                            <asp:CheckBox ID="chbEdEstado" runat="server" Checked="true" />
-
-                                                <span class="lever"></span>
-                                                ACTIVO
-                                            </label>
-                                        </div>
-                                    </div>
+                                <!--EDITAR ESTADO-->
+                                <div class="input-field col s4 left-align">
+                                    <label for="lblEdEstado">Estado</label>
+                                    <br />
+                                    <br />
+                                    <asp:DropDownList ID="ddlEdEstado" runat="server" CssClass="dropdown-trigger btn purple waves-light" Style="margin-top: 10px" href="#" data-activates="ddlEdEstado" data-target="ddlEdEstado">
+                                        <asp:ListItem Text="Activo" />
+                                        <asp:ListItem Text="Inactivo" />
+                                    </asp:DropDownList>
                                 </div>
 
                             </div>

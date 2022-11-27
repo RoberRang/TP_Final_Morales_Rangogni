@@ -261,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="DominioWeb\ModeloEmpleadoWeb.cs" />
     <Compile Include="DominioWeb\ModeloGrillaTurnosWeb.cs" />
     <Compile Include="DominioWeb\ModeloPacienteWeb.cs" />
     <Compile Include="AltaSinUsuarioWeb.aspx.cs">

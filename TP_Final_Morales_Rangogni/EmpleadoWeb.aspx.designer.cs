@@ -168,13 +168,13 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.DropDownList ddlJornada;
 
         /// <summary>
-        /// Control chbEstado1.
+        /// Control ddlEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chbEstado1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
 
         /// <summary>
         /// Control btnAceptar.
@@ -276,13 +276,13 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.DropDownList ddlEdJornada;
 
         /// <summary>
-        /// Control chbEdEstado.
+        /// Control ddlEdEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chbEdEstado;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEdEstado;
 
         /// <summary>
         /// Control btnEditar.
