@@ -49,8 +49,15 @@ namespace TP_Final_Morales_Rangogni
                     nuevoPaciente.Telefono = txtTelefono.Text;
                     nuevoPaciente.Email = txtEmail.Text;
                     nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtFecha.Text);
-                    nuevoPaciente.FechaAlta = DateTime.Today;
-                    nuevoPaciente.Estado = chbEstado.Checked;
+                    nuevoPaciente.FechaAlta = DateTime.Today;                    
+                    if (ddlEstado.Text == "Activo")
+                    {
+                        nuevoPaciente.Estado = true;
+                    }
+                    else
+                    {
+                        nuevoPaciente.Estado = false;
+                    }
                     nuevoPaciente.Imagen = txtImagen.Text;
                     nuevoPaciente.Sexo = ddlGenero.Text;
                 }
@@ -134,7 +141,7 @@ namespace TP_Final_Morales_Rangogni
             txtTelefono.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtFecha.Text = string.Empty;
-            chbEstado.Checked = true;
+            ddlEstado.Text = "Activo";         
             txtImagen.Text = string.Empty;
             ddlGenero.Text = "Masculino";
         }

@@ -11,7 +11,7 @@ namespace TP_Final_Morales_Rangogni.DominioWeb
         public string NroDocumento { get; set; }
         public string FechaNacimiento { get; set; }
         public string Sexo { get; set; }
-        public string FechaAlta { get; set; }
+        public DateTime FechaAlta { get; set; }
         public string Estado { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
@@ -25,7 +25,7 @@ namespace TP_Final_Morales_Rangogni.DominioWeb
             NroDocumento=paciente.NroDocumento;
             FechaNacimiento = paciente.FechaNacimiento.ToString("dd-MM-yyyy");
             Sexo= paciente.Sexo;
-            FechaAlta= paciente.FechaAlta.ToString("dd-MM-yyyy");
+            FechaAlta = paciente.FechaAlta; //.ToString("dd-MM-yyyy");
             Estado = Convert.ToString(paciente.Estado?"Activo":"Inactivo");
             Telefono = paciente.Telefono; 
             Email= paciente.Email;

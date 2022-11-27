@@ -100,7 +100,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     sql = sql.Replace("@fechanacimiento", "'" + paciente.FechaNacimiento.ToString("yyyy-MM-ddThh:mm:ss") + "'");                    
                     sql = sql.Replace("@sexo", paciente.Sexo.ToString());
                     //sql = sql.Replace("@fechaalta", "'" + paciente.FechaAlta.ToString("yyyy-MM-ddThh:mm:ss") + "'");                    
-                    sql = sql.Replace("@estado", paciente.Estado ? "1":"0"); /// convertir a BIT
+                    sql = sql.Replace("@estado", paciente.Estado.Equals(true) ? "1" : "0"); /// convertir a BIT
                     sql = sql.Replace("@telefono", paciente.Telefono.ToString());
                     sql = sql.Replace("@email", paciente.Email.ToString());
                     sql = sql.Replace("@imagen", paciente.Imagen.ToString());
@@ -162,7 +162,7 @@ namespace AccesoModeloBaseDatos.Modelos
             objTPaciente.FechaNacimiento = Convert.ToDateTime(dr["fechaNacimiento"].ToString());
             objTPaciente.Sexo =  dr["sexo"].ToString();
             objTPaciente.FechaAlta = Convert.ToDateTime(dr["fechaAlta"].ToString());
-            objTPaciente.Estado = Convert.ToBoolean(dr["estado"]);            
+            objTPaciente.Estado = dr["Estado"].ToString().Equals("Activo") ? true : false;
             objTPaciente.Telefono = dr["telefono"].ToString();
             objTPaciente.Email = dr["email"].ToString();
             objTPaciente.Imagen = dr["imagen"].ToString();           
