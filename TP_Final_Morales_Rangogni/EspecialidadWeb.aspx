@@ -12,7 +12,7 @@
                     <asp:GridView ID="dgvEspecialidad" DataKeyNames="IdEspecialidad" AutoGenerateColumns="false" OnRowCommand="dgvEspecialidad_RowCommand" CssClass="highlight responsive-table" runat="server">
                         <Columns>
                             <asp:BoundField HeaderText="Id" DataField="IdEspecialidad" />
-                            <asp:BoundField HeaderText="Jornada" DataField="Descripcion" />
+                            <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
                             <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
                             <asp:ButtonField HeaderText="Eliminar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Eliminar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>delete_forever</i>" />
                         </Columns>

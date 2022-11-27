@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="Dominio\Empleado.cs" />
+    <Compile Include="Dominio\MedicoEspecialidad.cs" />
     <Compile Include="Dominio\Especialidad.cs" />
     <Compile Include="Dominio\Medico.cs" />
     <Compile Include="Dominio\Paciente.cs" />

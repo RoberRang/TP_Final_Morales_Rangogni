@@ -30,7 +30,30 @@ namespace ModeloDeNegocio.Negocio
                 throw ex;
             }
         }
+
+        public bool AltaMedicoEspecialidad(int idMedico, int idEsp, bool estado)
+        {
+            try
+            {
+                MedicoEspecialidad medicoEspecialidad = new MedicoEspecialidad();
+                medicoEspecialidad.IdMedico= idMedico;
+                medicoEspecialidad.IdEspecialidad = idEsp;
+                medicoEspecialidad.Estado = estado;
+
+                return tipoEspecialidadADO.GrabarMedicoEspecialidad(medicoEspecialidad,true);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<Especialidad> Especialidades()
+        {
+            return tipoEspecialidadADO.ListarEspecialidades();
+        }
+
+        public List<Especialidad> EspecialidadesMedico(int idMedico)
         {
             return tipoEspecialidadADO.ListarEspecialidades();
         }
@@ -43,6 +66,22 @@ namespace ModeloDeNegocio.Negocio
                 this.Estado = estado;
 
                 return tipoEspecialidadADO.GrabarEspecialidad(this);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool ModificarEspecialidadMedico(int idMedico, int idEsp, bool estado)
+        {
+            try
+            {
+                MedicoEspecialidad medicoEspecialidad = new MedicoEspecialidad();
+                medicoEspecialidad.IdMedico = idMedico;
+                medicoEspecialidad.IdEspecialidad = idEsp;
+                medicoEspecialidad.Estado = estado;
+
+                return tipoEspecialidadADO.GrabarMedicoEspecialidad(medicoEspecialidad, false);
             }
             catch (Exception ex)
             {
