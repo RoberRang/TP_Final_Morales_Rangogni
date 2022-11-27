@@ -265,7 +265,7 @@
                                 <asp:ListItem Text="Otro" />
                             </asp:DropDownList>
                         </div>
-                        <!--NUEVO CONTROL--->
+                        <!--EDITAR ESTADO--->
                         <div class="input-field col s4 left-align">
                             <label for="lblEdEstado">Estado</label>
                             <br />
