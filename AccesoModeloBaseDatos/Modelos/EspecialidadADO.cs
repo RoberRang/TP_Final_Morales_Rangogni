@@ -127,5 +127,10 @@ namespace AccesoModeloBaseDatos.Modelos
 
             return objTEspecialidad;
         }
+
+        public bool GrabarMedicoEspecialidad(MedicoEspecialidad medicoEspecialidad, bool v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
