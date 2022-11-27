@@ -11,7 +11,7 @@ namespace AccesoModeloBaseDatos.Modelos
     {
         private const string SQL_INSERT_PACIENTES = "INSERT INTO pacientes (nombres, apellidos, nrodocumento, fechanacimiento, sexo,fechaalta,estado, telefono, email, imagen) VALUES (@nombres,@apellidos,@nrodocumento, @fechanacimiento, @sexo, @fechaalta, @estado, @telefono, @email, @imagen)";
         private const string SQL_SELECT_PACIENTES = "SELECT  idPaciente,nombres,apellidos,nrodocumento, fechanacimiento, sexo, fechaalta, estado, telefono, email, imagen FROM Pacientes";
-        private const string SQL_UPDATE_PACIENTES = "UPDATE pacientes SET @nombres,@apellidos,@nrodocumento, @fechanacimiento, @sexo, @fechaalta, @estado, @telefono, @email, @imagen WHERE idPaciente = @idPaciente";
+        private const string SQL_UPDATE_PACIENTES = "UPDATE pacientes SET nombres='@nombres',apellidos='@apellidos',nrodocumento='@nrodocumento', fechanacimiento=@fechanacimiento, sexo='@sexo', estado=@estado, telefono=@telefono, email='@email', imagen='@imagen' WHERE idPaciente = @idPaciente";
         private const string SQL_SELECT_PACIENTE = "SELECT idPaciente,nombres,apellidos,nrodocumento, fechanacimiento, sexo, fechaalta, estado, telefono, email, imagen FROM Pacientes WHERE NroDocumento = '@nrodocumento'";
         private readonly string coneccionDB;
         public PacienteADO(string coneccion)
@@ -76,7 +76,7 @@ namespace AccesoModeloBaseDatos.Modelos
             using (SqlConnection con = accesoDatosUpdate.ConnectToDB())
             {
                 try
-                {
+                {   /*
                     SqlCommand cmd = new SqlCommand(SQL_UPDATE_PACIENTES, con);
                     cmd.Parameters.AddWithValue("@apellidos", paciente.Apellidos);
                     cmd.Parameters.AddWithValue("@nombres", paciente.Nombres);
@@ -90,25 +90,25 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@imagen", paciente.Imagen);
                     cmd.CommandType = CommandType.Text;
                     accesoDatosUpdate.ExecuteCommand(cmd);
-
-                    ////////////
-                    /*string sql = SQL_UPDATE_PACIENTES;                   
-                    sql = sql.Replace("@IdPaciente", paciente.IdPaciente.ToString());
+                    */
+                    
+                    string sql = SQL_UPDATE_PACIENTES;                   
+                    sql = sql.Replace("@idPaciente", paciente.IdPaciente.ToString());
                     sql = sql.Replace("@apellidos", paciente.Apellidos.ToString());
                     sql = sql.Replace("@nombres", paciente.Nombres.ToString());
                     sql = sql.Replace("@nrodocumento", paciente.NroDocumento.ToString());
-                    sql = sql.Replace("@fechanacimiento", paciente.FechaNacimiento.ToString());
+                    sql = sql.Replace("@fechanacimiento", "'" + paciente.FechaNacimiento.ToString("yyyy-MM-ddThh:mm:ss") + "'");                    
                     sql = sql.Replace("@sexo", paciente.Sexo.ToString());
-                    sql = sql.Replace("@fechaalta", paciente.FechaAlta.ToString());
-                    sql = sql.Replace("@estado", paciente.Estado.ToString());
+                    //sql = sql.Replace("@fechaalta", "'" + paciente.FechaAlta.ToString("yyyy-MM-ddThh:mm:ss") + "'");                    
+                    sql = sql.Replace("@estado", paciente.Estado ? "1":"0"); /// convertir a BIT
                     sql = sql.Replace("@telefono", paciente.Telefono.ToString());
                     sql = sql.Replace("@email", paciente.Email.ToString());
                     sql = sql.Replace("@imagen", paciente.Imagen.ToString());
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     accesoDatosUpdate.ExecuteCommandString(cmd.CommandText);
-                    */
-                    ///////////
+                    
+                    
                 }
                 catch (Exception ex)
                 {

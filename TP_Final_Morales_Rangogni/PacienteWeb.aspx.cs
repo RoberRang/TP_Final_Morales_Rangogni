@@ -72,8 +72,7 @@ namespace TP_Final_Morales_Rangogni
                     nuevoPaciente.NroDocumento = txtEdDni.Text;
                     nuevoPaciente.Telefono = txtEdtelefono.Text;
                     nuevoPaciente.Email = txtEdEmail.Text;
-                    nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtEdFnac.Text);
-                    //nuevoPaciente.FechaAlta = DateTime.Today;
+                    nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtEdFnac.Text);                   
                     if (ddlEdEstado.Text == "Activo")
                     {
                         nuevoPaciente.Estado = true;
@@ -90,25 +89,21 @@ namespace TP_Final_Morales_Rangogni
                     negocio.ModificarPaciente(nuevoPaciente);
                     buscarPacientesWeb();
                     ///cartel alta de pacinete completa y limpiar controles                
-                   // limpiarControles();
+                   limpiarControlesEditar();
+              
+                    mvwPacientes.ActiveViewIndex = 0;
                 }
-                else
-                {
-                    ///cartel de el paciente ya existe, desea editarlo?,  mostrar el paciente y dar opcion de editarlo
-                    Response.Redirect("ErrorWeb.aspx", false);
-                }
+               
                 if (btnFuncion.ID != "btnEditar")
                 {
                     negocio.AltaPaciente(nuevoPaciente);
+                    
                     buscarPacientesWeb();
                     ///cartel alta de pacinete completa y limpiar controles                
                     limpiarControles();
+
                 }
-                else
-                {
-                    ///cartel de el paciente ya existe, desea editarlo?,  mostrar el paciente y dar opcion de editarlo
-                    Response.Redirect("ErrorWeb.aspx", false);
-                }
+           
             }
             catch (Exception ex)
             {
@@ -116,6 +111,19 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
 
             }
+        }
+
+        private void limpiarControlesEditar()
+        {   
+            txtEdNombre.Text = string.Empty;            
+            txtEdApellido.Text = string.Empty;
+            txtEdDni.Text = string.Empty;
+            txtEdtelefono.Text = string.Empty;              
+            txtEdEmail.Text = string.Empty;
+            txtEdFnac.Text= string.Empty;
+            ddlEdEstado.Text = "Activo";            
+            txtEdImagen.Text = string.Empty;
+            ddlEdGenero.Text = "Masculino";
         }
 
         private void limpiarControles()
@@ -128,7 +136,7 @@ namespace TP_Final_Morales_Rangogni
             txtFecha.Text = string.Empty;
             chbEstado.Checked = true;
             txtImagen.Text = string.Empty;
-            ddlGenero.Text = string.Empty;
+            ddlGenero.Text = "Masculino";
         }
 
         private bool ValidoControlTextBox(TextBox textBox)
