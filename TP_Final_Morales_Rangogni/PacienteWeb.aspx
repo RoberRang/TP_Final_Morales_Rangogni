@@ -19,13 +19,19 @@
             <asp:View ID="vwPaciente" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upVerPacientes">
                     <ContentTemplate>
+                        
+                      <asp:Label Text="Busqueda de Pacientes" runat="server" CssClass="active" />
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
 
-                        <div class="row">
-
-                            <asp:Label Text="Filtrar" runat="server" CssClass="active" />
-                            <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="filtro_TextChanged" placeholder="Filtre por nombre de paciente "></asp:TextBox>
+                                    <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="filtro_TextChanged" placeholder="Filtre por nombre de paciente "></asp:TextBox>
+                                </div>
+                                <div class="input-field col s6">                                    
+                                    <asp:TextBox ID="txtFiltroDni" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="txtFiltroDni_TextChanged" placeholder="Filtre por dni de paciente "></asp:TextBox>
+                                </div>
+                            </div>
                         </div>
-
                         <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table"
                             runat="server" AutoGenerateColumns="false" DataKeyNames="IdPaciente"
                             OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged">

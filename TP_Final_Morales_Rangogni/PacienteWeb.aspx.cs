@@ -206,6 +206,14 @@ namespace TP_Final_Morales_Rangogni
             mvwPacientes.ActiveViewIndex = index;
         }
 
+        protected void txtFiltroDni_TextChanged(object sender, EventArgs e)
+        {
+            List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
+            List<ModeloPacienteWeb> filtroRapido = filtro.FindAll(x => x.NroDocumento.ToUpper().Contains(txtFiltroDni.Text.ToUpper()));
+            dgvPacientes.DataSource = filtroRapido;
+            dgvPacientes.DataBind();
+
+        }
     }
 }
 
