@@ -49,7 +49,7 @@ namespace TP_Final_Morales_Rangogni
                     nuevoPaciente.Telefono = txtTelefono.Text;
                     nuevoPaciente.Email = txtEmail.Text;
                     nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtFecha.Text);
-                    nuevoPaciente.FechaAlta = DateTime.Today;                    
+                    nuevoPaciente.FechaAlta = DateTime.Today;
                     if (ddlEstado.Text == "Activo")
                     {
                         nuevoPaciente.Estado = true;
@@ -79,7 +79,7 @@ namespace TP_Final_Morales_Rangogni
                     nuevoPaciente.NroDocumento = txtEdDni.Text;
                     nuevoPaciente.Telefono = txtEdtelefono.Text;
                     nuevoPaciente.Email = txtEdEmail.Text;
-                    nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtEdFnac.Text);                   
+                    nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtEdFnac.Text);
                     if (ddlEdEstado.Text == "Activo")
                     {
                         nuevoPaciente.Estado = true;
@@ -96,21 +96,21 @@ namespace TP_Final_Morales_Rangogni
                     negocio.ModificarPaciente(nuevoPaciente);
                     buscarPacientesWeb();
                     ///cartel alta de pacinete completa y limpiar controles                
-                   limpiarControlesEditar();
-              
+                    limpiarControlesEditar();
+
                     mvwPacientes.ActiveViewIndex = 0;
                 }
-               
+
                 if (btnFuncion.ID != "btnEditar")
                 {
                     negocio.AltaPaciente(nuevoPaciente);
-                    
+
                     buscarPacientesWeb();
                     ///cartel alta de pacinete completa y limpiar controles                
                     limpiarControles();
 
                 }
-           
+
             }
             catch (Exception ex)
             {
@@ -121,14 +121,14 @@ namespace TP_Final_Morales_Rangogni
         }
 
         private void limpiarControlesEditar()
-        {   
-            txtEdNombre.Text = string.Empty;            
+        {
+            txtEdNombre.Text = string.Empty;
             txtEdApellido.Text = string.Empty;
             txtEdDni.Text = string.Empty;
-            txtEdtelefono.Text = string.Empty;              
+            txtEdtelefono.Text = string.Empty;
             txtEdEmail.Text = string.Empty;
-            txtEdFnac.Text= string.Empty;
-            ddlEdEstado.Text = "Activo";            
+            txtEdFnac.Text = string.Empty;
+            ddlEdEstado.Text = "Activo";
             txtEdImagen.Text = string.Empty;
             ddlEdGenero.Text = "Masculino";
         }
@@ -141,7 +141,7 @@ namespace TP_Final_Morales_Rangogni
             txtTelefono.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtFecha.Text = string.Empty;
-            ddlEstado.Text = "Activo";         
+            ddlEstado.Text = "Activo";
             txtImagen.Text = string.Empty;
             ddlGenero.Text = "Masculino";
         }
@@ -206,6 +206,30 @@ namespace TP_Final_Morales_Rangogni
             mvwPacientes.ActiveViewIndex = index;
         }
 
+        protected void txtFiltroApellido_TextChanged(object sender, EventArgs e)
+        {
+            List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
+            List<ModeloPacienteWeb> filtroRapido = filtro.FindAll(x => x.Apellidos.ToUpper().Contains(txtFiltroApellido.Text.ToUpper()));
+            dgvPacientes.DataSource = filtroRapido;
+            dgvPacientes.DataBind();
+
+        }
+
+        protected void txtFiltroDni_TextChanged(object sender, EventArgs e)
+        {
+            List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
+            List<ModeloPacienteWeb> filtroRapido = filtro.FindAll(x => x.NroDocumento.ToUpper().Contains(txtFiltroDni.Text.ToUpper()));
+            dgvPacientes.DataSource = filtroRapido;
+            dgvPacientes.DataBind();
+        }
+
+        protected void btnLimpiarFiltro_Click(object sender, EventArgs e)
+        {
+            txtfiltro.Text = "";
+            txtFiltroApellido.Text = "";
+            txtFiltroDni.Text = "";
+            buscarPacientesWeb();
+        }
     }
 }
 

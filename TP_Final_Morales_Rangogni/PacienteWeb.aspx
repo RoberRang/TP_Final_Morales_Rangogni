@@ -15,16 +15,36 @@
 
     <!---Solapa Pacientes-->
     <div class="content ">
+        <h4>Filtrar</h4>
         <asp:MultiView runat="server" ID="mvwPacientes" ActiveViewIndex="0">
             <asp:View ID="vwPaciente" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upVerPacientes">
                     <ContentTemplate>
+                        <div class="col s12">
+                            <div class="row">
 
-                        <div class="row">
+                                <div class="col s4">
 
-                            <asp:Label Text="Filtrar" runat="server" CssClass="active" />
-                            <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="filtro_TextChanged" placeholder="Filtre por nombre de paciente "></asp:TextBox>
+                                    <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="filtro_TextChanged" placeholder="Filtre por nombre de paciente "></asp:TextBox>
+                                </div>
+                                <div class="col s4">
+
+                                    <asp:TextBox ID="txtFiltroApellido" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="txtFiltroApellido_TextChanged" placeholder="Filtre por Apellido de paciente "></asp:TextBox>
+                                </div>
+                                <div class="col s4">
+
+                                    <asp:TextBox ID="txtFiltroDni" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="txtFiltroDni_TextChanged" placeholder="Filtre por Dni de paciente "></asp:TextBox>
+                                </div>
+
+                            </div>
                         </div>
+                    
+                            <div class="row left-align ">
+                                
+                                    <asp:Button CssClass="modal-close btn-flat purple white-text" ID="btnLimpiarFiltro" runat="server" OnClick="btnLimpiarFiltro_Click" Text="Limpiar Filtros" />
+                                
+                            </div>
+                    
 
                         <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table"
                             runat="server" AutoGenerateColumns="false" DataKeyNames="IdPaciente"
@@ -39,8 +59,8 @@
 
                             </Columns>
                         </asp:GridView>
-                        </div>
 
+                        </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
 
