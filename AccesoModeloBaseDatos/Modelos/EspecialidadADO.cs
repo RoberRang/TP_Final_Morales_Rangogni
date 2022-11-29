@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace AccesoModeloBaseDatos.Modelos
 {
@@ -66,7 +67,7 @@ namespace AccesoModeloBaseDatos.Modelos
                 {
                     SqlCommand cmd = new SqlCommand(SQL_INSERT_ESPECIALIDAD, con);
                     cmd.Parameters.AddWithValue("@descripcion", especialidad.Descripcion);
-                    cmd.Parameters.AddWithValue("@estado", especialidad.Estado);
+                    cmd.Parameters.AddWithValue("@estado", especialidad.Estado.Equals("Activo") ? true : false);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
                 }
@@ -91,7 +92,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     SqlCommand cmd = new SqlCommand(SQL_INSERT_MEDICOESPECIALIDAD, con);
                     cmd.Parameters.AddWithValue("@idMedico", medicoEspecialidad.IdMedico );
                     cmd.Parameters.AddWithValue("@idEspecialidad", medicoEspecialidad.IdEspecialidad);
-                    cmd.Parameters.AddWithValue("@estado", medicoEspecialidad.Estado);
+                    cmd.Parameters.AddWithValue("@estado", medicoEspecialidad.Estado.Equals("Activo") ? true : false);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
                 }
