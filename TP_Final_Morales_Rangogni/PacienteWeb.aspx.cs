@@ -1,4 +1,5 @@
 ﻿using AccesoModeloBaseDatos.Dominio;
+using AjaxControlToolkit.HtmlEditor;
 using ModeloDeNegocio.Negocio;
 using System;
 using System.Collections.Generic;
@@ -92,7 +93,7 @@ namespace TP_Final_Morales_Rangogni
                     nuevoPaciente.Sexo = ddlEdGenero.Text;
                 }
                 if (btnFuncion.ID == "btnEditar")
-                {
+                {   
                     negocio.ModificarPaciente(nuevoPaciente);
                     buscarPacientesWeb();
                     ///cartel alta de pacinete completa y limpiar controles                
@@ -164,7 +165,6 @@ namespace TP_Final_Morales_Rangogni
             mvwPacientes.ActiveViewIndex = 2;
             List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
             ModeloPacienteWeb filtroRapido = filtro.Find(x => x.IdPaciente.Equals(id));
-
             IdPaciente.Text = id.ToString();
             txtEdNombre.Text = filtroRapido.Nombres;
             txtEdApellido.Text = filtroRapido.Apellidos;
@@ -201,8 +201,10 @@ namespace TP_Final_Morales_Rangogni
         }
 
         protected void mnPaciente_MenuItemClick(object sender, MenuEventArgs e)
-        {
+        {             
             int index = Convert.ToInt32(e.Item.Value);
+            if (e.Item.Text.Equals("Editar Paciente"))
+                return;
             mvwPacientes.ActiveViewIndex = index;
         }
 
