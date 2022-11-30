@@ -11,7 +11,7 @@ namespace AccesoModeloBaseDatos.Modelos
     {
         private const string SQL_INSERT_EMPLEADOS = "INSERT INTO Empleados (IdPerfil, nombre, apellido, nrodocumento,fechaalta,IdJornada, estado) VALUES (@IdPerfil,@nombre,@apellido,@nrodocumento,@fechaalta,@IdJornada, @estado)";
         private const string SQL_SELECT_EMPLEADOS = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta, IdJornada, estado FROM Empleados";
-        private const string SQL_UPDATE_EMPLEADOS = "UPDATE Empleados SET IdPerfil=@IdPerfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, fechaalta=@fechaalta, IdJornada=@IdJornada, estado=@estado WHERE id=@id";
+        private const string SQL_UPDATE_EMPLEADOS = "UPDATE Empleados SET IdPerfil=@IdPerfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, IdJornada=@IdJornada, estado=@estado WHERE id=@id";
         private const string SQL_SELECT_EMPLEADO = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta,IdJornada, estado FROM Empleados ";// WHERE NroDocumento = '@nrodocumento'";
         private const string SQL_SELECT_EMPLEADO_LOGIN = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta,IdJornada, estado FROM Empleados e INNER JOIN Usuarios u ON e.id = u.IdEmpleado WHERE u.UserLogin= '@UserLogin' AND u.Password = '@Password'";
         private readonly string coneccionDB;
@@ -75,11 +75,11 @@ namespace AccesoModeloBaseDatos.Modelos
                 try
                 {
                     SqlCommand cmd = new SqlCommand(SQL_UPDATE_EMPLEADOS, con);
+                    cmd.Parameters.AddWithValue("@id", empleado.ID);
                     cmd.Parameters.AddWithValue("@apellido", empleado.Apellidos);
                     cmd.Parameters.AddWithValue("@IdPerfil", empleado.idPerfil);
                     cmd.Parameters.AddWithValue("@nombre", empleado.Nombres);
                     cmd.Parameters.AddWithValue("@nrodocumento", empleado.NroDocumento);
-                    cmd.Parameters.AddWithValue("@fechaalta", empleado.FechaAlta);
                     cmd.Parameters.AddWithValue("@IdJornada", empleado.idJornada);
                     cmd.Parameters.AddWithValue("@estado", empleado.Estado);
                     cmd.CommandType = CommandType.Text;

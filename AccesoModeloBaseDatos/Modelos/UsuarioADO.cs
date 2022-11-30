@@ -41,13 +41,18 @@ namespace AccesoModeloBaseDatos.Modelos
                 {
                     throw ex;
                 }
+                finally
+                {
+                    accesoDatos.CloseConnection();
+                }
                 return inserto;
             }
         }
 
-        private void UpdateUsuario(Usuario usuario)
+        public bool UpdateUsuario(Usuario usuario)
         {
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
+            bool actualizo = false;
             using (SqlConnection con = accesoDatos.ConnectToDB())
             {
                 try
@@ -57,6 +62,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
+                    actualizo = true;
                 }
                 catch (Exception ex)
                 {
@@ -66,6 +72,7 @@ namespace AccesoModeloBaseDatos.Modelos
                 {
                     accesoDatos.CloseConnection();
                 }
+                return actualizo;
             }
         }
 
@@ -77,7 +84,6 @@ namespace AccesoModeloBaseDatos.Modelos
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
             try
             {
-
                 using (SqlConnection con = accesoDatos.ConnectToDB())
                 {
                     SqlCommand cmd = new SqlCommand(SQL_SELECT_USUARIOS, con);
