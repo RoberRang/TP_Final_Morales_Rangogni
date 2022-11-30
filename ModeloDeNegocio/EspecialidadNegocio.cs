@@ -39,13 +39,24 @@ namespace ModeloDeNegocio.Negocio
                 medicoEspecialidad.IdMedico= idMedico;
                 medicoEspecialidad.IdEspecialidad = idEsp;
                 medicoEspecialidad.Estado = estado;
-
+                //Validar que la especialidad ya no este cargada para el medico
+                if (ControMedicoEspcialidadExiste(idMedico,idEsp))
+                    return false;
                 return tipoEspecialidadADO.GrabarMedicoEspecialidad(medicoEspecialidad, true);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        private bool ControMedicoEspcialidadExiste(int idMedico, int idEsp)
+        {
+            List<Especialidad> especialidades = tipoEspecialidadADO.ListarMedicoEspecialidades(idMedico);
+            Especialidad especialidad = especialidades.Find(x => x.IdEspecialidad.Equals(idEsp));
+            if (especialidad != null)
+                return true;
+            return false;
         }
 
         public List<Especialidad> Especialidades()
@@ -76,8 +87,8 @@ namespace ModeloDeNegocio.Negocio
         {
             try
             {
-                if (tipoEspecialidadADO.ListarMedicoEspecialidades(idMedico, true).Count < 2)
-                    throw new Exception("Debe tener al menos 2 especialidades activas");
+                if (estado.Equals(false) && tipoEspecialidadADO.ListarMedicoEspecialidades(idMedico, true).Count < 2)
+                    throw new Exception("Debe tener al menos 1 especialidad activa");
 
                 MedicoEspecialidad medicoEspecialidad = new MedicoEspecialidad();
                 medicoEspecialidad.IdMedico = idMedico;

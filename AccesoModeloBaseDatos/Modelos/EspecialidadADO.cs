@@ -12,7 +12,7 @@ namespace AccesoModeloBaseDatos.Modelos
         private const string SQL_INSERT_ESPECIALIDAD = "INSERT INTO Especialidad (Descripcion, Estado) VALUES (@descripcion, @estado)";
         private const string SQL_INSERT_MEDICOESPECIALIDAD = "INSERT INTO MedicosEspecialidad (IdMedico,IdEspecialidad, Estado) VALUES (@idMedico, @idEspecialidad, @estado)";
         private const string SQL_SELECT_ESPECIALIDADES = "SELECT IdEspecialidad, Descripcion, Estado FROM Especialidad";
-        private const string SQL_SELECT_MEDICOESPECIALIDADES = "SELECT e.IdEspecialidad, e.Descripcion, e.Estado FROM Especialidad e INNER JOIN MedicosEspecialidad me ON e.IdEspecialidad = me.IdEspecialidad WHERE me.IdMedico = @idMedico";
+        private const string SQL_SELECT_MEDICOESPECIALIDADES = "SELECT e.IdEspecialidad, e.Descripcion, me.Estado FROM Especialidad e INNER JOIN MedicosEspecialidad me ON e.IdEspecialidad = me.IdEspecialidad WHERE me.IdMedico = @idMedico";
         private const string SQL_UPDATE_ESPECIALIDAD = "UPDATE Especialidad SET Descripcion = @descripcion, Estado = @estado WHERE IdEspecialidad = @idEspecialidad";
         private const string SQL_UPDATE_MEDICOESPECIALIDAD = "UPDATE MedicosEspecialidad SET Estado = @estado WHERE IdMedico = @idMedico AND IdEspecialidad = @idEspecialidad";
         private readonly string coneccionDB;
@@ -51,9 +51,9 @@ namespace AccesoModeloBaseDatos.Modelos
                     UpdateMedicoEspecialidadDB(medicoEspecialidad);
                 response = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                response = false;
+                throw ex;
             }
             return response;
         }
@@ -90,9 +90,9 @@ namespace AccesoModeloBaseDatos.Modelos
                 try
                 {
                     SqlCommand cmd = new SqlCommand(SQL_INSERT_MEDICOESPECIALIDAD, con);
-                    cmd.Parameters.AddWithValue("@idMedico", medicoEspecialidad.IdMedico );
+                    cmd.Parameters.AddWithValue("@idMedico", medicoEspecialidad.IdMedico);
                     cmd.Parameters.AddWithValue("@idEspecialidad", medicoEspecialidad.IdEspecialidad);
-                    cmd.Parameters.AddWithValue("@estado", medicoEspecialidad.Estado.Equals("Activo") ? true : false);
+                    cmd.Parameters.AddWithValue("@estado", medicoEspecialidad.Estado);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
                 }
@@ -139,7 +139,7 @@ namespace AccesoModeloBaseDatos.Modelos
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_INSERT_MEDICOESPECIALIDAD, con);
+                    SqlCommand cmd = new SqlCommand(SQL_UPDATE_MEDICOESPECIALIDAD, con);
                     cmd.Parameters.AddWithValue("@idMedico", medicoEspecialidad.IdMedico);
                     cmd.Parameters.AddWithValue("@idEspecialidad", medicoEspecialidad.IdEspecialidad);
                     cmd.Parameters.AddWithValue("@estado", medicoEspecialidad.Estado);
@@ -189,7 +189,7 @@ namespace AccesoModeloBaseDatos.Modelos
             return Lista;
         }
 
-        public List<Especialidad> ListarMedicoEspecialidades(int idMedico, bool activa = true)
+        public List<Especialidad> ListarMedicoEspecialidades(int idMedico, bool activa = false)
         {
             List<Especialidad> Lista = new List<Especialidad>();
             SqlDataReader dr = null;

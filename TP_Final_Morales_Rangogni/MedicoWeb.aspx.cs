@@ -220,7 +220,7 @@ namespace TP_Final_Morales_Rangogni
                 Empleado empleado = (Empleado)Session["EmpleadoLogin"];
                 if (empleado.idPerfil != 3)
                     return;
-                especialidadNegocio.AltaMedicoEspecialidad(empleado.ID, Convert.ToInt32(txtIdEspMed.Text), chbEst.Checked);
+                especialidadNegocio.AltaMedicoEspecialidad(empleado.ID, Convert.ToInt32(txtIdEspMed.Text), chkEstMedEsp.Checked);
             } 
             catch (Exception ex)
             {
@@ -240,7 +240,7 @@ namespace TP_Final_Morales_Rangogni
                 Empleado empleado = (Empleado)Session["EmpleadoLogin"];
                 if (empleado.idPerfil != 3)
                     return;
-                especialidadNegocio.ModificarMedicoEspecialidad(Convert.ToInt32(txtIdMed.Text),Convert.ToInt32(txtIdEspMed.Text), chbEst.Checked);
+                especialidadNegocio.ModificarMedicoEspecialidad(Convert.ToInt32(txtIdMed.Text),Convert.ToInt32(txtIdEspMed.Text), chkEstMedEsp.Checked);
             }
             catch (Exception ex)
             {
