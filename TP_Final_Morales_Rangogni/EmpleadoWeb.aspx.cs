@@ -161,6 +161,7 @@ namespace TP_Final_Morales_Rangogni
 
         protected void btnVerEmp_Click(object sender, EventArgs e)
         {
+            txtfiltro.Text = "";
             buscarEmpleados();
         }
         protected void buscarEmpleados()

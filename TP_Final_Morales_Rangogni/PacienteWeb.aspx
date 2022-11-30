@@ -14,12 +14,12 @@
     </div>
 
     <!---Solapa Pacientes-->
-    <div class="content ">
-        <h4>Filtrar</h4>
+    <div class="content ">    
         <asp:MultiView runat="server" ID="mvwPacientes" ActiveViewIndex="0">
             <asp:View ID="vwPaciente" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upVerPacientes">
                     <ContentTemplate>
+                            <h4>Filtrar</h4>
                         <div class="col s12">
                             <div class="row">
 
@@ -323,7 +323,7 @@
                         </div>
                         <div class="modal-footer">
 
-                            <asp:Button CssClass="modal-close btn-flat purple white-text" ID="btnEditar" runat="server" OnClick="btnAcept_Click" Text="Aceptar" />
+                            <asp:Button CssClass="modal-close btn-flat purple white-text" ID="btnEditar"  runat="server" OnClick="btnAcept_Click" Text="Aceptar" />
 
                             <a href="#!" class="modal-close purple white-text btn-flat">Cancelar</a>
                         </div>

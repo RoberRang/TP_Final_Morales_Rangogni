@@ -22,11 +22,10 @@
                             <asp:Label Text="Filtrar" runat="server" CssClass="active" />
                             <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="txtfiltro_TextChanged"></asp:TextBox>
                         </div>
-                        <div class="col-md-5 right-align">
-                            <br />
-                            <asp:Button runat="server" ID="btnVerEmp" CssClass="btn btn-default" OnClick="btnVerEmp_Click" Text="Empleados &raquo;" />
-                            <br />
-                            <br />
+                        <div class="row left-align ">                                
+                                    <asp:Button runat="server" ID="btnVerEmp" CssClass="btn btn-default" OnClick="btnVerEmp_Click" Text="Limpiar filto &raquo;" />                                
+                            </div>
+                        <div class="col-md-5 right-align">                           
                             <asp:GridView ID="dgEmpleados" CssClass="highlight responsive-table" runat="server"
                                 AutoGenerateColumns="false" DataKeyNames="Id"
                                 OnSelectedIndexChanged="dgEmpleados_SelectedIndexChanged">
