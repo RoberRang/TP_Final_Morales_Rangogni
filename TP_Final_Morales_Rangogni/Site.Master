@@ -28,7 +28,8 @@
         <div class="container">
             <nav>
                 <div class="nav-wrapper purple">
-                    <a class="brand-logo left-align" runat="server" href="~/"><i class="material-icons">local_hospital</i>Clinica MORA</a>
+                    <img src="Imagenes/Logo_3.jpg" class=" right-align" width="63" />                   
+                    <a class="brand-logo left-align" runat="server" href="~/"><i class="material-icons"></i>Clinica Mora</a>
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-dow">
                         <li><a runat="server" href="~/"><i class="material-icons">home</i>Inicio</a></li>
