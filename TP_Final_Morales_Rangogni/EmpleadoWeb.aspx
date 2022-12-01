@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="row left-align ">
-                            <asp:Button runat="server" ID="btnVerEmp" CssClass="btn btn-default" OnClick="btnVerEmp_Click" Text="Limpiar filtros &raquo;" />
+                            <asp:Button runat="server" ID="btnVerEmp" CssClass="modal-close btn-flat purple white-text" OnClick="btnVerEmp_Click" Text="Limpiar filtros &raquo;" />
                         </div>
                         <div class="col-md-5 right-align">
                             <asp:GridView ID="dgEmpleados" CssClass="highlight responsive-table" runat="server"

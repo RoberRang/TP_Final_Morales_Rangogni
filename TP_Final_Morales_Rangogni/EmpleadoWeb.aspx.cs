@@ -97,11 +97,12 @@ namespace TP_Final_Morales_Rangogni
                     nuevoUser = nuevoEmpleado();
                     if (nuevoUser == null)
                         return;
-                    ///CREAR METODO negocio.agregar(nuevo);
+                  
                     if (negocio.AltaUsuario(nuevoUser))
                     {
-                        LimpiarControlesAltaEmpleado();
-                        ///cartel alta de empleado completa
+                        LimpiarControlesAltaEmpleado();   ///cartel alta de empleado completa
+                        buscarEmpleados();
+                      
                     }
                 }
                 else
@@ -271,6 +272,8 @@ namespace TP_Final_Morales_Rangogni
         protected void mnEmpleados_MenuItemClick(object sender, MenuEventArgs e)
         {
             int index = Convert.ToInt32(e.Item.Value);
+            if (e.Item.Text.Equals("Editar Empleado"))
+                return;
             mvwEmpleados.ActiveViewIndex = index;
         }
 
