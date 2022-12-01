@@ -52,7 +52,7 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-                Session.Add("MensajeError", ex.ToString());
+                Session.Add("MensajeError", ex.Message);
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
@@ -95,10 +95,10 @@ namespace TP_Final_Morales_Rangogni
                 txtId.Text = modeloTurnoWeb.IdTurno.ToString();
                 txtPaciente.Text = modeloTurnoWeb.NombrePaciente.ToString();
                 txtMedico.Text = modeloTurnoWeb.NombreMedico.ToString();
-                txtDia.Text = modeloTurnoWeb.FechaReserva.ToString();
+                txtDia.Text = modeloTurnoWeb.FechaReserva.ToString("dd-MM-yyyy");
                 txtHora.Text = modeloTurnoWeb.Hora.ToString();
                 txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
-                ddlSituacion.SelectedValue = modeloTurnoWeb.IdSituacion.ToString();
+                
                 mpe.Show();
             }
             catch (Exception ex)
@@ -158,7 +158,7 @@ namespace TP_Final_Morales_Rangogni
                 Turno turno = new Turno();
                 turno.IdTurno = Convert.ToInt32(txtId.Text);
                 turno.Observacion = txtObservacion.Text;
-                turno.IdSituacion = Convert.ToInt32(ddlSituacion.SelectedValue);
+                turno.IdSituacion = 5;
                 if (turno.IdTurno == 0)
                     return;
                 if (!turnoNegocio.GrabarTurno(turno))
@@ -177,9 +177,9 @@ namespace TP_Final_Morales_Rangogni
 
         private void LimpiarControles()
         {
-            //txtDesc.Text = "";
+            
             txtId.Text = "";
-            lblAccion.Text = "";
+          
         }
 
         protected void lbtnNuevaEsp_Click(object sender, EventArgs e)
@@ -288,7 +288,7 @@ namespace TP_Final_Morales_Rangogni
         private void FiltrarGrillaTurnos()
         {
             string paciente = txtfiltroPaciente.Text.Trim();
-            //string dni = txtFiltroDni.Text.Trim();
+           
 
             if (Session["TurnosGrdWeb"] == null)
                 return;
@@ -296,9 +296,7 @@ namespace TP_Final_Morales_Rangogni
             List<ModeloTurnoWeb> modeloTurnosWeb = (List<ModeloTurnoWeb>)Session["TurnosGrdWeb"];
             List<ModeloTurnoWeb> modeloTurnosFiltro = modeloTurnosWeb;
             if (!paciente.Equals(""))
-                modeloTurnosFiltro = modeloTurnosFiltro.FindAll(x => x.NombrePaciente.ToUpper().Contains(paciente.ToUpper()));
-            // if (!dni.Equals(""))
-            //   modeloTurnosFiltro = modeloTurnosFiltro.FindAll(x => x.NroDocumento.ToUpper().Contains(dni.ToUpper()));
+                modeloTurnosFiltro = modeloTurnosFiltro.FindAll(x => x.NombrePaciente.ToUpper().Contains(paciente.ToUpper()));          
             dgvMedicos.DataSource = modeloTurnosFiltro;
             dgvMedicos.DataBind();
         }
