@@ -32,8 +32,7 @@ namespace TP_Final_Morales_Rangogni
                     CargarGrillaEspecialidad();
 
                     CargarFecha();
-                    CargarGrillaTurnos();
-                    
+                    CargarGrillaTurnos();                    
                 }
             }
             catch (Exception ex)
@@ -47,7 +46,7 @@ namespace TP_Final_Morales_Rangogni
         {
             try
             {
-                if (!(empleado.idPerfil == 1 || empleado.idPerfil == 3))
+                if (empleado.idPerfil == 2)
                     throw new Exception("El Usuario: " + empleado.Nombres + ", " + empleado.Apellidos + " sin acceso!");
             }
             catch (Exception ex)
@@ -153,7 +152,6 @@ namespace TP_Final_Morales_Rangogni
         {
             try
             {
-
                 TurnoNegocio turnoNegocio = new TurnoNegocio();
                 Turno turno = new Turno();
                 turno.IdTurno = Convert.ToInt32(txtId.Text);
@@ -327,7 +325,6 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
             }
-
         }
 
         protected void lbtnCargaGrd_Click(object sender, EventArgs e)

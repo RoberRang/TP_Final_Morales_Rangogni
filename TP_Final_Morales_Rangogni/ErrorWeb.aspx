@@ -11,4 +11,11 @@
             </h6>
         </div>
     </div>
+    <div class="row">
+        <div class="col s12">
+            <h6>
+                <asp:LinkButton runat="server" ID="lbtnDefaultLogin" OnClick="lbtnDefaultLogin_Click" CssClass="btn-floating purple small"><i class="material-icons left-align">undo</i></asp:LinkButton>
+            </h6>
+        </div>
+    </div>
 </asp:Content>

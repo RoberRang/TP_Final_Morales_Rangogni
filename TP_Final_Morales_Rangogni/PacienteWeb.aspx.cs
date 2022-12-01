@@ -17,11 +17,39 @@ namespace TP_Final_Morales_Rangogni
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                buscarPacientesWeb();
+                if (Session["EmpleadoLogin"] == null)
+                    throw new Exception("Acceso erroneo!");
+                else
+                {
+                    Empleado empleado = (Empleado)Session["EmpleadoLogin"];
+                    ValidarEmpleadoLogin(empleado);
+                }
+                if (!IsPostBack)
+                {
+                    buscarPacientesWeb();
+                }
             }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }            
+        }
 
+        private void ValidarEmpleadoLogin(Empleado empleado)
+        {
+            try
+            {
+                if (empleado.idPerfil == 3)
+                    throw new Exception("El Usuario: " + empleado.Nombres + ", " + empleado.Apellidos + " sin acceso!");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.Message);
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
         }
 
         protected void btnAcept_Click(object sender, EventArgs e)
