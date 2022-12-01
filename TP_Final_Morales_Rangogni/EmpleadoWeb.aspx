@@ -20,12 +20,25 @@
                     <ContentTemplate>
                         <div class="row">
                             <asp:Label Text="Filtrar" runat="server" CssClass="active" />
-                            <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="txtfiltro_TextChanged"></asp:TextBox>
                         </div>
-                        <div class="row left-align ">                                
-                                    <asp:Button runat="server" ID="btnVerEmp" CssClass="btn btn-default" OnClick="btnVerEmp_Click" Text="Limpiar filto &raquo;" />                                
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="col s4">
+                                    <asp:TextBox ID="txtfiltro" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="txtfiltro_TextChanged" placeholder="Filtre por Nombre de empleado"></asp:TextBox>
+                                </div>
+                                <div class="col s4">
+                                    <asp:TextBox ID="txtFiltroApellido" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="txtFiltroApellido_TextChanged" placeholder="Filtre por Apellido de empleado"></asp:TextBox>
+                                </div>
+                                <div class="col s4">
+                                    <asp:TextBox ID="txtFiltroDni" runat="server" CssClass="input-field" AutoPostBack="true" OnTextChanged="txtFiltroDni_TextChanged" placeholder="Filtre por Dni de empleado"></asp:TextBox>
+                                </div>
                             </div>
-                        <div class="col-md-5 right-align">                           
+                        </div>
+
+                        <div class="row left-align ">
+                            <asp:Button runat="server" ID="btnVerEmp" CssClass="btn btn-default" OnClick="btnVerEmp_Click" Text="Limpiar filtros &raquo;" />
+                        </div>
+                        <div class="col-md-5 right-align">
                             <asp:GridView ID="dgEmpleados" CssClass="highlight responsive-table" runat="server"
                                 AutoGenerateColumns="false" DataKeyNames="Id"
                                 OnSelectedIndexChanged="dgEmpleados_SelectedIndexChanged">
