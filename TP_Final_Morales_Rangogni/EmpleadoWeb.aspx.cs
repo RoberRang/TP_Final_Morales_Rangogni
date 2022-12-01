@@ -222,6 +222,7 @@ namespace TP_Final_Morales_Rangogni
             txtFiltroDni.Text = "";
             buscarEmpleados();
         }
+
         protected void buscarEmpleados()
         {
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
@@ -241,6 +242,10 @@ namespace TP_Final_Morales_Rangogni
             txtEdNombre.Text = filtroEmpleado.Nombres;
             txtEdApellido.Text = filtroEmpleado.Apellidos;
             txtEdDni.Text = filtroEmpleado.NroDocumento;
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            Usuario usuario = usuarioNegocio.DatosUsuarioLogin(id);
+            txtEdUsuario.Text = usuario.User;
+            txtEdPass.Text = usuario.Password;
             /// ddlEdEstado.Text = filtroEmpleado.Estado.ToString();
 
             JornadaNegocio jornadaNegocio = new JornadaNegocio();

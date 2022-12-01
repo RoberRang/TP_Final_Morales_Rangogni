@@ -9,11 +9,14 @@ namespace ModeloDeNegocio.Negocio
     {
         private string MensajeError { get; set; }
 
+
         private readonly EmpleadoADO empleadoADO;
+
         public UsuarioNegocio()
         {
             empleadoADO = new EmpleadoADO(ConexionStringDB.ConexionBase());
         }
+
         public bool AltaUsuario(Usuario usuario, int idEspecialidad = 1)
         {
             bool alta = true;
@@ -72,6 +75,7 @@ namespace ModeloDeNegocio.Negocio
         {
             return empleadoADO.ListarEmpleados();
         }
+
         public bool ModificarEmpleado(Empleado empleado)
         {
             try
@@ -83,12 +87,21 @@ namespace ModeloDeNegocio.Negocio
                 throw ex;
             }
         }
+
         public Empleado ValidarDatosIngreso(Usuario user)
         {
 
             Empleado empleado = empleadoADO.BuscarEmpleadoLogin(user);
 
             return empleado;
+        }
+
+        public Usuario DatosUsuarioLogin(int idUser)
+        {
+
+            Usuario userLogin = empleadoADO.BuscarUserLogin(idUser);
+
+            return userLogin;
         }
     }
 }

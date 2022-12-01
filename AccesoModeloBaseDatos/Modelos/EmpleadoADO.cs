@@ -11,6 +11,7 @@ namespace AccesoModeloBaseDatos.Modelos
     {
         private const string SQL_INSERT_EMPLEADOS = "INSERT INTO Empleados (IdPerfil, nombre, apellido, nrodocumento,fechaalta,IdJornada, estado) VALUES (@IdPerfil,@nombre,@apellido,@nrodocumento,@fechaalta,@IdJornada, @estado)";
         private const string SQL_SELECT_EMPLEADOS = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta, IdJornada, estado FROM Empleados";
+        private const string SQL_SELECT_USUARIO = "SELECT IdUsuario, UserLogin, Password, IdEmpleado FROM Usuarios";
         private const string SQL_UPDATE_EMPLEADOS = "UPDATE Empleados SET IdPerfil=@IdPerfil, nombre=@nombre, apellido=@apellido, nrodocumento=@nrodocumento, IdJornada=@IdJornada, estado=@estado WHERE id=@id";
         private const string SQL_SELECT_EMPLEADO = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta,IdJornada, estado FROM Empleados ";// WHERE NroDocumento = '@nrodocumento'";
         private const string SQL_SELECT_EMPLEADO_LOGIN = "SELECT id, IdPerfil, nombre, apellido, nrodocumento,fechaAlta,IdJornada, estado FROM Empleados e INNER JOIN Usuarios u ON e.id = u.IdEmpleado WHERE u.UserLogin= '@UserLogin' AND u.Password = '@Password'";
@@ -244,6 +245,51 @@ namespace AccesoModeloBaseDatos.Modelos
         public void BorrarEmpleado(string nroDocumento)
         {
             throw new NotImplementedException();
+        }
+
+        public Usuario BuscarUserLogin(int idUser)
+        {
+            Usuario usuario = null;
+            SqlDataReader dr = null;
+            AccesoDatos accesoDatosBusca = new AccesoDatos(coneccionDB);
+            try
+            {
+                using (SqlConnection con = accesoDatosBusca.ConnectToDB())
+                {
+                    string sql = SQL_SELECT_USUARIO;
+                    sql += " WHERE IdEmpleado = " + idUser;
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = CommandType.Text;
+                    dr = accesoDatosBusca.SelectDataReaderFromSqlCommand(cmd);
+
+                    while (dr.Read())
+                    {
+                        usuario = (CreateObjectUsuario(dr));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                accesoDatosBusca.CloseConnection();
+            }
+
+            return usuario;
+        }
+
+        private Usuario CreateObjectUsuario(SqlDataReader dr)
+        {
+            Usuario usuario = new Usuario();
+            usuario.IdUsuario = Convert.ToInt32(dr["IdUsuario"].ToString());
+            usuario.User = dr["user"].ToString();
+            usuario.Password = dr["password"].ToString();
+            usuario.IdEmpleado = Convert.ToInt32(dr["IdEmpleado"].ToString());
+
+            return usuario;
+
         }
     }
 }
