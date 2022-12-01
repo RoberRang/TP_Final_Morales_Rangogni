@@ -19,72 +19,88 @@
             <asp:View ID="View0" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upMedicos">
                     <ContentTemplate>
-                        <div class="header bg-blue">
-                            <div class="body bg-gray">
-                                <asp:GridView ID="dgvMedicos" CssClass="highlight responsive-table" runat="server" DataKeyNames="IdMedico" OnRowCommand="dgvMedicos_RowCommand" AutoGenerateColumns="false">
-                                    <Columns>
-                                        <asp:BoundField HeaderText="Nombre" DataField="Nombres" />
-                                        <asp:BoundField HeaderText="Apellido" DataField="Apellidos" />
-                                        <asp:BoundField HeaderText="Dni" DataField="Inicio" />
-                                        <asp:BoundField HeaderText="Hora" DataField="Hora" />
-                                        <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
-                                        <asp:ButtonField HeaderText="Eliminar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Eliminar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>delete_forever</i>" />
-                                    </Columns>
-                                </asp:GridView>
-                                <div class="divider"></div>
+                        <h6>FILTROS <span><i class="fas fa-carrot"></i></span></h6>
+                        <div class="row">
+                            <div class="col s12">
                                 <div class="row">
-                                    <div class="col s12 right-align">
-                                        <asp:LinkButton runat="server" ID="btnVerJornadas" CssClass="btn-floating purple"><i class="material-icons">cached</i></asp:LinkButton>
-                                        <asp:LinkButton ID="lbtnModal" runat="server" CssClass="btn-floating purple small" OnClick="lbtnModal_Click"><i class="material-icons">add</i></asp:LinkButton>
+                                    <div class="input-field col s3 left-align">
+                                        <asp:TextBox ID="txtFechaGrd" runat="server" AutoPostBack="true" CssClass="dropdown-trigger purple white-text center-align" TextMode="Date" Style="margin-top: 5px" placeholder="Fecha de Turno"></asp:TextBox>
+                                    </div>
+                                    <div class="col s4 left-align">
+                                        <asp:Label runat="server" ID="lblPacienteGrd" AssociatedControlID="txtfiltroPaciente">Paciente</asp:Label>
+                                        <asp:TextBox ID="txtfiltroPaciente" runat="server" CssClass="input-field" AutoPostBack="true"></asp:TextBox>
+                                    </div>
+                                    <div class="col s4 left-align">
+                                        <asp:Label runat="server" ID="lblDniGrd" AssociatedControlID="txtFiltroDni">DNI</asp:Label>
+                                        <!--FILTRAR POR dni-->
+                                        <asp:TextBox ID="txtFiltroDni" runat="server" CssClass="input-field" AutoPostBack="true"></asp:TextBox>
+                                    </div>
+                                    <div class="col s1 right-align">
+                                        <asp:LinkButton runat="server" ID="lbtnCargaGrd" OnClick="lbtnCargaGrd_Click" CssClass="btn-floating purple small"><i class="material-icons left-align">search</i></asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Modal Structure -->
-                        <asp:Button ID="ClientButton" runat="server" CssClass="modal" Text="Modal" />
-                        <asp:Panel ID="ModalPanel" runat="server" Width="500px" CssClass="content">
+                        <div class="body bg-gray">
+                            <asp:GridView ID="dgvMedicos" CssClass="highlight responsive-table" runat="server" DataKeyNames="IdMedico" OnRowCommand="dgvMedicos_RowCommand" AutoGenerateColumns="false">
+                                <Columns>                                   
+                                     <asp:BoundField HeaderText="Paciente" DataField="NombrePaciente" />
+                                    <asp:BoundField HeaderText="Dni" />
+                                    <asp:BoundField HeaderText="Hora" DataField="Hora" />
+                                     <asp:BoundField HeaderText="Situación" />
+                                    <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
+                                </Columns>
+                            </asp:GridView>
+                            <div class="row">
+                                <div class="col s1 right-align">
+                                    <asp:LinkButton runat="server" ID="lbtnCargarTurnos" OnClick="lbtnCargarTurnos_Click" CssClass="btn-floating purple small"><i class="material-icons">cached</i></asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal TURNO-PACIENTE-MEDICO-->
+                        <asp:Button ID="btnModal" runat="server" CssClass="modal" Text="Modal" />
+                        <asp:Panel ID="ModalPanel" runat="server" Width="700px" CssClass="content">
                             <div class="row">
                                 <div class="col s2">
                                     <asp:TextBox CssClass="form-control" Enabled="false" ID="txtId" runat="server" placeholder="Id"></asp:TextBox>
                                 </div>
-                                <div class="col s6">
-                                    <asp:TextBox CssClass="form-control" ID="txtDesc" runat="server" placeholder="Descripción"></asp:TextBox>
-                                </div>
-                                <div class="col s2">
-                                    <asp:TextBox CssClass="form-control" ID="txtIni" runat="server" placeholder="Inicio"></asp:TextBox>
-                                </div>
-                                <div class="col s2">
-                                    <asp:TextBox CssClass="form-control" ID="txtFin" runat="server" placeholder="Fin"></asp:TextBox>
+                                <div class="col s4">
+                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtPaciente" runat="server" placeholder="Paciente"></asp:TextBox>
                                 </div>
                                 <div class="col s4">
-                                    <div class="row">
-                                        <div class="input-field">
-                                            <h6>Estado</h6>
-                                            <div class="switch">
-                                                <label id="lblEstado">
-                                                    INACTIVO
-                                            <asp:CheckBox ID="chbEst" runat="server" />
-                                                    <span class="lever"></span>
-                                                    ACTIVO
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtMedico" runat="server" placeholder="Medico"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtDia" runat="server" placeholder="Dia"></asp:TextBox>
+                                </div>
+                                <div class="col s4">
+                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtHora" runat="server" placeholder="Hora"></asp:TextBox>
+                                </div>
+                                <div class="col s4 left-align">
+                                    <label id="lblSituacion" for="ddlHorasTurnos">Situacion</label>
+                                    <asp:DropDownList ID="ddlSituacion" runat="server" CssClass="dropdown-trigger btn purple white-text" data-activates="ddlHorasTurnos" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <asp:TextBox ID="txtObservacion" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <div class="row">
-                                    <div class="col s4 left-align">
-                                        <asp:Label runat="server" ForeColor="" Font-Bold="true" ID="lblAccion" Text=""></asp:Label>
+                                    <div class="col s8 left-align">
+                                        <asp:Label runat="server" ForeColor="" Font-Bold="true" ID="lblAccion" Text="EDITAR"></asp:Label>
                                     </div>
-                                    <div class="col s8 right-align">
-                                        <asp:LinkButton ID="lkbGraba" runat="server" CssClass="btn-floating purple small" OnClick="lkbGraba_Click"><i class="material-icons">save</i></asp:LinkButton>
+                                    <div class="col s4 right-align">
+                                        <asp:LinkButton ID="lkbGraba" runat="server" OnClick="lkbGraba_Click" CssClass="btn-floating purple small"><i class="material-icons">save</i></asp:LinkButton>
                                         <asp:LinkButton ID="lbtnCancela" CssClass="btn-floating purple" runat="server"><i class="material-icons">cancel</i></asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
                         </asp:Panel>
-                        <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" TargetControlID="ClientButton" PopupControlID="ModalPanel" OkControlID="lbtnCancela" />
+                        <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server" TargetControlID="btnModal" PopupControlID="ModalPanel" OkControlID="lbtnCancela" />
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </asp:View>

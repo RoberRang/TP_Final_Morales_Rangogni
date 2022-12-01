@@ -24,7 +24,7 @@
         <div class="col-md-5">
             <h4>Salir</h4>
             <p>
-                Cerrar session al sistema del usuario.
+                Cerrar sesion del sistema al usuario.
             </p>
             <p>
                 <a class="btn btn-default" href="/Default">Salir &raquo;</a>

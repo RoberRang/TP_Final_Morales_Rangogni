@@ -51,6 +51,60 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.UpdatePanel upMedicos;
 
         /// <summary>
+        /// Control txtFechaGrd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaGrd;
+
+        /// <summary>
+        /// Control lblPacienteGrd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPacienteGrd;
+
+        /// <summary>
+        /// Control txtfiltroPaciente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtfiltroPaciente;
+
+        /// <summary>
+        /// Control lblDniGrd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDniGrd;
+
+        /// <summary>
+        /// Control txtFiltroDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroDni;
+
+        /// <summary>
+        /// Control lbtnCargaGrd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnCargaGrd;
+
+        /// <summary>
         /// Control dgvMedicos.
         /// </summary>
         /// <remarks>
@@ -60,31 +114,22 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.GridView dgvMedicos;
 
         /// <summary>
-        /// Control btnVerJornadas.
+        /// Control lbtnCargarTurnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnVerJornadas;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnCargarTurnos;
 
         /// <summary>
-        /// Control lbtnModal.
+        /// Control btnModal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnModal;
-
-        /// <summary>
-        /// Control ClientButton.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ClientButton;
+        protected global::System.Web.UI.WebControls.Button btnModal;
 
         /// <summary>
         /// Control ModalPanel.
@@ -105,40 +150,58 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.TextBox txtId;
 
         /// <summary>
-        /// Control txtDesc.
+        /// Control txtPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDesc;
+        protected global::System.Web.UI.WebControls.TextBox txtPaciente;
 
         /// <summary>
-        /// Control txtIni.
+        /// Control txtMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIni;
+        protected global::System.Web.UI.WebControls.TextBox txtMedico;
 
         /// <summary>
-        /// Control txtFin.
+        /// Control txtDia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFin;
+        protected global::System.Web.UI.WebControls.TextBox txtDia;
 
         /// <summary>
-        /// Control chbEst.
+        /// Control txtHora.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chbEst;
+        protected global::System.Web.UI.WebControls.TextBox txtHora;
+
+        /// <summary>
+        /// Control ddlSituacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSituacion;
+
+        /// <summary>
+        /// Control txtObservacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtObservacion;
 
         /// <summary>
         /// Control lblAccion.

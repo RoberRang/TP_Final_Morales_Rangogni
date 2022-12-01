@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Empleado" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EmpleadoWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.EmpleadoWeb" EnableEventValidation="false" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContentLogin" runat="server">
-    <!--DESDE ACA-->
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContentLogin" runat="server">    
     <!---Solapas-->
     <div>
         <asp:Menu runat="server" ID="mnvEmpleados" Orientation="Horizontal" OnMenuItemClick="mnEmpleados_MenuItemClick" CssClass="tab-bar a">
@@ -17,10 +16,7 @@
         <asp:MultiView runat="server" ID="mvwEmpleados" ActiveViewIndex="0">
             <asp:View ID="View0" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upVerEmpleados">
-                    <ContentTemplate>
-                        <div class="row">
-                            <asp:Label Text="Filtrar" runat="server" CssClass="active" />
-                        </div>
+                    <ContentTemplate>                        
                         <div class="col s12">
                             <div class="row">
                                 <div class="col s4">
@@ -36,7 +32,7 @@
                         </div>
 
                         <div class="row left-align ">
-                            <asp:Button runat="server" ID="btnVerEmp" CssClass="modal-close btn-flat purple white-text" OnClick="btnVerEmp_Click" Text="Limpiar filtros &raquo;" />
+                            <asp:Button runat="server" ID="btnVerEmp" CssClass="modal-close btn-flat purple white-text" OnClick="btnVerEmp_Click" Text="Limpiar filtros" />
                         </div>
                         <div class="col-md-5 right-align">
                             <asp:GridView ID="dgEmpleados" CssClass="highlight responsive-table" runat="server"
