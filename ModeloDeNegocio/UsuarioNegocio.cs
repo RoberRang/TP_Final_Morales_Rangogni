@@ -42,7 +42,6 @@ namespace ModeloDeNegocio.Negocio
                     medico.Especialidades = new List<Especialidad>() { new Especialidad() };
                     medicoNegocio.ModificarMedicoEspecialidad(medico, true);
                 }
-
                 return alta;
             }
             catch (Exception ex)
@@ -50,6 +49,25 @@ namespace ModeloDeNegocio.Negocio
                 throw ex;
             }
         }
+
+        public bool ModificarUsuario(Usuario usuario)
+        {
+            bool modificado = false;
+            try
+            {
+                modificado = empleadoADO.GrabarEmpleado(usuario);
+                if (!modificado)
+                    throw new Exception("No se puedo modificar el usuario");
+                UsuarioADO usuarioADO = new UsuarioADO(ConexionStringDB.ConexionBase());
+                modificado = usuarioADO.UpdateUsuario(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return modificado;
+        }
+
         public List<Empleado> Empleados()
         {
             return empleadoADO.ListarEmpleados();
