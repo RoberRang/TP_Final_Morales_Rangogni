@@ -19,7 +19,7 @@
             <asp:View ID="View0" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upMedicos">
                     <ContentTemplate>
-                        <h6>FILTROS <span><i class="fas fa-carrot"></i></span></h6>
+                        <h6>Filtro por fecha<span><i class="fas fa-carrot"></i></span></h6>
                         <div class="row">
                             <div class="col s12">
                                 <div class="row">
@@ -27,12 +27,12 @@
                                         <asp:TextBox ID="txtFechaGrd" runat="server" AutoPostBack="true" CssClass="dropdown-trigger purple white-text center-align" TextMode="Date" Style="margin-top: 5px" placeholder="Fecha de Turno"></asp:TextBox>
                                     </div>
                                     <div class="col s4 left-align">
-                                        <asp:Label runat="server" ID="lblPacienteGrd" AssociatedControlID="txtfiltroPaciente">Paciente</asp:Label>
+                                        <asp:Label runat="server" ID="lblPacienteGrd" AssociatedControlID="txtfiltroPaciente">Buscar por nombre o apellido de Paciente</asp:Label>
                                         <asp:TextBox ID="txtfiltroPaciente" runat="server" CssClass="input-field" AutoPostBack="true"></asp:TextBox>
                                     </div>
                                     <div class="col s4 left-align">
-                                        <asp:Label runat="server" ID="lblDniGrd" AssociatedControlID="txtFiltroDni">DNI</asp:Label>
-                                        <!--FILTRAR POR dni-->
+                                        <asp:Label runat="server" ID="lblDniGrd" AssociatedControlID="txtFiltroDni">Buscar por DNI de Paciente</asp:Label>
+                                        <!--FALTA FILTRAR POR dni-->
                                         <asp:TextBox ID="txtFiltroDni" runat="server" CssClass="input-field" AutoPostBack="true"></asp:TextBox>
                                     </div>
                                     <div class="col s1 right-align">
@@ -44,10 +44,11 @@
                         <div class="body bg-gray">
                             <asp:GridView ID="dgvMedicos" CssClass="highlight responsive-table" runat="server" DataKeyNames="IdMedico" OnRowCommand="dgvMedicos_RowCommand" AutoGenerateColumns="false">
                                 <Columns>                                   
-                                     <asp:BoundField HeaderText="Paciente" DataField="NombrePaciente" />
+                                     <asp:BoundField HeaderText="ID" DataField="IdTurno" /> 
+                                    <asp:BoundField HeaderText="Paciente" DataField="NombrePaciente" />
                                     <asp:BoundField HeaderText="Dni" />
                                     <asp:BoundField HeaderText="Hora" DataField="Hora" />
-                                     <asp:BoundField HeaderText="Situación" />
+                                     <asp:BoundField HeaderText="Situación" DataField="Situacion" />
                                     <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
                                 </Columns>
                             </asp:GridView>

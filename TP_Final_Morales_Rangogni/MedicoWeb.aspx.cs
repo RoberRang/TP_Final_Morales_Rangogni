@@ -33,7 +33,7 @@ namespace TP_Final_Morales_Rangogni
 
                     CargarFecha();
                     CargarGrillaTurnos();
-                    //CargarSituacionTurno();
+                    
                 }
             }
             catch (Exception ex)
@@ -92,13 +92,13 @@ namespace TP_Final_Morales_Rangogni
                 ModeloTurnoWeb modeloTurnoWeb = modeloTurnos.Find(x => x.IdTurno.Equals(idJorn));
                 if (modeloTurnoWeb == null)
                     throw new Exception("Fallo al seleccionar el truno para editar");
-                ///txtId.Text = modeloTurnoWeb.IdTurno.ToString();
-               // txtPaciente.Text = modeloTurnoWeb.NombrePaciente.ToString();
-                //txtMedico.Text = modeloTurnoWeb.NombreMedico.ToString();
-                //txtDia.Text = modeloTurnoWeb.FechaReserva.ToString();
+                txtId.Text = modeloTurnoWeb.IdTurno.ToString();
+                txtPaciente.Text = modeloTurnoWeb.NombrePaciente.ToString();
+                txtMedico.Text = modeloTurnoWeb.NombreMedico.ToString();
+                txtDia.Text = modeloTurnoWeb.FechaReserva.ToString();
                 txtHora.Text = modeloTurnoWeb.Hora.ToString();
-                //txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
-                //ddlSituacion.SelectedValue = modeloTurnoWeb.IdSituacion.ToString();
+                txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
+                ddlSituacion.SelectedValue = modeloTurnoWeb.IdSituacion.ToString();
                 mpe.Show();
             }
             catch (Exception ex)
@@ -151,7 +151,28 @@ namespace TP_Final_Morales_Rangogni
 
         protected void lkbGraba_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+                TurnoNegocio turnoNegocio = new TurnoNegocio();
+                Turno turno = new Turno();
+                turno.IdTurno = Convert.ToInt32(txtId.Text);
+                turno.Observacion = txtObservacion.Text;
+                turno.IdSituacion = Convert.ToInt32(ddlSituacion.SelectedValue);
+                if (turno.IdTurno == 0)
+                    return;
+                if (!turnoNegocio.GrabarTurno(turno))
+                {
+                    Session.Add("MensajeError", "No se pudo editar el turno");
+                    Response.Redirect("ErrorWeb.aspx", false);
+                }
+                CargarGrillaTurnos();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
         }
 
         private void LimpiarControles()
