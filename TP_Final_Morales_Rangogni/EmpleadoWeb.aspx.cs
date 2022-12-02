@@ -102,7 +102,7 @@ namespace TP_Final_Morales_Rangogni
                     {
                         LimpiarControlesAltaEmpleado();   ///cartel alta de empleado completa
                         buscarEmpleados();
-                      
+                        mvwEmpleados.ActiveViewIndex = 0;
                     }
                 }
                 else
@@ -112,9 +112,9 @@ namespace TP_Final_Morales_Rangogni
                         throw new Exception("No se cargaron los datos del usuario");
                     if (negocio.ModificarUsuario(usuario))
                     {
-                        LimpiarControlesAltaEmpleado();   ///cartel alta de empleado completa
+                        LimpiarControlesEdicionEmpleado();   ///cartel alta de empleado completa
                         buscarEmpleados();
-
+                        mvwEmpleados.ActiveViewIndex = 0;
                     }
                 }
             }
@@ -211,6 +211,19 @@ namespace TP_Final_Morales_Rangogni
             ddlJornada.SelectedIndex = 0;
             txtUser.Text = "";
             txtPass.Text = "";
+        }
+
+        private void LimpiarControlesEdicionEmpleado()
+        {
+            txtEdNombre.Text = "";
+            txtEdApellido.Text = "";
+            txtEdDni.Text = "";
+            //desplegable
+            ddlEdPerfil.SelectedIndex = 0;
+            ddlEdJornada.SelectedIndex = 0;
+            txtEdUsuario.Text = "";
+            txtEdPass.Text = "";
+            txtEdPass2.Text = "";
         }
 
         private bool ValidoControlTextBox(TextBox textBox)
