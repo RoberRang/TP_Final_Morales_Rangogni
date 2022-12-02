@@ -284,7 +284,7 @@ namespace AccesoModeloBaseDatos.Modelos
         {
             Usuario usuario = new Usuario();
             usuario.IdUsuario = Convert.ToInt32(dr["IdUsuario"].ToString());
-            usuario.User = dr["user"].ToString();
+            usuario.User = dr["UserLogin"].ToString();
             usuario.Password = dr["password"].ToString();
             usuario.IdEmpleado = Convert.ToInt32(dr["IdEmpleado"].ToString());
 
