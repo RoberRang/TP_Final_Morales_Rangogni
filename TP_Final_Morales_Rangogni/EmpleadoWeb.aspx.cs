@@ -154,6 +154,7 @@ namespace TP_Final_Morales_Rangogni
             editUser.ID = Convert.ToInt32(lblIdEdUser.Text);
             editUser.IdEmpleado = editUser.ID;
             editUser.IdUsuario = editUser.ID;
+            editUser.Estado = ddlEdEstado.Text.Equals("Activo") ? true: false;
 
             //desplegable
             editUser.idPerfil = int.Parse(ddlEdPerfil.SelectedValue);
