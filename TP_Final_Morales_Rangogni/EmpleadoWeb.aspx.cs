@@ -106,9 +106,11 @@ namespace TP_Final_Morales_Rangogni
                     }
                 }
                 else
-                {
-                    EditarEmpleado();
+                {   Usuario usuario = EditarEmpleado();
+                    if (negocio.ModificarUsuario(usuario))
+                    {
 
+                    }
                 }
             }
             catch (Exception ex)
@@ -119,8 +121,8 @@ namespace TP_Final_Morales_Rangogni
         }
 
         private Usuario EditarEmpleado()
-        {
-            Usuario nuevoUser = new Usuario();
+        {   
+            Usuario editUser = new Usuario();
             if (!ValidoControlTextBox(txtEdNombre))
                 return null;
             if (!ValidoControlTextBox(txtEdApellido))
@@ -133,7 +135,7 @@ namespace TP_Final_Morales_Rangogni
                 return null;
             if (!ValidoControlTextBox(txtEdPass2))
                 return null;
-            if (txtPass.Text != txtEdPass2.Text)
+            if (txtEdPass.Text != txtEdPass2.Text)
             {
                 txtEdPass.Attributes.Add("placeholder", "Las contraseñas deben ser iguales");
                 txtEdPass.Focus();
@@ -141,17 +143,17 @@ namespace TP_Final_Morales_Rangogni
                 txtEdPass2.Focus();
                 return null;
             }
-            nuevoUser.Nombres = txtEdNombre.Text;
-            nuevoUser.Apellidos = txtEdApellido.Text;
-            nuevoUser.NroDocumento = txtEdDni.Text;
+            editUser.Nombres = txtEdNombre.Text;
+            editUser.Apellidos = txtEdApellido.Text;
+            editUser.NroDocumento = txtEdDni.Text;
             // nuevoUser.Estado = ddlEdEstado.Text;
 
             //desplegable
-            nuevoUser.idPerfil = int.Parse(ddlEdPerfil.SelectedValue);
-            nuevoUser.idJornada = int.Parse(ddlEdJornada.SelectedValue);
-            nuevoUser.User = txtUser.Text;
-            nuevoUser.Password = txtEdPass.Text;
-            return nuevoUser;
+            editUser.idPerfil = int.Parse(ddlEdPerfil.SelectedValue);
+            editUser.idJornada = int.Parse(ddlEdJornada.SelectedValue);
+            editUser.User = txtEdUsuario.Text;
+            editUser.Password = txtEdPass.Text;
+            return editUser;
 
         }
 
