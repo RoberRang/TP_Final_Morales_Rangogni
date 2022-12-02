@@ -106,7 +106,10 @@ namespace TP_Final_Morales_Rangogni
                     }
                 }
                 else
-                {   Usuario usuario = EditarEmpleado();
+                {   
+                    Usuario usuario = EditarEmpleado();
+                    if (usuario == null)
+                        throw new Exception("No se cargaron los datos del usuario");
                     if (negocio.ModificarUsuario(usuario))
                     {
                         LimpiarControlesAltaEmpleado();   ///cartel alta de empleado completa
@@ -148,7 +151,9 @@ namespace TP_Final_Morales_Rangogni
             editUser.Nombres = txtEdNombre.Text;
             editUser.Apellidos = txtEdApellido.Text;
             editUser.NroDocumento = txtEdDni.Text;
-            // nuevoUser.Estado = ddlEdEstado.Text;
+            editUser.ID = Convert.ToInt32(lblIdEdUser.Text);
+            editUser.IdEmpleado = editUser.ID;
+            editUser.IdUsuario = editUser.ID;
 
             //desplegable
             editUser.idPerfil = int.Parse(ddlEdPerfil.SelectedValue);
@@ -248,8 +253,10 @@ namespace TP_Final_Morales_Rangogni
             txtEdDni.Text = filtroEmpleado.NroDocumento;
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             Usuario usuario = usuarioNegocio.DatosUsuarioLogin(id);
+            lblIdEdUser.Text = id.ToString();
             txtEdUsuario.Text = usuario.User;
             txtEdPass.Text = usuario.Password;
+
             /// ddlEdEstado.Text = filtroEmpleado.Estado.ToString();
 
             JornadaNegocio jornadaNegocio = new JornadaNegocio();

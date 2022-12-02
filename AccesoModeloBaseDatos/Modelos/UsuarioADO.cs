@@ -13,7 +13,7 @@ namespace AccesoModeloBaseDatos.Modelos
     {
         private const string SQL_INSERT_USUARIO = "INSERT INTO Usuarios (UserLogin, Password, IdEmpleado) VALUES ('@userLogin','@password',@idEmp)";
         private const string SQL_SELECT_USUARIOS = "SELECT idUsuario, UserLogin, Password, IdEmpleado FROM Usuarios";
-        private const string SQL_UPDATE_USURIO = "UPDATE Usuarios SET UserLogin=@user, Password=@password WHERE IdEmpleado = @idEmp";
+        private const string SQL_UPDATE_USURIO = "UPDATE Usuarios SET UserLogin='@userLogin', Password='@password' WHERE IdEmpleado = @idEmp";
         private const string SQL_SELECT_USUARIO = "SELECT * FROM Usuarios WHERE IdEmpleado = @idEmp";
         private const string SQL_SELECT_COUNT = "SELECT COUNT(*) cantUserLogin FROM Usuarios WHERE UserLogin='@userLogin'";
         private readonly string coneccionDB;
@@ -58,7 +58,9 @@ namespace AccesoModeloBaseDatos.Modelos
                 try
                 {
                     string sql = SQL_UPDATE_USURIO;
-                    sql = sql.Replace("@userLogin", usuario.User).Replace("@password", usuario.Password);
+                    sql = sql.Replace("@userLogin", usuario.User);
+                        sql = sql.Replace("@password", usuario.Password);
+                    sql = sql.Replace("@idEmp", usuario.ID.ToString());
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);

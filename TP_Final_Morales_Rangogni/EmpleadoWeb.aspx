@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Empleado" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EmpleadoWeb.aspx.cs" Inherits="TP_Final_Morales_Rangogni.EmpleadoWeb" EnableEventValidation="false" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContentLogin" runat="server">    
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContentLogin" runat="server">
     <!---Solapas-->
     <div>
         <asp:Menu runat="server" ID="mnvEmpleados" Orientation="Horizontal" OnMenuItemClick="mnEmpleados_MenuItemClick" CssClass="tab-bar a">
@@ -16,7 +16,7 @@
         <asp:MultiView runat="server" ID="mvwEmpleados" ActiveViewIndex="0">
             <asp:View ID="View0" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upVerEmpleados">
-                    <ContentTemplate>                        
+                    <ContentTemplate>
                         <div class="col s12">
                             <div class="row">
                                 <div class="col s4">
@@ -161,6 +161,9 @@
                         <div class="row">
                             <div class="col s12">
                                 <div class="row">
+                                    <div class="input-field col s1">
+                                        <asp:Label runat="server" ID="lblIdEdUser" Enabled="false" Visible="false" />
+                                    </div>
                                     <div class="input-field col s4">
                                         <asp:TextBox ID="txtEdNombre" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                                         <label for="lblEdNombre">Nombre</label>
@@ -169,7 +172,7 @@
                                         <asp:TextBox ID="txtEdApellido" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                                         <label for="lblEdApellido">Apellido</label>
                                     </div>
-                                    <div class="input-field col s4">
+                                    <div class="input-field col s3">
                                         <asp:TextBox ID="txtEdDni" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                                         <label for="lblEdDniEmp">Nº Documento</label>
                                     </div>
