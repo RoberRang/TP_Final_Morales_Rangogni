@@ -58,7 +58,7 @@
                         <asp:Panel ID="ModalPanel" runat="server" Width="700px" CssClass="content">
                             <div class="row"> 
                             <div class="col s8 left-align">
-                                        <asp:Label runat="server" ForeColor="" Font-Bold="true" ID="lblFicha" Text="FICHA PACIENTE"></asp:Label>
+                                        <asp:Label runat="server" CssClass="flow-text" ForeColor="" Font-Bold="true" ID="lblFicha" Text="Ficha de Paciente:"></asp:Label>
                                     </div>
                                                           
                                 <div class="col s4">
@@ -67,7 +67,7 @@
                                 </div>
                             <div class="row"> 
                                 <div class="col s8 left-align">
-                                        <asp:Label runat="server" ForeColor="" Font-Bold="true" ID="lblDr" Text="DR:"></asp:Label>
+                                        <asp:Label runat="server" CssClass="flow-text" ForeColor="" Font-Bold="true" ID="lblDr" Text="Dr:"></asp:Label>
                                     </div>
                                 <div class="col s4">
                                     <asp:TextBox CssClass="form-control" Enabled="false" ID="txtMedico" runat="server" placeholder="Medico"></asp:TextBox>
@@ -77,16 +77,31 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col s8 left-align">
+                                        <asp:Label runat="server" CssClass="flow-text" ForeColor="" Font-Bold="true" ID="LblFecha" Text="Fecha de turno:"></asp:Label>
+                                    </div>
                                 <div class="col s4">
+                                  
                                     <asp:TextBox CssClass="form-control" Enabled="false" ID="txtDia" runat="server" placeholder="Dia"></asp:TextBox>
                                 </div>
+                                </div>
+                            <div class="row">
+                                <div class="col s8 left-align">
+                                        <asp:Label runat="server" CssClass="flow-text" ForeColor="" Font-Bold="true" ID="LblHorario" Text="Hora de turno:"></asp:Label>
+                                    </div>
                                 <div class="col s4">
                                     <asp:TextBox CssClass="form-control" Enabled="false" ID="txtHora" runat="server" placeholder="Hora"></asp:TextBox>
                                 </div>
                                
                             </div>
                             <div class="row">
-                                <div class="col s12">
+                             <div class="col s12 ">
+                                        <asp:Label runat="server" CssClass="flow-text" ForeColor="" Font-Bold="true" ID="LblObservacion" Text="Observaciones:"></asp:Label>
+                                    </div>
+                            <br />
+                                </div>
+                            <div class="row">
+                                <div class="col s12 center-align">
                                     <asp:TextBox ID="txtObservacion" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>

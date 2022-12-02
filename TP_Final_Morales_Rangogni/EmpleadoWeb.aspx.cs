@@ -109,6 +109,8 @@ namespace TP_Final_Morales_Rangogni
                 {   Usuario usuario = EditarEmpleado();
                     if (negocio.ModificarUsuario(usuario))
                     {
+                        LimpiarControlesAltaEmpleado();   ///cartel alta de empleado completa
+                        buscarEmpleados();
 
                     }
                 }

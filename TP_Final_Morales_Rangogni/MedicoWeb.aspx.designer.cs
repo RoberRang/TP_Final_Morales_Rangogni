@@ -168,6 +168,15 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.TextBox txtId;
 
         /// <summary>
+        /// Control LblFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblFecha;
+
+        /// <summary>
         /// Control txtDia.
         /// </summary>
         /// <remarks>
@@ -177,6 +186,15 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.TextBox txtDia;
 
         /// <summary>
+        /// Control LblHorario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblHorario;
+
+        /// <summary>
         /// Control txtHora.
         /// </summary>
         /// <remarks>
@@ -184,6 +202,15 @@ namespace TP_Final_Morales_Rangogni
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHora;
+
+        /// <summary>
+        /// Control LblObservacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblObservacion;
 
         /// <summary>
         /// Control txtObservacion.
