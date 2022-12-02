@@ -315,8 +315,9 @@ namespace TP_Final_Morales_Rangogni
 
                 if (Session["TurnosGrdWeb"] != null)
                     Session.Remove("TurnosGrdWeb");
-
                 Session.Add("TurnosGrdWeb", gvTurnos);
+                //solo se muestran los turno de situacion activo o reprogrmados
+                gvTurnos = gvTurnos.FindAll(x => x.IdSituacion == 1 || x.IdSituacion == 2);
                 dgvMedicos.DataSource = gvTurnos;
                 dgvMedicos.DataBind();
             }
