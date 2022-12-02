@@ -20,11 +20,12 @@ namespace TP_Final_Morales_Rangogni
         {
             try
             {
+                Empleado empleado = null;
                 if (Session["EmpleadoLogin"] == null)
                     throw new Exception("Acceso erroneo!");
                 else
                 {
-                    Empleado empleado = (Empleado)Session["EmpleadoLogin"];
+                    empleado = (Empleado)Session["EmpleadoLogin"];
                     ValidarEmpleadoLogin(empleado);
                 }
                 if (!IsPostBack)
@@ -32,7 +33,7 @@ namespace TP_Final_Morales_Rangogni
                     CargarGrillaEspecialidad();
 
                     CargarFecha();
-                    CargarGrillaTurnos();                    
+                    CargarGrillaTurnos(empleado);                    
                 }
             }
             catch (Exception ex)
@@ -164,7 +165,8 @@ namespace TP_Final_Morales_Rangogni
                     Session.Add("MensajeError", "No se pudo editar el turno");
                     Response.Redirect("ErrorWeb.aspx", false);
                 }
-                CargarGrillaTurnos();
+                Empleado empleado = (Empleado)Session["EmpleadoLogin"];
+                CargarGrillaTurnos(empleado);
             }
             catch (Exception ex)
             {
@@ -299,7 +301,7 @@ namespace TP_Final_Morales_Rangogni
             dgvMedicos.DataBind();
         }
 
-        private void CargarGrillaTurnos()
+        private void CargarGrillaTurnos(Empleado empleado)
         {
             try
             {
@@ -318,6 +320,10 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("TurnosGrdWeb", gvTurnos);
                 //solo se muestran los turno de situacion activo o reprogrmados
                 gvTurnos = gvTurnos.FindAll(x => x.IdSituacion == 1 || x.IdSituacion == 2);
+
+                if (empleado.idPerfil.Equals(3))
+                    gvTurnos = gvTurnos.FindAll(x => x.IdMedico == empleado.ID);
+
                 dgvMedicos.DataSource = gvTurnos;
                 dgvMedicos.DataBind();
             }
@@ -331,7 +337,8 @@ namespace TP_Final_Morales_Rangogni
         protected void lbtnCargaGrd_Click(object sender, EventArgs e)
         {
             LinkButton button = (LinkButton)sender;
-            CargarGrillaTurnos();
+            Empleado empleado = (Empleado)Session["EmpleadoLogin"];
+            CargarGrillaTurnos(empleado);
             if (button.ID.Equals("lbtnCargaGrd"))
                 FiltrarGrillaTurnos();
         }
