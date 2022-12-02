@@ -156,14 +156,13 @@
                 <asp:UpdatePanel runat="server" ID="UpdEditarEmpleado" UpdateMode="Conditional">
 
                     <ContentTemplate>
-                        <br />
-                        <br />
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="row">
+                              <div class="row">
                                     <div class="input-field col s1">
                                         <asp:Label runat="server" ID="lblIdEdUser" Enabled="false" Visible="false" />
                                     </div>
+                        <div class="row">
+                            <div class="col s12">
+                         
                                     <div class="input-field col s4">
                                         <asp:TextBox ID="txtEdNombre" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                                         <label for="lblEdNombre">Nombre</label>
@@ -172,7 +171,7 @@
                                         <asp:TextBox ID="txtEdApellido" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                                         <label for="lblEdApellido">Apellido</label>
                                     </div>
-                                    <div class="input-field col s3">
+                                    <div class="input-field col s4">
                                         <asp:TextBox ID="txtEdDni" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                                         <label for="lblEdDniEmp">Nº Documento</label>
                                     </div>
