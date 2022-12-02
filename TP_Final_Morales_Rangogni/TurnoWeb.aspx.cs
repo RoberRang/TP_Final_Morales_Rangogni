@@ -79,7 +79,7 @@ namespace TP_Final_Morales_Rangogni
 
         private void CargarFecha()
         {
-            txtFechaTurno.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            txtFechaTurno.Text = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
             txtFechaGrd.Text = DateTime.Today.ToString("yyyy-MM-dd");
         }
 
