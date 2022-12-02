@@ -285,7 +285,7 @@ namespace TP_Final_Morales_Rangogni
 
         }
 
-        private void FiltrarGrillaTurnos()
+        private void FiltrarGrillaTurnos(Empleado empleado)
         {
             string paciente = txtfiltroPaciente.Text.Trim();
            
@@ -296,7 +296,7 @@ namespace TP_Final_Morales_Rangogni
             List<ModeloTurnoWeb> modeloTurnosWeb = (List<ModeloTurnoWeb>)Session["TurnosGrdWeb"];
             List<ModeloTurnoWeb> modeloTurnosFiltro = modeloTurnosWeb;
             if (!paciente.Equals(""))
-                modeloTurnosFiltro = modeloTurnosFiltro.FindAll(x => x.NombrePaciente.ToUpper().Contains(paciente.ToUpper()));          
+                modeloTurnosFiltro = modeloTurnosFiltro.FindAll(x => x.NombrePaciente.ToUpper().Contains(paciente.ToUpper())&& x.IdMedico.Equals(empleado.ID));          
             dgvMedicos.DataSource = modeloTurnosFiltro;
             dgvMedicos.DataBind();
         }
@@ -340,7 +340,7 @@ namespace TP_Final_Morales_Rangogni
             Empleado empleado = (Empleado)Session["EmpleadoLogin"];
             CargarGrillaTurnos(empleado);
             if (button.ID.Equals("lbtnCargaGrd"))
-                FiltrarGrillaTurnos();
+                FiltrarGrillaTurnos(empleado);
         }
         private void CargarFecha()
         {
