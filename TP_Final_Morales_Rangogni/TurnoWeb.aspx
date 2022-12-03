@@ -39,16 +39,16 @@
                             </div>
                         </div>
                         <div class="body bg-gray">
-                            <asp:GridView ID="dgvTurnos" CssClass="highlight responsive-table" DataKeyNames="IdTurno" AutoGenerateColumns="false" runat="server" OnRowCommand="dgvTurnos_RowCommand">
+                            <asp:GridView ID="dgvTurnos" CssClass="highlight responsive-table center-align" DataKeyNames="IdTurno" AutoGenerateColumns="false" runat="server" OnRowCommand="dgvTurnos_RowCommand">
                                 <Columns>
                                     <asp:BoundField HeaderText="ID" DataField="IdTurno" />
                                     <asp:BoundField HeaderText="Paciente" DataField="NombrePaciente" />
                                     <asp:BoundField HeaderText="Medico" DataField="NombreMedico" />
                                     <asp:BoundField HeaderText="Situacion" DataField="Situacion" />
                                     <asp:BoundField HeaderText="Hora" DataField="Hora" />
-                                    <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
-                                    <asp:ButtonField HeaderText="Reprogramar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Reprogramar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
-                                    <asp:ButtonField HeaderText="Cancelar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Cancelar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
+                                    <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="110" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
+                                    <asp:ButtonField HeaderText="Reprogramar" ButtonType="Link" HeaderStyle-Width="120" CommandName="Reprogramar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>date_range</i>" />
+                                    <asp:ButtonField HeaderText="Cancelar" ButtonType="Link" HeaderStyle-Width="20" CommandName="Cancelar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>cancel</i>" />
                                 </Columns>
                             </asp:GridView>
                             <div class="row">
@@ -61,38 +61,63 @@
                         <asp:Button ID="btnModal" runat="server" CssClass="modal" Text="Modal" />
                         <asp:Panel ID="ModalPanel" runat="server" Width="700px" CssClass="content">
                             <div class="row">
-                                <div class="col s2">
-                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtId" runat="server" placeholder="Id"></asp:TextBox>
+                                <div class="col s11 center-align">
+                                    <asp:Label runat="server" ForeColor="" Font-Bold="true" ID="lblAccion" Text="Modificacion de turno"></asp:Label>
                                 </div>
-                                <div class="col s4">
-                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtPaciente" runat="server" placeholder="Paciente"></asp:TextBox>
-                                </div>
-                                <div class="col s4">
-                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtMedico" runat="server" placeholder="Medico"></asp:TextBox>
+                                <div class="col s1">
+                                    <asp:TextBox CssClass="form-control" Enabled="false" Visible="false" ID="txtId" runat="server" placeholder="Id"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s4">
-                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtDia" runat="server" placeholder="Dia"></asp:TextBox>
+                                <div class="col s8 left-align">
+                                    <asp:Label runat="server" CssClass="flow-text purple-text" ForeColor="" Font-Bold="true" ID="LblnombrePaciente" Text="Paciente: "></asp:Label>
                                 </div>
                                 <div class="col s4">
-                                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtHora" runat="server" placeholder="Hora"></asp:TextBox>
+                                    <asp:TextBox CssClass="form-control center-align" Enabled="false" ID="txtPaciente" runat="server" placeholder="Paciente"></asp:TextBox>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s8 left-align">
+                                    <asp:Label runat="server" CssClass="flow-text purple-text" ForeColor="" Font-Bold="true" ID="LblnombreMedico" Text="Medico: "></asp:Label>
+                                </div>
+                                <div class="col s4">
+                                    <asp:TextBox CssClass="form-control center-align" Enabled="false" ID="txtMedico" runat="server" placeholder="Medico"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s8 left-align">
+                                    <asp:Label runat="server" CssClass="flow-text purple-text" ForeColor="" Font-Bold="true" ID="lblDia" Text="Dia: "></asp:Label>
+                                </div>
+                                <div class="col s4">
+                                    <asp:TextBox CssClass="form-control center-align" Enabled="false" ID="txtDia" runat="server" placeholder="Dia"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                  <div class="col s8 left-align">
+                                    <asp:Label runat="server" CssClass="flow-text purple-text" ForeColor="" Font-Bold="true" ID="Label1" Text="Hora: "></asp:Label>
+                                </div>
+                                <div class="col s4">
+                                    <asp:TextBox CssClass="form-control center-align" Enabled="false" ID="txtHora" runat="server" placeholder="Hora"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s4">
                                     <asp:Label CssClass="form-control" Visible="false" Enabled="false" ID="lblIdSituacion" runat="server" placeholder=""></asp:Label>
                                 </div>
                             </div>
+                          <div class="row">
+                              <div class="col s8 left-align">
+                                    <asp:Label runat="server" CssClass="flow-text purple-text" ForeColor="" Font-Bold="true" ID="Label2" Text="Observaciones: "></asp:Label>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col s12">
-                                    <asp:TextBox ID="txtObservacion" runat="server" CssClass="form-control" ></asp:TextBox>
+                                    <asp:TextBox ID="txtObservacion" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <div class="row">
-                                    <div class="col s8 left-align">
-                                        <asp:Label runat="server" ForeColor="" Font-Bold="true" ID="lblAccion" Text="EDICION SITUACION TURNO"></asp:Label>
-                                    </div>
-                                    <div class="col s4 right-align">
+                                    <div class="col s12 right-align">
                                         <asp:LinkButton ID="lkbGraba" runat="server" OnClick="lkbGraba_Click" CssClass="btn-floating purple small"><i class="material-icons">save</i></asp:LinkButton>
                                         <asp:LinkButton ID="lbtnCancela" CssClass="btn-floating purple" runat="server"><i class="material-icons">cancel</i></asp:LinkButton>
                                     </div>
