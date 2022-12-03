@@ -47,6 +47,8 @@
                                     <asp:BoundField HeaderText="Situacion" DataField="Situacion" />
                                     <asp:BoundField HeaderText="Hora" DataField="Hora" />
                                     <asp:ButtonField HeaderText="Editar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Editar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
+                                    <asp:ButtonField HeaderText="Reprogramar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Reprogramar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
+                                    <asp:ButtonField HeaderText="Cancelar" ButtonType="Link" HeaderStyle-Width="100" CommandName="Cancelar" ControlStyle-CssClass="btn-floating purple" Text="<i class='material-icons'>border_color</i>" />
                                 </Columns>
                             </asp:GridView>
                             <div class="row">
@@ -76,9 +78,8 @@
                                 <div class="col s4">
                                     <asp:TextBox CssClass="form-control" Enabled="false" ID="txtHora" runat="server" placeholder="Hora"></asp:TextBox>
                                 </div>
-                                <div class="col s4 left-align">
-                                    <label id="lblSituacion" for="ddlHorasTurnos">Situacion</label>
-                                    <asp:DropDownList ID="ddlSituacion" runat="server" CssClass="dropdown-trigger btn purple white-text" data-activates="ddlHorasTurnos" />
+                                <div class="col s4">
+                                    <asp:Label CssClass="form-control" Visible="false" Enabled="false" ID="lblIdSituacion" runat="server" placeholder=""></asp:Label>
                                 </div>
                             </div>
                             <div class="row">

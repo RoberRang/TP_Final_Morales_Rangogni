@@ -32,7 +32,6 @@ namespace TP_Final_Morales_Rangogni
                     CargarDropDawnListEspecialidad();
                     CargarFecha();
                     CargarGrillaTurnos();
-                    CargarSituacionTurno();
                 }
             }
             catch (Exception ex)
@@ -56,26 +55,7 @@ namespace TP_Final_Morales_Rangogni
             }
         }
 
-        private void CargarSituacionTurno()
-        {
-            try
-            {
-                SituacionTurnoNegocio situacionTurnoNegocio = new SituacionTurnoNegocio();
-                List<SituacionTurno> situacionTurnos = situacionTurnoNegocio.GetSituacionTurnos();
-                ddlSituacion.DataSource = situacionTurnos;
-                ddlSituacion.DataValueField = "IdSituacion";
-                ddlSituacion.DataTextField = "Situacion";
-                ddlSituacion.DataBind();
-                ddlSituacion.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
-                ddlSituacion.SelectedIndex = 0;
-                Session.Add("SituacionTurnos", situacionTurnos);
-            }
-            catch (Exception ex)
-            {
-                Session.Add("MensajeError", ex.ToString());
-                Response.Redirect("ErrorWeb.aspx", false);
-            }
-        }
+        
 
         private void CargarFecha()
         {
@@ -402,11 +382,24 @@ namespace TP_Final_Morales_Rangogni
                 txtId.Text = modeloTurnoWeb.IdTurno.ToString();
                 txtPaciente.Text = modeloTurnoWeb.NombrePaciente.ToString();
                 txtMedico.Text = modeloTurnoWeb.NombreMedico.ToString();
+                if (e.CommandName.Equals("Reprogramar"))
+                {
+                    lblIdSituacion.Text = "2";
+                    txtDia.Enabled = true;
+                    txtHora.Enabled= true;
+                }
+                else
+                {
+                    lblIdSituacion.Text = modeloTurnoWeb.IdSituacion.ToString();
+                    txtDia.Enabled = false;
+                    txtHora.Enabled = false;
+                }
                 txtDia.Text = modeloTurnoWeb.FechaReserva.ToString();
                 txtHora.Text = modeloTurnoWeb.Hora.ToString();
                 txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
-                ddlSituacion.SelectedValue = modeloTurnoWeb.IdSituacion.ToString();
-                mpe.Show();
+                if (e.CommandName.Equals("Cancelar"))
+                    lblIdSituacion.Text = "3";
+                mpe.Show();//muestra el modal 
             }
             catch (Exception ex)
             {
@@ -424,7 +417,7 @@ namespace TP_Final_Morales_Rangogni
                 Turno turno = new Turno();
                 turno.IdTurno = Convert.ToInt32(txtId.Text);
                 turno.Observacion = txtObservacion.Text;
-                turno.IdSituacion = Convert.ToInt32(ddlSituacion.SelectedValue);
+                //turno.IdSituacion = Convert.ToInt32(ddlSituacion.SelectedValue);
                 if (turno.IdTurno == 0)
                     return;
                 if (!turnoNegocio.GrabarTurno(turno))
