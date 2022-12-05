@@ -15,8 +15,9 @@ namespace AccesoModeloBaseDatos.Modelos
             " VALUES (@IdEmpleado, @IdPaciente, @IdEspecialidad, @FechaReserva, @Observacion, @IdSituacion, @Hora)";
         private const string SQL_SELECT_TURNOS = "SELECT IdTurnos, IdMedico, IdEspecialidad, IdPaciente, FechaReserva, Observacion, IdSituacion, Hora FROM Turnos";
         private const string SQL_UPDATE_TURNO = "UPDATE Turnos SET Observacion = @Observacion, IdSituacion=@IdSituacion WHERE IdTurnos = @IdTurno";
-        private const string SQL_SELECT_TURNOSDIA = "SELECT t.IdTurnos IdTurno, t.IdMedico, e.Apellido + ', ' + e.Nombre NombreMedico, t.IdPaciente, p.Apellidos + ', ' + p.Nombres NombrePaciente, " +
-            "t.IdEspecialidad, es.descripcion, t.FechaReserva, t.Observacion, t.IdSituacion, st.Situacion, t.Hora FROM Turnos t INNER JOIN Empleados e ON t.IdMedico = e.Id INNER JOIN Pacientes P ON t.IdPaciente = p.IdPaciente " +
+        private const string SQL_SELECT_TURNOSDIA = "SELECT t.IdTurnos IdTurno, t.IdMedico, e.Apellido + ', ' + e.Nombre NombreMedico, t.IdPaciente," +
+            " p.Apellidos + ', ' + p.Nombres NombrePaciente, p.NroDocumento, t.IdEspecialidad, es.descripcion, t.FechaReserva, t.Observacion, t.IdSituacion," +
+            " st.Situacion, t.Hora FROM Turnos t INNER JOIN Empleados e ON t.IdMedico = e.Id INNER JOIN Pacientes P ON t.IdPaciente = p.IdPaciente " +
             "INNER JOIN Especialidad es ON t.IdEspecialidad = es.IdEspecialidad INNER JOIN SituacionTurno st ON t.IdSituacion = st.IdSituacion WHERE CAST(t.FechaReserva AS DATE) = @FechaDia";
         private readonly string coneccionDB;
         public TurnoADO(string coneccion)

@@ -12,6 +12,7 @@ namespace TP_Final_Morales_Rangogni.DominioWeb
         public string NombreMedico { get; set; }
         public int IdPaciente { get; set; }
         public string NombrePaciente { get; set; }
+        public string NroDocumento { get; set; } 
         public DateTime FechaReserva { get; set; }
         public string Observacion { get; set; }
         public int IdSituacion { get; set; }
