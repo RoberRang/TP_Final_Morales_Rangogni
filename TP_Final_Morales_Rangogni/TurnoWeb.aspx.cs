@@ -320,15 +320,13 @@ namespace TP_Final_Morales_Rangogni
             Empleado empleado = empleadoADO.BuscarEmpleado(Convert.ToInt32(ddlMedico.SelectedValue));
             string nombreMedico = empleado.Nombres;
             string apellidoMedico = empleado.Apellidos;
-            EmailService envio = new EmailService();
-            envio.armarcorreo(emailDestino, nombrePaciente, fechaturno, nombreMedico, apellidoMedico, horaTurno);
+            EmailService envio = new EmailService("smtp.live.com","usuario","password");            
             try
             {
-                envio.enviarEmail();
+                bool envia = envio.EnviarEmail(emailDestino, nombrePaciente, fechaturno, nombreMedico, apellidoMedico, horaTurno);
             }
             catch (Exception ex)
             {
-
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
             }
