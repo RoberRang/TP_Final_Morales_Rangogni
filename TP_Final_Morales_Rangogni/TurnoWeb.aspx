@@ -102,7 +102,7 @@
                             </div>
                             <div class="row">
                                 <div class="col s4">
-                                    <asp:Label CssClass="form-control" Visible="false" Enabled="false" ID="lblIdSituacion" runat="server" placeholder=""></asp:Label>
+                                    <asp:Label CssClass="form-control" Visible="true" Enabled="false" ID="lblIdSituacion" runat="server" placeholder=""></asp:Label>
                                 </div>
                             </div>
                           <div class="row">

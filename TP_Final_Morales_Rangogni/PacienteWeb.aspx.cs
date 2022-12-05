@@ -35,7 +35,7 @@ namespace TP_Final_Morales_Rangogni
             {
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
-            }            
+            }
         }
 
         private void ValidarEmpleadoLogin(Empleado empleado)
@@ -87,6 +87,11 @@ namespace TP_Final_Morales_Rangogni
                     {
                         nuevoPaciente.Estado = false;
                     }
+
+                    string ruta = Server.MapPath("./Imagenes/ImgPacientes/");
+                    string dni = txtDni.Text;
+                    txtimgPac.PostedFile.SaveAs(ruta + "paciente-" + dni + ".jpg");
+
                     nuevoPaciente.Imagen = txtImagen.Text;
                     nuevoPaciente.Sexo = ddlGenero.Text;
                 }
@@ -121,10 +126,9 @@ namespace TP_Final_Morales_Rangogni
                     nuevoPaciente.Sexo = ddlEdGenero.Text;
                 }
                 if (btnFuncion.ID == "btnEditar")
-                {   
+                {
                     negocio.ModificarPaciente(nuevoPaciente);
                     buscarPacientesWeb();
-                    ///cartel alta de pacinete completa y limpiar controles                
                     limpiarControlesEditar();
 
                     mvwPacientes.ActiveViewIndex = 0;
@@ -133,9 +137,7 @@ namespace TP_Final_Morales_Rangogni
                 if (btnFuncion.ID != "btnEditar")
                 {
                     negocio.AltaPaciente(nuevoPaciente);
-
                     buscarPacientesWeb();
-                    ///cartel alta de pacinete completa y limpiar controles                
                     limpiarControles();
 
                 }
@@ -229,7 +231,7 @@ namespace TP_Final_Morales_Rangogni
         }
 
         protected void mnPaciente_MenuItemClick(object sender, MenuEventArgs e)
-        {             
+        {
             int index = Convert.ToInt32(e.Item.Value);
             if (e.Item.Text.Equals("Editar Paciente"))
                 return;

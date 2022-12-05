@@ -378,7 +378,7 @@ namespace TP_Final_Morales_Rangogni
                 List<ModeloTurnoWeb> modeloTurnos = (List<ModeloTurnoWeb>)Session["TurnosGrdWeb"];
                 ModeloTurnoWeb modeloTurnoWeb = modeloTurnos.Find(x => x.IdTurno.Equals(idJorn));
                 if (modeloTurnoWeb == null)
-                    throw new Exception("Fallo al seleccionar el truno para editar");
+                    throw new Exception("Fallo al seleccionar el turno para editar");
                 txtId.Text = modeloTurnoWeb.IdTurno.ToString();
                 txtPaciente.Text = modeloTurnoWeb.NombrePaciente.ToString();
                 txtMedico.Text = modeloTurnoWeb.NombreMedico.ToString();
@@ -416,8 +416,10 @@ namespace TP_Final_Morales_Rangogni
                 TurnoNegocio turnoNegocio = new TurnoNegocio();
                 Turno turno = new Turno();
                 turno.IdTurno = Convert.ToInt32(txtId.Text);
+                
                 turno.Observacion = txtObservacion.Text;
-                //turno.IdSituacion = Convert.ToInt32(ddlSituacion.SelectedValue);
+                turno.IdSituacion = Convert.ToInt32(lblIdSituacion.Text);
+
                 if (turno.IdTurno == 0)
                     return;
                 if (!turnoNegocio.GrabarTurno(turno))

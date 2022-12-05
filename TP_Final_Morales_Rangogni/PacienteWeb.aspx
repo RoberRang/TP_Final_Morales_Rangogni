@@ -70,7 +70,7 @@
                                 <div class="file-field input-field col s4 center-align">
                                     <div class="waves-effect purple waves-light btn-small">
                                         <i class="material-icons">camera_enhance</i>
-                                        <input type="file">
+                                        <input type="file" id="txtimgPac" runat="server">
                                     </div>
                                     <div class="file-path-wrapper col s4">
                                         <asp:TextBox ID="txtImagen" runat="server" CssClass="file-path validate"></asp:TextBox>
