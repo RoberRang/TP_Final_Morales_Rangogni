@@ -382,23 +382,35 @@ namespace TP_Final_Morales_Rangogni
                 txtId.Text = modeloTurnoWeb.IdTurno.ToString();
                 txtPaciente.Text = modeloTurnoWeb.NombrePaciente.ToString();
                 txtMedico.Text = modeloTurnoWeb.NombreMedico.ToString();
-                if (e.CommandName.Equals("Reprogramar"))
+                lblIdSituacion.Text = modeloTurnoWeb.IdSituacion.ToString();
+                if (lblIdSituacion.Text == "3"|| lblIdSituacion.Text=="5")
                 {
-                    lblIdSituacion.Text = "2";
-                    txtDia.Enabled = true;
-                    txtHora.Enabled= true;
+                    txtDia.Enabled = false;
+                    txtHora.Enabled = false;
+                    txtObservacion.Enabled = false;
+                    lkbGraba.Visible = false;
                 }
                 else
                 {
-                    lblIdSituacion.Text = modeloTurnoWeb.IdSituacion.ToString();
-                    txtDia.Enabled = false;
-                    txtHora.Enabled = false;
+                    if (e.CommandName.Equals("Reprogramar"))
+                    {
+                        lblIdSituacion.Text = "2";
+                        txtDia.Enabled = true;
+                        txtHora.Enabled = true;
+                    }
+                    else
+                    {
+                        lblIdSituacion.Text = modeloTurnoWeb.IdSituacion.ToString();
+                        txtDia.Enabled = false;
+                        txtHora.Enabled = false;
+                        txtObservacion.Enabled = true;
+                    }
+                    txtDia.Text = modeloTurnoWeb.FechaReserva.ToString();
+                    txtHora.Text = modeloTurnoWeb.Hora.ToString();
+                    txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
+                    if (e.CommandName.Equals("Cancelar"))
+                        lblIdSituacion.Text = "3";
                 }
-                txtDia.Text = modeloTurnoWeb.FechaReserva.ToString();
-                txtHora.Text = modeloTurnoWeb.Hora.ToString();
-                txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
-                if (e.CommandName.Equals("Cancelar"))
-                    lblIdSituacion.Text = "3";
                 mpe.Show();//muestra el modal 
             }
             catch (Exception ex)
