@@ -13,36 +13,41 @@ namespace ModeloDeNegocio
         private MailMessage email;
         private SmtpClient server;
 
-        public EmailService()
+        public EmailService(string dominio, string usuario, string password)
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("progamationiiigmail.com", "programacion3"); ///cambiar user y pass de gmail  
-            server.EnableSsl = true;
+
             server.Port = 587;
-            server.Host = "smpt.gmail.com";
+            server.Host = dominio; //smtp.live.com
+            server.UseDefaultCredentials = false;
+            server.Credentials = new NetworkCredential(usuario, password); ///cambiar user y pass de gmail  
+            server.EnableSsl = true;
+
         }
-        public void armarcorreo(string emailDestino, string nombrePaciente, string fechaTurno, string nombreMedico, string apellidoMedico, string horaTurno)
+        private void ArmarCorreo(string emailDestino, string nombrePaciente, string fechaTurno, string nombreMedico, string apellidoMedico, string horaTurno)
         {
             email = new MailMessage();
-            email.From = new MailAddress("noresponder@clinicamoraprogramacion3.com");
+            email.From = new MailAddress("noresponder@clinicamora.com");
             email.To.Add(emailDestino);
             email.Subject = "<h3>Turno confirmado Clinica Mora<h3>";
             email.IsBodyHtml = true;
             email.Body = "<h3>Confimacion de Turno Clinica Mora<h3> <br>" +
-                "Hola "+nombrePaciente +"como estas,<br>" +
-                " Queriamos recordarte que el dia"+ fechaTurno +", tenes una visita con el Dr. "+ nombreMedico +" "+ apellidoMedico+ " a " +
+                "Hola " + nombrePaciente + "como estas,<br>" +
+                " Queriamos recordarte que el dia" + fechaTurno + ", tenes una visita con el Dr. " + nombreMedico + " " + apellidoMedico + " a " +
                 "las" + horaTurno + ".<br>Por favor cualquier duda o cambio avisanos para poder reprogramarlo. <br>Saludos, <br>Administracion Clinica Mora <br> 0800-333-MORA";
         }
 
-        public void enviarEmail()
+        public bool EnviarEmail(string emailDestino, string nombrePaciente, string fechaTurno, string nombreMedico, string apellidoMedico, string horaTurno)
         {
+            bool envio = false;
             try
             {
+                ArmarCorreo(emailDestino, nombrePaciente, fechaTurno, nombreMedico, apellidoMedico, horaTurno);
                 server.Send(email);
+                return envio;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
