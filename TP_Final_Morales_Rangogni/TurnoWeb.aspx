@@ -157,11 +157,11 @@
                         <div class="col s12">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <asp:TextBox ID="txtTelefono" runat="server" CssClass="validate" placeholder="Telefono"></asp:TextBox>
+                                    <asp:TextBox ID="txtTelefono" runat="server" CssClass="validate" Enabled="false" placeholder="Telefono"></asp:TextBox>
                                 </div>
                                 <!--Email -->
                                 <div class="input-field col s6">
-                                    <asp:TextBox ID="txtEmail" runat="server" CssClass="validate" TextMode="Email" placeholder="Correo Electronico"></asp:TextBox>
+                                    <asp:TextBox ID="txtEmail" runat="server" CssClass="validate" TextMode="Email" Enabled="false" placeholder="Correo Electronico"></asp:TextBox>
                                 </div>
                             </div>
                         </div>

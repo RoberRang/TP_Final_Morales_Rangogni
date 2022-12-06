@@ -91,7 +91,7 @@ namespace TP_Final_Morales_Rangogni
                     string ruta = Server.MapPath("./Imagenes/ImgPacientes/");
                     string dni = txtDni.Text;
                     txtimgPac.PostedFile.SaveAs(ruta + "paciente-" + dni + ".jpg");
-
+                    
                     nuevoPaciente.Imagen = txtImagen.Text;
                     nuevoPaciente.Sexo = ddlGenero.Text;
                 }
