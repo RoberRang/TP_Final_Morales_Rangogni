@@ -20,7 +20,7 @@ namespace ModeloDeNegocio
             server.Port = 587;
             server.Host = dominio; //smtp.live.com
             server.UseDefaultCredentials = false;
-            server.Credentials = new NetworkCredential(usuario, password); ///cambiar user y pass de gmail  
+            server.Credentials = new NetworkCredential(usuario, password);  
             server.EnableSsl = true;
 
         }

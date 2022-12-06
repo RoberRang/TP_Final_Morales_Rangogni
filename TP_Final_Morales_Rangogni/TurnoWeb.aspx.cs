@@ -100,7 +100,7 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("MensajeError", "El Turno no se pudo ingresar");
                 Response.Redirect("ErrorWeb.aspx", false);
             }
-            //EnviarTurnoCorreo(turno); <--Revisar
+            EnviarTurnoCorreo(turno);
 
             LimpiarControles();
         }
@@ -314,7 +314,11 @@ namespace TP_Final_Morales_Rangogni
 
         private void EnviarTurnoCorreo(Turno turno)
         {
-            ///Para probar que el envio fue correcto ingresar a gmail user: progamationiiigmail.com y pass: programacion3
+            ///Probamos con gmail  pass: programacion3 no funciona debido a que hace 3 meses gmail cambio esa funcionalidad que ofrecia
+            ///El codigo de envios esta configurado para correo hotmail y user: frgputnalumnos@hotmail.com pass: robertojose1234 pero sigue dando error.
+            ///"SocketException: Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, 
+            ///o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder 204.79.197.212:587"
+
             string fechaturno = turno.FechaReserva.ToString();
             string horaTurno = turno.Hora.ToString();
             string nombrePaciente = txtnombre.Text;
@@ -323,7 +327,7 @@ namespace TP_Final_Morales_Rangogni
             Empleado empleado = empleadoADO.BuscarEmpleado(Convert.ToInt32(ddlMedico.SelectedValue));
             string nombreMedico = empleado.Nombres;
             string apellidoMedico = empleado.Apellidos;
-            EmailService envio = new EmailService("smtp.live.com", "usuario", "password");
+            EmailService envio = new EmailService("smtp.live.com", "frgputnalumnos@hotmail.com", "robertojose1234");
             try
             {
                 bool envia = envio.EnviarEmail(emailDestino, nombrePaciente, fechaturno, nombreMedico, apellidoMedico, horaTurno);
@@ -465,7 +469,7 @@ namespace TP_Final_Morales_Rangogni
                 {
                     Session.Add("MensajeError", "El Turno no se pudo ingresar");
                     Response.Redirect("ErrorWeb.aspx", false);
-                }
+                }              
                 CargarGrillaTurnos();
             }
             catch (Exception ex)
