@@ -97,8 +97,19 @@ namespace TP_Final_Morales_Rangogni
                 txtMedico.Text = modeloTurnoWeb.NombreMedico.ToString();
                 txtDia.Text = modeloTurnoWeb.FechaReserva.ToString("dd-MM-yyyy");
                 txtHora.Text = modeloTurnoWeb.Hora.ToString();
-                txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
-                
+                ///El medico solo modifica observ y graba si la situacion es "Nuevo" 
+                if (modeloTurnoWeb.IdSituacion.Equals(1))
+                {
+                    txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
+                    txtObservacion.Enabled = true;
+                    lkbGraba.Visible = true;
+                }
+                else
+                {
+                    txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
+                    txtObservacion.Enabled = false;
+                    lkbGraba.Visible = false;
+                }
                 mpe.Show();
             }
             catch (Exception ex)
