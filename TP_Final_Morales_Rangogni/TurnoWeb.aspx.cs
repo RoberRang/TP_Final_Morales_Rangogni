@@ -197,7 +197,7 @@ namespace TP_Final_Morales_Rangogni
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
                 Paciente paciente = null;
                 if (dni.Equals(""))
-                     paciente = pacienteNegocio.BuscarPaciente(txtDni.Text.Trim());
+                    paciente = pacienteNegocio.BuscarPaciente(txtDni.Text.Trim());
                 else
                     paciente = pacienteNegocio.BuscarPaciente(dni);
 
@@ -323,7 +323,7 @@ namespace TP_Final_Morales_Rangogni
             Empleado empleado = empleadoADO.BuscarEmpleado(Convert.ToInt32(ddlMedico.SelectedValue));
             string nombreMedico = empleado.Nombres;
             string apellidoMedico = empleado.Apellidos;
-            EmailService envio = new EmailService("smtp.live.com","usuario","password");            
+            EmailService envio = new EmailService("smtp.live.com", "usuario", "password");
             try
             {
                 bool envia = envio.EnviarEmail(emailDestino, nombrePaciente, fechaturno, nombreMedico, apellidoMedico, horaTurno);
@@ -383,7 +383,7 @@ namespace TP_Final_Morales_Rangogni
                 txtPaciente.Text = modeloTurnoWeb.NombrePaciente.ToString();
                 txtMedico.Text = modeloTurnoWeb.NombreMedico.ToString();
                 lblIdSituacion.Text = modeloTurnoWeb.IdSituacion.ToString();
-                if (lblIdSituacion.Text == "3" || lblIdSituacion.Text == "5")
+                if (lblIdSituacion.Text == "3" || lblIdSituacion.Text == "2" || lblIdSituacion.Text == "5")
                 {
                     txtDia.Enabled = false;
                     txtHora.Enabled = false;
@@ -393,7 +393,7 @@ namespace TP_Final_Morales_Rangogni
                 else
                 {
                     if (e.CommandName.Equals("Reprogramar"))
-                    {
+                    {   
                         ReprogramarTurno(modeloTurnoWeb);
                         mvwTurnos.ActiveViewIndex = 1;
                         return;
@@ -444,7 +444,7 @@ namespace TP_Final_Morales_Rangogni
             {
                 Session.Add("MensajeError", ex.Message);
                 Response.Redirect("ErrorWeb.aspx", false);
-            }            
+            }
         }
 
         protected void lkbGraba_Click(object sender, EventArgs e)
