@@ -15,8 +15,7 @@ namespace TP_Final_Morales_Rangogni
             {
                 Session.Add("MensajeError", "Acceso no autorizado");
                 Response.Redirect("ErrorWeb.aspx", false);
-            }               
-
+            }
         }
     }
 }

@@ -9,11 +9,14 @@ namespace ModeloDeNegocio.Negocio
     {
         private string MensajeError { get; set; }
 
+
         private readonly EmpleadoADO empleadoADO;
+
         public UsuarioNegocio()
         {
             empleadoADO = new EmpleadoADO(ConexionStringDB.ConexionBase());
         }
+
         public bool AltaUsuario(Usuario usuario, int idEspecialidad = 1)
         {
             bool alta = true;
@@ -42,7 +45,6 @@ namespace ModeloDeNegocio.Negocio
                     medico.Especialidades = new List<Especialidad>() { new Especialidad() };
                     medicoNegocio.ModificarMedicoEspecialidad(medico, true);
                 }
-
                 return alta;
             }
             catch (Exception ex)
@@ -50,10 +52,30 @@ namespace ModeloDeNegocio.Negocio
                 throw ex;
             }
         }
+
+        public bool ModificarUsuario(Usuario usuario)
+        {
+            bool modificado = false;
+            try
+            {
+                modificado = empleadoADO.GrabarEmpleado(usuario);
+                if (!modificado)
+                    throw new Exception("No se puedo modificar el usuario");
+                UsuarioADO usuarioADO = new UsuarioADO(ConexionStringDB.ConexionBase());
+                modificado = usuarioADO.UpdateUsuario(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return modificado;
+        }
+
         public List<Empleado> Empleados()
         {
             return empleadoADO.ListarEmpleados();
         }
+
         public bool ModificarEmpleado(Empleado empleado)
         {
             try
@@ -65,12 +87,21 @@ namespace ModeloDeNegocio.Negocio
                 throw ex;
             }
         }
+
         public Empleado ValidarDatosIngreso(Usuario user)
         {
 
             Empleado empleado = empleadoADO.BuscarEmpleadoLogin(user);
 
             return empleado;
+        }
+
+        public Usuario DatosUsuarioLogin(int idUser)
+        {
+
+            Usuario userLogin = empleadoADO.BuscarUserLogin(idUser);
+
+            return userLogin;
         }
     }
 }

@@ -46,7 +46,7 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-                Session.Add("MensajeError", ex.ToString());
+                Session.Add("MensajeError", ex.Message);
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }

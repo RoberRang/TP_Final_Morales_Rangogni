@@ -14,5 +14,14 @@ namespace TP_Final_Morales_Rangogni
             if (Session["MensajeError"] != null)
                 lblMensajeError.Text = Session["MensajeError"].ToString();
         }
+
+        protected void lbtnDefaultLogin_Click(object sender, EventArgs e)
+        {
+            if (Session["EmpleadoLogin"] == null)
+                Response.Redirect("Default.aspx", false);
+            else
+                Response.Redirect("SiteDefaultWeb.aspx", false);
+
+        }
     }
 }

@@ -60,6 +60,24 @@ namespace TP_Final_Morales_Rangogni
         protected global::System.Web.UI.WebControls.TextBox txtfiltro;
 
         /// <summary>
+        /// Control txtFiltroApellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroApellido;
+
+        /// <summary>
+        /// Control txtFiltroDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroDni;
+
+        /// <summary>
         /// Control btnVerEmp.
         /// </summary>
         /// <remarks>
@@ -202,6 +220,15 @@ namespace TP_Final_Morales_Rangogni
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdEditarEmpleado;
+
+        /// <summary>
+        /// Control lblIdEdUser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIdEdUser;
 
         /// <summary>
         /// Control txtEdNombre.

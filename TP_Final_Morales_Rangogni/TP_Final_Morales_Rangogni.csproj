@@ -107,6 +107,7 @@
     <Content Include="AltaSinUsuarioWeb.aspx" />
     <Content Include="EmpleadoWeb.aspx" />
     <Content Include="ErrorWeb.aspx" />
+    <Content Include="Imagenes\Logo_3.jpg" />
     <Content Include="SituacionTurnoWeb.aspx" />
     <Content Include="Icons\hospital.png" />
     <Content Include="Imagenes\cancel_black_36dp.jpg" />

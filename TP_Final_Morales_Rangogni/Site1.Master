@@ -12,7 +12,7 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link href="css/estilosMora.css" type="text/css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Clinica MORA</title>    
+    <title><%: Page.Title %> - Clinica MORA</title>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
@@ -45,7 +45,7 @@
                         <li>
                             <a runat="server" href="~/PacienteWeb" class="black-text"><i class="material-icons white-text">face</i></a>
                         </li>
-                         <li>
+                        <li>
                             <a runat="server" href="~/TurnoWeb" class="black-text"><i class="material-icons white-text">date_range</i></a>
                         </li>
                         <li>
@@ -63,7 +63,7 @@
                     </ul>
                 </div>
             </nav>
-            <ul class="black-text sidenav sidenav-fixed" id="lateralNav" style="transform: translateX(0px);margin-top: 0px;top: 65px;">
+            <ul class="black-text sidenav sidenav-fixed" id="lateralNav" style="transform: translateX(0px); margin-top: 0px; top: 65px;">
                 <li><a runat="server" href="~/SiteDefaultWeb">Inicio</a></li>
                 <li>
                     <div class="divider"></div>
@@ -85,7 +85,7 @@
             </div>
         </main>
         <hr />
-        
+
     </form>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="Scripts/jquery-3.6.0.min.js"></script>

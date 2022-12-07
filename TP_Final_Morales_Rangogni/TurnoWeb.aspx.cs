@@ -18,28 +18,21 @@ namespace TP_Final_Morales_Rangogni
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                CargarDropDawnListEspecialidad();
-                CargarFecha();
-                CargarGrillaTurnos();
-                CargarSituacionTurno();
-            }
-        }
-
-        private void CargarSituacionTurno()
-        {
             try
             {
-                SituacionTurnoNegocio situacionTurnoNegocio = new SituacionTurnoNegocio();
-                List<SituacionTurno> situacionTurnos = situacionTurnoNegocio.GetSituacionTurnos();
-                ddlSituacion.DataSource = situacionTurnos;
-                ddlSituacion.DataValueField = "IdSituacion";
-                ddlSituacion.DataTextField = "Situacion";
-                ddlSituacion.DataBind();
-                ddlSituacion.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
-                ddlSituacion.SelectedIndex = 0;
-                Session.Add("SituacionTurnos", situacionTurnos);
+                if (Session["EmpleadoLogin"] == null)
+                    throw new Exception("Acceso erroneo!");
+                else
+                {
+                    Empleado empleado = (Empleado)Session["EmpleadoLogin"];
+                    ValidarEmpleadoLogin(empleado);
+                }
+                if (!IsPostBack)
+                {
+                    CargarDropDawnListEspecialidad();
+                    CargarFecha();
+                    CargarGrillaTurnos();
+                }
             }
             catch (Exception ex)
             {
@@ -48,9 +41,23 @@ namespace TP_Final_Morales_Rangogni
             }
         }
 
+        private void ValidarEmpleadoLogin(Empleado empleado)
+        {
+            try
+            {
+                if (empleado.idPerfil == 3)
+                    throw new Exception("El Usuario: " + empleado.Nombres + ", " + empleado.Apellidos + " sin acceso!");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.Message);
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
+        }
+
         private void CargarFecha()
         {
-            txtFechaTurno.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            txtFechaTurno.Text = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
             txtFechaGrd.Text = DateTime.Today.ToString("yyyy-MM-dd");
         }
 
@@ -93,7 +100,7 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("MensajeError", "El Turno no se pudo ingresar");
                 Response.Redirect("ErrorWeb.aspx", false);
             }
-            //EnviarTurnoCorreo(turno); <--Revisar
+            //EnviarTurnoCorreo(turno);
 
             LimpiarControles();
         }
@@ -119,6 +126,7 @@ namespace TP_Final_Morales_Rangogni
             ddlMedico.Items.Insert(0, new ListItem("-- Sin Espcialista --", "0"));
             return;
         }
+
         private void LimpiarHorasTurnos()
         {
             ddlHorasTurnos.Items.Clear();
@@ -182,12 +190,16 @@ namespace TP_Final_Morales_Rangogni
             }
         }
 
-        private void BuscarPaciente()
+        private void BuscarPaciente(string dni = "")
         {
             try
             {
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
-                Paciente paciente = pacienteNegocio.BuscarPaciente(txtDni.Text.Trim());
+                Paciente paciente = null;
+                if (dni.Equals(""))
+                    paciente = pacienteNegocio.BuscarPaciente(txtDni.Text.Trim());
+                else
+                    paciente = pacienteNegocio.BuscarPaciente(dni);
 
                 if (Session["PacienteTurno"] != null)
                     Session.Remove("PacienteTurno");
@@ -302,7 +314,11 @@ namespace TP_Final_Morales_Rangogni
 
         private void EnviarTurnoCorreo(Turno turno)
         {
-            ///Para probar que el envio fue correcto ingresar a gmail user: progamationiiigmail.com y pass: programacion3
+            ///Probamos con gmail  pass: programacion3 no funciona debido a que hace 3 meses gmail cambio esa funcionalidad que ofrecia
+            ///El codigo de envios esta configurado para correo hotmail y user: frgputnalumnos@hotmail.com pass: robertojose1234 pero sigue dando error.
+            ///"SocketException: Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, 
+            ///o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder 204.79.197.212:587"
+
             string fechaturno = turno.FechaReserva.ToString();
             string horaTurno = turno.Hora.ToString();
             string nombrePaciente = txtnombre.Text;
@@ -311,15 +327,13 @@ namespace TP_Final_Morales_Rangogni
             Empleado empleado = empleadoADO.BuscarEmpleado(Convert.ToInt32(ddlMedico.SelectedValue));
             string nombreMedico = empleado.Nombres;
             string apellidoMedico = empleado.Apellidos;
-            EmailService envio = new EmailService();
-            envio.armarcorreo(emailDestino, nombrePaciente, fechaturno, nombreMedico, apellidoMedico, horaTurno);
+            EmailService envio = new EmailService("smtp.live.com", "frgputnalumnos@hotmail.com", "robertojose1234");
             try
             {
-                envio.enviarEmail();
+                bool envia = envio.EnviarEmail(emailDestino, nombrePaciente, fechaturno, nombreMedico, apellidoMedico, horaTurno);
             }
             catch (Exception ex)
             {
-
                 Session.Add("MensajeError", ex.ToString());
                 Response.Redirect("ErrorWeb.aspx", false);
             }
@@ -330,7 +344,6 @@ namespace TP_Final_Morales_Rangogni
             int index = Convert.ToInt32(e.Item.Value);
             mvwTurnos.ActiveViewIndex = index;
         }
-
 
         protected void btnCargaGrd_Click(object sender, EventArgs e)
         {
@@ -369,19 +382,71 @@ namespace TP_Final_Morales_Rangogni
                 List<ModeloTurnoWeb> modeloTurnos = (List<ModeloTurnoWeb>)Session["TurnosGrdWeb"];
                 ModeloTurnoWeb modeloTurnoWeb = modeloTurnos.Find(x => x.IdTurno.Equals(idJorn));
                 if (modeloTurnoWeb == null)
-                    throw new Exception("Fallo al seleccionar el truno para editar");
+                    throw new Exception("Fallo al seleccionar el turno para editar");
                 txtId.Text = modeloTurnoWeb.IdTurno.ToString();
                 txtPaciente.Text = modeloTurnoWeb.NombrePaciente.ToString();
                 txtMedico.Text = modeloTurnoWeb.NombreMedico.ToString();
-                txtDia.Text = modeloTurnoWeb.FechaReserva.ToString();
-                txtHora.Text = modeloTurnoWeb.Hora.ToString();
-                txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
-                ddlSituacion.SelectedValue = modeloTurnoWeb.IdSituacion.ToString();
-                mpe.Show();
+                lblIdSituacion.Text = modeloTurnoWeb.IdSituacion.ToString();
+                if (lblIdSituacion.Text == "3" || lblIdSituacion.Text == "2" || lblIdSituacion.Text == "5")
+                {
+                    txtDia.Enabled = false;
+                    txtHora.Enabled = false;
+                    txtObservacion.Enabled = false;
+                    lkbGraba.Visible = false;
+                }
+                else
+                {
+                    if (e.CommandName.Equals("Reprogramar"))
+                    {   
+                        ReprogramarTurno(modeloTurnoWeb);
+                        mvwTurnos.ActiveViewIndex = 1;
+                        return;
+                    }
+                    else
+                    {
+                        lblIdSituacion.Text = modeloTurnoWeb.IdSituacion.ToString();
+                        txtDia.Enabled = false;
+                        txtHora.Enabled = false;
+                        txtObservacion.Enabled = true;
+                        lkbGraba.Visible = true;
+                    }
+                    txtDia.Text = modeloTurnoWeb.FechaReserva.ToString();
+                    txtHora.Text = modeloTurnoWeb.Hora.ToString();
+                    txtObservacion.Text = modeloTurnoWeb.Observacion.ToString();
+                    if (e.CommandName.Equals("Cancelar"))
+                    {
+                        lblIdSituacion.Text = "3";
+                        lkbGraba.Visible = true;
+                    }
+                }
+                mpe.Show();//muestra el modal 
             }
             catch (Exception ex)
             {
                 Session.Add("MensajeError", ex.ToString());
+                Response.Redirect("ErrorWeb.aspx", false);
+            }
+        }
+
+        private void ReprogramarTurno(ModeloTurnoWeb modeloTurnoWeb)
+        {
+            try
+            {
+                BuscarPaciente(modeloTurnoWeb.NroDocumento);
+                TurnoNegocio turnoNegocio = new TurnoNegocio();
+                Turno turno = new Turno();
+                turno.IdTurno = Convert.ToInt32(modeloTurnoWeb.IdTurno);
+                turno.Observacion = modeloTurnoWeb.Observacion;
+                turno.IdSituacion = 2;
+                if (!turnoNegocio.GrabarTurno(turno))
+                {
+                    Session.Add("MensajeError", "El Turno no se pudo ingresar");
+                    Response.Redirect("ErrorWeb.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("MensajeError", ex.Message);
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
@@ -394,15 +459,17 @@ namespace TP_Final_Morales_Rangogni
                 TurnoNegocio turnoNegocio = new TurnoNegocio();
                 Turno turno = new Turno();
                 turno.IdTurno = Convert.ToInt32(txtId.Text);
+
                 turno.Observacion = txtObservacion.Text;
-                turno.IdSituacion = Convert.ToInt32(ddlSituacion.SelectedValue);
+                turno.IdSituacion = Convert.ToInt32(lblIdSituacion.Text);
+
                 if (turno.IdTurno == 0)
                     return;
                 if (!turnoNegocio.GrabarTurno(turno))
                 {
                     Session.Add("MensajeError", "El Turno no se pudo ingresar");
                     Response.Redirect("ErrorWeb.aspx", false);
-                }
+                }              
                 CargarGrillaTurnos();
             }
             catch (Exception ex)
