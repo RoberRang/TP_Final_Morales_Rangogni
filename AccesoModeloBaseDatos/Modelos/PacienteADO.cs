@@ -9,9 +9,9 @@ namespace AccesoModeloBaseDatos.Modelos
 {
     public class PacienteADO
     {
-        private const string SQL_INSERT_PACIENTES = "INSERT INTO pacientes (nombres, apellidos, nrodocumento, fechanacimiento, sexo,fechaalta,estado, telefono, email, imagen) VALUES (@nombres,@apellidos,@nrodocumento, @fechanacimiento, @sexo, @fechaalta, @estado, @telefono, @email, @imagen)";
+        private const string SQL_INSERT_PACIENTES = "INSERT INTO pacientes (nombres, apellidos, nrodocumento, fechanacimiento, sexo,fechaalta,estado, telefono, email) VALUES (@nombres,@apellidos,@nrodocumento, @fechanacimiento, @sexo, @fechaalta, @estado, @telefono, @email)";
         private const string SQL_SELECT_PACIENTES = "SELECT  idPaciente,nombres,apellidos,nrodocumento, fechanacimiento, sexo, fechaalta, estado, telefono, email, imagen FROM Pacientes";
-        private const string SQL_UPDATE_PACIENTES = "UPDATE pacientes SET nombres='@nombres',apellidos='@apellidos',nrodocumento='@nrodocumento', fechanacimiento=@fechanacimiento, sexo='@sexo', estado=@estado, telefono=@telefono, email='@email', imagen='@imagen' WHERE idPaciente = @idPaciente";
+        private const string SQL_UPDATE_PACIENTES = "UPDATE pacientes SET nombres='@nombres',apellidos='@apellidos',nrodocumento='@nrodocumento', fechanacimiento=@fechanacimiento, sexo='@sexo', estado=@estado, telefono=@telefono, email='@email' WHERE idPaciente = @idPaciente";
         private const string SQL_SELECT_PACIENTE = "SELECT idPaciente,nombres,apellidos,nrodocumento, fechanacimiento, sexo, fechaalta, estado, telefono, email, imagen FROM Pacientes WHERE NroDocumento = '@nrodocumento'";
         private readonly string coneccionDB;
         public PacienteADO(string coneccion)
@@ -53,7 +53,6 @@ namespace AccesoModeloBaseDatos.Modelos
                     cmd.Parameters.AddWithValue("@estado", paciente.Estado);
                     cmd.Parameters.AddWithValue("@telefono", paciente.Telefono);
                     cmd.Parameters.AddWithValue("@email", paciente.Email);
-                    cmd.Parameters.AddWithValue("@imagen", paciente.Imagen);
                     cmd.CommandType = CommandType.Text;
                     accesoDatos.ExecuteCommand(cmd);
                 }
@@ -84,7 +83,6 @@ namespace AccesoModeloBaseDatos.Modelos
                     sql = sql.Replace("@estado", paciente.Estado.Equals(true) ? "1" : "0"); 
                     sql = sql.Replace("@telefono", paciente.Telefono.ToString());
                     sql = sql.Replace("@email", paciente.Email.ToString());
-                    sql = sql.Replace("@imagen", paciente.Imagen.ToString());
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = CommandType.Text;
                     accesoDatosUpdate.ExecuteCommandString(cmd.CommandText);

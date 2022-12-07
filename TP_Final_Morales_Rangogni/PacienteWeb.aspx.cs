@@ -78,16 +78,9 @@ namespace TP_Final_Morales_Rangogni
                     nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtFecha.Text);
                     nuevoPaciente.FechaAlta = DateTime.Today;
                     if (ddlEstado.Text == "Activo")
-                    {
                         nuevoPaciente.Estado = true;
-                    }
                     else
-                    {
                         nuevoPaciente.Estado = false;
-                    }
-
-
-                    nuevoPaciente.Imagen = "";
                     nuevoPaciente.Sexo = ddlGenero.Text;
                 }
                 else
@@ -110,14 +103,9 @@ namespace TP_Final_Morales_Rangogni
                     nuevoPaciente.Email = txtEdEmail.Text;
                     nuevoPaciente.FechaNacimiento = Convert.ToDateTime(txtEdFnac.Text);
                     if (ddlEdEstado.Text == "Activo")
-                    {
                         nuevoPaciente.Estado = true;
-                    }
                     else
-                    {
                         nuevoPaciente.Estado = false;
-                    }
-                    nuevoPaciente.Imagen = "";
                     nuevoPaciente.Sexo = ddlEdGenero.Text;
                 }
                 if (btnFuncion.ID == "btnEditar")
@@ -125,7 +113,6 @@ namespace TP_Final_Morales_Rangogni
                     negocio.ModificarPaciente(nuevoPaciente);
                     buscarPacientesWeb();
                     limpiarControlesEditar();
-
                     mvwPacientes.ActiveViewIndex = 0;
                 }
 
@@ -134,7 +121,6 @@ namespace TP_Final_Morales_Rangogni
                     negocio.AltaPaciente(nuevoPaciente);
                     buscarPacientesWeb();
                     limpiarControles();
-
                 }
 
             }
@@ -190,7 +176,7 @@ namespace TP_Final_Morales_Rangogni
             txtEdDni.Text = filtroRapido.NroDocumento;
             txtEdEmail.Text = filtroRapido.Email;
             txtEdtelefono.Text = filtroRapido.Telefono;
-            txtEdFnac.Text = filtroRapido.FechaNacimiento;
+            txtEdFnac.Text = Convert.ToDateTime(filtroRapido.FechaNacimiento).ToString("yyyy-MM-dd");
             ddlEdGenero.Text = filtroRapido.Sexo;
             ddlEdEstado.Text = filtroRapido.Estado;
 
