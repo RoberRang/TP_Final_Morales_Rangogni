@@ -42,7 +42,6 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         private void ValidarEmpleadoLogin(Empleado empleado)
         {
             try
@@ -56,7 +55,6 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         private void CargarGrillaEspecialidad()
         {
             try
@@ -79,7 +77,6 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         protected void dgvMedicos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -123,7 +120,6 @@ namespace TP_Final_Morales_Rangogni
             int index = Convert.ToInt32(e.Item.Value);
             mvwMedico.ActiveViewIndex = index;
         }
-
         protected void dgvEspecialidad_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -153,13 +149,10 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         private void ActivaDesactivaControlesModal(bool est)
         {
             ddlEspecialidad.Enabled = est;
         }
-
-
         protected void lkbGraba_Click(object sender, EventArgs e)
         {
             try
@@ -185,14 +178,12 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         private void LimpiarControles()
         {
             
             txtId.Text = "";
           
         }
-
         protected void lbtnNuevaEsp_Click(object sender, EventArgs e)
         {
             LimpiarControles();
@@ -204,7 +195,6 @@ namespace TP_Final_Morales_Rangogni
             lblAccionEsp.Text = "NUEVO";
             mpeEsp.Show();
         }
-
         private void CargarDropDawnListEspecialidad(bool nuevo)
         {
             try
@@ -231,12 +221,10 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         protected void lbtnCargarEsp_Click(object sender, EventArgs e)
         {
             CargarGrillaEspecialidad();
         }
-
         protected void lbtnGrabaEsp_Click(object sender, EventArgs e)
         {
             if (lblAccionEsp.Text.Equals("NUEVO"))
@@ -244,7 +232,6 @@ namespace TP_Final_Morales_Rangogni
             if (lblAccionEsp.Text.Equals("EDITAR"))
                 ModificarMedicoEspeciaalidadWeb();
         }
-
         private void AltaMedicoEspecialidadWeb()
         {
             if (txtIdEspMed.Text.Trim().Equals(""))
@@ -264,7 +251,6 @@ namespace TP_Final_Morales_Rangogni
             }
             CargarGrillaEspecialidad();
         }
-
         private void ModificarMedicoEspeciaalidadWeb()
         {
             if (txtIdMed.Text.Trim().Equals(""))
@@ -284,33 +270,27 @@ namespace TP_Final_Morales_Rangogni
             }
             CargarGrillaEspecialidad();
         }
-
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtIdEspMed.Text = ddlEspecialidad.SelectedValue;
             mpeEsp.Show();
         }
-
         protected void lbtnCargarTurnos_Click(object sender, EventArgs e)
         {
 
         }
-
         private void FiltrarGrillaTurnos(Empleado empleado)
         {
             string paciente = txtfiltroPaciente.Text.Trim();
             if (Session["TurnosGrdWeb"] == null)
                 return;
-
             List<ModeloTurnoWeb> modeloTurnosFiltro = (List<ModeloTurnoWeb>)Session["TurnosGrdWeb"];
             modeloTurnosFiltro = modeloTurnosFiltro.FindAll(x => x.IdMedico.Equals(empleado.ID));
-
             if (!paciente.Equals(""))
                 modeloTurnosFiltro = modeloTurnosFiltro.FindAll(x => x.NombrePaciente.ToUpper().Contains(paciente.ToUpper()));          
             dgvMedicos.DataSource = modeloTurnosFiltro;
             dgvMedicos.DataBind();
         }
-
         private void CargarGrillaTurnos(Empleado empleado)
         {
             try
@@ -330,10 +310,8 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("TurnosGrdWeb", gvTurnos);
                 //solo se muestran los turno de situacion activo o reprogrmados
                 gvTurnos = gvTurnos.FindAll(x => x.IdSituacion == 1 || x.IdSituacion == 2);
-
                 if (empleado.idPerfil.Equals(3))
                     gvTurnos = gvTurnos.FindAll(x => x.IdMedico == empleado.ID);
-
                 dgvMedicos.DataSource = gvTurnos;
                 dgvMedicos.DataBind();
             }
@@ -343,7 +321,6 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         protected void lbtnCargaGrd_Click(object sender, EventArgs e)
         {
             LinkButton button = (LinkButton)sender;
@@ -352,7 +329,6 @@ namespace TP_Final_Morales_Rangogni
             if (button.ID.Equals("lbtnCargaGrd"))
                 FiltrarGrillaTurnos(empleado);
         }
-
         private void CargarFecha()
         {
 

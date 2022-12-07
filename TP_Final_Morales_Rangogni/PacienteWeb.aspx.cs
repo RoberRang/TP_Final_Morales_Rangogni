@@ -37,7 +37,6 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         private void ValidarEmpleadoLogin(Empleado empleado)
         {
             try
@@ -51,7 +50,6 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         protected void btnAcept_Click(object sender, EventArgs e)
         {
             Button btnFuncion = (Button)sender;
@@ -88,11 +86,8 @@ namespace TP_Final_Morales_Rangogni
                         nuevoPaciente.Estado = false;
                     }
 
-                    string ruta = Server.MapPath("./Imagenes/ImgPacientes/");
-                    string dni = txtDni.Text;
-                    txtimgPac.PostedFile.SaveAs(ruta + "paciente-" + dni + ".jpg");
-                    
-                    nuevoPaciente.Imagen = txtImagen.Text;
+
+                    nuevoPaciente.Imagen = "";
                     nuevoPaciente.Sexo = ddlGenero.Text;
                 }
                 else
@@ -122,7 +117,7 @@ namespace TP_Final_Morales_Rangogni
                     {
                         nuevoPaciente.Estado = false;
                     }
-                    nuevoPaciente.Imagen = txtEdImagen.Text;
+                    nuevoPaciente.Imagen = "";
                     nuevoPaciente.Sexo = ddlEdGenero.Text;
                 }
                 if (btnFuncion.ID == "btnEditar")
@@ -150,7 +145,6 @@ namespace TP_Final_Morales_Rangogni
 
             }
         }
-
         private void limpiarControlesEditar()
         {
             txtEdNombre.Text = string.Empty;
@@ -160,10 +154,8 @@ namespace TP_Final_Morales_Rangogni
             txtEdEmail.Text = string.Empty;
             txtEdFnac.Text = string.Empty;
             ddlEdEstado.Text = "Activo";
-            txtEdImagen.Text = string.Empty;
             ddlEdGenero.Text = "Masculino";
         }
-
         private void limpiarControles()
         {
             txtnombre.Text = string.Empty;
@@ -173,10 +165,8 @@ namespace TP_Final_Morales_Rangogni
             txtEmail.Text = string.Empty;
             txtFecha.Text = string.Empty;
             ddlEstado.Text = "Activo";
-            txtImagen.Text = string.Empty;
             ddlGenero.Text = "Masculino";
         }
-
         private bool ValidoControlTextBox(TextBox textBox)
         {
             bool valido = false;
@@ -188,7 +178,6 @@ namespace TP_Final_Morales_Rangogni
             }
             return valido;
         }
-
         protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = (int)dgvPacientes.SelectedDataKey.Value;
@@ -201,13 +190,11 @@ namespace TP_Final_Morales_Rangogni
             txtEdDni.Text = filtroRapido.NroDocumento;
             txtEdEmail.Text = filtroRapido.Email;
             txtEdtelefono.Text = filtroRapido.Telefono;
-            txtEdImagen.Text = filtroRapido.Imagen;
             txtEdFnac.Text = filtroRapido.FechaNacimiento;
             ddlEdGenero.Text = filtroRapido.Sexo;
             ddlEdEstado.Text = filtroRapido.Estado;
 
         }
-
         protected void filtro_TextChanged(object sender, EventArgs e)
         {
             List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
@@ -229,7 +216,6 @@ namespace TP_Final_Morales_Rangogni
             dgvPacientes.DataBind();
 
         }
-
         protected void mnPaciente_MenuItemClick(object sender, MenuEventArgs e)
         {
             int index = Convert.ToInt32(e.Item.Value);
@@ -237,7 +223,6 @@ namespace TP_Final_Morales_Rangogni
                 return;
             mvwPacientes.ActiveViewIndex = index;
         }
-
         protected void txtFiltroApellido_TextChanged(object sender, EventArgs e)
         {
             List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
@@ -246,7 +231,6 @@ namespace TP_Final_Morales_Rangogni
             dgvPacientes.DataBind();
 
         }
-
         protected void txtFiltroDni_TextChanged(object sender, EventArgs e)
         {
             List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
@@ -254,7 +238,6 @@ namespace TP_Final_Morales_Rangogni
             dgvPacientes.DataSource = filtroRapido;
             dgvPacientes.DataBind();
         }
-
         protected void btnLimpiarFiltro_Click(object sender, EventArgs e)
         {
             txtfiltro.Text = "";

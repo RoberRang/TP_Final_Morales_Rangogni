@@ -14,12 +14,10 @@ namespace ModeloDeNegocio.Negocio
         {
             medicoADO = new MedicoADO(ConexionStringDB.ConexionBase());
         }
-
         public List<Medico> MedicosEspecialidad(int idEspecialidad)
         {
             return medicoADO.ListarMedicoEspecialidad(idEspecialidad);
         }
-
         public bool ModificarMedicoEspecialidad(Medico medico, bool esInsert = false)
         {
             try
@@ -32,9 +30,7 @@ namespace ModeloDeNegocio.Negocio
             }
         }
         public bool ValidarDatosIngreso(Medico medico)
-        { /// recibir un objeto, voy chequear en bd que sea valido. DNI, USUARIO
-
-          ///ACA USO MENSAJE DE ERROR SI ES FALSE
+        { 
             return true;
         }
     }
