@@ -217,6 +217,7 @@ namespace TP_Final_Morales_Rangogni
             dgvPacientes.DataBind();
 
         }
+
         protected void txtFiltroDni_TextChanged(object sender, EventArgs e)
         {
             List<ModeloPacienteWeb> filtro = (List<ModeloPacienteWeb>)Session["pacientesWeb"];
@@ -230,6 +231,7 @@ namespace TP_Final_Morales_Rangogni
             txtFiltroApellido.Text = "";
             txtFiltroDni.Text = "";
             buscarPacientesWeb();
+
         }
     }
 }

@@ -61,6 +61,7 @@ namespace TP_Final_Morales_Rangogni
 
         /// <summary>
         /// Control txtFiltroApellido.
+
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
