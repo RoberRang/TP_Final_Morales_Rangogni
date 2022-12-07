@@ -100,7 +100,7 @@ namespace TP_Final_Morales_Rangogni
                 Session.Add("MensajeError", "El Turno no se pudo ingresar");
                 Response.Redirect("ErrorWeb.aspx", false);
             }
-            EnviarTurnoCorreo(turno);
+            //EnviarTurnoCorreo(turno);
 
             LimpiarControles();
         }
