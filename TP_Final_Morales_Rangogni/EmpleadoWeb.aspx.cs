@@ -42,7 +42,6 @@ namespace TP_Final_Morales_Rangogni
 
             }
         }
-
         private void buscarJornadas()
         {
             try
@@ -59,7 +58,6 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         private void ValidarEmpleadoLogin(Empleado empleado)
         {
             try
@@ -69,12 +67,10 @@ namespace TP_Final_Morales_Rangogni
             }
             catch (Exception ex)
             {
-
                 Session.Add("MensajeError", ex.Message);
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         private void buscarTipoPerfil()
         {
             PerfilNegocio perfilNegocio = new PerfilNegocio();
@@ -84,7 +80,6 @@ namespace TP_Final_Morales_Rangogni
             ddlPerfilEmp.DataBind();
 
         }
-
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             Button btnFuncion = (Button)sender;
@@ -100,7 +95,7 @@ namespace TP_Final_Morales_Rangogni
                   
                     if (negocio.AltaUsuario(nuevoUser))
                     {
-                        LimpiarControlesAltaEmpleado();   ///cartel alta de empleado completa
+                        LimpiarControlesAltaEmpleado();   
                         buscarEmpleados();
                         mvwEmpleados.ActiveViewIndex = 0;
                     }
@@ -112,7 +107,7 @@ namespace TP_Final_Morales_Rangogni
                         throw new Exception("No se cargaron los datos del usuario");
                     if (negocio.ModificarUsuario(usuario))
                     {
-                        LimpiarControlesEdicionEmpleado();   ///cartel alta de empleado completa
+                        LimpiarControlesEdicionEmpleado();  
                         buscarEmpleados();
                         mvwEmpleados.ActiveViewIndex = 0;
                     }
@@ -124,7 +119,6 @@ namespace TP_Final_Morales_Rangogni
                 Response.Redirect("ErrorWeb.aspx", false);
             }
         }
-
         private Usuario EditarEmpleado()
         {   
             Usuario editUser = new Usuario();
@@ -155,8 +149,6 @@ namespace TP_Final_Morales_Rangogni
             editUser.IdEmpleado = editUser.ID;
             editUser.IdUsuario = editUser.ID;
             editUser.Estado = ddlEdEstado.Text.Equals("Activo") ? true: false;
-
-            //desplegable
             editUser.idPerfil = int.Parse(ddlEdPerfil.SelectedValue);
             editUser.idJornada = int.Parse(ddlEdJornada.SelectedValue);
             editUser.User = txtEdUsuario.Text;
@@ -164,7 +156,6 @@ namespace TP_Final_Morales_Rangogni
             return editUser;
 
         }
-
         private Usuario nuevoEmpleado()
         {
             Usuario nuevoUser = new Usuario();
@@ -192,40 +183,33 @@ namespace TP_Final_Morales_Rangogni
             nuevoUser.Apellidos = txtApellido.Text;
             nuevoUser.NroDocumento = txtDni.Text;
             nuevoUser.Estado = ddlEdEstado.Text.Equals("Activo") ? true : false;
-
-            //desplegable
             nuevoUser.idPerfil = int.Parse(ddlPerfilEmp.SelectedValue);
             nuevoUser.idJornada = int.Parse(ddlJornada.SelectedValue);
             nuevoUser.User = txtUser.Text;
             nuevoUser.Password = txtPass.Text;
             return nuevoUser;
         }
-
         private void LimpiarControlesAltaEmpleado()
         {
             txtnombre.Text = "";
             txtApellido.Text = "";
-            txtDni.Text = "";
-            //desplegable
+            txtDni.Text = "";        
             ddlPerfilEmp.SelectedIndex = 0;
             ddlJornada.SelectedIndex = 0;
             txtUser.Text = "";
             txtPass.Text = "";
         }
-
         private void LimpiarControlesEdicionEmpleado()
         {
             txtEdNombre.Text = "";
             txtEdApellido.Text = "";
-            txtEdDni.Text = "";
-            //desplegable
+            txtEdDni.Text = "";            
             ddlEdPerfil.SelectedIndex = 0;
             ddlEdJornada.SelectedIndex = 0;
             txtEdUsuario.Text = "";
             txtEdPass.Text = "";
             txtEdPass2.Text = "";
         }
-
         private bool ValidoControlTextBox(TextBox textBox)
         {
             bool valido = false;
@@ -237,7 +221,6 @@ namespace TP_Final_Morales_Rangogni
             }
             return valido;
         }
-
         protected void btnVerEmp_Click(object sender, EventArgs e)
         {
             txtfiltro.Text = "";
@@ -245,7 +228,6 @@ namespace TP_Final_Morales_Rangogni
             txtFiltroDni.Text = "";
             buscarEmpleados();
         }
-
         protected void buscarEmpleados()
         {
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
@@ -254,14 +236,12 @@ namespace TP_Final_Morales_Rangogni
             dgEmpleados.DataSource = empleadosBuscados;
             dgEmpleados.DataBind();
         }
-
         protected void dgEmpleados_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = (int)dgEmpleados.SelectedDataKey.Value;
 
             List<Empleado> filtros = (List<Empleado>)Session["empleados"];
             Empleado filtroEmpleado = filtros.Find(x => x.ID.Equals(id));
-
             txtEdNombre.Text = filtroEmpleado.Nombres;
             txtEdApellido.Text = filtroEmpleado.Apellidos;
             txtEdDni.Text = filtroEmpleado.NroDocumento;
@@ -270,16 +250,12 @@ namespace TP_Final_Morales_Rangogni
             lblIdEdUser.Text = id.ToString();
             txtEdUsuario.Text = usuario.User;
             txtEdPass.Text = usuario.Password;
-
-            /// ddlEdEstado.Text = filtroEmpleado.Estado.ToString();
-
             JornadaNegocio jornadaNegocio = new JornadaNegocio();
             ddlEdJornada.DataSource = jornadaNegocio.ListarJornadas();
             ddlEdJornada.DataValueField = "IdJornada";
             ddlEdJornada.DataTextField = "descripcion";
             ddlEdJornada.DataBind();
             ddlEdJornada.SelectedValue = filtroEmpleado.idJornada.ToString();
-
             PerfilNegocio perfilNegocio = new PerfilNegocio();
             ddlEdPerfil.DataSource = perfilNegocio.Perliles();
             ddlEdPerfil.DataValueField = "idPerfil";
@@ -289,16 +265,13 @@ namespace TP_Final_Morales_Rangogni
             mvwEmpleados.ActiveViewIndex = 2;
 
         }
-
         protected void txtfiltro_TextChanged(object sender, EventArgs e)
         {
             List<Empleado> filtro = (List<Empleado>)Session["empleados"];
             List<Empleado> filtroRapido = filtro.FindAll(x => x.Nombres.ToUpper().Contains(txtfiltro.Text.ToUpper()));
-
             dgEmpleados.DataSource = filtroRapido;
             dgEmpleados.DataBind();
         }
-
         protected void mnEmpleados_MenuItemClick(object sender, MenuEventArgs e)
         {
             int index = Convert.ToInt32(e.Item.Value);
@@ -306,12 +279,10 @@ namespace TP_Final_Morales_Rangogni
                 return;
             mvwEmpleados.ActiveViewIndex = index;
         }
-
         protected void btnEditar_Click(object sender, EventArgs e)
         {
             btnAceptar_Click(sender, e);
         }
-
         protected void txtFiltroApellido_TextChanged(object sender, EventArgs e)
         {
             List<Empleado> filtro = (List<Empleado>)Session["empleados"];
@@ -319,7 +290,6 @@ namespace TP_Final_Morales_Rangogni
             dgEmpleados.DataSource = filtroRapido;
             dgEmpleados.DataBind();
         }
-
         protected void txtFiltroDni_TextChanged(object sender, EventArgs e)
         {
             List<Empleado> filtro = (List<Empleado>)Session["empleados"];

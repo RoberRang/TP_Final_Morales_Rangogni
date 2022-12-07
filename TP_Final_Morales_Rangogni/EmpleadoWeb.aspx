@@ -156,13 +156,13 @@
                 <asp:UpdatePanel runat="server" ID="UpdEditarEmpleado" UpdateMode="Conditional">
 
                     <ContentTemplate>
-                              <div class="row">
-                                    <div class="input-field col s1">
-                                        <asp:Label runat="server" ID="lblIdEdUser" Enabled="false" Visible="false" />
-                                    </div>
                         <div class="row">
-                            <div class="col s12">
-                         
+                            <div class="input-field col s1">
+                                <asp:Label runat="server" ID="lblIdEdUser" Enabled="false" Visible="false" />
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+
                                     <div class="input-field col s4">
                                         <asp:TextBox ID="txtEdNombre" runat="server" CssClass="validate" placeholder=""></asp:TextBox>
                                         <label for="lblEdNombre">Nombre</label>
@@ -255,8 +255,6 @@
         </asp:MultiView>
     </div>
 
-
     <script type="text/javascript" src="js/tabfunciones.js"></script>
 
-    <!--HASTA ACA-->
 </asp:Content>

@@ -17,8 +17,7 @@ namespace AccesoModeloBaseDatos.Modelos
         public PacienteADO(string coneccion)
         {
             coneccionDB = coneccion;
-        }
-      
+        }      
         public bool GrabarPaciente(Paciente paciente)
         {
             bool response;
@@ -36,7 +35,6 @@ namespace AccesoModeloBaseDatos.Modelos
             }
             return response;
         }
-
         private void InsertPacienteDB(Paciente paciente)
         {
             AccesoDatos accesoDatos = new AccesoDatos(coneccionDB);
@@ -69,38 +67,21 @@ namespace AccesoModeloBaseDatos.Modelos
                 }
             }
         }
-
         private void UpdatePaciente(Paciente paciente)
         {
             AccesoDatos accesoDatosUpdate = new AccesoDatos(coneccionDB);
             using (SqlConnection con = accesoDatosUpdate.ConnectToDB())
             {
                 try
-                {   /*
-                    SqlCommand cmd = new SqlCommand(SQL_UPDATE_PACIENTES, con);
-                    cmd.Parameters.AddWithValue("@apellidos", paciente.Apellidos);
-                    cmd.Parameters.AddWithValue("@nombres", paciente.Nombres);
-                    cmd.Parameters.AddWithValue("@nrodocumento", paciente.NroDocumento);
-                    cmd.Parameters.AddWithValue("@fechanacimiento", paciente.FechaNacimiento);
-                    cmd.Parameters.AddWithValue("@sexo", paciente.Sexo);
-                    cmd.Parameters.AddWithValue("@fechaalta", paciente.FechaAlta);
-                    cmd.Parameters.AddWithValue("@estado", paciente.Estado);
-                    cmd.Parameters.AddWithValue("@telefono", paciente.Telefono);
-                    cmd.Parameters.AddWithValue("@email", paciente.Email);
-                    cmd.Parameters.AddWithValue("@imagen", paciente.Imagen);
-                    cmd.CommandType = CommandType.Text;
-                    accesoDatosUpdate.ExecuteCommand(cmd);
-                    */
-                    
+                {                       
                     string sql = SQL_UPDATE_PACIENTES;                   
                     sql = sql.Replace("@idPaciente", paciente.IdPaciente.ToString());
                     sql = sql.Replace("@apellidos", paciente.Apellidos.ToString());
                     sql = sql.Replace("@nombres", paciente.Nombres.ToString());
                     sql = sql.Replace("@nrodocumento", paciente.NroDocumento.ToString());
                     sql = sql.Replace("@fechanacimiento", "'" + paciente.FechaNacimiento.ToString("yyyy-MM-ddThh:mm:ss") + "'");                    
-                    sql = sql.Replace("@sexo", paciente.Sexo.ToString());
-                    //sql = sql.Replace("@fechaalta", "'" + paciente.FechaAlta.ToString("yyyy-MM-ddThh:mm:ss") + "'");                    
-                    sql = sql.Replace("@estado", paciente.Estado.Equals(true) ? "1" : "0"); /// convertir a BIT
+                    sql = sql.Replace("@sexo", paciente.Sexo.ToString());                                       
+                    sql = sql.Replace("@estado", paciente.Estado.Equals(true) ? "1" : "0"); 
                     sql = sql.Replace("@telefono", paciente.Telefono.ToString());
                     sql = sql.Replace("@email", paciente.Email.ToString());
                     sql = sql.Replace("@imagen", paciente.Imagen.ToString());
@@ -119,9 +100,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     accesoDatosUpdate.CloseConnection();
                 }
             }
-        }
-
-        // Listado de Menus pero lo manejamos por medio de la clase PermisoADO
+        }        
         public List<Paciente> ListarPacientes()
         {
             List<Paciente> Lista = new List<Paciente>();
@@ -151,7 +130,6 @@ namespace AccesoModeloBaseDatos.Modelos
             }
             return Lista;
         }
-
         private Paciente CreateObject(SqlDataReader dr)
         {
             Paciente objTPaciente = new Paciente();
@@ -181,8 +159,7 @@ namespace AccesoModeloBaseDatos.Modelos
                     string sql = SQL_SELECT_PACIENTE;
                     sql = sql.Replace("@nrodocumento", documento);
                     SqlCommand cmd = new SqlCommand(sql, con);
-                    cmd.CommandType = CommandType.Text;
-                    //cmd.Parameters.AddWithValue("@nrodocumento", documento);
+                    cmd.CommandType = CommandType.Text;                   
                     dr = accesoDatosBusca.SelectDataReaderFromSqlCommand(cmd);
 
                     while (dr.Read())
@@ -202,7 +179,6 @@ namespace AccesoModeloBaseDatos.Modelos
 
             return paciente;
         }
-
         public void BorrarPaciente(string nroDocumento)
         {
             throw new NotImplementedException();

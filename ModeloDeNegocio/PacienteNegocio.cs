@@ -21,11 +21,8 @@ namespace ModeloDeNegocio.Negocio
             {
                 Paciente pacienteBuscado = pacienteADO.BuscarPaciente(paciente.NroDocumento);
                 if (pacienteBuscado != null)
-                    return false;
-                ///crear validaciones para paciente                
-                pacienteADO.GrabarPaciente(paciente);
-
-                ///grabar la tabla usuario y contraseña (traigo id paciente, crear obj usuario// llamo a usuarioADO para grabarusuario)
+                    return false;                              
+                pacienteADO.GrabarPaciente(paciente);              
                 return alta;
             }
             catch (Exception ex)
@@ -48,15 +45,12 @@ namespace ModeloDeNegocio.Negocio
                 throw ex;
             }
         }
-
         public Paciente BuscarPaciente(string documento)
         {
             return pacienteADO.BuscarPaciente(documento);
         }
         public bool ValidarDatosIngreso(Paciente paciente)
-        { /// recibir un objeto, voy chequear en bd que sea valido. DNI, USUARIO
-
-          ///ACA USO MENSAJE DE ERROR SI ES FALSE
+        { 
             return true;
         }
     }

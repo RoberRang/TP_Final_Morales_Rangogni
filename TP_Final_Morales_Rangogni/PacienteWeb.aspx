@@ -59,25 +59,7 @@
                     <ContentTemplate>
                         <br />
                         <br />
-                        <!--imagen-->
-                        <div class="center-align responsive-img">
-                            <asp:Image ID="imgPaciente" runat="server" CssClass="circle responsive-img" Width="100" src="https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-580x580.jpg" />
-                        </div>
-                        <div class="col s12">
-                            <div class="row">
-                                <div class="col s5">
-                                </div>
-                                <div class="file-field input-field col s4 center-align">
-                                    <div class="waves-effect purple waves-light btn-small">
-                                        <i class="material-icons">camera_enhance</i>
-                                        <input type="file" id="txtimgPac" runat="server">
-                                    </div>
-                                    <div class="file-path-wrapper col s4">
-                                        <asp:TextBox ID="txtImagen" runat="server" CssClass="file-path validate"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <!--Nombre y Apellido -->
                         <div class="col s12">
                             <div class="row">
@@ -171,24 +153,7 @@
                 <br />
                 <!--imagen-->
                 <asp:TextBox ID="IdPaciente" runat="server" Visible="false"></asp:TextBox>
-                <div class="center-align responsive-img">
-                    <asp:Image ID="imgEdPaciente" runat="server" CssClass="circle responsive-img" Width="100" src="https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-580x580.jpg" />
-                </div>
-                <div class="col s12">
-                    <div class="row">
-                        <div class="col s5">
-                        </div>
-                        <div class="file-field input-field col s4 center-align">
-                            <div class="waves-effect purple waves-light btn-small">
-                                <i class="material-icons">camera_enhance</i>
-                                <input type="file">
-                            </div>
-                            <div class="file-path-wrapper col s4">
-                                <asp:TextBox ID="txtEdImagen" runat="server" CssClass="file-path validate"></asp:TextBox>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
                 <!--Nombre y Apellido -->
 
                 <div class="col s12">
