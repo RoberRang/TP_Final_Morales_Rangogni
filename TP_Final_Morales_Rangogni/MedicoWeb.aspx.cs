@@ -33,7 +33,7 @@ namespace TP_Final_Morales_Rangogni
                     CargarGrillaEspecialidad();
 
                     CargarFecha();
-                    CargarGrillaTurnos(empleado);          
+                    CargarGrillaTurnos(empleado);                    
                 }
             }
             catch (Exception ex)
@@ -199,22 +199,21 @@ namespace TP_Final_Morales_Rangogni
         {
             try
             {
-                TurnoNegocio turnoNegocio = new TurnoNegocio();
-                ModeloGrillaTurnosWeb modeloGrillaTurnosWeb = new ModeloGrillaTurnosWeb();
-                DateTime dFechaTurno;
-                if (!IsPostBack || txtFechaTurnos.Text.Equals(""))
-                    dFechaTurno = DateTime.Today;
+                EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
+                List<Especialidad> especialidades = null;
+                if (nuevo)
+                    especialidades = especialidadNegocio.Especialidades();
                 else
-                    dFechaTurno = Convert.ToDateTime(txtFechaTurnos.Text);
-                DataTable dtTurnos = turnoNegocio.DataTableTurnosFecha(dFechaTurno);
-                List<ModeloTurnoWeb> gvTurnos = modeloGrillaTurnosWeb.ObtenerListaTurnosWebDataTable(dtTurnos);
+                    especialidades = (List<Especialidad>)Session["ListaEspecialidad"];
 
-                if (Session["TurnosGrdWeb"] != null)
-                    Session.Remove("TurnosGrdWeb");
-
-                Session.Add("TurnosGrdWeb", gvTurnos);
-                dgvMedicos.DataSource = gvTurnos;
-                dgvMedicos.DataBind();
+                ddlEspecialidad.DataSource = especialidades;
+                ddlEspecialidad.DataValueField = "IdEspecialidad";
+                ddlEspecialidad.DataTextField = "Descripcion";
+                ddlEspecialidad.DataBind();
+                ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+                ddlEspecialidad.SelectedIndex = 0;
+                txtIdEspMed.Text = ddlEspecialidad.SelectedValue;
+                txtIdEspMed.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -273,8 +272,8 @@ namespace TP_Final_Morales_Rangogni
         }
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtFechaTurnos.Text = DateTime.Now.ToString("yyyy-MM-dd");
-
+            txtIdEspMed.Text = ddlEspecialidad.SelectedValue;
+            mpeEsp.Show();
         }
         protected void lbtnCargarTurnos_Click(object sender, EventArgs e)
         {

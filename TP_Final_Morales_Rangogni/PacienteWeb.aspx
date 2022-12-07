@@ -35,8 +35,8 @@
                         <div class="row left-align ">
                             <asp:Button CssClass="modal-close btn-flat purple white-text" ID="btnLimpiarFiltro" runat="server" OnClick="btnLimpiarFiltro_Click" Text="Limpiar Filtros" />
 
-
                         </div>
+
                         <asp:GridView ID="dgvPacientes" CssClass="highlight responsive-table"
                             runat="server" AutoGenerateColumns="false" DataKeyNames="IdPaciente"
                             OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged">
